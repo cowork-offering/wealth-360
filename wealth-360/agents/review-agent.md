@@ -43,14 +43,16 @@ Every call sends `{"inputs":[{...}]}` and returns a Flow envelope; parse
 
 ## Aggregation checks (when available)
 
-When the aggregation server is connected (the wealth-experience MCP; under the agent runner it is the
-server `aggregation`), re-run the outside checks yourself rather than trusting the maker's:
+When the aggregation server is connected (the wealth-experience MCP: under the agent runner it is the
+server `aggregation`; in a person's claude.ai seat it is the connector `Wealth 360 Checks`; match on
+the tool name suffix), re-run the outside checks yourself rather than trusting the maker's:
 `verify_payee` for the payee, `screen_party` for sanctions screening, `verify_identity` for identity
 and `validate_address` for an address. Pass `caseId` on every call. In `checksJson`, cite each
 result: the rule, the result, `evidence.quote` as the evidence and `evidence.source` with the
 `ledger_id` as the source. A result with `ok: false` (for example `NOT_CONFIGURED`) is `cannot
-check`, never `pass`. If the server is not connected, mark the outside checks `cannot check` and say
-so in your report.
+check`, never `pass`. Label the payee, address and identity results "sandbox" in your report: the
+providers are sandboxes on fictional personas. If the server is not connected, mark the outside checks
+`cannot check` and say so in your report.
 
 ## How you check
 

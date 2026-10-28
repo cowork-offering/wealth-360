@@ -3,6 +3,26 @@
 All notable changes to the Wealth 360 plugin. The version is in
 `wealth-360/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
 
+## 0.3.0 (2026-10-28)
+
+### Wealth 360 Checks connector
+- A second, optional claude.ai custom connector, `Wealth 360 Checks`
+  (`https://wealth-360-checks.vercel.app/api/mcp`). It runs the outside checks from the person's own
+  seat: sanctions screening on the UK Sanctions List, the Plaid sandbox account-holder check on a
+  payee, Ideal Postcodes address validation and a Didit sandbox identity session, plus the person's
+  own check ledger.
+- Sign-in is Salesforce, with the same External Client App and OAuth Client ID as `Wealth 360`. The
+  server checks every token with Salesforce, accepts only the bank's org, and records the signed-in
+  person on every ledger row. No anonymous access.
+- Setup steps in the README, section "The second connector", and in `plugin.json`.
+
+### Skills and agents
+- New `outside-checks` skill: "run a sanctions check on the payee", "verify the payee account",
+  "validate this address", "start an ID check". Takes the inputs from the case, quotes the evidence,
+  source and ledger id, and labels every result sandbox. A screening hit always goes to a person.
+- The orchestrator knows the second connector. The Case agent and the Review agent use it when they
+  run in a person's seat, as they use the runner's aggregation server, and label sandbox results.
+
 ## 0.2.0 (2026-10-28)
 
 Brings the plugin in line with what runs in the BankingGPT sandbox.

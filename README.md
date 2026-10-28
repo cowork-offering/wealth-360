@@ -76,6 +76,39 @@ Wealth 360 does not need the separate Customer 360 connector.
 
 ---
 
+## The second connector: Wealth 360 Checks (optional)
+
+A second connector runs the outside checks from chat, as you: sanctions screening, the payee's bank
+account, an address and an identity check. It signs in with the same Salesforce login and the same
+External Client App as `Wealth 360`, so there is nothing new to register.
+
+| Setting | Value |
+|---|---|
+| Where | claude.ai › Settings › Connectors › Add custom connector |
+| Name | `Wealth 360 Checks` (exactly this) |
+| URL | `https://wealth-360-checks.vercel.app/api/mcp` |
+| Advanced settings › OAuth Client ID | the same consumer key as `Wealth 360`. BankingGPT sandbox (app `Claude_Ai_Integration_via_MCP`): `3MVG95bilXG9ExQFPfVafsYh_y5a5uSppydv6GCC.unT36dURnDmX35CZam_x3uOs5vSwQuLTDYNSTV_2iL_Y` |
+| Client credential field | leave empty. The app uses PKCE |
+
+Then select **Connect** and sign in to Salesforce as yourself. The server accepts only a Salesforce
+token for the bank's org, checks it with Salesforce on every new token, and records you on every row
+of its check ledger. There is no anonymous access.
+
+| Ask | Tool | Provider |
+|---|---|---|
+| "Run a sanctions check on the payee." | `screen_party` | UK Sanctions List (FCDO), refreshed with each deploy; the list date is in every result |
+| "Verify the payee account." | `verify_payee` | Plaid sandbox: an open-banking account-holder check, not Pay.UK Confirmation of Payee |
+| "Validate this address." | `validate_address` | Ideal Postcodes (test postcode `ID1 1QD`) |
+| "Start an ID check." | `verify_identity` | Didit sandbox: a hosted document and liveness session for the client |
+| "What checks have I run?" | `ledger` | your own rows only |
+
+Every result is reported with its evidence quote, its source and its ledger id, and labelled
+sandbox. The payee, address and identity providers are sandboxes on fictional personas: do not send
+real client details. A check is evidence for the person, never a decision, and a screening hit
+always goes to a person. Claude Code and Cowork use the connector from your claude.ai account.
+
+---
+
 ## First run
 
 Start a conversation and say:
@@ -101,6 +134,7 @@ Other things to ask:
 - "Walk me through the money in case."
 - "Approve the bereavement letter and book Sophie for Thursday at 10."
 - "How did today go?"
+- "Run a sanctions check on the payee." (needs the `Wealth 360 Checks` connector)
 
 ---
 
@@ -150,7 +184,8 @@ The plugin reads them live; it does not carry its own copy.
 | Deterministic checks: payee, incoming match, KYC status | Live, on Salesforce records |
 | Agent runner, real time | Live. A Salesforce platform event wakes the runner about 1 to 2 seconds after a W360 case needs agent work (new case, customer reply, sent back to `Working`). The listener waits 10 seconds of quiet per case, then works it. A sweep every 2 minutes is the safety net |
 | Case agent and Review agent writes | Live, written as the dedicated agent identity by the agent runner (OAuth 2.0 JWT bearer, no browser). Each agent gets only its own tools; the decision tools are never available to it. Setup is an environment step, see RUNBOOK.md |
-| Outside checks: sanctions screening, confirmation of payee, address validation, identity verification | Live against sandboxes through an aggregation server the runner connects (UK sanctions list, Plaid sandbox, Ideal Postcodes, Didit sandbox). Without it, the agents say which checks they could not run |
+| Outside checks: sanctions screening, payee account-holder check, address validation, identity verification | Live against sandboxes through an aggregation server the runner connects (UK sanctions list, Plaid sandbox, Ideal Postcodes, Didit sandbox). Without it, the agents say which checks they could not run |
+| Outside checks from chat (`Wealth 360 Checks` connector) | Built and tested against the BankingGPT sandbox: the same checks as a hosted server with Salesforce sign-in, for the person's own seat. See "The second connector" |
 | Email intake | Live in the sandbox: an Apex Email Service turns a client's email into a W360 case or files a reply on its case (rules below). Proven with simulated emails; the first real inbound email is still to be tested |
 | Branded email out | Live when a person releases it through the desk. Agent auto-send of document requests is built and fenced, and switched off until the bank turns it on |
 | The agents inside your own session | Read-only in effect. If you dispatch them from your seat, Salesforce refuses their writes ("agent tools run only as the agent identity"); they report the steps and checks they would record and you see the work |
@@ -257,7 +292,7 @@ wealth-360/
   .claude-plugin/plugin.json        the plugin manifest and its one connector
   .mcp.json                         intentionally empty: the connector is user-level
   agents/                           wealth-360 (orchestrator), case-agent, review-agent
-  skills/                           wealth-360-desk, five journeys, daily-summary, wealth-360-admin
+  skills/                           wealth-360-desk, five journeys, daily-summary, wealth-360-admin, outside-checks
   assets/                           the desk template, desk.json, capabilities.json
   README.md, RUNBOOK.md             plugin notes and the Salesforce side
 ```

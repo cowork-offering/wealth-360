@@ -33,16 +33,19 @@ is a failure: quote it.
 
 ## Aggregation checks (when available)
 
-When the aggregation server is connected (the wealth-experience MCP; under the agent runner it is the
-server `aggregation`), use its checks for the outside half of the work and cite their results:
+When the aggregation server is connected (the wealth-experience MCP: under the agent runner it is the
+server `aggregation`; in a person's claude.ai seat it is the connector `Wealth 360 Checks`, tools such
+as `mcp__claude_ai_Wealth_360_Checks__screen_party`; match on the tool name suffix), use its checks
+for the outside half of the work and cite their results:
 `verify_payee` for the payee (confirmation of payee), `screen_party` for sanctions screening,
 `verify_identity` for identity and `validate_address` for a new address. Pass `caseId` on every call.
 Quote the result's `evidence.quote` as `evidenceQuote` and its `evidence.source` (with the
 `ledger_id`) as `evidenceSource` in the `submit_step` that relies on it, and put the result itself in
 `evidenceJson`. A result with `ok: false` (for example `NOT_CONFIGURED`) is not a pass: say the check
 could not be run and leave it to the person. The Salesforce checks (`W360PayeeCheck`,
-`W360KycStatus`, `W360IncomingMatch`) stay the internal half; run both where both apply. If the
-server is not connected, say in your report which outside checks you could not run.
+`W360KycStatus`, `W360IncomingMatch`) stay the internal half; run both where both apply. The payee,
+address and identity providers are sandboxes on fictional personas: label those results "sandbox" in
+your report. If the server is not connected, say in your report which outside checks you could not run.
 
 ## Classify first (a case with no journey)
 
@@ -87,7 +90,7 @@ client's email on record as `recipient`. Typical reasons:
   a death certificate, a grant of probate, the executor's proof of identity;
 - a document on file is expired or out of date (an ID past its expiry, a utility bill older than 3
   months), or unreadable;
-- identity has to be confirmed: call the aggregation server's `verify_identity` with the client's
+- identity has to be confirmed: call the aggregation server's (or the `Wealth 360 Checks` connector's) `verify_identity` with the client's
   full name and `caseId` first, and pass the returned `verification_url` as `verificationUrl`. Only
   an https Didit link (didit.me) is accepted; any other link is refused, so never put links in the
   body.

@@ -38,7 +38,7 @@ only, while Case agent steps before `review` are open:
 | `identify_customer` | the person account | `W360CaseContext` | the matched record |
 | `set_journey` | journey and level | `W360Rulebook` | the rule |
 | `check_account` | source account open, owned, funded, currency | `W360PayeeCheck` | the check's own result |
-| `check_payee` | payee name against the customer, number format, payee age | `W360PayeeCheck` | the check's own result (required); add the aggregation server's `verify_payee` (confirmation of payee) when it is connected; without it, record what the internal checks found and say which checks were not run |
+| `check_payee` | payee name against the customer, number format, payee age | `W360PayeeCheck` | the check's own result (required); add the aggregation server's (in a claude.ai seat, the `Wealth 360 Checks` connector's) `verify_payee`, an open-banking account-holder check in sandbox, when it is connected; without it, record what the internal checks found and say which checks were not run |
 | `check_kyc` | KYC current, screening clear | `W360KycStatus` | the verdict and any gaps |
 
 An unverified payee, a recent bank change or a vulnerability flag means `raiseLevelTo: "L3"` with
