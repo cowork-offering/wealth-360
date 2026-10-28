@@ -1465,6 +1465,178 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 .lrm-cands button:hover{border-color:var(--purple)}
 .lrm-act{display:flex;justify-content:flex-end;gap:8px;margin-top:4px}
 .lrm-act .lrm-cancel{border-radius:999px;padding:10px 16px;font-size:12.5px;font-weight:600;color:var(--ink-3);background:transparent;border:1px solid var(--line)}
+/* ---------- desk v2 (live): two lenses over one board, agents lane, structured slide-out ---------- */
+:root{--w3-ink:#0b0b0f;--w3-ink2:#2a2a31;--w3-ink3:#5d5e68;--w3-ink4:#8b8c96;--w3-line:#e6e6eb;--w3-line2:#efeff2;
+  --w3-p:#a100ff;--w3-pd:#7500c0;--w3-p1:#f5eeff;--w3-p2:#e7d8ff;--w3-blue:#3a64a8;--w3-alert:#b42318;--w3-risk:#a85a07;--w3-ok:#1d7a4c}
+#w3{display:none}
+body.w3live.w3v #v-desk>.hero,body.w3live.w3v #v-desk>.desk,body.w3live.w3v main.wrap>footer{display:none}
+body.w3live.w3v #w3{display:flex;flex-direction:column;height:calc(100dvh - 66px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));min-height:560px;padding-top:20px}
+body.w3live.w3v main.wrap{min-height:0}
+.w3-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding-bottom:14px}
+.w3-head .kicker{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--w3-ink4);font-weight:500}
+.w3-head h1{margin:4px 0 2px;font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1.15}
+.w3-head p{margin:0;color:var(--w3-ink3);font-size:14px}
+.w3-head p b{color:var(--w3-ink);font-weight:600}
+.w3-stats{display:flex;gap:20px;align-items:stretch}
+.w3-stat{display:flex;flex-direction:column;align-items:flex-end}
+.w3-stat small{font-size:11px;color:var(--w3-ink4)}
+.w3-stat strong{font-size:22px;font-weight:600;letter-spacing:-.01em;line-height:1.2;font-variant-numeric:tabular-nums}
+.w3-stat strong em{font-style:normal;font-size:13px;color:var(--w3-ink4);font-weight:400}
+.w3-vr{width:1px;background:var(--w3-line)}
+.w3-bar{display:flex;align-items:center;gap:16px;padding-bottom:12px}
+.w3-lens{display:inline-flex;background:#e8e8ed;border-radius:999px;padding:3px}
+.w3-lens button{border:0;background:transparent;border-radius:999px;padding:6px 16px;font-size:13px;font-weight:500;color:var(--w3-ink3);cursor:pointer}
+.w3-lens button[aria-pressed=true]{background:#fff;color:var(--w3-ink);box-shadow:0 1px 3px rgba(16,18,40,.12)}
+.w3-live{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--w3-ink3);min-width:0;margin-left:auto}
+.w3-live i{width:7px;height:7px;border-radius:50%;background:#1f9d5a;flex:0 0 auto;animation:w3ping 2s infinite}
+.w3-live.stale i{background:#c4c4cc;animation:none}
+.w3-live span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@keyframes w3ping{0%{box-shadow:0 0 0 0 rgba(31,157,90,.45)}70%{box-shadow:0 0 0 7px rgba(31,157,90,0)}100%{box-shadow:0 0 0 0 rgba(31,157,90,0)}}
+.w3-log{border:0;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;background:var(--w3-ink);color:#fff;cursor:pointer;white-space:nowrap}
+.w3-board{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;padding-bottom:16px}
+.w3-groups,.w3-lanes{display:grid;gap:12px}
+.w3-me{grid-template-columns:repeat(3,minmax(0,1fr)) repeat(2,minmax(0,.82fr))}
+.w3-jr{grid-template-columns:repeat(5,minmax(0,1fr))}
+.w3-groups{margin-bottom:8px;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--w3-ink4);font-weight:500}
+.w3-groups .you{grid-column:1/4;color:var(--w3-pd)}.w3-groups .oth{grid-column:4/6}
+.w3-legend{grid-column:1/6;display:flex;gap:16px;text-transform:none;letter-spacing:0;font-size:12px}
+.w3-lanes{flex:1 1 auto;min-height:0}
+.w3-lane{min-height:0;display:flex;flex-direction:column;background:#ebebef;border-radius:18px}
+.w3-lane.w3la-auth{background:#f0e9fc}.w3-lane.w3la-agent{background:#f1eefa}.w3-lane.w3la-wait{background:transparent;border:1px dashed #d8d8df}
+.w3-lane>header{padding:12px 16px 8px}
+.w3-lane h3{margin:0;font-size:13.5px;font-weight:600;display:flex;align-items:baseline;gap:8px}
+.w3-lane h3 span{font-size:12.5px;color:var(--w3-ink4);font-weight:500;font-variant-numeric:tabular-nums}
+.w3-lane>header p{margin:2px 0 0;font-size:12px;color:var(--w3-ink4)}
+.w3-list{flex:1 1 auto;min-height:0;overflow-y:auto;padding:4px 8px 8px;display:flex;flex-direction:column;gap:8px;scrollbar-width:thin}
+.w3-list::-webkit-scrollbar{width:6px}.w3-list::-webkit-scrollbar-thumb{background:#cfcfd8;border-radius:6px}
+.w3-empty{font-size:12.5px;color:var(--w3-ink4);padding:8px;line-height:1.5;margin:0}
+.w3c{all:unset;box-sizing:border-box;cursor:pointer;background:#fff;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;box-shadow:0 1px 2px rgba(16,18,40,.05);border:1px solid transparent;transition:border-color .15s,box-shadow .15s}
+.w3c:hover{border-color:var(--w3-p2);box-shadow:0 6px 20px -12px rgba(16,18,40,.3)}
+.w3c:focus-visible{outline:2px solid var(--w3-p);outline-offset:2px}
+.w3c.open{border-color:var(--w3-p)}
+.w3c .w3r1{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.w3c .w3r1 b{font-size:14px;font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.w3c .w3r1 em{font-style:normal;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.w3c .w3hl{font-size:13px;color:var(--w3-ink2);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.w3c .w3wy{font-size:12px;color:var(--w3-ink4);line-height:1.4}
+.w3c .w3r3{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11.5px;color:var(--w3-ink4);padding-top:2px}
+.w3c .w3r3 .w3soon{color:var(--w3-ink2);font-weight:500}
+.w3-mark{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:500}
+.w3-mark::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.w3-mark.w3-alert{color:var(--w3-alert)}.w3-mark.w3-risk{color:var(--w3-risk)}
+.w3-st{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--w3-ink3)}
+.w3-st::before{content:"";width:7px;height:7px;border-radius:50%;background:#c4c4cc}
+.w3-st.w3la-auth::before{background:var(--w3-p)}.w3-st.w3la-dec::before{background:var(--w3-ink)}.w3-st.w3la-rev::before{background:var(--w3-blue)}
+.w3-st.w3la-agent::before{background:transparent;border:2px solid var(--w3-p);border-top-color:transparent;width:9px;height:9px;animation:w3spin 1.2s linear infinite}
+.w3c .w3now{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--w3-ink2);line-height:1.35}
+.w3-av{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:9.5px;font-weight:600;color:#fff;background:var(--w3-p);flex:0 0 auto;position:relative;font-style:normal}
+.w3-av.rv{background:var(--w3-blue)}.w3-av.ps{background:var(--w3-ink3)}
+.w3-av::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:2px solid var(--w3-p2);border-top-color:transparent;animation:w3spin 1.4s linear infinite}
+.w3-av.ps::after{display:none}
+@keyframes w3spin{to{transform:rotate(360deg)}}
+.w3-bars{display:flex;gap:3px}.w3-bars i{flex:1;height:4px;border-radius:2px;background:var(--w3-line)}.w3-bars i.d{background:var(--w3-p)}.w3-bars i.n{background:var(--w3-p2);animation:w3fade 1.2s ease-in-out infinite}
+@keyframes w3fade{50%{opacity:.35}}
+/* slide-out */
+.w3s{position:fixed;inset:0;background:rgba(16,18,40,.18);opacity:0;pointer-events:none;transition:opacity .25s;z-index:60}
+.w3s.on{opacity:1;pointer-events:auto}
+.w3d{position:fixed;top:12px;right:12px;bottom:12px;width:min(620px,calc(100% - 24px));background:#fff;border-radius:20px;box-shadow:0 30px 90px -20px rgba(16,18,40,.4);z-index:61;display:flex;flex-direction:column;transform:translateX(calc(100% + 24px));transition:transform .4s cubic-bezier(.2,.8,.2,1);overflow:hidden;margin-top:env(safe-area-inset-top,0px);margin-bottom:env(safe-area-inset-bottom,0px);color:var(--w3-ink)}
+.w3d.on{transform:none}
+.w3d-h{padding:24px 24px 0;display:flex;flex-direction:column;gap:12px}
+.w3d-h .r{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.w3d-h .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--w3-ink4);font-weight:500}
+.w3d-h h2{margin:4px 0 0;font-size:22px;font-weight:600;letter-spacing:-.015em}
+.w3d-h .sub{font-size:13px;color:var(--w3-ink3);margin-top:2px}
+.w3d-h .amt{font-size:24px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums;text-align:right}
+.w3d-h .meta{font-size:12px;color:var(--w3-ink4);text-align:right;margin-top:2px}
+.w3x{border:0;background:var(--w3-line2);border-radius:50%;width:32px;height:32px;flex:0 0 auto;font-size:13px;cursor:pointer}
+.w3why{display:grid;grid-template-columns:3px 1fr;gap:12px;padding:10px 0 12px}
+.w3why::before{content:"";border-radius:2px;background:var(--w3-ink)}
+.w3why.w3la-auth::before{background:var(--w3-p)}.w3why.w3la-rev::before{background:var(--w3-blue)}.w3why.w3la-wait::before,.w3why.w3la-agent::before,.w3why.w3la-done::before{background:#c4c4cc}
+.w3why small{display:block;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--w3-ink4);font-weight:500;margin-bottom:2px}
+.w3why p{margin:0;font-size:14px;line-height:1.45}
+.w3tabs{display:flex;gap:24px;border-bottom:1px solid var(--w3-line);padding:0 24px}
+.w3tabs button{border:0;background:transparent;padding:12px 0;font-size:13px;color:var(--w3-ink4);font-weight:500;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer}
+.w3tabs button[aria-selected=true]{color:var(--w3-ink);border-bottom-color:var(--w3-ink)}
+.w3tabs button span{font-size:11.5px;color:var(--w3-ink4);margin-left:4px;font-variant-numeric:tabular-nums}
+.w3b{flex:1 1 auto;min-height:0;overflow-y:auto;padding:24px}
+.w3sec+.w3sec{margin-top:24px}
+.w3sec>h4{margin:0 0 12px;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--w3-ink4);font-weight:500}
+.w3prop{background:var(--w3-p1);border-radius:14px;padding:16px}
+.w3prop small{display:block;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--w3-pd);font-weight:600;margin-bottom:4px}
+.w3prop p{margin:0;font-size:14.5px;line-height:1.45}
+.w3kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 24px;margin:0}
+.w3kv dt{font-size:11.5px;color:var(--w3-ink4);margin-bottom:2px}
+.w3kv dd{margin:0;font-size:13.5px;font-weight:500}
+.w3q{margin:0;font-size:13.5px;color:var(--w3-ink2);line-height:1.5;padding-left:12px;border-left:2px solid var(--w3-line);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.w3prog{display:grid;gap:4px}.w3prog i{height:4px;border-radius:2px;background:var(--w3-line)}.w3prog i.d{background:var(--w3-ink3)}.w3prog i.n{background:var(--w3-p)}
+.w3progc{display:flex;justify-content:space-between;gap:12px;font-size:12px;color:var(--w3-ink3);margin-top:8px}
+.w3chk{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;padding:12px 0;border-top:1px solid var(--w3-line2)}
+.w3chk:first-child{border-top:0;padding-top:0}
+.w3ic{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff;background:var(--w3-ok);margin-top:1px}
+.w3ic.f{background:var(--w3-ink)}.w3ic.f.w3-alert{background:var(--w3-alert)}.w3ic.f.w3-risk{background:var(--w3-risk)}
+.w3chk .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.w3chk .t b{font-size:13.5px;font-weight:600}.w3chk .t span{font-size:11.5px;color:var(--w3-ink4);white-space:nowrap}
+.w3chk p{margin:2px 0 0;font-size:13px;color:var(--w3-ink3);line-height:1.45}
+.w3chk details{margin-top:8px}.w3chk summary{font-size:12px;color:var(--w3-pd);cursor:pointer;list-style:none}.w3chk summary::-webkit-details-marker{display:none}
+.w3chk details p{font-size:12.5px;color:var(--w3-ink2);border-left:2px solid var(--w3-line);padding-left:12px;margin-top:8px}
+.w3rows>div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:10px 0;border-top:1px solid var(--w3-line2);font-size:13.5px}
+.w3rows>div:first-child{border-top:0;padding-top:0}
+.w3rows span{color:var(--w3-ink4);font-size:12.5px;font-variant-numeric:tabular-nums}
+.w3k{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.w3k>div{border:1px solid var(--w3-line);border-radius:12px;padding:10px 12px}
+.w3k small{display:block;font-size:11.5px;color:var(--w3-ink4)}
+.w3k b{font-size:14px;font-weight:600}.w3k b.ok{color:var(--w3-ok)}
+.w3k em{display:block;font-style:normal;font-size:11.5px;color:var(--w3-ink4);margin-top:2px}
+.w3tl>div{display:grid;grid-template-columns:44px 104px minmax(0,1fr);gap:12px;padding:10px 0;border-top:1px solid var(--w3-line2);font-size:13px}
+.w3tl>div:first-child{border-top:0;padding-top:0}
+.w3tl time{color:var(--w3-ink4);font-variant-numeric:tabular-nums}.w3tl .a{color:var(--w3-ink3);font-weight:500}.w3tl .a.ex{color:var(--w3-risk)}
+.w3more{margin-top:12px;border:0;background:transparent;color:var(--w3-pd);font-size:12.5px;padding:0;cursor:pointer}
+.w3opt{display:flex;flex-direction:column;gap:8px}
+.w3opt label{display:grid;grid-template-columns:18px minmax(0,1fr) auto;gap:12px;align-items:center;border:1px solid var(--w3-line);border-radius:12px;padding:10px 12px;cursor:pointer;font-size:13.5px}
+.w3opt label.on{border-color:var(--w3-p);background:var(--w3-p1)}
+.w3opt label span{color:var(--w3-ink4);font-size:12.5px}
+.w3letter{border:1px solid var(--w3-line);border-radius:12px;padding:14px 16px;font-size:13px;line-height:1.55;color:var(--w3-ink2);max-height:180px;overflow:auto}
+.w3letter p{margin:0 0 8px}
+.w3tick{display:flex;gap:8px;align-items:center;font-size:13px;margin-top:10px}
+.w3d-f{flex:0 0 auto;border-top:1px solid var(--w3-line);padding:14px 24px calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:10px}
+.w3d-f .msg{font-size:12.5px;color:var(--w3-ink3)}.w3d-f .msg b{color:var(--w3-ink);font-weight:600}.w3d-f .msg.err b{color:var(--w3-alert)}
+.w3d-f .acts{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.w3btn{border:0;border-radius:999px;padding:10px 18px;font-size:13px;font-weight:600;background:var(--w3-ink);color:#fff;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
+.w3btn.g{background:transparent;border:1px solid var(--w3-line);color:var(--w3-ink2)}
+.w3btn[disabled]{opacity:.45;cursor:default}
+.w3d-f .sp{margin-left:auto;font-size:12px;color:var(--w3-ink4)}
+.w3d .lv-plan{margin:0}
+@media (max-width:1000px){
+  body.w3live.w3v #w3{height:auto;min-height:0}
+  .w3-lanes{overflow-x:auto}.w3-me,.w3-jr{grid-template-columns:repeat(5,minmax(260px,1fr))}.w3-groups{display:none}
+  .w3-lane{height:560px}.w3-stats{display:none}.w3kv{grid-template-columns:repeat(2,minmax(0,1fr))}.w3k{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+.w3c .w3r1 b{flex:1 1 auto}
+.w3c .w3r3>span{white-space:nowrap}
+.w3c .w3r3>span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.w3why p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.w3d-h .sub{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.w3prop p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.w3tl>div>span:last-child{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.w3letter{max-height:150px}
+.w3q{-webkit-line-clamp:2}
+
+.w3-lanes{grid-template-rows:minmax(0,1fr)}
+.w3opt.w3slots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.w3letter{max-height:96px;overflow:hidden;position:relative}
+.w3letter::after{content:"";position:absolute;left:0;right:0;bottom:0;height:36px;background:linear-gradient(rgba(255,255,255,0),#fff)}
+.w3letter.full{max-height:none}.w3letter.full::after{display:none}
+.w3lt{margin-top:8px;border:0;background:transparent;color:var(--w3-pd);font-size:12.5px;padding:0;cursor:pointer}
+@media (min-width:1001px) and (min-height:620px){body.w3live.w3v{overflow:hidden}}
+.w3prop{padding:14px 16px}
+.w3sec+.w3sec{margin-top:20px}
+
+.w3kv{grid-template-columns:repeat(4,minmax(0,1fr))}
+.w3c .w3wy{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.w3c .w3wy::before{content:"↳ "}
+
+.w3c .w3now .w3nt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 </style>
 
 <div class="ambient" aria-hidden="true"><span class="a"></span><span class="b"></span></div>
@@ -1480,6 +1652,17 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
   <div class="mnav" aria-label="Views"><button data-view="desk" aria-pressed="true">Desk</button><button data-view="clients" aria-pressed="false">Clients</button><button data-view="insights" aria-pressed="false">Insights</button><button data-view="rules" aria-pressed="false">Rules</button><button data-view="audit" aria-pressed="false">Audit trail</button></div>
 
   <section class="view" id="v-desk">
+    <div id="w3">
+      <div class="w3-head">
+        <div><div class="kicker" id="w3k"></div><h1 id="w3h">Good morning, Emma.</h1><p id="w3p"></p></div>
+        <div class="w3-stats"><div class="w3-stat"><small>Agent steps today</small><strong id="w3s1">–</strong></div><div class="w3-vr"></div>
+          <div class="w3-stat"><small>Your decisions</small><strong id="w3s2">–</strong></div><div class="w3-vr"></div>
+          <div class="w3-stat"><small>Agents working</small><strong id="w3s3">0</strong></div></div>
+      </div>
+      <div class="w3-bar"><div class="w3-lens" id="w3lens"><button data-l="me" aria-pressed="true">Needs me</button><button data-l="all" aria-pressed="false">All cases</button></div>
+        <div class="w3-live" id="w3live"><i></i><span id="w3lt">Live · Salesforce</span></div><button class="w3-log" id="w3log" type="button">Log request</button></div>
+      <div class="w3-board" id="w3board"></div>
+    </div>
     <div class="hero">
       
       <div>
@@ -1567,6 +1750,8 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
   <button class="fab" id="fab" aria-label="Actions"><svg class="gt" viewBox="116.99973 0 19.79227 20.94533" aria-hidden="true" focusable="false"><path d="m 116.99973,0 v 5.97866 l 11.556,4.516 -11.556,4.296 v 6.15467 l 19.792,-8.016 V 7.97066 Z" fill="currentColor"/></svg></button></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="scrim" id="scrim"></div>
+<div class="w3s" id="w3sc"></div>
+<aside class="w3d" id="w3d" role="dialog" aria-modal="true" aria-labelledby="w3dt"></aside>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dtitle">
   <div class="dh">
     <div class="dh-top"><span class="eyebrow" id="deb"></span><button class="close" id="dclose">Close</button></div>
@@ -1804,7 +1989,7 @@ function ask(c,s){
 
 /* drawer */
 function openCase(id){if(LIVE&&lvCase(id)){lvOpen(id);return}openId=id;{const s0=state[id];if(s0&&s0.waiting&&!s0.reviewT0)s0.reviewT0=performance.now()}setTimeout(renderFab,0);renderDrawer();$("drawer").classList.add("on");$("scrim").classList.add("on");setTimeout(()=>$("dclose").focus(),60)}
-function closeCase(){openId=null;setTimeout(renderFab,0);$("drawer").classList.remove("on");$("scrim").classList.remove("on")}
+function closeCase(){openId=null;w3Hide();setTimeout(renderFab,0);$("drawer").classList.remove("on");$("scrim").classList.remove("on")}
 function block(title,right,inner){return `<section class="block"><div class="eyebrow"><span>${title}</span><span>${right||''}</span></div>${inner}</section>`}
 function renderDrawer(){
   if(LIVE&&lvCase(openId)){lvDrawer();return}
@@ -2491,6 +2676,7 @@ function renderOnb(){
 }
 /* views and input */
 function setView(v){
+  document.body.classList.toggle("w3v",v==="desk");if(v==="desk")setTimeout(w3Fit,0);
   ["desk","clients","onboarding","insights","rules","audit"].forEach(x=>{$("v-"+x).hidden=x!==v});
   document.querySelectorAll("[data-view]").forEach(b=>b.setAttribute(b.getAttribute("role")==="tab"?"aria-selected":"aria-pressed",b.dataset.view===v?"true":"false"));
   moveInd(); $("fabwrap").classList.remove("open"); setTimeout(renderFab,0);
@@ -2679,11 +2865,13 @@ function lvRender(){
   const sec=Math.round(((S&&S.humanMinutes)||0)*60);
   put($("lastact"),`${L.length} case${L.length===1?"":"s"} · ${S?dec:0} of ${den} decisions · ${sec<60?`${sec} s of your time`:`${Math.floor(sec/60)} min ${String(sec%60).padStart(2,"0")} s of your time`}`);
   if(!$("v-audit").hidden) renderAudit();
+  w3Render();
 }
 
 /* entering and leaving live */
 function lvDom(){["rows","stats","lede","asks","lastact"].forEach(id=>{const el=$(id);el.innerHTML="";el.__h=null})}
 function lvEnter(){
+  document.body.classList.add("w3live");document.body.classList.toggle("w3v",!$("v-desk").hidden);
   if(openId&&!lvCase(openId))closeCase();
   if(!$("sheet").hidden)closeSheet();
   playing=false;lvDom();
@@ -2693,6 +2881,7 @@ function lvEnter(){
   const ak=document.querySelector("#v-audit .kicker");if(ak)ak.textContent=`Today · ${lvF(lvNow(),{day:"numeric",month:"long"})}`;
 }
 function lvExit(code){
+  document.body.classList.remove("w3live");w3Hide();
   const was=!!LIVE;LIVE=null;LSUM=null;LCASES=[];lfeed=[];
   if(was){if(openId&&lvCase(openId))closeCase();lvDom();
     const ctl=document.querySelector("footer .ctl");if(ctl)ctl.hidden=false;
@@ -2767,7 +2956,7 @@ function lvFeed(){
 /* the drawer */
 function lvUI(id){return LUI[id]||(LUI[id]={t0:performance.now(),nonce:Date.now().toString(36),letterOk:false,slot:null,acct:null,phase:"idle"})}
 function lvOpen(id){const u=lvUI(id);if(u.phase==="idle"||u.phase==="error"){u.t0=performance.now()}
-  openId=id;setTimeout(renderFab,0);lvDrawer();$("drawer").classList.add("on");$("scrim").classList.add("on");setTimeout(()=>$("dclose").focus(),60);
+  openId=id;setTimeout(renderFab,0);lvDrawer();w3Show();
   const D=LDET[id];if(!D||!D.d||D.lastAt!==LMAP[id].row.lastAt)lvDetail(id,!!(D&&D.d));}
 const lvChan=ch=>({Letter:"Letter",Email:"Email",Portal:"Portal message",SMS:"Text message"})[ch]||ch||"Message";
 const lvLetter=b=>String(b||"").split(/\n{2,}/).map(p=>`<p>${E(p).replace(/\n/g,"<br>")}</p>`).join("");
@@ -2834,6 +3023,7 @@ function lvFoot(c,D,s,u){
   return (err||`<div class="fq"><span>Proposed</span>${E(lvSents(prop).slice(0,2).join(" "))}</div>`)+`<div class="acts"><button class="link" id="lv-inv" ${busy?'disabled':''}>Investigate</button><button class="primary" id="lv-ok" ${busy?'disabled':''}>${u.phase==="staging"?sp:""}${cand?"Allocate":"Approve"} ${GT}</button></div>`;
 }
 function lvDrawer(){
+  if(LIVE&&lvCase(openId)){w3Drawer();return}
   const c=lvCase(openId);if(!c)return;const s=state[c.id]||{},u=lvUI(c.id),Dx=LDET[c.id]||{},D=Dx.d,r=c.row;
   $("deb").textContent=`${r.caseNumber||""}  ·  ${(D&&D.journey&&D.journey.name)||JT[r.journey]||""}`;
   $("dtitle").textContent=`${JT[r.journey]||"Case"}, ${c.custRaw}`;
@@ -2950,6 +3140,187 @@ $("lrmX").addEventListener("click",lrClose);
 $("lrm").addEventListener("click",e=>{if(e.target.id==="lrm")lrClose();const b=e.target.closest("[data-lrpick]");if(b)lrGo(b.dataset.lrpick)});
 $("lrmF").addEventListener("submit",e=>{e.preventDefault();lrGo()});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("lrm").hidden)lrClose()});
+/* ---------- desk v2 (live): lanes, lenses, agents lane and the structured slide-out ----------
+   Live only: replay keeps the scripted desk. Decisions reuse lvStageGo/lvConfirm/lvBind unchanged. */
+let w3letter=false;
+let w3lens=(()=>{try{return localStorage.getItem("w3lens")||"me"}catch(e){return "me"}})(), w3tab="overview", w3all=false;
+const W3L={auth:"Authorise",dec:"Decide",rev:"Review",agent:"Agents working",wait:"Waiting on client",done:"Closed"};
+const W3WHY={auth:"Why it's with you to authorise",dec:"Why it's with you",rev:"Why it's with you to review",wait:"Why it's waiting",agent:"Being worked now",done:"Closed"};
+const W3J=["Money_Out","Money_In","Change_Of_Details","Bereavement","Complaint"];
+function w3Clean(s,n){s=String(s||"")
+  .replace(/\s*\((?:a0|00|50|0w|0x|0S|a8)[A-Za-z0-9]{13,16}[^)]*\)/g,"")
+  .replace(/\b(?:a0[A-Za-z]|00[1-9]|50[0-9]|a8[A-Za-z]|0[wxS][A-Za-z])[A-Za-z0-9]{12,15}\b,?/g,"")
+  .replace(/\bW360_[A-Za-z_]+__[cer]\b/g,"the record").replace(/\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/g,"")
+  .replace(/https?:\/\/\S+/g,"the link").replace(/\s{2,}/g," ").replace(/\s+([,.;:])/g,"$1").trim();
+  return n&&s.length>n?s.slice(0,n-1).replace(/\s+\S*$/,"")+"…":s}
+function w3Lane(c){const s=state[c.id]||{},ds=c.row.deskState||"";
+  if(s.done||ds==="Rejected")return "done";
+  if(LDONE.has(c.id)||ds==="Decided")return "agent";
+  return ds==="Awaiting authorisation"?"auth":ds==="Ready for review"?"rev":ds==="Needs RM"?"dec":ds==="Waiting on customer"?"wait":"agent"}
+const w3Head=c=>w3Clean(c.row.headline||String(c.row.subject||"").replace(/^[^:]*:\s*/,""),120);
+function w3Why(c,lane){const r=c.row,lr=String(r.levelReason||""),ex=String(r.exceptionReason||"");
+  if(lane==="auth")return r.journey==="Money_In"?"Money leaves suspense only with a person's approval.":"All checks passed. Only a person can release money.";
+  if(lane==="rev")return "Drafts go out only after your approval.";
+  if(lane==="wait")return "The client has the next step.";
+  if(lane==="agent")return LDONE.has(c.id)||r.deskState==="Decided"?"You decided. The agents are carrying it out.":"The agents are working on it.";
+  if(lane==="done")return "Closed.";
+  if(/sanction/i.test(lr+" "+ex))return "A screening hit can only be cleared by a person.";
+  if(r.journey==="Bereavement")return "Bereavement is always handled by a person.";
+  const m=/rule '([^']+)'/i.exec(lr);if(m)return `Rule: ${m[1].charAt(0).toUpperCase()+m[1].slice(1).toLowerCase()}.`;
+  return w3Clean(lvFirst(ex)||lvFirst(lr.replace(/^Raised to L3:\s*/i,"")),110)||"An exception the agents raised."}
+function w3Flag(c){const lr=String(c.row.levelReason||""),ex=String(c.row.exceptionReason||""),t=lr+" "+ex;
+  if(!["Needs RM","Awaiting authorisation","Ready for review"].includes(c.row.deskState||""))return null;
+  if(/possible[_ ]match|sanctions? (?:list )?(?:hit|match)|screened as a possible match/i.test(t))return ["alert","Sanctions match"];
+  if(/recent bank change/i.test(lr)||(/bank change/i.test(ex)&&!/\bno bank change\b/i.test(ex)&&/cannot|can't|not be confirmed/i.test(ex)))return ["risk","Recent bank change"];
+  if(/unverified payee|without a live confirmation-of-payee|no confirmation-of-payee|payee (?:check )?(?:failed|no match|mismatch)/i.test(t))return ["risk","Payee not verified"];
+  return null}
+function w3Due(iso){if(!iso)return ["",false];const h=(lvD(iso)-lvD(lvNow()))/36e5;if(isNaN(h))return ["",false];
+  if(h<0)return ["Overdue",true];if(h<24)return [`Due in ${Math.max(1,Math.round(h))} h`,true];const d=Math.round(h/24);return [`Due in ${d} day${d>1?"s":""}`,false]}
+const W3RANK=c=>{const f=w3Flag(c);return f&&f[0]==="alert"?0:f?1:2};
+function w3Sort(a,b){return W3RANK(a)-W3RANK(b)||(lvD(a.row.slaDue||"2100-01-01")-lvD(b.row.slaDue||"2100-01-01"))}
+const w3Mark=f=>f?`<span class="w3-mark w3-${f[0]}">${E(f[1])}</span>`:"";
+function w3Amt(c){const a=String(lvAmt(c)||"");return /^£/.test(a)?a.replace(/\.00$/,""):""}
+function w3Card(c,lane,lens){const r=c.row,amt=w3Amt(c),open=openId===c.id?" open":"";
+  if(lane==="agent"){const st=state[c.id]||{},mine=LDONE.has(c.id)&&/agent/i.test(r.lastActor||""),who=mine?"You":(r.lastActor||"Case agent"),rv=/review/i.test(who),ps=!/agent/i.test(who);
+    return `<button class="w3c${open}" data-w3="${c.id}"><span class="w3r1"><b>${c.cust}</b><em>${E(amt)}</em></span>
+     <span class="w3now"><i class="w3-av ${rv?"rv":ps?"ps":""}">${rv?"RA":ps?E(ini(who)):"CA"}</i><span class="w3nt"><b>${E(who)}</b> · ${E(mine?"decided; the agents are carrying it out":w3Clean(r.lastAction||"Starting",90))}</span></span>
+     <span class="w3-bars">${[0,1,2,3,4,5,6].map(i=>`<i class="${i<(st.stage||0)?"d":i===(st.stage||0)?"n":""}"></i>`).join("")}</span>
+     <span class="w3r3"><span>${c.type} · ${c.no}</span><span>${r.lastAt?E(lvShort(r.lastAt)):""}</span></span></button>`}
+  const d=w3Due(r.slaDue),f=w3Flag(c);
+  return `<button class="w3c${open}" data-w3="${c.id}"><span class="w3r1"><b>${c.cust}</b><em>${E(amt)}</em></span>
+   <span class="w3hl">${E(w3Head(c))}</span>${lens==="me"?`<span class="w3wy">${E(w3Why(c,lane))}</span>`:""}
+   <span class="w3r3">${lens==="all"?`<span class="w3-st w3la-${lane}">${W3L[lane]}</span>`:(w3Mark(f)||`<span>${c.type} · ${c.no}</span>`)}<span class="${d[1]?"w3soon":""}">${lane==="wait"&&r.lastAt?"Sent "+E(lvShort(r.lastAt)):d[0]}</span></span></button>`}
+function w3LaneH(cls,title,sub,list,lens,empty){return `<section class="w3-lane ${cls}"><header><h3>${title} <span>${list.length}</span></h3>${sub?`<p>${sub}</p>`:""}</header>
+  <div class="w3-list">${list.length?list.map(x=>w3Card(x.c,x.l,lens)).join(""):`<p class="w3-empty">${empty}</p>`}</div></section>`}
+function w3Fit(){const el=$("w3");if(!el||!document.body.classList.contains("w3live")||innerWidth<=1000){if(el)el.style.height="";return}
+  const top=el.getBoundingClientRect().top+scrollY;el.style.height=Math.max(520,innerHeight-top-4)+"px"}
+addEventListener("resize",w3Fit);
+function w3Render(){const el=$("w3");if(!el||!LIVE)return;requestAnimationFrame(w3Fit);
+  const L=LCASES.map(c=>({c,l:w3Lane(c)})).filter(x=>x.l!=="done").sort((a,b)=>w3Sort(a.c,b.c));
+  const by=k=>L.filter(x=>x.l===k), mine=L.filter(x=>["auth","dec","rev"].includes(x.l));
+  const S=LSUM,dec=S?(S.humanDecisions||0):0,den=Math.max(lvDen(),dec),h=+lvHM(lvNow()).slice(0,2);
+  $("w3k").textContent=`${lvF(lvNow(),{weekday:"long",day:"numeric",month:"long"})}`;
+  $("w3h").textContent=`Good ${h<12?"morning":h<18?"afternoon":"evening"}, Emma.`;
+  $("w3p").innerHTML=mine.length?`<b>${mine.length} case${mine.length===1?"":"s"} need${mine.length===1?"s":""} you</b>: ${by("auth").length} to authorise, ${by("dec").length} to decide, ${by("rev").length} to review.${mine.some(x=>W3RANK(x.c)===0)?" Start with the sanctions match.":""}`:"Nothing needs you right now.";
+  $("w3s1").textContent=S?S.agentTasksCompleted||0:"–";$("w3s2").innerHTML=`${dec} <em>of ${den}</em>`;$("w3s3").textContent=by("agent").length;
+  document.querySelectorAll("#w3lens button").forEach(b=>{b.setAttribute("aria-pressed",b.dataset.l===w3lens?"true":"false");b.textContent=b.dataset.l==="me"?`Needs me · ${mine.length}`:`All cases · ${L.length}`});
+  const lv=$("w3live"),t=LIVE.storedAt?lvHM(new Date(LIVE.storedAt).toISOString()):"";
+  lv.classList.toggle("stale",!!LIVE.stale);
+  const ag=by("agent")[0];
+  $("w3lt").textContent=LIVE.stale?`Salesforce · last updated ${t}`:ag?`Live · ${ag.c.row.lastActor||"Case agent"}: ${w3Clean(ag.c.row.lastAction||"working",70)} · ${ag.c.custRaw}`:`Live · Salesforce · updated ${t}`;
+  let h2;
+  if(w3lens==="me"){h2=`<div class="w3-groups w3-me"><span class="you">With you</span><span class="oth">Moving on its own</span></div><div class="w3-lanes w3-me">`+
+    w3LaneH("w3la-auth","Authorise","Prepared and checked. Your release.",by("auth"),"me","Nothing to authorise.")+
+    w3LaneH("w3la-dec","Decide","Exceptions the agents raised.",by("dec"),"me","No exceptions.")+
+    w3LaneH("w3la-rev","Review","Drafts waiting for your approval.",by("rev"),"me","No drafts.")+
+    w3LaneH("w3la-agent","Agents working","New requests and decided cases, worked now.",by("agent"),"me","All caught up. A new email, call or logged request appears here the moment it arrives.")+
+    w3LaneH("w3la-wait","Waiting on client","The client has the next step.",by("wait"),"me","Nobody to wait for.")+`</div>`}
+  else{h2=`<div class="w3-groups w3-jr"><div class="w3-legend"><span class="w3-st w3la-auth">Authorise</span><span class="w3-st w3la-dec">Decide</span><span class="w3-st w3la-rev">Review</span><span class="w3-st w3la-agent">Agents working</span><span class="w3-st w3la-wait">Waiting on client</span></div></div><div class="w3-lanes w3-jr">`+
+    W3J.map(j=>{const LL=L.filter(x=>x.c.row.journey===j),you=LL.filter(x=>["auth","dec","rev"].includes(x.l)).length;
+      const tot=LL.reduce((a,x)=>{const m=/£([\d,]+)/.exec(x.c.row.subject||"");return a+(m?+m[1].replace(/,/g,""):0)},0);
+      return w3LaneH("",JT[j],`${you} with you${LL.length-you?` · ${LL.length-you} moving`:""}${tot?` · ${lvGbp(tot)}`:""}`,LL,"all","No open cases.")}).join("")+`</div>`}
+  put($("w3board"),h2);
+  if(openId&&lvCase(openId)&&$("w3d").classList.contains("on"))w3Drawer();
+}
+/* slide-out */
+function w3Show(){$("w3d").classList.add("on");$("w3sc").classList.add("on");setTimeout(()=>{const x=$("w3x");if(x)x.focus()},60)}
+function w3Hide(){$("w3d").classList.remove("on");$("w3sc").classList.remove("on")}
+function w3Checks(D,c){const out=[],seen=new Set();
+  const CK={check_account:"Source account",check_payee:"Payee",check_kyc:"KYC and screening",compare_record:"Address evidence",read_evidence:"Evidence",
+    score_candidates:"Match and screening",search_matches:"Candidate accounts",check_documents:"Documents",check_cause:"Cause",review:"Independent review"};
+  (D.activity||[]).forEach(a=>{const k=a.Step__c||"";const isChk=CK[k]||/verification/i.test(a.Stage__c||"");if(!isChk)return;
+    const name=CK[k]||"Check";const ok=!/Exception|Failed|Rework/.test(a.Outcome__c||"");
+    const src=String(a.Evidence_Source__c||"");const s=/Plaid/.test(src)?"Plaid open banking (sandbox)":/Sanctions/.test(src)?"UK Sanctions List":/Ideal Postcodes/.test(src)?"Ideal Postcodes":/Didit/.test(src)?"Didit identity (sandbox)":/Review agent/.test(src)||k==="review"?"Review agent, fresh context":src?"Case record":"";
+    const key=name+"|"+(a.Summary__c||"");if(seen.has(key))return;seen.add(key);
+    out.push({name,ok,txt:w3Clean(a.Summary__c,220),q:w3Clean(a.Evidence_Quote__c,260),src:s})});
+  return out.filter(x=>!x.ok).concat(out.filter(x=>x.ok))}
+function w3Body(c,D,s,u,lane){const K=D.case||{},r=c.row,f=w3Flag(c);
+  if(w3tab==="overview"){let h="";
+    if(u.plan&&(u.phase==="staged"||u.phase==="confirming"))h+=`<div class="w3sec">${lvPlan(u.plan.steps,u.plan.warnings,u.plan.planHash,"Plan to confirm")}</div>`;
+    if(u.phase==="done"&&u.result&&Array.isArray(u.result.steps))h+=`<div class="w3sec">${lvPlan(u.result.steps,[],u.plan&&u.plan.planHash,"Result")}</div>`;
+    const prop=K.W360_Proposed_Action__c||r.proposedAction;
+    if(prop&&lane!=="wait"&&!(u.phase==="staged"||u.phase==="confirming"||u.phase==="done"))h+=`<div class="w3sec"><div class="w3prop"><small>Proposed by the ${E(r.lastActor&&/agent/i.test(r.lastActor)?r.lastActor:"Case agent")}</small><p>${E(w3Clean(lvSents(prop).slice(0,2).join(" "),260))}</p></div></div>`;
+    const open=["auth","dec","rev"].includes(lane)&&u.phase!=="done"&&D.canDecide!==false;
+    const pay=(D.incomingPayments||[])[0],cs=pay?lvCands(pay):[];
+    if(r.journey==="Money_In"&&cs.length){const ca=D.candidateAccounts||[];
+      h+=`<div class="w3sec"><h4>Allocate to${pay.Match_Threshold__c!=null?` · ${Math.round(pay.Match_Threshold__c)}% needed`:""}</h4><div class="w3opt">${cs.map(x=>{const a=ca.find(y=>y.Id===x.accountId)||{},sc=x.score!=null?Math.round(x.score):null;
+        const nm=E(x.owner||(a.FinServ__PrimaryOwner__r&&a.FinServ__PrimaryOwner__r.Name)||a.Name||"Account"),nt=E(x.note||a.Name||"");
+        return open?`<label class="${u.acct===x.accountId?"on":""}"><input type="radio" name="lvacct" value="${E(x.accountId)}" ${u.acct===x.accountId?"checked":""}><div><b>${nm}</b><br><span>${nt}</span></div><span>${sc!=null?sc+"%":""}</span></label>`
+          :`<label><span></span><div><b>${nm}</b><br><span>${nt}</span></div><span>${sc!=null?sc+"%":""}</span></label>`}).join("")}</div></div>`}
+    const comm=(D.instructions||[]).find(i=>i.Type__c==="Communication"&&i.Status__c==="Awaiting review"), meet=(D.meetings||[]).find(m=>m.W360_Meeting_Status__c==="Proposed"), sl=lvSlots(meet);
+    if(comm&&lane!=="wait")h+=`<div class="w3sec"><h4>${E(lvChan(comm.Channel__c))} to ${E(w3Clean(comm.Recipient__c||"the client"))}</h4><div class="w3letter${w3letter?" full":""}">${comm.Subject__c?`<p><b>${E(comm.Subject__c)}</b></p>`:""}${lvLetter(comm.Body__c)}</div><button class="w3lt" id="w3lt">${w3letter?"Show less":"Read the full letter"}</button>${open&&meet&&sl.length?`<label class="w3tick" for="lv-l"><input type="checkbox" id="lv-l" ${u.letterOk?"checked":""}> Send as drafted</label>`:""}</div>`;
+    if(meet&&sl.length&&open)h+=`<div class="w3sec"><h4>${E(String(meet.Subject||"Meeting").replace(/^Proposed:\s*/,""))}</h4><div class="w3opt w3slots">${sl.map((x,i)=>`<label class="${u.slot===i?"on":""}"><input type="radio" name="lvslot" value="${i}" ${u.slot===i?"checked":""}><div>${E(lvF(x,{weekday:"long",day:"numeric",month:"long"}))}</div><span>${E(lvHM(x))}</span></label>`).join("")}</div></div>`;
+    const po=(D.instructions||[]).find(i=>i.Type__c==="Payment out");
+    const kv=[po&&po.Payee_Name__c?["Payee",`${po.Payee_Name__c}${po.Payee_Account_Number__c?" ··"+String(po.Payee_Account_Number__c).replace(/\D/g,"").slice(-4):""}`]:null,
+      po&&po.Payee_Check_Result__c?["Payee check",po.Payee_Check_Result__c]:null,["Received",[K.W360_Source_Channel__c,K.W360_Request_Received_At__c?lvShort(K.W360_Request_Received_At__c):""].filter(Boolean).join(" · ")],
+      ["Due",w3Due(r.slaDue)[0]],["Team",r.team||""]].filter(x=>x&&x[1]);
+    h+=`<div class="w3sec"><h4>Key facts</h4><dl class="w3kv">${kv.slice(0,4).map(x=>`<div><dt>${x[0]}</dt><dd>${E(x[1])}</dd></div>`).join("")}</dl></div>`;
+    return h}
+  if(w3tab==="checks"){const ch=w3Checks(D,c),ex=lvSents(w3Clean(K.W360_Exception_Reason__c));
+    if(!ch.length&&!ex.length)return `<p class="w3-empty">No checks yet. The agents record each check here as they run it.</p>`;
+    const exH=ex.length&&!ch.some(x=>!x.ok)?`<div class="w3chk"><span class="w3ic f ${f?"w3-"+f[0]:""}">!</span><div><div class="t"><b>Exception</b><span>Case agent</span></div><p>${E(ex.slice(0,2).join(" "))}</p></div></div>`:"";
+    return `<div class="w3sec">${exH}${ch.map(x=>`<div class="w3chk"><span class="w3ic ${x.ok?"":"f "+(f?"w3-"+f[0]:"")}">${x.ok?"✓":"!"}</span><div><div class="t"><b>${E(x.name)}</b><span>${E(x.src)}</span></div><p>${E(x.txt)}</p>${x.q?`<details><summary>Show evidence</summary><p>${E(x.q)}</p></details>`:""}</div></div>`).join("")}</div>`}
+  if(w3tab==="client"){const cu=D.customer||{},k=cu.kyc||{},one=(l,f)=>(l&&l[0]&&l[0][f])||"";
+    const pp=k.partyProfiles,sc=k.screening,iv=k.identityVerification,idd=k.identityDocuments;
+    const dmy=x=>x?lvF(x,{day:"numeric",month:"short",year:"numeric"}):"";
+    let h=(pp||sc||iv||idd)?`<div class="w3sec"><h4>KYC and screening</h4><div class="w3k">
+      <div><small>KYC profile</small><b class="${one(pp,"Stage")==="Approved"?"ok":""}">${E(one(pp,"Stage")||"None")}</b><em>${one(pp,"NextProfileReviewDate")?"Next review "+E(dmy(one(pp,"NextProfileReviewDate"))):""}</em></div>
+      <div><small>Screening</small><b class="${one(sc,"ScreeningDecision")==="Clear"?"ok":""}">${E(one(sc,"ScreeningDecision")||"None")}</b><em>UK Sanctions List</em></div>
+      <div><small>Identity verification</small><b class="${one(iv,"Result")==="Accepted"?"ok":""}">${E(one(iv,"Result")||"None")}</b><em></em></div>
+      <div><small>ID document</small><b>${E(one(idd,"IdDocumentType")||"None")}</b><em>${one(idd,"ExpirationDate")?"Valid to "+E(dmy(one(idd,"ExpirationDate"))):""}</em></div></div></div>`
+      :`<div class="w3sec"><p class="w3-empty">No client linked yet${r.journey==="Money_In"?": the payment is not matched to an account":""}.</p></div>`;
+    const fa=(cu.financialAccounts||[]).slice(0,3);
+    if(fa.length)h+=`<div class="w3sec"><h4>Accounts</h4><div class="w3rows">${fa.map(a=>{const no=String(a.FinServ__FinancialAccountNumber__c||"").replace(/\D/g,"").slice(-4);return `<div><div>${E(a.Name)}${no?` <span>··${no}</span>`:""}</div><span>${lvGbp(a.FinServ__Balance__c)}</span></div>`}).join("")}</div></div>`;
+    const oc=(D.caseHistory||[]).filter(x=>x.Status!=="Closed").slice(0,2);
+    if(oc.length)h+=`<div class="w3sec"><h4>Other open cases</h4><div class="w3rows">${oc.map(x=>`<div><div>${E(w3Clean(x.Subject,70))}</div><span>${E(x.CaseNumber)}</span></div>`).join("")}</div></div>`;
+    return h}
+  if(w3tab==="docs"){const d=D.documents||{},req=d.required||[],rec=d.received||[];
+    if(!req.length&&!rec.length)return `<p class="w3-empty">No documents on this case.</p>`;
+    return `${req.length?`<div class="w3sec"><h4>Required · ${d.receivedCount||0} of ${d.requiredCount||req.length}</h4><div class="w3rows">${req.map(x=>`<div><div>${E(x.document)}</div><span>${x.received?"Received":"Missing"}</span></div>`).join("")}</div></div>`:""}
+      ${rec.length?`<div class="w3sec"><h4>Received</h4><div class="w3rows">${rec.map(x=>`<div><div>${E(w3Clean(String(x.title||"Document").replace(/^W360\s+/,""),80))}</div><span>${x.receivedAt?E(lvShort(x.receivedAt)):""}</span></div>`).join("")}</div></div>`:""}`}
+  const acts=(D.activity||[]).slice().sort((a,b)=>lvD(b.Occurred_At__c)-lvD(a.Occurred_At__c));
+  let h="";
+    if(K.W360_Request_Text__c)h+=`<div class="w3sec"><h4>The request</h4><p class="w3q">${E(w3Clean(K.W360_Request_Text__c))}</p></div>`;
+    const steps=Array.isArray(D.steps)?D.steps:[];if(steps.length){const done=steps.filter(x=>x.done).length,nx=steps.find(x=>!x.done);
+      h+=`<div class="w3sec"><h4>Progress</h4><div class="w3prog" style="grid-template-columns:repeat(${steps.length},1fr)">${steps.map(x=>`<i class="${x.done?"d":x===nx?"n":""}"></i>`).join("")}</div><div class="w3progc"><span>${done} of ${steps.length} steps done</span><span>${nx?`Next: ${E(nx.label)} (${E(nx.actor)})`:"All steps done"}</span></div></div>`}
+  if(!acts.length)return h+`<p class="w3-empty">No activity yet.</p>`;
+  return h+`<div class="w3sec"><h4>Steps</h4><div class="w3tl">${acts.slice(0,w3all?99:4).map(a=>`<div><time>${E(lvShort(a.Occurred_At__c))}</time><span class="a${a.Outcome__c==="Exception"?" ex":""}">${E(lvActor(a))}</span><span>${E(w3Clean(a.Summary__c,170))}</span></div>`).join("")}</div>${acts.length>4&&!w3all?`<button class="w3more" id="w3more">Show all ${acts.length} steps</button>`:""}</div>`}
+function w3Foot(c,D,s,u,lane){const busy=u.phase==="staging"||u.phase==="confirming",sp='<i class="spin"></i>';
+  if(u.phase==="done")return `<div class="msg"><b>Saved.</b> ${E(u.done||"")}</div>`;
+  if(u.phase==="staged"||u.phase==="confirming")return `<div class="msg"><b>Confirm:</b> ${E(u.plan.summary||u.label||"")}</div><div class="acts"><button class="w3btn" id="lv-c" ${busy?"disabled":""}>${u.phase==="confirming"?sp:""}Confirm</button><button class="w3btn g" id="lv-x" ${busy?"disabled":""}>Cancel</button></div>`;
+  if(!["auth","dec","rev"].includes(lane))return lane==="wait"?`<div class="msg">Nothing for you. The case restarts by itself when the client replies.</div>`:`<div class="msg">The agents are working on it. It lands in your lanes when it needs you.</div>`;
+  if(D.canDecide===false)return `<div class="msg">You can't decide this case. It needs a person with the Relationship Manager set.</div>`;
+  const err=u.phase==="error"?`<div class="msg err"><b>Not saved.</b> ${E(u.err)}</div>`:"";
+  const meet=(D.meetings||[]).find(m=>m.W360_Meeting_Status__c==="Proposed"),sl=lvSlots(meet),hasL=(D.instructions||[]).some(i=>i.Type__c==="Communication"&&i.Status__c==="Awaiting review");
+  if(meet&&sl.length){const ready=(!hasL||u.letterOk)&&u.slot!==null;
+    return err+`<div class="acts"><button class="w3btn" id="lv-ok" ${ready&&!busy?"":"disabled"}>${u.phase==="staging"?sp:""}Send and book</button><button class="w3btn g" id="lv-inv" ${busy?"disabled":""}>Investigate</button><span class="sp">${ready?"Ready":hasL&&!u.letterOk?"Approve the letter and pick a slot":"Pick a slot"}</span></div>`}
+  const amt=w3Amt(c),primary=u.acct?"Allocate":lane==="auth"?(amt?`Authorise ${amt}`:"Authorise"):lane==="rev"?"Approve and send":"Accept proposal";
+  const second=lane==="auth"?"Hold and investigate":"Investigate";
+  return err+`<div class="acts"><button class="w3btn" id="lv-ok" ${busy?"disabled":""}>${u.phase==="staging"?sp:""}${E(primary)}</button><button class="w3btn g" id="lv-inv" ${busy?"disabled":""}>${second}</button><span class="sp">Shown as a plan before anything changes</span></div>`}
+function w3Drawer(){const c=lvCase(openId);if(!c)return;const s=state[c.id]||{},u=lvUI(c.id),Dx=LDET[c.id]||{},D=Dx.d,lane=w3Lane(c),f=w3Flag(c),r=c.row;
+  const ch=D?w3Checks(D,c):[],acts=D?(D.activity||[]):[],docs=D?((D.documents||{}).required||[]).length+((D.documents||{}).received||[]).length:0;
+  const TABS=[["overview","Overview"],["checks","Checks",ch.length],["client","Client"],["docs","Documents",docs||""],["activity","Activity",acts.length]];
+  const amt=w3Amt(c);
+  let body;
+  if(!D)body=Dx.err?`<p class="w3-empty">${E(Dx.err.code==="needs_reauth"?LVMSG.needs_reauth:Dx.err.code==="tool_error"?lvFirst(lvMsg(Dx.err)):"Salesforce did not answer. Open the case again in a moment.")}</p>`:`<div class="skel"><i></i><i></i><i></i><i></i></div>`;
+  else body=w3Body(c,D,s,u,lane);
+  $("w3d").innerHTML=`<div class="w3d-h"><div class="r"><div style="min-width:0"><div class="k">${c.type} · ${c.no}</div><h2 id="w3dt">${c.cust}</h2><div class="sub">${E(w3Head(c))}</div></div>
+     <div style="display:flex;gap:16px;align-items:flex-start">${amt?`<div><div class="amt">${E(amt)}</div><div class="meta">${W3L[lane]} · ${c.lv}</div></div>`:`<div class="meta" style="margin-top:8px">${W3L[lane]} · ${c.lv}</div>`}<button class="w3x" id="w3x" aria-label="Close">✕</button></div></div>
+     <div class="w3why w3la-${lane}"><div><small>${W3WHY[lane]}</small><p>${E(w3Why(c,lane))}${f?`<br><span style="display:inline-block;margin-top:6px">${w3Mark(f)}</span>`:""}</p></div></div></div>
+   <nav class="w3tabs" role="tablist">${TABS.map(([k,l,n])=>`<button role="tab" data-w3t="${k}" aria-selected="${k===w3tab}">${l}${n!==undefined&&n!==""?`<span>${n}</span>`:""}</button>`).join("")}</nav>
+   <div class="w3b" id="w3b">${body}</div>
+   ${D?`<div class="w3d-f">${w3Foot(c,D,s,u,lane)}</div>`:""}`;
+  $("w3x").onclick=closeCase;
+  $("w3d").querySelector(".w3tabs").onclick=e=>{const b=e.target.closest("[data-w3t]");if(b){w3tab=b.dataset.w3t;w3all=false;w3Drawer()}};
+  const mo=$("w3more");if(mo)mo.onclick=()=>{w3all=true;w3Drawer()};
+  const lt=$("w3lt");if(lt)lt.onclick=()=>{w3letter=!w3letter;w3Drawer()};
+  if(D)lvBind(c,D,u);
+  document.querySelectorAll(".w3c").forEach(el=>el.classList.toggle("open",el.dataset.w3===openId));
+}
+$("w3sc").onclick=()=>closeCase();
+$("w3lens").onclick=e=>{const b=e.target.closest("[data-l]");if(!b)return;w3lens=b.dataset.l;try{localStorage.setItem("w3lens",w3lens)}catch(x){}w3Render()};
+$("w3board").addEventListener("click",e=>{const b=e.target.closest("[data-w3]");if(b){w3tab="overview";w3all=false;w3letter=false;openCase(b.dataset.w3)}});
+$("w3log").onclick=()=>{if(typeof lrOpen==="function")lrOpen()};
 function lvBoot(){
   ["flbl"].forEach(id=>{const el=$(id);if(el)el.dataset.t=el.textContent});
   [document.querySelector("#v-desk .hero .kicker"),$("headline"),document.querySelector("#v-audit .kicker")].forEach(el=>{if(el)el.dataset.t=el.textContent});

@@ -157,6 +157,12 @@ letterhead.
    `submit_step` sets the desk state to `Needs RM`, `Awaiting authorisation` or `Ready for review`
    (`deskState`), with `exceptionReason` (why a person is needed) and `proposedAction` (the next
    step you propose, one sentence the person can accept or change).
+6. **Keep the desk headline current.** Whenever the situation a person would see changes (an
+   exception, a hand-off, a document request sent, a release prepared), pass `headline` on that
+   `submit_step`: one plain line, at most 90 characters, saying what the person needs to know now.
+   Name the client's situation, not the process. No ids, no field names, no step keys. Examples:
+   "New payee account added today; the 90-day rule can't be confirmed", "£15,000 to her own
+   Barclays account", "2 of 3 documents missing", "Waiting on James: proof of address and ID check".
 
 ## What you report back
 

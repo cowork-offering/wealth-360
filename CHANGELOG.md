@@ -3,6 +3,33 @@
 All notable changes to the Wealth 360 plugin. The version is in
 `wealth-360/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
 
+## 0.5.0 (2026-10-29)
+
+### A calmer, structured desk (live mode)
+- The desk is one board that fits the screen, no page scrolling. Two lenses: **Needs me** (Authorise,
+  Decide, Review, then Agents working and Waiting on client, kept quieter) and **All cases** (one lane
+  per journey, a dot for whose move it is, count and total per lane). Each lane scrolls on its own.
+- Every card says why it is in its lane ("All checks passed. Only a person can release money.",
+  "Rule: Recent bank change.", "A screening hit can only be cleared by a person."). Colour is kept
+  for real risk only: red for a sanctions match, amber for an unverified payee or a recent bank change.
+- **Agents working** shows cases the agents are on now: which agent, its latest step, and progress.
+  A new email, call or logged request appears there the moment it arrives. A live line under the
+  header says what the agents are doing.
+- The slide-out is rebuilt in five tabs that each fit without scrolling: Overview (the proposal, the
+  decision itself: accounts to allocate to, the letter and meeting slots, the plan to confirm, key
+  facts), Checks (each check with result, source and the evidence on demand), Client (KYC and
+  screening, accounts, other open cases), Documents and Activity (the request, progress and the
+  steps). Actions sit at the bottom: Authorise £X, Hold and investigate, Approve and send, Accept
+  proposal, Investigate. Every decision is still staged, shown as a plan and confirmed.
+- Authorise and Review cases can now be decided from the slide-out, not only Needs RM cases.
+- Replay mode (no connector) is unchanged.
+- Desks published before 0.5.0 keep the old layout until republished ("republish my Wealth 360 desk").
+
+### Case headline
+- New case field `W360_Headline__c`: one plain line for the desk card. The Case agent sets it with
+  `submit_step` (`headline`) whenever the situation a person would see changes. W360Queue returns it
+  with the level reason. The desk falls back to the subject when a case has none.
+
 ## 0.4.0 (2026-10-28)
 
 ### Log a request from chat or the desk
