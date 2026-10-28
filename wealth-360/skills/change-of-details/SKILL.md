@@ -46,6 +46,16 @@ A mismatch on any raise-to-L3 rule means `raiseLevelTo: "L3"`, `outcome: "Except
 Williams-Hart, record is Sarah Williams. Bill issued 2 July 2026, older than 3 months.") and a
 `proposedAction` such as "Request new evidence. The address stays unchanged until it is verified."
 
+**Missing, expired or unreadable evidence: ask the client directly.** When there is no proof of
+address on the case, or it is older than 3 months, unreadable or in another name, or identity must be
+confirmed, the Case agent sends a Document request (`draft_communication`, `communicationType:
+"Document request"`, `channel: "Email"`, the client's email on record, `items` "Document | why"). For
+identity it first calls `verify_identity` and passes the `verification_url` as `verificationUrl`. With
+auto-send on, Salesforce sends it at once on the Wealth Servicing letterhead and moves the case to
+`Waiting on customer`; the client's reply comes back through the email intake and restarts the case.
+The address stays unchanged meanwhile. A held request (`autoSent: false`, `heldReason`) waits for the
+person like any draft.
+
 ## 3. Independent check (Review agent)
 
 Dispatch the Review agent (`subagent_type: "wealth-360:review-agent"`) in a fresh call with the
@@ -60,7 +70,7 @@ them in front of the person with the evidence quotes behind them, and the choice
 | Person's decision | `outcome` | What confirm does |
 |---|---|---|
 | Ask for new evidence; keep the address unchanged | `reject` (note: request new evidence) | records the decision; any drafted evidence request is cancelled, so ask for a fresh draft if one is wanted |
-| Accept the evidence as it stands | `approve` | records the decision, releases any prepared instruction or drafted letter, moves the case to Fulfilment |
+| Accept the evidence as it stands | `approve` | records the decision, releases any prepared instruction or drafted letter (a drafted email, such as the Address change confirmation, is sent on the letterhead at once), moves the case to Fulfilment |
 | Approve with a change | `amend` | as approve, with the person's change in the note |
 | Look again before deciding | `investigate` | case back to Working at Execution; instructions held |
 
@@ -79,6 +89,8 @@ them in front of the person with the evidence quotes behind them, and the choice
 
 - Never update an address on evidence that failed a rule without a person's decision.
 - Never call a name a "match" because it is close. Close is a mismatch the person weighs.
-- Sending the evidence request and updating the record (`request_evidence`, `update_or_hold`) run
-  on other systems after the decision; this connector does not send mail. Say so rather than
-  claiming it was sent.
+- The evidence request is sent by Salesforce only as a Document request (auto-send) or when a person
+  releases a draft. Report `autoSent` and `status` as returned; never claim a send that the result
+  does not show. The confirmation of a changed address is an `Address change confirmation` draft
+  (with "Label | value" items: new address, accounts updated, effective date) and always waits for a
+  person. Updating the record itself (`update_or_hold`) runs on other systems after the decision.

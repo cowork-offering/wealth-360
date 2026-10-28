@@ -53,7 +53,10 @@ Dispatch the Review agent (`subagent_type: "wealth-360:review-agent"`) fresh, wi
 ## 4. Prepare the release and raise it
 
 After a passed review, the Case agent may `draft_communication` the withdrawal confirmation
-(`draft_confirmation`) and must complete `prepare_release` with `submit_step`: `instructionType:
+(`draft_confirmation`, `communicationType: "Payment confirmation"`, `items` as "Label | value":
+amount, from, to, sent on; it always waits for a person and is sent on the Wealth Servicing
+letterhead when the person approves the release) and must complete `prepare_release` with
+`submit_step`: `instructionType:
 "Payment out"`, `amount`, `currencyIsoCode`, `sourceAccountId`, `destinationBankAccountId`, the
 payee fields and `payeeCheckResult`, with `deskState: "Awaiting authorisation"` and a
 `proposedAction` such as "Release prepared. Authorise £25,000 to Monzo ··8812." The instruction is
@@ -83,3 +86,8 @@ banking `pay_out` sit outside this connector). Never say the money has been paid
 - An agent never authorises, releases or marks a payment paid. Salesforce refuses it.
 - Never round, re-mask or reconstruct an account number. Use what the org returns.
 - A payee check that was not run is "not checked", never "passed".
+
+**A missing or expired document.** If the withdrawal cannot go ahead because a document is missing
+or expired (for example an expired ID on the KYC record), the Case agent sends a `Document request`
+to the client's email on record instead of preparing the release. It goes out at once (see the Case
+agent's "Document requests"), the case waits on the customer, and the reply restarts it.

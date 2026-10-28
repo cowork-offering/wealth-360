@@ -43,12 +43,21 @@ Dispatch the Case agent (`subagent_type: "wealth-360:case-agent"`) with the case
 | `identify_accounts` | every account and holding, with values | `W360ClientSnapshot` |
 | `mark_deceased` | accounts marked deceased, regular payments stopped | `submit_step` |
 | `check_documents` | received against required | `W360CaseContext` |
-| `draft_document_request` | the letter to the executor asking for what is missing, in the bereavement tone | `draft_communication` (held Awaiting review) |
+| `draft_document_request` | the letter to the executor asking for what is missing, in the bereavement tone | `draft_communication` with `communicationType: "Bereavement"` (held Awaiting review; a person always approves it) |
 | `propose_meeting` | a one-to-one with the beneficiary: agenda and free slots on the RM's calendar | `propose_meeting` (stays Proposed) |
 
 **The letter.** Plain, warm, short. Say sorry once. Say what has been done to protect the
 accounts. Name exactly which documents are still needed and how to send them. Say there is no
-deadline. Offer the relationship manager's time. No product language, no advice.
+deadline. Offer the relationship manager's time. No product language, no advice. Put the documents
+still needed and the next steps in `items` ("Death certificate | The original or a certified copy,
+which we return to you"); the letterhead lists them under "Next steps" and signs "With our deepest
+sympathy". No greeting or sign-off in the body.
+
+**Later chasers.** The first letter is always a `Bereavement` letter a person approves. Only after
+that, when one specific document is still missing, unreadable or expired (for example the death
+certificate scan cannot be read, or the executor's ID has expired), may the Case agent send a short
+`Document request` to the executor's email on record, which goes out at once and moves the case to
+`Waiting on customer` until the reply comes back through the email intake.
 
 **The meeting.** Agenda one item per line, for example: how the beneficiary is and how they would
 like to be contacted; what the deceased held, in total; the estate process, timings and what

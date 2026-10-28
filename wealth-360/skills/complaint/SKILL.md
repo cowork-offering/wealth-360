@@ -46,8 +46,9 @@ will carry apology, cause, fix and referral rights with no advice, and records `
 
 ## 4. Draft the response and raise it
 
-The Case agent drafts the response with `draft_communication` (`stepKey: "draft_response"`): an
-apology, the cause in plain words, what has been fixed, any redress inside policy, and the
+The Case agent drafts the response with `draft_communication` (`stepKey: "draft_response"`,
+`communicationType: "Complaint response"`, never auto-sent; on approve it is sent on the Wealth
+Servicing letterhead): an apology, the cause in plain words, what has been fixed, any redress inside policy, and the
 customer's referral rights. No advice. It is held as Awaiting review, and the case reaches the
 person as `Ready for review` with a proposed action such as "Review the drafted response and
 approve it for sending." Show the draft in full.
