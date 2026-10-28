@@ -65,7 +65,7 @@ fill a failed read with a remembered or invented figure.
 
 ---
 
-## The 15 tools, by caller
+## The 16 tools, by caller
 
 | Tool | Kind | Caller in this plugin |
 |---|---|---|
@@ -84,6 +84,7 @@ fill a failed read with a remembered or invented figure.
 | `record_review` | agent write: the independent check | **Review agent only** |
 | `stage_decision` | person-only: validates a decision, returns plan, hash, single-use token | you, on the person's instruction; the desk page |
 | `confirm_decision` | person-only: executes the staged plan as the named person, verifies by re-query | you, only after the person's explicit confirmation; the desk page |
+| `log_request` | person-only: logs a request the person took (phone, branch, letter, email) as a new case; the agents start on it | you, on the person's instruction (skill `log-request`); the desk page |
 
 You never call `submit_step`, `propose_meeting`, `draft_communication` or `record_review`
 yourself. Those are the agents' writes, and the agents run as subagents so that the maker and the
@@ -103,6 +104,7 @@ check stay separate.
 | `complaint` | complaints: cause, history, the drafted response and its review |
 | `daily-summary` | the day in numbers from `W360Summary`, in words |
 | `outside-checks` | sanctions screening, payee account check, address validation and identity sessions through the `Wealth 360 Checks` connector, cited and labelled sandbox |
+| `log-request` | a request the person took by phone, in a branch, by letter or by email, logged as a new case with `log_request`; the agents start on it at once |
 
 ---
 

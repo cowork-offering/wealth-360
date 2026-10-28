@@ -1443,6 +1443,28 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 .cand label.r{position:relative;cursor:pointer}.cand label.r input{position:absolute;opacity:0;pointer-events:none}
 .cand .r.lv-on::before{content:"";position:absolute;left:-10px;top:12px;bottom:12px;width:2px;border-radius:2px;background:var(--ink)}
 .primary .spin,.link .spin{width:12px;height:12px}
+/* log a request (log_request): a person logs a call, visit or letter as a new case */
+.sec-h .lr-open{margin-left:auto;padding:7px 14px;font-size:12px}
+.sec-h .lr-open+p{margin-left:12px}
+.lrm{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:16px max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px));background:rgba(16,20,40,.28);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.lrm[hidden]{display:none}
+.lrm-in{width:min(520px,100%);max-height:calc(100% - 32px);overflow:auto;border-radius:20px;background:rgba(250,251,255,.96);border:1px solid rgba(0,0,0,.06);box-shadow:0 30px 90px rgba(16,4,30,.35);padding:22px 22px 18px;display:flex;flex-direction:column;gap:12px}
+.lrm-in h2{margin:0;font-size:18px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.lrm-in p.lrm-sub{margin:0;font-size:12.5px;color:var(--ink-3)}
+.lrm-in label{display:flex;flex-direction:column;gap:5px;font-size:11.5px;font-weight:600;color:var(--ink-3);letter-spacing:.02em}
+.lrm-in input,.lrm-in select,.lrm-in textarea{font:inherit;font-size:13.5px;font-weight:400;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 11px;width:100%;box-sizing:border-box}
+.lrm-in textarea{min-height:110px;resize:vertical}
+.lrm-in input:focus,.lrm-in select:focus,.lrm-in textarea:focus{outline:2px solid var(--purple-100);border-color:var(--purple)}
+.lrm-row{display:grid;grid-template-columns:1fr 150px;gap:10px}
+@media (max-width:480px){.lrm-row{grid-template-columns:1fr}}
+.lrm-err{font-size:12.5px;color:#b3261e;background:#fdecea;border-radius:10px;padding:9px 11px}
+.lrm-ok{font-size:12.5px;color:var(--ink-2);background:var(--purple-050);border-radius:10px;padding:9px 11px}
+.lrm-cands{display:flex;flex-direction:column;gap:6px}
+.lrm-cands button{display:flex;justify-content:space-between;gap:10px;text-align:left;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 11px;font-size:13px;color:var(--ink)}
+.lrm-cands button small{color:var(--ink-4)}
+.lrm-cands button:hover{border-color:var(--purple)}
+.lrm-act{display:flex;justify-content:flex-end;gap:8px;margin-top:4px}
+.lrm-act .lrm-cancel{border-radius:999px;padding:10px 16px;font-size:12.5px;font-weight:600;color:var(--ink-3);background:transparent;border:1px solid var(--line)}
 </style>
 
 <div class="ambient" aria-hidden="true"><span class="a"></span><span class="b"></span></div>
@@ -1470,7 +1492,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 
     <div class="desk">
       <div>
-        <div class="sec-h"><h2>Cases</h2><p>Today</p></div>
+        <div class="sec-h"><h2>Cases</h2><button class="primary lr-open" id="lrOpen" type="button" hidden>Log request</button><p>Today</p></div>
         <div class="thead"><span>Case</span><span>Level</span><div class="stg"><span>Intake</span><span>Plan</span><span>Execute</span><span>Verify</span><span>Draft</span><span>Check</span><span>Fulfil</span></div><span class="r">State</span></div>
         <div id="rows"></div>
       </div>
@@ -1563,6 +1585,21 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
   <div class="db" id="db"></div>
   <div class="dfoot" id="dfoot" hidden></div>
 </aside>
+
+<div class="lrm" id="lrm" role="dialog" aria-modal="true" aria-labelledby="lrmT" hidden>
+  <form class="lrm-in" id="lrmF" novalidate>
+    <h2 id="lrmT">Log a request</h2>
+    <p class="lrm-sub">A request you took by phone, in a branch or by letter. It becomes a case and the agents start on it at once.</p>
+    <div class="lrm-row">
+      <label>Client<input id="lrmC" autocomplete="off" placeholder="Full name, e.g. James Okafor" required></label>
+      <label>Channel<select id="lrmCh"><option>Phone</option><option value="Branch">Branch (in person)</option><option>Letter</option><option>Email</option><option>Internal</option></select></label>
+    </div>
+    <label>Request<textarea id="lrmR" placeholder="What the client asked for: who, what, amounts, accounts, addresses, dates." required></textarea></label>
+    <div id="lrmMsg" hidden></div>
+    <div id="lrmCands" class="lrm-cands" hidden></div>
+    <div class="lrm-act"><button type="button" class="lrm-cancel" id="lrmX">Cancel</button><button type="submit" class="primary" id="lrmGo">Log request</button></div>
+  </form>
+</div>
 
 <script>
 (function(){
@@ -2878,12 +2915,47 @@ function lvSummaryHTML(){
   return `<div class="sm-tiles">${tiles.map(x=>`<div class="sm-t"><b class="num">${x[0]}</b><span>${x[1]}</span></div>`).join("")}</div>
   <div class="sm-list"><div class="sm-h"><span class="kicker">Where each case stands</span><span class="kicker">${cited} cited sources · ${S?dec:0} by people</span></div>${L.map(c=>{const s=state[c.id];const st=s.parked?[s.parked[0]+" "+s.parked[1],"hold"]:s.waiting?["Needs you","wait"]:s.done?["Closed","ok"]:[s.desk==="Decided"?"Decided":s.desk==="Rejected"?"Rejected":"Working","run"];const n=cnt(c.id);return `<button class="sm-r" data-id="${c.id}"><span><b>${c.type}</b><small>${c.cust}</small></span><span class="sm-n num">${n==null?"":`${n} agent tasks`}</span><span class="sm-s ${st[1]}"><i></i>${st[0]}</span></button>`}).join("")}</div>`}
 function lvRulesRows(){return LRULES.slice().sort((a,b)=>(a.Desk_Order__c||0)-(b.Desk_Order__c||0)).map(j=>{const w=lvLines(j.Raise_To_L3_When__c);return [E(j.Journey_Name__c||j.MasterLabel||j.DeveloperName),/^L[1-3]$/.test(j.Default_Level__c)?j.Default_Level__c:"L1",E(w.map((x,i)=>i?x.charAt(0).toLowerCase()+x.slice(1):x).join(", ")),E(j.Default_Level__c==="L3"?"Relationship manager":j.Owning_Team__c||"")]})}
+/* log a request: log_request on the viewer's own Wealth 360 connector (people only; Salesforce refuses the agents) */
+let lrKey=null, lrBusy=false;
+function lrOut(res){let p=res&&typeof res==="object"&&("payload" in res)?res.payload:res;
+  if((p==null||typeof p!=="object")&&res&&Array.isArray(res.content)){const t=res.content.find(b=>b&&b.type==="text");if(t)p=t.text}
+  for(let i=0;i<3;i++){if(typeof p==="string"){try{p=JSON.parse(p)}catch(e){return null}}
+    if(p&&Array.isArray(p.content)&&p.content[0]&&p.content[0].type==="text"&&!p.content[0].outputValues){p=p.content[0].text;continue}break}
+  const blk=p&&Array.isArray(p.content)?p.content.find(b=>b&&b.outputValues):null;return blk?blk.outputValues:null}
+function lrMsg(kind,html){const m=$("lrmMsg");m.className=kind?"lrm-"+kind:"";m.innerHTML=html||"";m.hidden=!html}
+function lrOpen(){if(!MCP)return;lrKey="w360-desk-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,8);
+  $("lrmF").reset();lrMsg();$("lrmCands").hidden=true;$("lrmCands").innerHTML="";$("lrmGo").disabled=false;$("lrm").hidden=false;setTimeout(()=>$("lrmC").focus(),30)}
+function lrClose(){if(lrBusy)return;$("lrm").hidden=true}
+async function lrGo(client){
+  if(lrBusy||!MCP)return;const who=(client||$("lrmC").value).trim(),req=$("lrmR").value.trim();
+  if(who.length<2){lrMsg("err","Name the client.");return}
+  if(req.length<10){lrMsg("err","Write the request in a sentence or two.");return}
+  lrBusy=true;$("lrmGo").disabled=true;lrMsg("ok","Logging the request in Salesforce…");
+  let res=null,err=null;
+  try{res=await MCP.callTool(SRV,"log_request",{inputs:[{client:who,requestText:req,channel:$("lrmCh").value,idempotencyKey:lrKey}]},{cache:false})}catch(e){err=e;res=e&&e.result}
+  lrBusy=false;$("lrmGo").disabled=false;
+  const ov=lrOut(res);
+  if(ov&&ov.ok!==false&&!ov.error){let r={};try{r=JSON.parse(ov.resultJson||"{}")}catch(e){}
+    $("lrm").hidden=true;toast(r.existing?`Already logged · ${E(r.caseNumber||"")}`:`Logged as ${E(r.caseNumber||"a new case")} · the agents are on it`);
+    try{await MCP.invalidate(SRV)}catch(e){}lvLoad();return}
+  if(ov&&ov.error){let c=[];try{c=(JSON.parse(ov.resultJson||"{}").candidates)||[]}catch(e){}
+    if(c.length>1){$("lrmCands").innerHTML=c.map(x=>`<button type="button" data-lrpick="${E(x.accountId)}"><span>${E(x.name)}</span><small>${E(x.email||"no email on record")}</small></button>`).join("");$("lrmCands").hidden=false;
+      lrMsg("err",`More than one client is called ${E(who)}. Pick one:`);return}
+    lrMsg("err",E(ov.error.message||"Salesforce refused the request."));return}
+  const k=err&&err.code;
+  lrMsg("err",k==="not_in_manifest"||k==="blocked_by_policy"?"This desk was published before Log request existed. Ask Claude to republish your Wealth 360 desk."
+    :E(lvWErr(err||{code:"tool_error",message:"No answer from Salesforce."})))}
+$("lrOpen").addEventListener("click",lrOpen);
+$("lrmX").addEventListener("click",lrClose);
+$("lrm").addEventListener("click",e=>{if(e.target.id==="lrm")lrClose();const b=e.target.closest("[data-lrpick]");if(b)lrGo(b.dataset.lrpick)});
+$("lrmF").addEventListener("submit",e=>{e.preventDefault();lrGo()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("lrm").hidden)lrClose()});
 function lvBoot(){
   ["flbl"].forEach(id=>{const el=$(id);if(el)el.dataset.t=el.textContent});
   [document.querySelector("#v-desk .hero .kicker"),$("headline"),document.querySelector("#v-audit .kicker")].forEach(el=>{if(el)el.dataset.t=el.textContent});
   const w=window.claude;if(!w||typeof w.use!=="function")return;
   let pr;try{pr=w.use("mcp")}catch(e){return}
-  Promise.resolve(pr).then(m=>{if(!m)return;MCP=m;lvSrc("replay");lvLoad()},()=>{});
+  Promise.resolve(pr).then(m=>{if(!m)return;MCP=m;$("lrOpen").hidden=false;lvSrc("replay");lvLoad()},()=>{});
 }
 document.addEventListener("click",e=>{if(e.target.closest("#lvallow")){e.stopPropagation();lvAllow()}},true);
 

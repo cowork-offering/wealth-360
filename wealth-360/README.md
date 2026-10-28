@@ -14,7 +14,7 @@ how the plugin itself is put together. The Salesforce side is in `RUNBOOK.md`.
 
 | Connector | What it is | Tools |
 |---|---|---|
-| `Wealth 360` | Custom connector to the bank's Wealth 360 MCP server. OAuth Client ID = the bank's External Client App consumer key; client credential field empty; PKCE; each person signs in as themselves | 15 |
+| `Wealth 360` | Custom connector to the bank's Wealth 360 MCP server. OAuth Client ID = the bank's External Client App consumer key; client credential field empty; PKCE; each person signs in as themselves | 16 |
 
 `.mcp.json` is intentionally empty. The connector is user-level so each person signs in as
 themselves and no endpoint or auth flow ships inside the plugin.
@@ -64,6 +64,7 @@ enforces the split in code either way.
 | `bereavement` | "has died", "estate of", "meet the beneficiary" |
 | `complaint` | "complaint", "review the response" |
 | `daily-summary` | "how did today go", "daily summary" |
+| `log-request` | "log a request for James Okafor", "James called, he has moved to ...", "open a case for ..." (people only; the agents start on the new case at once) |
 | `wealth-360-admin` | "pause the agents", "run the agents now", "show the last runs" (holders of `W360_Agent_Admin`; points to the Wealth 360 Admin app, no chat tools) |
 
 Every journey skill follows the same shape: read the case, the Case agent works the steps with

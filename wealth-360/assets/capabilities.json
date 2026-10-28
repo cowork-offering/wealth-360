@@ -9,7 +9,8 @@
           "W360CaseDetail",
           "W360Rulebook",
           "stage_decision",
-          "confirm_decision"
+          "confirm_decision",
+          "log_request"
         ]
       }
     ]

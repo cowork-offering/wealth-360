@@ -9,7 +9,7 @@ the short version an administrator needs to stand it up and keep it demo-ready.
 
 | Part | What |
 |---|---|
-| MCP server | `Wealth360` McpServerDefinition, label "Wealth 360", 15 tools, one Apex invocable each. Separate from Customer 360, which is not changed |
+| MCP server | `Wealth360` McpServerDefinition, label "Wealth 360", 16 tools, one Apex invocable each. Separate from Customer 360, which is not changed |
 | Records | Case record type `W360_Wealth_Servicing` with 22 W360 fields; `W360_Agent_Activity__c` (one row per agent step or human decision, with the cited evidence); `W360_Incoming_Payment__c`; `W360_Fulfilment_Instruction__c`; two W360 fields on Activity for proposed meetings |
 | Rules | `W360_Journey__mdt` (five journeys) and `W360_Journey_Step__mdt` (their steps): level, team, SLA, documents, rules, raise-to-L3 conditions, step order, actor, evidence required |
 | Decisions | Credit 360's staging object and plan classes, reused unchanged: a staged plan, a plan hash, a single-use token bound to the person, verification by re-query |

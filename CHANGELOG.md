@@ -3,6 +3,34 @@
 All notable changes to the Wealth 360 plugin. The version is in
 `wealth-360/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
 
+## 0.4.0 (2026-10-28)
+
+### Log a request from chat or the desk
+- New person-only tool `log_request` on the Wealth 360 MCP server (16 tools). A relationship manager
+  logs a request taken by phone, in a branch, by letter or by email as a new W360 case. It is the same
+  case the email intake makes, so the platform event wakes the agents within seconds.
+- The client is resolved by account id, contact id or name. When a name matches no one or several
+  people, nothing is created and the candidates come back to pick from. The same request for the same
+  client by the same person on the same day returns the first case.
+- Journey: the person's choice, else the intake keyword rules (now also third person: "he has moved",
+  "update his address"), else the Case agent classifies it first.
+- People only. The agent identity has no access to the Apex class and is refused by the write guard;
+  the runner never gives the agents `log_request`. Agents never create their own work.
+- New `log-request` skill ("log a request for James Okafor", "James called, he has moved...").
+- Desk page: a "Log request" button on Cases opens a short form (client, channel, request). Desks
+  published before 0.4.0 must be republished once to get the button ("republish my Wealth 360 desk").
+
+### Fixes found in live testing
+- An email the Case agent drafts with no recipient now goes to the client's email on record, the
+  address the auto-send fence checks. Before, a blank recipient was refused and held for a person.
+  The agent's case context now shows `clientEmailOnRecord`.
+
+### Proven live (BankingGPT sandbox, 28 October)
+- Logged by phone, case 00001369: the Case agent read and classified it, ran Ideal Postcodes and
+  Didit, and auto-sent the document request to the client's allowlisted address in 61 seconds. The
+  case moved to Waiting on customer. This also proves that the agent identity's Integration licence
+  can send email.
+
 ## 0.3.0 (2026-10-28)
 
 ### Wealth 360 Checks connector

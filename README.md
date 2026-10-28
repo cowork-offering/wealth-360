@@ -178,16 +178,17 @@ The plugin reads them live; it does not carry its own copy.
 
 | Part | Status |
 |---|---|
-| Wealth 360 MCP server, 15 tools, in the BankingGPT sandbox | Live |
+| Wealth 360 MCP server, 16 tools, in the BankingGPT sandbox | Live |
 | Desk: queue, case detail, rulebook, summary, staged decisions | Live with the connector; replay without it |
 | Five seeded storyboard cases plus five demo-suite cases on synthetic data (GBP) | Live in the sandbox |
 | Deterministic checks: payee, incoming match, KYC status | Live, on Salesforce records |
 | Agent runner, real time | Live. A Salesforce platform event wakes the runner about 1 to 2 seconds after a W360 case needs agent work (new case, customer reply, sent back to `Working`). The listener waits 10 seconds of quiet per case, then works it. A sweep every 2 minutes is the safety net |
 | Case agent and Review agent writes | Live, written as the dedicated agent identity by the agent runner (OAuth 2.0 JWT bearer, no browser). Each agent gets only its own tools; the decision tools are never available to it. Setup is an environment step, see RUNBOOK.md |
 | Outside checks: sanctions screening, payee account-holder check, address validation, identity verification | Live against sandboxes through an aggregation server the runner connects (UK sanctions list, Plaid sandbox, Ideal Postcodes, Didit sandbox). Without it, the agents say which checks they could not run |
-| Outside checks from chat (`Wealth 360 Checks` connector) | Built and tested against the BankingGPT sandbox: the same checks as a hosted server with Salesforce sign-in, for the person's own seat. See "The second connector" |
+| Outside checks from chat (`Wealth 360 Checks` connector) | Live on Vercel since 28 October: the same checks as a hosted server with Salesforce sign-in, for the person's own seat. See "The second connector" |
 | Email intake | Live in the sandbox: an Apex Email Service turns a client's email into a W360 case or files a reply on its case (rules below). Proven with simulated emails; the first real inbound email is still to be tested |
-| Branded email out | Live when a person releases it through the desk. Agent auto-send of document requests is built and fenced, and switched off until the bank turns it on |
+| Branded email out | Live when a person releases it through the desk. Agent auto-send of document requests is live and fenced (allowlisted domains only): proven on 28 October, case 00001369 |
+| Log a request (`log_request`, skill `log-request`, desk button) | Live: a person logs a phone, branch, letter or email request as a case and the agents start on it within seconds. People only |
 | The agents inside your own session | Read-only in effect. If you dispatch them from your seat, Salesforce refuses their writes ("agent tools run only as the agent identity"); they report the steps and checks they would record and you see the work |
 | Booking calendars, moving money, posting letters | Outside this connector. Confirming a decision releases the instruction or confirms the meeting in Salesforce; delivery is another system's job |
 
@@ -256,6 +257,19 @@ finds its case. Reply-To is the intake address (or a configured short address th
 
 ---
 
+## Logging a request
+
+A request that did not arrive by email (a call, a branch visit, a letter) becomes a case from chat
+or from the desk:
+
+- In chat: "log a request for James Okafor: he called, he has moved to 2 Barons Court Road, London
+  ID1 1QD". The `log-request` skill calls `log_request` as you.
+- On the desk: **Log request** on Cases opens a short form: client, channel, request.
+
+The case is the same one the email intake makes, owned by you, and the agents start on it within
+seconds. If the name matches no one or several clients, nothing is created and you pick from the
+list. Only people can log requests: Salesforce refuses the agent identity.
+
 ## Demo cases
 
 Five cases, each worked end to end by the runner without a person stepping in, as the live proof:
@@ -292,7 +306,7 @@ wealth-360/
   .claude-plugin/plugin.json        the plugin manifest and its one connector
   .mcp.json                         intentionally empty: the connector is user-level
   agents/                           wealth-360 (orchestrator), case-agent, review-agent
-  skills/                           wealth-360-desk, five journeys, daily-summary, wealth-360-admin, outside-checks
+  skills/                           wealth-360-desk, five journeys, daily-summary, wealth-360-admin, outside-checks, log-request
   assets/                           the desk template, desk.json, capabilities.json
   README.md, RUNBOOK.md             plugin notes and the Salesforce side
 ```

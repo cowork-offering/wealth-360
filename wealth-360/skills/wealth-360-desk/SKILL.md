@@ -66,6 +66,11 @@ you rejected. Never type a desk URL from memory or carry one forward from an old
 new template) publishes the template to the same URL with the capabilities whole and **no** `icon`,
 so the tab keeps the icon the viewer knows.
 
+**Desks published before 0.4.0** lack `log_request` in their grant, so their "Log request" button
+says the desk must be republished. When the viewer asks for that, or you resolved such a desk and they
+want to log a request from it, redeploy it as above: the capabilities in `assets/capabilities.json`
+now include `log_request`.
+
 ---
 
 ## Live or replay
