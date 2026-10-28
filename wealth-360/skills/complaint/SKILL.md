@@ -73,5 +73,6 @@ approve it for sending." Show the draft in full.
 
 - Never admit liability or offer redress beyond what the person approved.
 - Never give advice in a complaint response.
-- The response is released in Salesforce on confirm; sending it is another system's job. Say
-  "released for sending", not "sent".
+- On confirm, a response drafted by email is sent by Salesforce on the Wealth Servicing letterhead
+  (the confirm result lists it under `emails` with `sent`). A letter is released for another system
+  to post. Report what the result says: "sent" only when `sent` is true, otherwise "released".

@@ -122,7 +122,8 @@ The plugin reads them live; it does not carry its own copy.
 ## Governance
 
 - **Agents prepare. People decide.** The Case agent completes steps, drafts letters, proposes
-  meetings and prepares payments. It cannot approve, release, allocate, send or book.
+  meetings and prepares payments. It cannot approve, release, allocate or book, and the only thing
+  it may send is a fenced request for missing documents (see Email in and out).
 - **Independent review.** The Review agent reads the case in a fresh context. Salesforce withholds
   the Case agent's reasoning from it. A failed check sends the case back as rework.
 - **Stage, confirm, verify.** Every decision is staged first. The plan and its warnings are shown
@@ -145,11 +146,15 @@ The plugin reads them live; it does not carry its own copy.
 |---|---|
 | Wealth 360 MCP server, 15 tools, in the BankingGPT sandbox | Live |
 | Desk: queue, case detail, rulebook, summary, staged decisions | Live with the connector; replay without it |
-| Five seeded cases on synthetic data (GBP) | Live in the sandbox |
+| Five seeded storyboard cases plus five demo-suite cases on synthetic data (GBP) | Live in the sandbox |
 | Deterministic checks: payee, incoming match, KYC status | Live, on Salesforce records |
-| Case agent and Review agent writes | Written as the dedicated agent identity by the agent runner: a headless process that signs in with the OAuth 2.0 JWT bearer flow, is woken by a Salesforce platform event when a case needs agent work (with a 15-minute sweep as the safety net), picks the cases whose next step is an agent's, and runs the Case agent and then, separately, the Review agent up to the hand-off to a person. Each agent gets only its own tools; the decision tools are never available to it. Setup is an environment step, see RUNBOOK.md |
+| Agent runner, real time | Live. A Salesforce platform event wakes the runner about 1 to 2 seconds after a W360 case needs agent work (new case, customer reply, sent back to `Working`). The listener waits 10 seconds of quiet per case, then works it. A sweep every 2 minutes is the safety net |
+| Case agent and Review agent writes | Live, written as the dedicated agent identity by the agent runner (OAuth 2.0 JWT bearer, no browser). Each agent gets only its own tools; the decision tools are never available to it. Setup is an environment step, see RUNBOOK.md |
+| Outside checks: sanctions screening, confirmation of payee, address validation, identity verification | Live against sandboxes through an aggregation server the runner connects (UK sanctions list, Plaid sandbox, Ideal Postcodes, Didit sandbox). Without it, the agents say which checks they could not run |
+| Email intake | Live in the sandbox: an Apex Email Service turns a client's email into a W360 case or files a reply on its case (rules below). Proven with simulated emails; the first real inbound email is still to be tested |
+| Branded email out | Live when a person releases it through the desk. Agent auto-send of document requests is built and fenced, and switched off until the bank turns it on |
 | The agents inside your own session | Read-only in effect. If you dispatch them from your seat, Salesforce refuses their writes ("agent tools run only as the agent identity"); they report the steps and checks they would record and you see the work |
-| Sending letters and email, booking calendars, moving money, live confirmation of payee, sanctions and ID checks | Outside this connector. Confirming a decision releases the instruction or confirms the meeting in Salesforce; delivery is another system's job |
+| Booking calendars, moving money, posting letters | Outside this connector. Confirming a decision releases the instruction or confirms the meeting in Salesforce; delivery is another system's job |
 
 Everything in the sandbox is synthetic. No real customer data is used.
 
@@ -169,6 +174,9 @@ The agent runner reads one control record in Salesforce every minute. Admins hol
 - **Audit.** Every agent step and person decision across cases, filterable by actor, journey,
   outcome and date.
 
+- **Client email.** The switch for agent auto-send of document requests (off until the bank
+  turns it on).
+
 Relationship managers see one read-only line on each case page: "Agents last ran 14:02, next 14:04"
 or "Agents paused". The `wealth-360-admin` skill explains these steps in chat; the connector has no
 tools for them, so changes are made in the app.
@@ -179,11 +187,61 @@ from the Salesforce checks and say which outside checks they could not run.
 
 ---
 
+## Email in and out
+
+**In.** The bank's intake address is a Salesforce Email Service. Each email is routed in this order:
+
+1. **A reply.** The subject carries the case reference `[W360-<case number>]`, or the footer carries
+   the thread token `W360REF-...`. The email and its attachments are filed on that case. A case in
+   `Waiting on customer` goes back to `Working` and the agents restart within seconds. A case that is
+   with a person keeps its state; the reply waits on the case for them.
+2. **A known client.** The sender's address matches exactly one client email: a new W360 case for
+   that client.
+3. **Several matches or an unknown sender.** A case for a person (level 3), never worked by agents.
+4. **Authenticity.** The sender counts as authenticated when DKIM passes for the sender's domain,
+   or SPF and DKIM both pass. A forwarded email keeps DKIM, so forwarding a short address to the
+   intake works. Otherwise the case is raised to level 3 with the reason.
+5. **Journey.** Keyword rules set the journey when exactly one rule fires; otherwise the Case agent
+   classifies the case as its first step.
+
+No EmailMessage records are created; the email is stored as a file on the case.
+
+**Out.** Every bank email goes out on the Wealth Servicing letterhead (document request, address
+change confirmation, bereavement, payment confirmation, complaint response, decision letter,
+general), with the case reference in the subject and the thread token in the footer, so the reply
+finds its case. Reply-To is the intake address (or a configured short address that forwards to it).
+
+- **A person's release.** Confirming a decision on the desk sends the released email.
+- **Agent auto-send, document requests only.** When the bank switches it on in the admin app, the
+  Case agent's request for missing documents goes out without a person, fenced in Salesforce: a
+  Document request only, by email only, to exactly one address that is the client's email on record
+  and on the bank's allowlisted domains, at most three per case per day, and the only link it may
+  carry is an identity verification session. Anything else waits for a person. After a document
+  request the case waits on the customer; the reply restarts it.
+
+---
+
+## Demo cases
+
+Five cases, each worked end to end by the runner without a person stepping in, as the live proof:
+
+| Case | Journey | Outside checks used | Ends at |
+|---|---|---|---|
+| Eleanor Whitfield, money out | Money out | payee check, KYC, confirmation of payee, sanctions | Awaiting authorisation, level 2 |
+| £18,500 from James Okafor | Money in | incoming match 93%, sanctions, confirmation of payee | With the checker, proposed: allocate to the ISA |
+| Priya Raman, change of address | Change of details | address validation, identity verification session | With the person, level 3, address held, identity link proposed |
+| £22,000 to Henry Lockwood | Money in | incoming match 93%, sanctions possible match | With the person, level 3, funds in suspense, referred to sanctions review |
+| An email from James Okafor | classified as Money out by the Case agent | confirmation of payee, sanctions | Awaiting authorisation, level 2 |
+
+The five storyboard cases (one per journey) are seeded too. All data is synthetic.
+
+---
+
 ## Versioning
 
 The plugin follows semantic versioning. The version is in
 `wealth-360/.claude-plugin/plugin.json` and in `.claude-plugin/marketplace.json`, and both change
-together. This is `0.1.0`, the first release.
+together. This is `0.2.0`. See `CHANGELOG.md`.
 
 Cowork does not always refresh a marketplace it has already added. If an update does not appear,
 remove the marketplace and add it again, then reinstall the plugin.
@@ -194,6 +252,7 @@ remove the marketplace and add it again, then reinstall the plugin.
 
 ```
 .claude-plugin/marketplace.json     the marketplace: one plugin, wealth-360
+CHANGELOG.md                        what changed in each version
 wealth-360/
   .claude-plugin/plugin.json        the plugin manifest and its one connector
   .mcp.json                         intentionally empty: the connector is user-level

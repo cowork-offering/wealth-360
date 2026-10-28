@@ -13,7 +13,9 @@ the short version an administrator needs to stand it up and keep it demo-ready.
 | Records | Case record type `W360_Wealth_Servicing` with 22 W360 fields; `W360_Agent_Activity__c` (one row per agent step or human decision, with the cited evidence); `W360_Incoming_Payment__c`; `W360_Fulfilment_Instruction__c`; two W360 fields on Activity for proposed meetings |
 | Rules | `W360_Journey__mdt` (five journeys) and `W360_Journey_Step__mdt` (their steps): level, team, SLA, documents, rules, raise-to-L3 conditions, step order, actor, evidence required |
 | Decisions | Credit 360's staging object and plan classes, reused unchanged: a staged plan, a plan hash, a single-use token bound to the person, verification by re-query |
-| Fence | `W360WriteGuard`: agent tools only as the agent identity; the decision path refuses the agent identity; agents never lower a level or write decision fields |
+| Fence | `W360WriteGuard`: agent tools only as the agent identity; the decision path refuses the agent identity; agents never lower a level or write decision fields; agent auto-send only for a document request to the client's own address on an allowlisted domain |
+| Admin | The Wealth 360 Admin app (`W360_Agent_Admin`): Agent control (pause, run now, sweep interval, hours, journeys, limits, the auto-send switch), Runs, Rulebook, Audit |
+| Email | Email Service `W360_Email_Intake` (`W360EmailIntake`): replies and new client emails become W360 cases. `W360EmailOutbound` and `W360EmailTemplates`: the branded letterhead, sent from the Wealth Servicing org-wide address. `W360_Setting__mdt` record `Default`: the auto-send domain allowlist and an optional Reply-To override |
 
 ## 2. Deploy
 
@@ -62,8 +64,10 @@ The agents write as a dedicated agent identity; people read and decide in their 
    W360 case needs agent work: a new case, a customer reply, or a case sent back to `Working`. It
    never publishes for the agent identity's own writes, so the agents cannot wake themselves. The
    runner subscribes to that event through the Salesforce Pub/Sub API (outbound only), waits a few
-   seconds per case for related changes to settle, and works the case. It keeps its place in the
-   event stream, so a restart misses nothing. A sweep every 15 minutes is the safety net.
+   seconds per case for related changes to settle (10 seconds of quiet in the sandbox), and works
+   the case: the signal arrives about 1 to 2 seconds after the change commits. It keeps its place in
+   the event stream, so a restart misses nothing. A sweep every 2 minutes (set in the admin app) is
+   the safety net.
 3. It picks the W360 cases whose next journey step belongs to an agent. Cases with a person
    (`Needs RM`, `Awaiting authorisation`, `Ready for review`) or waiting on the customer are left
    alone.
@@ -92,7 +96,16 @@ The person's own connector is unchanged. In a relationship manager's seat the ag
 still refused ("agent tools run only as the agent identity"); that is the separation of duties
 working.
 
-## 6. Seed, reset and verify
+## 6. Email safety settings
+
+`W360_Setting__mdt`, record `Default`:
+
+| Field | Meaning |
+|---|---|
+| `Auto_Send_Allowed_Domains__c` | Comma-separated domains an agent may auto-send to. When not blank, any other domain is refused and the draft waits for a person. Keep demo contacts with real-looking third-party addresses off it. A person's release is not restricted |
+| `Reply_To_Override__c` | Blank: Reply-To is the intake Email Service address. Set it to a short address that forwards to the intake once the forward is proven |
+
+## 7. Seed, reset and verify
 
 - **Seed**: `sf apex run -f scripts/seed.apex -o <org alias>`, as a user with the FSC Standard
   licence and `W360_Relationship_Manager`. It creates the five cases, their agent activity, the
@@ -106,17 +119,20 @@ working.
   money in, bereavement), money out awaiting authorisation, the complaint response ready for
   review.
 
-## 7. Org behaviour to know
+## 8. Org behaviour to know
 
 - Some orgs mirror Case, Account, Contact, Event and financial account changes to other systems
   through their own triggers. Check what the target org does with W360 records before seeding.
   Demo data is synthetic.
-- The seed and the tools create no EmailMessage records, so complaint-risk email flows are not
-  woken.
+- The seed, the tools, the email intake and the outbound sender create no EmailMessage records, so
+  complaint-risk email flows are not woken. Sent emails are kept as an HTML file on the case.
+- Outbound mail is sent by Salesforce on behalf of the bank's domain. Add a DKIM key for that
+  domain in Salesforce and include Salesforce in its SPF record, or receiving gateways may
+  quarantine it.
 - A proposed meeting on a case account can wake a meeting-preparation flow in FSC orgs; the cleanup
   script removes what it creates.
 
-## 8. Release the plugin
+## 9. Release the plugin
 
 1. Bump `version` in `wealth-360/.claude-plugin/plugin.json` and in the marketplace entry, together.
 2. If the desk changed, replace `assets/wealth-360-template.html` with the published build, and

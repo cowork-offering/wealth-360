@@ -78,4 +78,4 @@ suspense." Show the candidates with their scores and reasons.
 - An agent never allocates, returns or moves money out of suspense.
 - Allocation to an account the person did not name is never staged.
 - The request to the remitting bank is sent from another system; this connector records the
-  decision, it does not send mail.
+  decision and does not email other banks.

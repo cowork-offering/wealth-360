@@ -99,6 +99,8 @@ offered time. Show that warning.
 
 - Never pass the estate on, close an account or pay anyone without the mandatory documents and a
   person's decision.
-- The letter is released in Salesforce on confirm; posting or emailing it is another system's job.
+- On confirm, a letter drafted by email is sent by Salesforce on the Wealth Servicing letterhead (the
+  confirm result lists it under `emails`); a letter for post is released for another system to post.
+  Say "sent" only when the result says so.
   Say "released for sending", not "sent".
 - Write about the deceased and the family with care, in every reply, not only in the letter.
