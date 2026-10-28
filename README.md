@@ -19,12 +19,15 @@ withdrawal, an unallocated credit, a bereavement, a complaint. It has three part
   cases on it.
 - **Two agents.** The **Case agent** is the maker. It works a case end to end through the journey's
   steps and cites evidence for each one. The **Review agent** checks the case independently, in a
-  fresh context, and never sees the Case agent's reasoning.
+  fresh context, and never sees the Case agent's reasoning. Both run on their own, signed in to
+  Salesforce as a dedicated agent identity through a headless runner, and write as that identity.
 - **You, the checker.** Every outcome that needs a person comes to you with the exception, the
   evidence and a proposed action. You approve, amend, reject or ask for more.
 
 Salesforce (Financial Services Cloud) holds the journeys, the rules, the records and the audit
-trail. The plugin reaches it through one connector, as you.
+trail. The plugin reaches it through one connector, as you: your seat reads and decides. The agents
+reach the same server through their own sign-in, as the agent identity: their seat works cases and
+never decides.
 
 ---
 
@@ -128,8 +131,11 @@ The plugin reads them live; it does not carry its own copy.
 - **Salesforce enforces it.** Agent tools run only as the agent identity. The decision tools refuse
   the agent identity outright. Steps out of sequence, steps without required evidence and attempts
   to lower a level are refused.
-- **Your identity, not a shared one.** The connector signs in as you, so Salesforce applies your
-  sharing and permissions and records you as the decider.
+- **Two identities, two seats.** Your connector signs in as you, so Salesforce applies your sharing
+  and permissions and records you as the decider. The agents sign in as a dedicated agent identity
+  (a Salesforce integration user holding the `W360_Agent` permission set), so every step, draft and
+  check they write is recorded against that identity, never against a person. The agent identity
+  has no decision permission, and the person's seat cannot make agent writes.
 
 ---
 
@@ -141,7 +147,8 @@ The plugin reads them live; it does not carry its own copy.
 | Desk: queue, case detail, rulebook, summary, staged decisions | Live with the connector; replay without it |
 | Five seeded cases on synthetic data (GBP) | Live in the sandbox |
 | Deterministic checks: payee, incoming match, KYC status | Live, on Salesforce records |
-| Case agent and Review agent writes | Live only when the connector runs as the agent identity. In a relationship manager's own seat Salesforce refuses agent writes by design; the agents then report the steps and checks they would record, and the person sees the work. Running the agents under their own identity is an environment step, see RUNBOOK.md |
+| Case agent and Review agent writes | Written as the dedicated agent identity by the agent runner: a headless process that signs in with the OAuth 2.0 JWT bearer flow, is woken by a Salesforce platform event when a case needs agent work (with a 15-minute sweep as the safety net), picks the cases whose next step is an agent's, and runs the Case agent and then, separately, the Review agent up to the hand-off to a person. Each agent gets only its own tools; the decision tools are never available to it. Setup is an environment step, see RUNBOOK.md |
+| The agents inside your own session | Read-only in effect. If you dispatch them from your seat, Salesforce refuses their writes ("agent tools run only as the agent identity"); they report the steps and checks they would record and you see the work |
 | Sending letters and email, booking calendars, moving money, live confirmation of payee, sanctions and ID checks | Outside this connector. Confirming a decision releases the instruction or confirms the meeting in Salesforce; delivery is another system's job |
 
 Everything in the sandbox is synthetic. No real customer data is used.

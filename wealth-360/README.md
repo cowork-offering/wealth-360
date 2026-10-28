@@ -43,6 +43,11 @@ The page then reads live through the viewer's connector. Without it, it plays it
 | `case-agent` | maker | `W360CaseContext`, `W360Rulebook`, `W360ClientSnapshot`, `W360KycStatus`, `W360PayeeCheck`, `W360IncomingMatch`, `submit_step`, `draft_communication`, `propose_meeting` |
 | `review-agent` | independent check, fresh context | `W360CaseContext` (as `Review agent`), `W360Rulebook`, `W360ClientSnapshot`, `W360KycStatus`, `W360PayeeCheck`, `W360IncomingMatch`, `record_review`. Never `W360CaseDetail`, `W360Queue` or `W360Summary`, which carry the maker's reasoning or conclusions |
 
+**Where the agents write.** The Case agent and the Review agent write as a dedicated agent identity,
+run by the agent runner outside the person's session (RUNBOOK.md, section 5). The same agent files
+are the runner's instructions. Dispatched from a person's own seat, the agents can read but their
+writes are refused; the person's seat reads and decides.
+
 Each agent file states its tool list as a contract and also lists the forbidden tools in
 `disallowedTools` under the Claude Code connector naming (`mcp__claude_ai_Wealth_360__<tool>`).
 Hosts that prefix connector tools differently rely on the contract and on Salesforce, which

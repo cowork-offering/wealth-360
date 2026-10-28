@@ -107,6 +107,12 @@ check stay separate.
    Put both in front of the person, with the evidence behind them.
 5. **Decide.** Only on the person's instruction, run the decision path below.
 
+**Who writes.** In production the agent runner works steps 2 and 3 on its own, as the dedicated
+agent identity, so most cases arrive already worked and raised. You are in the person's seat: you
+read, explain and carry the person's decision. If you dispatch the agents from here, their writes
+are refused by Salesforce and they report what they would have recorded; say so plainly and point
+to the agent runner rather than retrying.
+
 ---
 
 ## The decision path (person only)

@@ -46,12 +46,51 @@ treated as the agent and refused on the decision path.
 
 ## 5. Running the agents under their own identity
 
-People sign in as themselves, so in a relationship manager's seat the Case agent's and the Review
-agent's writes are refused ("agent tools run only as the agent identity"). That is the separation
-of duties working. To let the agents write, run them where the connector is signed in as the agent
-identity (the user holding `W360_Agent`), for example a separate seat or runtime that signs in to
-the same MCP server as that user (the deploy plan names JWT bearer for it). The person's own seat
-keeps the decision tools; the agent's seat never gets them.
+The agents write as a dedicated agent identity; people read and decide in their own seats.
+
+| Seat | Signs in as | Can |
+|---|---|---|
+| The person's connector (`Wealth 360` in claude.ai) | the relationship manager, OAuth with PKCE | read, open the desk, stage and confirm decisions |
+| The agent runner | the agent identity (the user holding `W360_Agent`), OAuth 2.0 JWT bearer | the Case agent's and the Review agent's reads and writes; never the decision tools |
+
+**The agent runner** is a small headless process on a server the bank controls:
+
+1. It signs in with the JWT bearer flow: a short-lived assertion signed with the runner's private
+   key, subject = the agent identity's username, against a dedicated External Client App that holds
+   the matching certificate. No browser and no stored password.
+2. It is event-driven. A small trigger on Case publishes a platform event, after commit, when a
+   W360 case needs agent work: a new case, a customer reply, or a case sent back to `Working`. It
+   never publishes for the agent identity's own writes, so the agents cannot wake themselves. The
+   runner subscribes to that event through the Salesforce Pub/Sub API (outbound only), waits a few
+   seconds per case for related changes to settle, and works the case. It keeps its place in the
+   event stream, so a restart misses nothing. A sweep every 15 minutes is the safety net.
+3. It picks the W360 cases whose next journey step belongs to an agent. Cases with a person
+   (`Needs RM`, `Awaiting authorisation`, `Ready for review`) or waiting on the customer are left
+   alone.
+4. It runs the Case agent, and then, as a separate process, the Review agent, with this plugin's
+   `agents/case-agent.md` and `agents/review-agent.md` as their instructions. The Review agent's
+   prompt carries the case id and the journey key only, and it may read the case only as the Review
+   agent.
+5. Each process gets only its role's Wealth 360 tools. `stage_decision` and `confirm_decision` are
+   never given to either; Salesforce refuses them for the agent identity in any case.
+6. It stops at the hand-off to the person and re-reads the case after every agent run. Salesforce
+   refuses out-of-sequence steps, and a run that changes nothing is not repeated, so a repeated
+   signal or an overlapping sweep is safe.
+
+**Salesforce setup for the runner** (an administrator does this):
+
+1. A dedicated External Client App for the runner, separate from the people's connector app: JWT
+   bearer flow with the runner's certificate; scopes `api`, `refresh_token` and `mcp_api`; "Issue
+   JWT-based access tokens" on (the hosted MCP server accepts only JWT-format access tokens);
+   permitted users "Admin approved users are pre-authorized".
+2. Pre-authorise the `W360_Agent` permission set on that app, so only the agent identity can use it.
+3. Deploy the signal: the platform event, the Case trigger and its test, and Read on the event in
+   `W360_Agent` so the agent identity can subscribe.
+4. Give the runner the app's consumer key. The private key never leaves the runner's host.
+
+The person's own connector is unchanged. In a relationship manager's seat the agents' writes are
+still refused ("agent tools run only as the agent identity"); that is the separation of duties
+working.
 
 ## 6. Seed, reset and verify
 

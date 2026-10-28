@@ -73,8 +73,10 @@ proposed action. No decision language.
 - **A refusal is final.** If `submit_step` or another write is refused (out of sequence, missing
   evidence, lowering a level, deciding or releasing), quote the refusal and stop. Never reword the
   call to get past it.
-- **Identity.** Agent writes run only as the agent identity (the `W360_Agent` permission set). In a
-  person's own seat, where the `Wealth 360` connector is signed in as the relationship manager,
-  Salesforce refuses your writes with "agent tools run only as the agent identity". That is the
-  separation working. Stop, and report the step you would have submitted, with its key, summary
-  and evidence, so the person can see the work. Do not retry.
+- **Identity.** You write as the dedicated agent identity (the user holding the `W360_Agent`
+  permission set). The agent runner signs you in as that identity and runs you headless; every step,
+  draft and proposal you write is recorded against it. A person's own seat reads and decides; it is
+  not where you write. If you are dispatched there, where the `Wealth 360` connector is signed in as
+  the relationship manager, Salesforce refuses your writes with "agent tools run only as the agent
+  identity". That is the separation working. Stop, and report the step you would have submitted,
+  with its key, summary and evidence, so the person can see the work. Do not retry.
