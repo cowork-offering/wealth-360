@@ -1,0 +1,33 @@
+{
+  "name": "wealth-360",
+  "displayName": "Wealth 360",
+  "version": "0.1.0",
+  "description": "Wealth 360 REQUIRES ONE claude.ai CONNECTOR, added by each viewer under Settings > Connectors as a custom connector named EXACTLY \"Wealth 360\": the Salesforce-hosted Wealth 360 MCP server (https://api.salesforce.com/platform/mcp/v1/d/accenture-d8--bankinggpt/sandbox/custom/Wealth360 for the BankingGPT sandbox), with Advanced settings > OAuth Client ID set to the bank's External Client App consumer key and the client credential field left empty (PKCE). The desk page and both agents call it by that name through the viewer's own sign-in; a connector under any other name is invisible to them and the desk falls back to replay. Wealth 360 is a wealth-servicing desk for relationship managers: a desk page published into each viewer's own claude.ai account, and a chat layer over the same 15 tools (9 reads, 4 agent writes, 2 person-only decision tools). Two agents only. The Case agent is the maker: it works a case end to end through its journey steps, citing evidence for each one. The Review agent checks the case independently in a fresh context and never sees the Case agent's reasoning. The person is the checker. Every decision follows one discipline: stage, show the plan and its warnings verbatim, the named person confirms, execute behind a single-use token bound to that person and the plan hash, verify by re-reading the case. Agents can never approve or release; Salesforce refuses them. Five journeys: change of details, money out, money in, bereavement (with a proposed one-to-one for the beneficiary) and complaints, plus a daily summary. Use when a relationship manager asks to open the Wealth 360 desk, work a servicing case, decide what the desk has raised to them, or see what happened today. It does NOT need the separate Customer 360 connector.",
+  "author": {
+    "name": "Fabian Goetzens"
+  },
+  "keywords": [
+    "wealth-360",
+    "wealth-management",
+    "wealth-servicing",
+    "relationship-manager",
+    "salesforce",
+    "financial-services-cloud",
+    "maker-checker",
+    "servicing-desk"
+  ],
+  "homepage": "https://github.com/cowork-offering/wealth-360",
+  "repository": "https://github.com/cowork-offering/wealth-360",
+  "connectors": [
+    {
+      "name": "Wealth 360",
+      "kind": "custom",
+      "required": true,
+      "purpose": "The bank's own servicing data plane: the desk's queue, case detail, rulebook and daily summary, the agents' case context, deterministic checks and step writes, and the person-only staged decisions, all run as the signed-in person.",
+      "setup": "In claude.ai, Settings > Connectors > Add custom connector. Name it exactly \"Wealth 360\" and point it at the bank's Wealth 360 MCP URL (BankingGPT sandbox: https://api.salesforce.com/platform/mcp/v1/d/accenture-d8--bankinggpt/sandbox/custom/Wealth360). Open Advanced settings and set OAuth Client ID to the consumer key of the bank's External Client App (BankingGPT sandbox: the app Claude_Ai_Integration_via_MCP, consumer key 3MVG95bilXG9ExQFPfVafsYh_y5a5uSppydv6GCC.unT36dURnDmX35CZam_x3uOs5vSwQuLTDYNSTV_2iL_Y). Leave the client credential field empty: the app uses PKCE. Connect, and sign in to Salesforce as yourself.",
+      "url": "https://api.salesforce.com/platform/mcp/v1/d/accenture-d8--bankinggpt/sandbox/custom/Wealth360",
+      "auth": "OAuth 2.0 with PKCE, the bank's External Client App consumer key as the client id, per viewer",
+      "tools": 15
+    }
+  ]
+}

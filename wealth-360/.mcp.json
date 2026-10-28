@@ -1,0 +1,4 @@
+{
+  "_comment": "INTENTIONALLY EMPTY, same doctrine as Credit 360. The data layer is a USER-LEVEL CONNECTOR, never a plugin-bundled server: the Salesforce-hosted Wealth 360 MCP server (an org-hosted McpServerDefinition, per-user OAuth with PKCE) appears in the viewer's claude.ai connectors panel under the exact name \"Wealth 360\". Bundling it here would put a deployment endpoint and an auth flow inside the plugin and would sign every viewer in the same way; as a user-level connector each person signs in as themselves and Salesforce sees the person, not a service account. Registration is an environment prerequisite, not a plugin concern: see README.md, section 'The one connector', and RUNBOOK.md.",
+  "mcpServers": {}
+}

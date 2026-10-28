@@ -1,0 +1,9 @@
+{
+  "_comment": "Plugin configuration for the Wealth 360 desk, mirroring Credit 360's cockpit.json. ONE DESK PER VIEWER'S OWN ACCOUNT. The desk page declares a runtime capability (the viewer's \"Wealth 360\" connector), and a capability-declaring artifact opens with live data only for seats inside the claude.ai organization it was published in. Viewers who install this plugin sit in other organizations, so `canonicalArtifactUrl` is the publisher's own copy and a FALLBACK only: for a viewer outside that organization it either does not open or opens without the live grant. The wealth-360-desk skill therefore resolves in order: (1) the URL this session's own Artifact publish returned; (2) the most recently updated artifact titled exactly `Wealth 360` that the viewer owns or is shared, found with Artifact action:'list' scope:'all' and verified with action:'read'; (3) this canonicalArtifactUrl, only if action:'read' succeeds for it; (4) otherwise publish the bundled template assets/wealth-360-template.html into the viewer's own account with assets/capabilities.json passed whole. The page then reads live through the viewer's own connector and falls back to its built-in replay when the connector is missing, misnamed or not yet signed in. FIXED PUBLISH VALUES: `title` exactly 'Wealth 360' (the string step 2 matches on; the page's own <title> is the same); `icon` 'briefcase' on the FIRST publish only, never passed on a redeploy; `capabilities` from assets/capabilities.json, whole, on every publish (omitting it publishes a replay-only desk). Change canonicalArtifactUrl only when the publisher's canonical desk moves. Never put a passcode, token or credential in this file or in the page.",
+  "canonicalArtifactUrl": "https://claude.ai/artifact/SFufzLaXCjggCPhrj5fXKj",
+  "title": "Wealth 360",
+  "icon": "briefcase",
+  "template": "assets/wealth-360-template.html",
+  "capabilities": "assets/capabilities.json",
+  "connector": "Wealth 360"
+}

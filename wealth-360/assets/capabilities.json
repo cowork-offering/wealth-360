@@ -1,0 +1,17 @@
+{
+  "mcp": {
+    "servers": [
+      {
+        "server": "Wealth 360",
+        "tools": [
+          "W360Queue",
+          "W360Summary",
+          "W360CaseDetail",
+          "W360Rulebook",
+          "stage_decision",
+          "confirm_decision"
+        ]
+      }
+    ]
+  }
+}
