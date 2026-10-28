@@ -155,6 +155,30 @@ Everything in the sandbox is synthetic. No real customer data is used.
 
 ---
 
+## Running the agents: the admin app
+
+The agent runner reads one control record in Salesforce every minute. Admins holding the
+`W360_Agent_Admin` permission set steer it from the **Wealth 360 Admin** app:
+
+- **Agent control.** Pause or resume the agents, Run now, the sweep interval, working hours
+  (Europe/London), one switch per journey, the most cases per run and the most model spend per day,
+  with the status: last run, next run, running now, spend today.
+- **Runs.** The run log: one row per run (trigger, status, cases, steps, hand-offs, errors, cost,
+  duration) and one row per case worked, with the agent's own report.
+- **Rulebook.** The journeys and their steps, read only.
+- **Audit.** Every agent step and person decision across cases, filterable by actor, journey,
+  outcome and date.
+
+Relationship managers see one read-only line on each case page: "Agents last ran 14:02, next 14:04"
+or "Agents paused". The `wealth-360-admin` skill explains these steps in chat; the connector has no
+tools for them, so changes are made in the app.
+
+When an aggregation server for outside checks (screening, confirmation of payee, identity, address)
+is connected, both agents use its read and check tools and cite their results. Without it they work
+from the Salesforce checks and say which outside checks they could not run.
+
+---
+
 ## Versioning
 
 The plugin follows semantic versioning. The version is in
@@ -174,7 +198,7 @@ wealth-360/
   .claude-plugin/plugin.json        the plugin manifest and its one connector
   .mcp.json                         intentionally empty: the connector is user-level
   agents/                           wealth-360 (orchestrator), case-agent, review-agent
-  skills/                           wealth-360-desk, five journeys, daily-summary
+  skills/                           wealth-360-desk, five journeys, daily-summary, wealth-360-admin
   assets/                           the desk template, desk.json, capabilities.json
   README.md, RUNBOOK.md             plugin notes and the Salesforce side
 ```

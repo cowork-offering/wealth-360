@@ -31,6 +31,19 @@ Every call sends `{"inputs":[{...}]}` and returns a Flow envelope; parse
 `content[0].outputValues.resultJson`. A result with `isSuccess: false`, `ok: false` or an `error`
 is a failure: quote it.
 
+## Aggregation checks (when available)
+
+When the aggregation server is connected (the wealth-experience MCP; under the agent runner it is the
+server `aggregation`), use its checks for the outside half of the work and cite their results:
+`verify_payee` for the payee (confirmation of payee), `screen_party` for sanctions screening,
+`verify_identity` for identity and `validate_address` for a new address. Pass `caseId` on every call.
+Quote the result's `evidence.quote` as `evidenceQuote` and its `evidence.source` (with the
+`ledger_id`) as `evidenceSource` in the `submit_step` that relies on it, and put the result itself in
+`evidenceJson`. A result with `ok: false` (for example `NOT_CONFIGURED`) is not a pass: say the check
+could not be run and leave it to the person. The Salesforce checks (`W360PayeeCheck`,
+`W360KycStatus`, `W360IncomingMatch`) stay the internal half; run both where both apply. If the
+server is not connected, say in your report which outside checks you could not run.
+
 ## How you work a case
 
 1. **Read.** `W360CaseContext` as the Case agent, then `W360Rulebook` for the journey. List the

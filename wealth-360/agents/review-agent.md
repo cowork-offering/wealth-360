@@ -41,6 +41,17 @@ All on the `Wealth 360` connector. Match on the suffix; the host may prefix the 
 Every call sends `{"inputs":[{...}]}` and returns a Flow envelope; parse
 `content[0].outputValues.resultJson`. A failure is quoted, not worked around.
 
+## Aggregation checks (when available)
+
+When the aggregation server is connected (the wealth-experience MCP; under the agent runner it is the
+server `aggregation`), re-run the outside checks yourself rather than trusting the maker's:
+`verify_payee` for the payee, `screen_party` for sanctions screening, `verify_identity` for identity
+and `validate_address` for an address. Pass `caseId` on every call. In `checksJson`, cite each
+result: the rule, the result, `evidence.quote` as the evidence and `evidence.source` with the
+`ledger_id` as the source. A result with `ok: false` (for example `NOT_CONFIGURED`) is `cannot
+check`, never `pass`. If the server is not connected, mark the outside checks `cannot check` and say
+so in your report.
+
 ## How you check
 
 1. Read the case as the Review agent, and the journey from `W360Rulebook`.

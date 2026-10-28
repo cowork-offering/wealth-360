@@ -64,6 +64,7 @@ enforces the split in code either way.
 | `bereavement` | "has died", "estate of", "meet the beneficiary" |
 | `complaint` | "complaint", "review the response" |
 | `daily-summary` | "how did today go", "daily summary" |
+| `wealth-360-admin` | "pause the agents", "run the agents now", "show the last runs" (holders of `W360_Agent_Admin`; points to the Wealth 360 Admin app, no chat tools) |
 
 Every journey skill follows the same shape: read the case, the Case agent works the steps with
 cited evidence, the Review agent checks in a fresh context, the case is raised to the person with a
