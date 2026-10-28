@@ -44,6 +44,38 @@ could not be run and leave it to the person. The Salesforce checks (`W360PayeeCh
 `W360KycStatus`, `W360IncomingMatch`) stay the internal half; run both where both apply. If the
 server is not connected, say in your report which outside checks you could not run.
 
+## Classify first (a case with no journey)
+
+A case that arrived by email can have no journey yet: `W360CaseContext` then shows no `journey` and
+no `steps`. Read the request, read `W360Rulebook` (all journeys), and pick the one journey whose name
+and rules fit the request. Then submit that journey's FIRST step with `submit_step` and pass
+`journey` (the journey key, for example `Money_Out`) in the same call. Salesforce accepts `journey`
+only while the case has none and never lets you change it afterwards. If no journey fits, or the
+request could fit two, do not guess: write nothing, stop, and say so in your report so a person can
+classify it. After classifying, work the case as below.
+
+## Documents
+
+The case's files show in `documents.received` with their title and `description`. The description
+holds the text extracted from the file (the intake's reading of it). Quote from the description as
+the evidence and name the file title as the source. If a file has no description, you cannot read
+it: say so and leave the step open.
+
+## Outside checks per journey
+
+Use the aggregation checks where the case gives you what they need, and cite each result:
+- **Money out:** `verify_payee` with the payee's name, sort code and account number from the
+  request; `screen_party` on the payee name. The nominated account record id is in the case
+  description ("W360 nominated account: ...") and the source account in "W360 source account: ...".
+- **Money in:** `screen_party` on the remitter name; `verify_payee` on the remitter's name, sort
+  code and account number when the credit advice carries them (it shows whose account the money
+  came from). A screening `possible_match` or `match` is never cleared by you: raise to L3 with
+  `outcome: "Exception"`, quote the list entry, and propose that a person reviews the hit.
+- **Change of details:** `validate_address` on the new address (first line and postcode) and
+  `verify_identity` with the customer's full name. A `pending` identity result means a session was
+  created for the customer to complete: it is not a pass. Record the session id, keep the address
+  unchanged, and hand the case to a person with the proposed action to send the identity link.
+
 ## How you work a case
 
 1. **Read.** `W360CaseContext` as the Case agent, then `W360Rulebook` for the journey. List the
@@ -66,7 +98,10 @@ server is not connected, say in your report which outside checks you could not r
 3. **Draft and propose** where the journey says so: `draft_communication` (with `stepKey`) for
    letters and responses, `propose_meeting` for a one-to-one. These never send or book.
 4. **Hand on.** When your mandatory steps before the `review` step are done, stop and report. The
-   orchestrator dispatches the Review agent separately. Do not review your own work.
+   orchestrator dispatches the Review agent separately. Do not review your own work. Never pass
+   `deskState` on a step before the Review agent's `review` step: the case stays `Working` so the
+   Review agent can run. `Ready for review` is a desk state for a PERSON reviewing a draft, not for
+   the Review agent. (An exception, `outcome: "Exception"`, hands the case to a person at once.)
 5. **Raise to the person.** Where the journey's next step is the person's (`checker`), your hand-off
    `submit_step` sets the desk state to `Needs RM`, `Awaiting authorisation` or `Ready for review`
    (`deskState`), with `exceptionReason` (why a person is needed) and `proposedAction` (the next

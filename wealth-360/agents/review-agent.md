@@ -65,6 +65,11 @@ so in your report.
    A failed check sends the case back to the Case agent and counts as rework; that is the system
    working, not a failure of yours.
 
+Screening: a `screen_party` result of `possible_match` or `match` on the customer, a payee or a
+remitter is never a pass for the money to move. Record it as a fail unless the case is already raised
+to L3 with an exception reason that names the hit; then the rule "a person reviews every screening
+hit" passes because the case is with a person.
+
 A check can pass and the case still need a person: a rule like "credits over £25,000 need a
 person" passes when the case is correctly raised to a person, not when the money moves.
 
