@@ -10,7 +10,9 @@
           "W360Rulebook",
           "stage_decision",
           "confirm_decision",
-          "log_request"
+          "log_request",
+          "W360ClientSearch",
+          "W360ClientSnapshot"
         ]
       }
     ]

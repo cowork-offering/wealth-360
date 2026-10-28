@@ -1510,7 +1510,7 @@ body.w3live.w3v main.wrap{min-height:0}
 .w3-list{flex:1 1 auto;min-height:0;overflow-y:auto;padding:4px 8px 8px;display:flex;flex-direction:column;gap:8px;scrollbar-width:thin}
 .w3-list::-webkit-scrollbar{width:6px}.w3-list::-webkit-scrollbar-thumb{background:#cfcfd8;border-radius:6px}
 .w3-empty{font-size:12.5px;color:var(--w3-ink4);padding:8px;line-height:1.5;margin:0}
-.w3c{all:unset;box-sizing:border-box;cursor:pointer;background:#fff;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;box-shadow:0 1px 2px rgba(16,18,40,.05);border:1px solid transparent;transition:border-color .15s,box-shadow .15s}
+.w3c{all:unset;box-sizing:border-box;cursor:pointer;background:#fff;border-radius:14px;padding:10px 13px;display:flex;flex-direction:column;gap:4px;box-shadow:0 1px 2px rgba(16,18,40,.05);border:1px solid transparent;transition:border-color .15s,box-shadow .15s}
 .w3c:hover{border-color:var(--w3-p2);box-shadow:0 6px 20px -12px rgba(16,18,40,.3)}
 .w3c:focus-visible{outline:2px solid var(--w3-p);outline-offset:2px}
 .w3c.open{border-color:var(--w3-p)}
@@ -1637,6 +1637,87 @@ body.w3live.w3v main.wrap{min-height:0}
 .w3c .w3wy::before{content:"↳ "}
 
 .w3c .w3now .w3nt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* part 2 */
+.w3c .w3hl{font-size:12.5px}
+.w3-live{position:fixed;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:40;margin:0;max-width:min(560px,calc(100% - 120px));background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid var(--w3-line);border-radius:999px;padding:6px 12px;box-shadow:0 4px 14px -8px rgba(16,18,40,.25)}
+body:not(.w3live) .w3-live{display:none}
+.w3ft{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 24px);mask-image:linear-gradient(to bottom,transparent 0,#000 24px)}
+.w3fb{-webkit-mask-image:linear-gradient(to top,transparent 0,#000 28px);mask-image:linear-gradient(to top,transparent 0,#000 28px)}
+.w3ft.w3fb{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 24px,#000 calc(100% - 28px),transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 24px,#000 calc(100% - 28px),transparent 100%)}
+.arcbtn.w3soon{opacity:.42;filter:grayscale(1)}
+.arcbtn.w3soon:hover{opacity:.6}
+.w3inv{width:100%;box-sizing:border-box;font:inherit;font-size:13.5px;border:1px solid var(--w3-line);border-radius:12px;padding:10px 12px;resize:vertical;min-height:56px}
+.w3inv:focus,.w3nc input:focus,.w3nc select:focus,.w3nc textarea:focus,#w3clQ:focus{outline:2px solid var(--w3-p2);border-color:var(--w3-p)}
+/* picker */
+.w3pav{width:30px;height:30px;border-radius:50%;background:#ececf1;color:var(--w3-ink2);display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:600;flex:0 0 auto}
+.w3pav.lg{width:48px;height:48px;font-size:15px;background:var(--w3-ink);color:#fff}
+.w3pl{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:5;background:#fff;border:1px solid var(--w3-line);border-radius:14px;box-shadow:0 18px 50px -18px rgba(16,18,40,.35);padding:6px;max-height:320px;overflow:auto}
+.w3pk{all:unset;box-sizing:border-box;display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:10px;align-items:center;width:100%;padding:8px 10px;border-radius:10px;cursor:pointer}
+.w3pk.on,.w3pk:hover{background:var(--w3-p1)}
+.w3pk b{display:block;font-size:13.5px;font-weight:600}.w3pk small{display:block;font-size:12px;color:var(--w3-ink4);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.w3pk em{font-style:normal;font-size:11.5px;color:var(--w3-pd);white-space:nowrap}
+.w3pk.sk b,.w3pk.sk small{height:10px;border-radius:5px;background:linear-gradient(90deg,#efeff3,#f7f7fa,#efeff3);background-size:200% 100%;animation:w3sh 1.2s linear infinite}
+.w3pk.sk b{width:55%;margin-bottom:6px}.w3pk.sk small{width:80%}.w3pk.sk .w3pav{animation:w3sh 1.2s linear infinite;background:linear-gradient(90deg,#efeff3,#f7f7fa,#efeff3);background-size:200% 100%}
+@keyframes w3sh{to{background-position:-200% 0}}
+.w3pke{margin:0;padding:10px;font-size:12.5px;color:var(--w3-ink4)}
+/* new case dialog */
+.w3nc{position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;padding:16px max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px));background:rgba(16,18,40,.22);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transition:opacity .2s}
+.w3nc.on{opacity:1}.w3nc[hidden]{display:none}
+.w3nc-in{width:min(540px,100%);background:#fff;border-radius:20px;box-shadow:0 30px 90px -20px rgba(16,18,40,.45);padding:24px;display:flex;flex-direction:column;gap:14px;transform:translateY(8px);transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.w3nc.on .w3nc-in{transform:none}
+.w3nc-h{display:flex;justify-content:space-between;align-items:center}
+.w3nc-h h2{margin:0;font-size:20px;font-weight:600;letter-spacing:-.01em}
+.w3nc-sub{margin:-6px 0 0;font-size:13px;color:var(--w3-ink3);line-height:1.45}
+.w3f{display:flex;flex-direction:column;gap:6px;font-size:11.5px;font-weight:600;color:var(--w3-ink3);letter-spacing:.02em}
+.w3f input,.w3f select,.w3f textarea{font:inherit;font-size:14px;font-weight:400;color:var(--w3-ink);background:#fff;border:1px solid var(--w3-line);border-radius:12px;padding:10px 12px;width:100%;box-sizing:border-box;letter-spacing:0}
+.w3f textarea{resize:vertical;min-height:110px}
+.w3qw{position:relative}
+.w3sel{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--w3-p2);background:var(--w3-p1);border-radius:12px;padding:8px 12px;font-weight:400;letter-spacing:0}
+.w3sel b{display:block;font-size:14px;font-weight:600;color:var(--w3-ink)}.w3sel small{display:block;font-size:12px;color:var(--w3-ink3)}
+.w3lnk{border:0;background:transparent;color:var(--w3-pd);font-size:12.5px;font-weight:500;cursor:pointer;padding:0}
+.w3msg{font-size:13px;color:var(--w3-ink3);border-radius:10px;padding:9px 12px;background:var(--w3-line2)}.w3msg.err{color:var(--w3-alert);background:#fdecea}
+.w3nc-f{display:flex;gap:8px;margin-top:4px}
+/* live clients view */
+#w3cl{display:none}
+body.w3live #v-clients>.cv-bar,body.w3live #v-clients>#cmain{display:none}
+body.w3live #w3cl{display:grid;grid-template-columns:300px minmax(0,1fr);gap:16px;padding-top:20px;height:calc(100dvh - 66px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px) - 56px);min-height:520px}
+.w3cl-side{display:flex;flex-direction:column;min-height:0;gap:12px}
+.w3cl-search{position:relative}
+#w3clQ{width:100%;box-sizing:border-box;font:inherit;font-size:14px;border:1px solid var(--w3-line);border-radius:999px;padding:11px 16px;background:#fff}
+.w3cl-k{margin:4px 4px 0;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--w3-ink4);font-weight:500}
+.w3cl-list{flex:1 1 auto;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:4px}
+.w3clr{all:unset;box-sizing:border-box;display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:center;padding:8px 10px;border-radius:12px;cursor:pointer}
+.w3clr:hover{background:#ececf0}.w3clr.on{background:#fff;box-shadow:0 1px 2px rgba(16,18,40,.06);outline:1px solid var(--w3-p2)}
+.w3clr b{display:block;font-size:13.5px;font-weight:600}.w3clr small{display:block;font-size:12px;color:var(--w3-ink4)}
+.w3cl-p{background:#fff;border-radius:20px;box-shadow:0 1px 2px rgba(16,18,40,.05);min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.w3cl-h{display:flex;align-items:center;gap:14px;padding:22px 24px;border-bottom:1px solid var(--w3-line)}
+.w3cl-h h2{margin:0;font-size:22px;font-weight:600;letter-spacing:-.015em}.w3cl-h p{margin:2px 0 0;font-size:13px;color:var(--w3-ink3)}
+.w3cl-act{margin-left:auto;display:flex;gap:8px}
+.w3cl-b{flex:1 1 auto;min-height:0;overflow:auto;padding:22px 24px;animation:w3in .35s ease}
+@keyframes w3in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.w3cl-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:24px}
+.w3cl-g .w3sec+.w3sec{margin-top:0}
+.w3clc{cursor:pointer;border-radius:8px}.w3clc:hover div{color:var(--w3-pd)}
+.w3cl-empty{margin:auto;max-width:360px;text-align:center;color:var(--w3-ink3);padding:24px}
+.w3cl-empty b{display:block;font-size:16px;color:var(--w3-ink);margin-bottom:6px}.w3cl-empty p{margin:0;font-size:13.5px;line-height:1.5}
+.w3cl-sk{padding:22px 24px;display:flex;flex-direction:column;gap:12px}
+.w3cl-sk .w3k>div{height:58px;border:0;background:linear-gradient(90deg,#f2f2f5,#f9f9fb,#f2f2f5);background-size:200% 100%;animation:w3sh 1.2s linear infinite}
+.w3sk-row{height:16px;border-radius:8px;background:linear-gradient(90deg,#f2f2f5,#f9f9fb,#f2f2f5);background-size:200% 100%;animation:w3sh 1.2s linear infinite}
+.w3sk-row:nth-child(odd){width:72%}
+@media (max-width:1000px){body.w3live #w3cl{grid-template-columns:1fr;height:auto}.w3cl-list{max-height:220px}.w3cl-g{grid-template-columns:1fr}.w3cl-act{display:none}}
+
+/* the letter scrolls inline in its own box */
+.w3letter{max-height:200px!important;overflow-y:auto!important;position:static!important;padding:16px 18px;scrollbar-width:thin}
+.w3letter::after{display:none!important}
+.w3letter p{margin:0 0 10px;max-width:62ch}
+.w3letter p:last-child{margin-bottom:0}
+.w3letter .w3lsub{font-weight:600;color:var(--w3-ink);margin-bottom:12px}
+.w3letter::-webkit-scrollbar{width:6px}.w3letter::-webkit-scrollbar-thumb{background:#d4d4dc;border-radius:6px}
+.w3letter{max-height:max(260px,calc(100dvh - 560px))!important;font-size:13.5px;line-height:1.6}
+
+body.w3live.w3v .w3-board{padding-bottom:50px}
+.w3-live{max-width:300px;font-size:12px}
 </style>
 
 <div class="ambient" aria-hidden="true"><span class="a"></span><span class="b"></span></div>
@@ -1660,7 +1741,7 @@ body.w3live.w3v main.wrap{min-height:0}
           <div class="w3-stat"><small>Agents working</small><strong id="w3s3">0</strong></div></div>
       </div>
       <div class="w3-bar"><div class="w3-lens" id="w3lens"><button data-l="me" aria-pressed="true">Needs me</button><button data-l="all" aria-pressed="false">All cases</button></div>
-        <div class="w3-live" id="w3live"><i></i><span id="w3lt">Live · Salesforce</span></div><button class="w3-log" id="w3log" type="button">Log request</button></div>
+</div>
       <div class="w3-board" id="w3board"></div>
     </div>
     <div class="hero">
@@ -1691,6 +1772,8 @@ body.w3live.w3v main.wrap{min-height:0}
   </section>
 
   <section class="view" id="v-clients" hidden>
+    <div id="w3cl"><aside class="w3cl-side"><div class="w3cl-search"><input id="w3clQ" placeholder="Search clients by name or email" autocomplete="off" aria-label="Search clients"><div class="w3pl" id="w3clL" hidden></div></div>
+      <h4 class="w3cl-k">On your desk</h4><div class="w3cl-list" id="w3clList"></div></aside><section class="w3cl-p" id="w3clP"></section></div>
     <div class="cv-bar">
       <div class="cv-pick"><label class="cv-search" for="cvq"><span class="cav" id="cvav"></span><input id="cvq" autocomplete="off" placeholder="Search clients, households or account numbers" aria-label="Search clients"><span class="cv-cur" id="cvname"></span><kbd>⌘K</kbd></label>
         <div class="cv-pop" id="cvpop" role="listbox" hidden></div></div>
@@ -1752,6 +1835,16 @@ body.w3live.w3v main.wrap{min-height:0}
 <div class="scrim" id="scrim"></div>
 <div class="w3s" id="w3sc"></div>
 <aside class="w3d" id="w3d" role="dialog" aria-modal="true" aria-labelledby="w3dt"></aside>
+<div class="w3-live" id="w3live"><i></i><span id="w3lt">Live · Salesforce</span></div>
+<div class="w3nc" id="w3nc" hidden><form class="w3nc-in" id="w3ncF" novalidate role="dialog" aria-modal="true" aria-labelledby="w3ncT">
+  <div class="w3nc-h"><h2 id="w3ncT">New case</h2><button type="button" class="w3x" id="w3ncX" aria-label="Close">✕</button></div>
+  <p class="w3nc-sub">A request you took by phone, in a branch or by letter. The case is created in Salesforce and the agents start on it at once.</p>
+  <div class="w3f">Client<div class="w3sel" id="w3ncSel" hidden></div><div id="w3ncQw" class="w3qw"><input id="w3ncQ" autocomplete="off" placeholder="Search by name or email" aria-label="Client"><div class="w3pl" id="w3ncL" hidden></div></div></div>
+  <label class="w3f">Channel<select id="w3ncCh"><option>Phone</option><option value="Branch">Branch (in person)</option><option>Letter</option><option>Email</option><option>Internal</option></select></label>
+  <label class="w3f">Request<textarea id="w3ncR" rows="5" placeholder="What the client asked for: who, what, amounts, accounts, addresses, dates."></textarea></label>
+  <div class="w3msg" id="w3ncMsg" hidden></div>
+  <div class="w3nc-f"><button type="submit" class="w3btn" id="w3ncGo">Create case</button><button type="button" class="w3btn g" onclick="this.closest('.w3nc').querySelector('#w3ncX').click()">Cancel</button></div>
+</form></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dtitle">
   <div class="dh">
     <div class="dh-top"><span class="eyebrow" id="deb"></span><button class="close" id="dclose">Close</button></div>
@@ -2682,6 +2775,7 @@ function setView(v){
   moveInd(); $("fabwrap").classList.remove("open"); setTimeout(renderFab,0);
   if(v==="audit") renderAudit();
   if(v==="clients") renderClient();
+  if(v==="clients"&&LIVE)setTimeout(w3ClRender,0);
   if(v==="onboarding") renderOnb();
   if(v==="insights") renderInsights();
   try{localStorage.setItem("w360view",v)}catch(e){}
@@ -2791,9 +2885,10 @@ function lvUnwrap(res){
   const ov=blk.outputValues||{};
   if(blk.isSuccess===false||ov.ok===false||ov.error){const er=ov.error||{},fe=Array.isArray(blk.errors)&&blk.errors[0];
     throw lvErr("tool_error",er.message||(fe&&(fe.message||fe))||"Salesforce reported a failure.",er.code)}
-  const j=ov.resultJson;
-  if(typeof j!=="string")return j;
-  try{return JSON.parse(j)}catch(e){throw lvErr("tool_error","The response could not be read.")}
+  const j=ov.resultJson;let out=j;
+  if(typeof j==="string"){try{out=JSON.parse(j)}catch(e){throw lvErr("tool_error","The response could not be read.")}}
+  if(out&&typeof out==="object"&&ov.decisionToken&&!out.decisionToken)out.decisionToken=ov.decisionToken;
+  return out;
 }
 function lvMsg(e){if(e&&e.code==="tool_error"&&e.result&&!e.w360){try{lvUnwrap(e.result)}catch(x){return x.message}}return e&&e.message}
 const lvMeta=r=>(r&&r.cache)||null;
@@ -3207,7 +3302,7 @@ function w3Render(){const el=$("w3");if(!el||!LIVE)return;requestAnimationFrame(
   const lv=$("w3live"),t=LIVE.storedAt?lvHM(new Date(LIVE.storedAt).toISOString()):"";
   lv.classList.toggle("stale",!!LIVE.stale);
   const ag=by("agent")[0];
-  $("w3lt").textContent=LIVE.stale?`Salesforce · last updated ${t}`:ag?`Live · ${ag.c.row.lastActor||"Case agent"}: ${w3Clean(ag.c.row.lastAction||"working",70)} · ${ag.c.custRaw}`:`Live · Salesforce · updated ${t}`;
+  const nAg=by("agent").length;$("w3lt").textContent=LIVE.stale?`Salesforce · last updated ${t}`:nAg?`Live · ${nAg} agent${nAg>1?"s":""} working · ${t}`:`Live · Salesforce · ${t}`;$("w3lt").title=ag?`${ag.c.row.lastActor||"Case agent"}: ${w3Clean(ag.c.row.lastAction||"",140)} (${ag.c.custRaw})`:"";
   let h2;
   if(w3lens==="me"){h2=`<div class="w3-groups w3-me"><span class="you">With you</span><span class="oth">Moving on its own</span></div><div class="w3-lanes w3-me">`+
     w3LaneH("w3la-auth","Authorise","Prepared and checked. Your release.",by("auth"),"me","Nothing to authorise.")+
@@ -3219,7 +3314,8 @@ function w3Render(){const el=$("w3");if(!el||!LIVE)return;requestAnimationFrame(
     W3J.map(j=>{const LL=L.filter(x=>x.c.row.journey===j),you=LL.filter(x=>["auth","dec","rev"].includes(x.l)).length;
       const tot=LL.reduce((a,x)=>{const m=/£([\d,]+)/.exec(x.c.row.subject||"");return a+(m?+m[1].replace(/,/g,""):0)},0);
       return w3LaneH("",JT[j],`${you} with you${LL.length-you?` · ${LL.length-you} moving`:""}${tot?` · ${lvGbp(tot)}`:""}`,LL,"all","No open cases.")}).join("")+`</div>`}
-  put($("w3board"),h2);
+  put($("w3board"),h2);requestAnimationFrame(w3FadeAll);
+  if(!$("v-clients").hidden)w3ClRender();
   if(openId&&lvCase(openId)&&$("w3d").classList.contains("on"))w3Drawer();
 }
 /* slide-out */
@@ -3248,7 +3344,7 @@ function w3Body(c,D,s,u,lane){const K=D.case||{},r=c.row,f=w3Flag(c);
         return open?`<label class="${u.acct===x.accountId?"on":""}"><input type="radio" name="lvacct" value="${E(x.accountId)}" ${u.acct===x.accountId?"checked":""}><div><b>${nm}</b><br><span>${nt}</span></div><span>${sc!=null?sc+"%":""}</span></label>`
           :`<label><span></span><div><b>${nm}</b><br><span>${nt}</span></div><span>${sc!=null?sc+"%":""}</span></label>`}).join("")}</div></div>`}
     const comm=(D.instructions||[]).find(i=>i.Type__c==="Communication"&&i.Status__c==="Awaiting review"), meet=(D.meetings||[]).find(m=>m.W360_Meeting_Status__c==="Proposed"), sl=lvSlots(meet);
-    if(comm&&lane!=="wait")h+=`<div class="w3sec"><h4>${E(lvChan(comm.Channel__c))} to ${E(w3Clean(comm.Recipient__c||"the client"))}</h4><div class="w3letter${w3letter?" full":""}">${comm.Subject__c?`<p><b>${E(comm.Subject__c)}</b></p>`:""}${lvLetter(comm.Body__c)}</div><button class="w3lt" id="w3lt">${w3letter?"Show less":"Read the full letter"}</button>${open&&meet&&sl.length?`<label class="w3tick" for="lv-l"><input type="checkbox" id="lv-l" ${u.letterOk?"checked":""}> Send as drafted</label>`:""}</div>`;
+    if(comm&&lane!=="wait")h+=`<div class="w3sec"><h4>${E(lvChan(comm.Channel__c))} to ${E(w3Clean(comm.Recipient__c||"the client"))}</h4><div class="w3letter" id="w3letter">${comm.Subject__c?`<p class="w3lsub">${E(comm.Subject__c)}</p>`:""}${lvLetter(comm.Body__c)}</div>${open&&meet&&sl.length?`<label class="w3tick" for="lv-l"><input type="checkbox" id="lv-l" ${u.letterOk?"checked":""}> Send as drafted</label>`:""}</div>`;
     if(meet&&sl.length&&open)h+=`<div class="w3sec"><h4>${E(String(meet.Subject||"Meeting").replace(/^Proposed:\s*/,""))}</h4><div class="w3opt w3slots">${sl.map((x,i)=>`<label class="${u.slot===i?"on":""}"><input type="radio" name="lvslot" value="${i}" ${u.slot===i?"checked":""}><div>${E(lvF(x,{weekday:"long",day:"numeric",month:"long"}))}</div><span>${E(lvHM(x))}</span></label>`).join("")}</div></div>`;
     const po=(D.instructions||[]).find(i=>i.Type__c==="Payment out");
     const kv=[po&&po.Payee_Name__c?["Payee",`${po.Payee_Name__c}${po.Payee_Account_Number__c?" ··"+String(po.Payee_Account_Number__c).replace(/\D/g,"").slice(-4):""}`]:null,
@@ -3294,8 +3390,11 @@ function w3Foot(c,D,s,u,lane){const busy=u.phase==="staging"||u.phase==="confirm
   const meet=(D.meetings||[]).find(m=>m.W360_Meeting_Status__c==="Proposed"),sl=lvSlots(meet),hasL=(D.instructions||[]).some(i=>i.Type__c==="Communication"&&i.Status__c==="Awaiting review");
   if(meet&&sl.length){const ready=(!hasL||u.letterOk)&&u.slot!==null;
     return err+`<div class="acts"><button class="w3btn" id="lv-ok" ${ready&&!busy?"":"disabled"}>${u.phase==="staging"?sp:""}Send and book</button><button class="w3btn g" id="lv-inv" ${busy?"disabled":""}>Investigate</button><span class="sp">${ready?"Ready":hasL&&!u.letterOk?"Approve the letter and pick a slot":"Pick a slot"}</span></div>`}
+  if(u.invOpen)return `<div class="msg"><b>Send back to the agents.</b> Anything prepared is held and the agents work the case again with your note.</div>
+    <textarea class="w3inv" id="w3invn" rows="2" placeholder="What should the agents check? For example: confirm the account details with the client by phone."></textarea>
+    <div class="acts"><button class="w3btn" id="w3invgo">Send back</button><button class="w3btn g" id="w3invx">Cancel</button></div>`;
   const amt=w3Amt(c),primary=u.acct?"Allocate":lane==="auth"?(amt?`Authorise ${amt}`:"Authorise"):lane==="rev"?"Approve and send":"Accept proposal";
-  const second=lane==="auth"?"Hold and investigate":"Investigate";
+  const second=lane==="auth"?"Hold and send back":"Send back to agents";
   return err+`<div class="acts"><button class="w3btn" id="lv-ok" ${busy?"disabled":""}>${u.phase==="staging"?sp:""}${E(primary)}</button><button class="w3btn g" id="lv-inv" ${busy?"disabled":""}>${second}</button><span class="sp">Shown as a plan before anything changes</span></div>`}
 function w3Drawer(){const c=lvCase(openId);if(!c)return;const s=state[c.id]||{},u=lvUI(c.id),Dx=LDET[c.id]||{},D=Dx.d,lane=w3Lane(c),f=w3Flag(c),r=c.row;
   const ch=D?w3Checks(D,c):[],acts=D?(D.activity||[]):[],docs=D?((D.documents||{}).required||[]).length+((D.documents||{}).received||[]).length:0;
@@ -3313,14 +3412,146 @@ function w3Drawer(){const c=lvCase(openId);if(!c)return;const s=state[c.id]||{},
   $("w3x").onclick=closeCase;
   $("w3d").querySelector(".w3tabs").onclick=e=>{const b=e.target.closest("[data-w3t]");if(b){w3tab=b.dataset.w3t;w3all=false;w3Drawer()}};
   const mo=$("w3more");if(mo)mo.onclick=()=>{w3all=true;w3Drawer()};
-  const lt=$("w3lt");if(lt)lt.onclick=()=>{w3letter=!w3letter;w3Drawer()};
+
   if(D)lvBind(c,D,u);
+  const inv=$("lv-inv");if(inv&&D)inv.onclick=()=>{u.invOpen=true;if(u.phase==="error"){u.phase="idle";u.err=null}w3Drawer();setTimeout(()=>{const n=$("w3invn");if(n)n.focus()},40)};
+  const ig=$("w3invgo");if(ig)ig.onclick=()=>{const n=($("w3invn").value||"").trim();u.invOpen=false;
+    lvStageGo(c,"investigate",null,n?`Send back to the agents: ${n}`:"Send back to the agents to investigate",n?`You sent it back to the agents: ${n}`:"You sent it back to the agents to investigate.")};
+  const ix=$("w3invx");if(ix)ix.onclick=()=>{u.invOpen=false;w3Drawer()};
+  requestAnimationFrame(w3FadeAll);
   document.querySelectorAll(".w3c").forEach(el=>el.classList.toggle("open",el.dataset.w3===openId));
 }
 $("w3sc").onclick=()=>closeCase();
 $("w3lens").onclick=e=>{const b=e.target.closest("[data-l]");if(!b)return;w3lens=b.dataset.l;try{localStorage.setItem("w3lens",w3lens)}catch(x){}w3Render()};
 $("w3board").addEventListener("click",e=>{const b=e.target.closest("[data-w3]");if(b){w3tab="overview";w3all=false;w3letter=false;openCase(b.dataset.w3)}});
-$("w3log").onclick=()=>{if(typeof lrOpen==="function")lrOpen()};
+
+/* ---------- desk v2, part 2 (live): client lookup, new case, live FAB, live Clients, Salesforce links ---------- */
+const w3Org=()=>(LIVE&&LIVE.q&&LIVE.q.orgUrl)||"";
+function w3Sf(path){const o=w3Org();if(!o){toast("Salesforce address not known yet");return}
+  const a=document.createElement("a");a.href=o+path;a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove()}
+const w3Ini=n=>ini(n||"?");
+let w3SearchSeq=0;
+async function w3Search(q){const seq=++w3SearchSeq;
+  try{const r=lvUnwrap(await MCP.callTool(SRV,"W360ClientSearch",{inputs:[{query:q,max:8}]},{cache:{staleTime:30000,gcTime:300000}}));return seq===w3SearchSeq?(r&&r.clients||[]):null}
+  catch(e){return seq===w3SearchSeq?{err:lvWErr(e)}:null}}
+/* the client picker: input + suggestion list, used by the new case dialog and the Clients view */
+function w3Picker(input,list,onPick){let t=null,items=[],hi=-1;
+  const draw=()=>{list.innerHTML=items.map((c,i)=>`<button type="button" class="w3pk${i===hi?" on":""}" data-i="${i}"><i class="w3pav">${E(w3Ini(c.name))}</i><span><b>${E(c.name)}</b><small>${E([c.email,c.city].filter(Boolean).join(" · ")||"No email on record")}</small></span><em>${c.openCases?`${c.openCases} open`:""}</em></button>`).join("");list.hidden=!items.length};
+  const skel=()=>{list.innerHTML=`<div class="w3pk sk"><i class="w3pav"></i><span><b></b><small></small></span></div>`.repeat(3);list.hidden=false};
+  input.addEventListener("input",()=>{clearTimeout(t);const q=input.value.trim();input.dataset.acct="";
+    if(q.length<2){items=[];draw();return}skel();
+    t=setTimeout(async()=>{const r=await w3Search(q);if(r===null)return;
+      if(r.err){list.innerHTML=`<p class="w3pke">${E(r.err)}</p>`;list.hidden=false;return}
+      items=r;hi=items.length?0:-1;if(!items.length){list.innerHTML=`<p class="w3pke">No client matches "${E(q)}".</p>`;list.hidden=false;return}draw()},220)});
+  input.addEventListener("keydown",e=>{if(list.hidden||!items.length)return;
+    if(e.key==="ArrowDown"){hi=Math.min(items.length-1,hi+1);draw();e.preventDefault()}
+    else if(e.key==="ArrowUp"){hi=Math.max(0,hi-1);draw();e.preventDefault()}
+    else if(e.key==="Enter"&&hi>=0){e.preventDefault();const c=items[hi];list.hidden=true;onPick(c)}
+    else if(e.key==="Escape"){list.hidden=true;e.stopPropagation()}});
+  list.addEventListener("mousedown",e=>{const b=e.target.closest("[data-i]");if(!b)return;e.preventDefault();const c=items[+b.dataset.i];list.hidden=true;onPick(c)});
+  input.addEventListener("blur",()=>setTimeout(()=>{list.hidden=true},120));
+}
+/* new case dialog */
+let w3ncClient=null,w3ncKey=null,w3ncBusy=false;
+function w3NcOpen(pre){if(!MCP)return;w3ncKey="w360-desk-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,8);
+  w3ncClient=pre&&pre.accountId?pre:null;$("w3ncF").reset();$("w3ncMsg").hidden=true;$("w3ncGo").disabled=false;w3NcClient();
+  $("w3nc").hidden=false;requestAnimationFrame(()=>$("w3nc").classList.add("on"));setTimeout(()=>(w3ncClient?$("w3ncR"):$("w3ncQ")).focus(),60)}
+function w3NcClose(){if(w3ncBusy)return;$("w3nc").classList.remove("on");setTimeout(()=>{$("w3nc").hidden=true},200)}
+function w3NcClient(){const c=w3ncClient;$("w3ncSel").hidden=!c;$("w3ncQw").hidden=!!c;
+  if(c)$("w3ncSel").innerHTML=`<i class="w3pav">${E(w3Ini(c.name))}</i><span><b>${E(c.name)}</b><small>${E([c.email,c.openCases?`${c.openCases} open case${c.openCases>1?"s":""}`:""].filter(Boolean).join(" · ")||"Client")}</small></span><button type="button" class="w3lnk" id="w3ncChg">Change</button>`;
+  const ch=$("w3ncChg");if(ch)ch.onclick=()=>{w3ncClient=null;w3NcClient();$("w3ncQ").value="";$("w3ncQ").focus()}}
+function w3NcMsg(kind,txt){const m=$("w3ncMsg");m.className="w3msg "+kind;m.textContent=txt;m.hidden=!txt}
+async function w3NcGo(){if(w3ncBusy)return;const req=$("w3ncR").value.trim();
+  if(!w3ncClient){w3NcMsg("err","Pick the client from the list.");$("w3ncQ").focus();return}
+  if(req.length<10){w3NcMsg("err","Write the request in a sentence or two.");$("w3ncR").focus();return}
+  w3ncBusy=true;$("w3ncGo").disabled=true;w3NcMsg("","Creating the case in Salesforce…");
+  try{const r=lvUnwrap(await MCP.callTool(SRV,"log_request",{inputs:[{client:w3ncClient.accountId,requestText:req,channel:$("w3ncCh").value,idempotencyKey:w3ncKey}]},{cache:false}));
+    w3ncBusy=false;w3NcClose();toast(r&&r.existing?`Already logged · ${E(r.caseNumber||"")}`:`Case ${E(r&&r.caseNumber||"")} created · the agents are on it`);
+    try{await MCP.invalidate(SRV)}catch(e){}lvLoad()}
+  catch(e){w3ncBusy=false;$("w3ncGo").disabled=false;
+    const k=e&&e.code;w3NcMsg("err",k==="not_in_manifest"||k==="blocked_by_policy"?"This desk was published before New case existed. Ask Claude to republish your Wealth 360 desk.":lvWErr(e))}}
+w3Picker($("w3ncQ"),$("w3ncL"),c=>{w3ncClient=c;w3NcClient();$("w3ncR").focus()});
+$("w3ncF").addEventListener("submit",e=>{e.preventDefault();w3NcGo()});
+$("w3ncX").onclick=w3NcClose;$("w3nc").addEventListener("mousedown",e=>{if(e.target.id==="w3nc")w3NcClose()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("w3nc").hidden)w3NcClose()});
+
+/* live FAB: only real actions; the rest is greyed out with "Soon" */
+const W3SOON={scan:"Analyse a document",docs:"Request documents",meet:"Book a meeting",call:"Log a call",note:"Add a note",assign:"Reassign",follow:"Create follow-ups"};
+const w3FabSetBase=fabSet,w3FabDoBase=fabDo,w3RenderFabBase=renderFab;
+function w3CtxClient(){const c=openId&&lvCase(openId);if(c&&c.row.accountId)return {accountId:c.row.accountId,name:c.custRaw};
+  if(curView()==="clients"&&w3cl.sel)return {accountId:w3cl.sel.accountId,name:w3cl.sel.name,email:w3cl.sel.email,openCases:w3cl.sel.openCases};return null}
+fabSet=function(){if(!LIVE)return w3FabSetBase();const v=curView(),c=openId&&lvCase(openId),cc=w3CtxClient();
+  const nc=cc?["case",`New case for ${cc.name}`]:["case","New case"];
+  if(c)return {ctx:`${c.type} · ${c.no}`,items:[nc,["note",W3SOON.note,1],["docs",W3SOON.docs,1],["scan",W3SOON.scan,1],["sf","Open case in Salesforce"]]};
+  return {desk:{ctx:"Your desk",items:[nc,["scan",W3SOON.scan,1],["docs",W3SOON.docs,1],["meet",W3SOON.meet,1],["sf","Open cases in Salesforce"]]},
+    clients:{ctx:cc?cc.name:"Clients",items:[nc,["meet",W3SOON.meet,1],["call",W3SOON.call,1],["docs",W3SOON.docs,1],["sf",cc?"Open client in Salesforce":"Open accounts in Salesforce"]]},
+    onboarding:w3FabSetBase(),
+    insights:{ctx:"Insights",items:[["follow",W3SOON.follow,1],["meet",W3SOON.meet,1],nc,["sf","Open reports in Salesforce"]]},
+    rules:{ctx:"Rules",items:[nc,["sf","Open rules in Salesforce Setup"]]},
+    audit:{ctx:"Audit trail",items:[["filter","People only"],nc,["sf","Open history in Salesforce"]]}}[v]};
+renderFab=function(){w3RenderFabBase();if(!LIVE)return;const f=fabSet();
+  document.querySelectorAll("#arcs .arcbtn").forEach((b,i)=>{const it=f.items[i];if(!it)return;b.classList.toggle("w3soon",!!it[2]);
+    const em=b.querySelector("em");if(em)em.textContent=it[2]?`${it[1]} · Soon`:it[1];b.setAttribute("aria-label",em?em.textContent:it[1])})};
+fabDo=function(k){if(!LIVE)return w3FabDoBase(k);const f=fabSet(),it=f.items.find(x=>x[0]===k);
+  if(it&&it[2]){toast(`${it[1]} is not released yet`);return}
+  if(k==="case"){w3NcOpen(w3CtxClient());return}
+  if(k==="filter"){return w3FabDoBase(k)}
+  if(k==="sf"){const c=openId&&lvCase(openId),cc=w3CtxClient(),v=curView();
+    if(c)return w3Sf(`/lightning/r/Case/${c.id}/view`);
+    if(v==="clients"&&cc)return w3Sf(`/lightning/r/Account/${cc.accountId}/view`);
+    if(v==="insights")return w3Sf("/lightning/o/Report/home");
+    if(v==="rules")return w3Sf("/lightning/setup/CustomMetadata/home");
+    if(v==="audit")return w3Sf("/lightning/o/W360_Agent_Activity__c/list");
+    if(v==="clients")return w3Sf("/lightning/o/Account/list");
+    return w3Sf("/lightning/o/Case/list")}
+};
+
+/* live Clients view */
+const w3cl={sel:null,snap:null,err:null,loading:false,seq:0};
+function w3DeskClients(){const m=new Map();LCASES.forEach(c=>{const a=c.row.accountId;if(!a)return;const x=m.get(a)||{accountId:a,name:c.custRaw,openCases:0,needs:0};x.openCases++;
+  if(["auth","dec","rev"].includes(w3Lane(c)))x.needs++;m.set(a,x)});return [...m.values()].sort((a,b)=>b.needs-a.needs||a.name.localeCompare(b.name))}
+async function w3ClPick(c){w3cl.sel=c;w3cl.snap=null;w3cl.err=null;w3cl.loading=true;const seq=++w3cl.seq;w3ClRender();setTimeout(renderFab,0);
+  try{const r=lvUnwrap(await MCP.callTool(SRV,"W360ClientSnapshot",{inputs:[{accountId:c.accountId}]},{cache:{staleTime:20000,gcTime:300000}}));if(seq!==w3cl.seq)return;w3cl.snap=r}
+  catch(e){if(seq!==w3cl.seq)return;w3cl.err=lvWErr(e)}
+  w3cl.loading=false;w3ClRender()}
+function w3ClPanel(){const c=w3cl.sel;if(!c)return `<div class="w3cl-empty"><b>Find a client</b><p>Search by name or email, or pick one from your desk on the left. Everything loads from Salesforce as you.</p></div>`;
+  const head=`<div class="w3cl-h"><i class="w3pav lg">${E(w3Ini(c.name))}</i><div style="min-width:0"><h2>${E(c.name)}</h2><p>${E([c.email,c.city].filter(Boolean).join(" · ")||" ")}</p></div>
+    <div class="w3cl-act"><button class="w3btn" id="w3clNc">New case</button><button class="w3btn g" id="w3clSf">Open in Salesforce</button></div></div>`;
+  if(w3cl.loading)return head+`<div class="w3cl-sk"><div class="w3k">${"<div><small></small><b></b></div>".repeat(4)}</div>${'<div class="w3sk-row"></div>'.repeat(5)}</div>`;
+  if(w3cl.err)return head+`<p class="w3-empty">${E(w3cl.err)}</p>`;
+  const s=w3cl.snap||{},k=s.kyc||{},one=(l,f)=>(l&&l[0]&&l[0][f])||"",dmy=x=>x?lvF(x,{day:"numeric",month:"short",year:"numeric"}):"";
+  const fa=s.financialAccounts||[],tot=fa.reduce((a,f)=>a+(+f.FinServ__Balance__c||0),0),hold=(s.holdings||[]).slice().sort((a,b)=>(b.FinServ__MarketValue__c||0)-(a.FinServ__MarketValue__c||0)).slice(0,5);
+  const oc=s.openCases||[],hh=(s.householdMembers||[]).map(x=>[(x.Contact&&x.Contact.Name)||"",x.Roles||""]).concat((s.relationships||[]).map(x=>[(x.Account&&x.Account.Name)||x.Name||"",x.Roles||"Relationship"])).filter(x=>x[0]);
+  const nom=s.nominatedAccounts||[];
+  return head+`<div class="w3cl-b" id="w3clb">
+   <div class="w3sec"><h4>KYC and screening</h4><div class="w3k">
+     <div><small>KYC profile</small><b class="${one(k.partyProfiles,"Stage")==="Approved"?"ok":""}">${E(one(k.partyProfiles,"Stage")||"None")}</b><em>${one(k.partyProfiles,"NextProfileReviewDate")?"Next review "+E(dmy(one(k.partyProfiles,"NextProfileReviewDate"))):""}</em></div>
+     <div><small>Screening</small><b class="${one(k.screening,"ScreeningDecision")==="Clear"?"ok":""}">${E(one(k.screening,"ScreeningDecision")||"None")}</b><em>UK Sanctions List</em></div>
+     <div><small>Identity verification</small><b class="${one(k.identityVerification,"Result")==="Accepted"?"ok":""}">${E(one(k.identityVerification,"Result")||"None")}</b><em></em></div>
+     <div><small>ID document</small><b>${E(one(k.identityDocuments,"IdDocumentType")||"None")}</b><em>${one(k.identityDocuments,"ExpirationDate")?"Valid to "+E(dmy(one(k.identityDocuments,"ExpirationDate"))):""}</em></div></div></div>
+   <div class="w3cl-g">
+    <div class="w3sec"><h4>Accounts · ${lvGbp(tot)}</h4>${fa.length?`<div class="w3rows">${fa.map(a=>{const no=String(a.FinServ__FinancialAccountNumber__c||"").replace(/[^\dA-Z-]/gi,"").slice(-4);return `<div><div>${E(a.Name)}${no?` <span>··${E(no)}</span>`:""}${a.FinServ__Status__c&&a.FinServ__Status__c!=="Open"?` <span>· ${E(a.FinServ__Status__c)}</span>`:""}</div><span>${lvGbp(a.FinServ__Balance__c)}</span></div>`}).join("")}</div>`:`<p class="w3-empty">No accounts.</p>`}</div>
+    <div class="w3sec"><h4>Top holdings</h4>${hold.length?`<div class="w3rows">${hold.map(h=>`<div><div>${E(h.Name)}${h.FinServ__AssetClass__c?` <span>· ${E(h.FinServ__AssetClass__c)}</span>`:""}</div><span>${lvGbp(h.FinServ__MarketValue__c)}</span></div>`).join("")}</div>`:`<p class="w3-empty">No holdings.</p>`}</div>
+   </div>
+   <div class="w3cl-g">
+    <div class="w3sec"><h4>Open cases · ${oc.length}</h4>${oc.length?`<div class="w3rows">${oc.map(x=>`<div class="w3clc" data-w3c="${E(x.Id)}"><div>${E(w3Clean(String(x.Subject||"").replace(/^[^:]*:\s*/,""),70))}</div><span>${E(x.W360_Status__c||"")}</span></div>`).join("")}</div>`:`<p class="w3-empty">No open cases.</p>`}</div>
+    <div class="w3sec"><h4>Household and payees</h4><div class="w3rows">${hh.map(x=>`<div><div>${E(x[0])}</div><span>${E(x[1])}</span></div>`).join("")}${nom.map(n=>`<div><div>Nominated account <span>${E(n.Name)}</span></div><span>added ${E(dmy(n.W360_Added_On__c||n.CreatedDate))}</span></div>`).join("")}${!hh.length&&!nom.length?`<p class="w3-empty">None on record.</p>`:""}</div></div>
+   </div></div>`}
+function w3ClRender(){const el=$("w3cl");if(!el||!LIVE)return;
+  const mine=w3DeskClients();
+  $("w3clList").innerHTML=mine.length?mine.map(c=>`<button class="w3clr${w3cl.sel&&w3cl.sel.accountId===c.accountId?" on":""}" data-acct="${E(c.accountId)}"><i class="w3pav">${E(w3Ini(c.name))}</i><span><b>${E(c.name)}</b><small>${c.openCases} open${c.needs?` · ${c.needs} need${c.needs>1?"":"s"} you`:""}</small></span></button>`).join(""):`<p class="w3-empty">No clients with open cases.</p>`;
+  $("w3clP").innerHTML=w3ClPanel();
+  const nc=$("w3clNc");if(nc)nc.onclick=()=>w3NcOpen(w3cl.sel);const sf=$("w3clSf");if(sf)sf.onclick=()=>w3Sf(`/lightning/r/Account/${w3cl.sel.accountId}/view`);
+  w3Fade($("w3clb"));w3Fade($("w3clList"));
+}
+$("w3clList").addEventListener("click",e=>{const b=e.target.closest("[data-acct]");if(!b)return;const c=w3DeskClients().find(x=>x.accountId===b.dataset.acct);if(c)w3ClPick(c)});
+$("w3clP").addEventListener("click",e=>{const r=e.target.closest("[data-w3c]");if(r&&lvCase(r.dataset.w3c)){w3tab="overview";openCase(r.dataset.w3c)}});
+w3Picker($("w3clQ"),$("w3clL"),c=>{$("w3clQ").value="";w3ClPick(c)});
+
+/* gentle fade at the edges of anything that scrolls */
+function w3Fade(el){if(!el||el.__w3f)return;el.__w3f=1;const f=()=>{const t=el.scrollTop>2,b=el.scrollTop+el.clientHeight<el.scrollHeight-2;
+  el.classList.toggle("w3ft",t);el.classList.toggle("w3fb",b)};el.addEventListener("scroll",f,{passive:true});requestAnimationFrame(f);el.__w3fr=f}
+function w3FadeAll(){document.querySelectorAll(".w3-list,#w3b,#w3clb,#w3clList,#w3letter").forEach(el=>{w3Fade(el);if(el.__w3fr)el.__w3fr()})}
 function lvBoot(){
   ["flbl"].forEach(id=>{const el=$(id);if(el)el.dataset.t=el.textContent});
   [document.querySelector("#v-desk .hero .kicker"),$("headline"),document.querySelector("#v-audit .kicker")].forEach(el=>{if(el)el.dataset.t=el.textContent});

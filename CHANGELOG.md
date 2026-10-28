@@ -3,6 +3,38 @@
 All notable changes to the Wealth 360 plugin. The version is in
 `wealth-360/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
 
+## 0.6.0 (2026-10-29)
+
+Wealth 360 is a proof of concept, not a demo: in live mode every action either works against
+Salesforce or is shown greyed out as "Soon". Nothing pretends.
+
+### Fixes
+- Decisions from the live desk failed with "The plan came back incomplete". Salesforce returns the
+  single-use decision token in its own output field; the desk now reads it. This affected Approve,
+  Authorise and Investigate alike.
+- Investigate is now "Send back to agents" ("Hold and send back" in Authorise), with a note for the
+  agents. Anything prepared is held and the case goes back to the agents, who act on the note.
+- The drafted letter scrolls inline in its own box instead of a "Read the full letter" toggle.
+
+### Client lookup
+- New read tool `W360ClientSearch` (17 tools): person clients by name or email, with open W360 cases,
+  only clients the signed-in person can see.
+- Clients view in live mode: search as you type, the clients on your desk, and the selected client
+  from Salesforce (KYC and screening, accounts, top holdings, open cases, household and payees), with
+  a loading skeleton. Replay keeps the scripted households.
+
+### The FAB in live mode
+- New case opens a form with the client lookup; the case is linked to the client and the agents start
+  at once. From a case or a client it is pre-filled.
+- Open in Salesforce opens the real record or list in your org.
+- Analyse a document, Request documents, Book a meeting, Log a call, Add a note, Reassign and Create
+  follow-ups are greyed out with "Soon" until they are released.
+- The Log request button on the desk is gone; New case in the FAB replaces it.
+
+### Layout
+- The live status sits in the bottom left corner; cards are a little more compact; lanes and panels
+  fade gently at the edge while they scroll.
+
 ## 0.5.0 (2026-10-29)
 
 ### A calmer, structured desk (live mode)
