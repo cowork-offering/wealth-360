@@ -5,13 +5,13 @@
   },
   "metadata": {
     "description": "Wealth 360: a wealth-servicing desk for relationship managers, run from Claude over the bank's own Salesforce.",
-    "version": "0.8.0"
+    "version": "0.8.1"
   },
   "plugins": [
     {
       "name": "wealth-360",
       "source": "./wealth-360",
-      "version": "0.8.0",
+      "version": "0.8.1",
       "description": "Wealth 360 servicing desk over the Salesforce-hosted Wealth 360 MCP server (15 tools, per-user OAuth). Needs ONE connector named exactly \"Wealth 360\"; an optional second connector, \"Wealth 360 Checks\", runs sanctions, payee, address and identity checks from chat (sandbox). Two agents, a Case agent (maker) and a Review agent (independent check in a fresh context), work five servicing journeys: change of details, money out, money in, bereavement and complaints, in real time, with email intake and branded email. The relationship manager is the checker: every decision is staged, shown verbatim, confirmed by a named person and executed behind a single-use token. Agents can never approve or release; Salesforce refuses them."
     }
   ]

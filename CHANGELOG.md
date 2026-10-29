@@ -3,6 +3,15 @@
 All notable changes to the Wealth 360 plugin. The version is in
 `wealth-360/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
 
+## 0.8.1 (2026-10-29)
+
+- The FAB showed the menu it was first drawn with until you changed view or opened a case, so the
+  desk FAB could show old items. It now redraws as soon as live data arrives.
+- Analyse a document is also on the desk and Clients FAB: it asks for the client, then the case.
+- Email intake: when several clients share one email address (a household, or the POC where every
+  demo client uses the same inbox), the client named in the email is picked; otherwise a person
+  picks, as before.
+
 ## 0.8.0 (2026-10-29)
 
 Every action on the desk is now live.

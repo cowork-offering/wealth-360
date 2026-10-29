@@ -3630,8 +3630,8 @@ function w3CtxClient(){const c=openId&&lvCase(openId);if(c&&c.row.accountId)retu
 fabSet=function(){if(!LIVE)return w3FabSetBase();const v=curView(),c=openId&&lvCase(openId),cc=w3CtxClient();
   const nc=cc?["case",`New case for ${cc.name}`]:["case","New case"];
   if(c)return {ctx:`${c.type} · ${c.no}`,items:[["scan","Analyse a document"],["note","Add a note"],["docs","Request documents"],["call","Log a call"],["meet","Book a meeting"],["assign","Reassign"]]};
-  return {desk:{ctx:"Your desk",items:[nc,["call","Log a call"],["meet","Book a meeting"],["follow","Create a follow-up"],["sf","Open cases in Salesforce"]]},
-    clients:{ctx:cc?cc.name:"Clients",items:[nc,["meet","Book a meeting"],["call","Log a call"],["follow","Create a follow-up"],["docs","Request documents"],["sf",cc?"Open client in Salesforce":"Open accounts in Salesforce"]]},
+  return {desk:{ctx:"Your desk",items:[nc,["scan","Analyse a document"],["call","Log a call"],["meet","Book a meeting"],["follow","Create a follow-up"],["sf","Open cases in Salesforce"]]},
+    clients:{ctx:cc?cc.name:"Clients",items:[nc,["scan","Analyse a document"],["docs","Request documents"],["meet","Book a meeting"],["call","Log a call"],["sf",cc?"Open client in Salesforce":"Open accounts in Salesforce"]]},
     onboarding:w3FabSetBase(),
     insights:{ctx:"Insights",items:[["follow","Create follow-ups"],["meet","Book a meeting"],["call","Log a call"],nc,["sf","Open reports in Salesforce"]]},
     rules:{ctx:"Rules",items:[nc,["sf","Open rules in Salesforce Setup"]]},
@@ -3898,7 +3898,7 @@ lvExit=function(code){w3LvExitBase(code);LIVE=null;
     consent_required:"Allow Wealth 360 to use your Salesforce connection, then try again."}[code]||(LVMSG[code]?LVMSG[code]+".":"The Wealth 360 connection was refused ("+code+").");
   w3Boot(code==="server_not_connected"||code==="server_not_found"?"absent":code==="not_granted"||code==="consent_required"?"denied":"error",m)};
 const w3LvEnterBase=lvEnter;
-lvEnter=function(){document.body.classList.remove("w3boot");document.querySelectorAll("body>.w3bootov").forEach(x=>x.remove());w3bootSt=null;const lv=$("w3live");if(lv)lv.classList.remove("boot");w3LvEnterBase()};
+lvEnter=function(){document.body.classList.remove("w3boot");document.querySelectorAll("body>.w3bootov").forEach(x=>x.remove());w3bootSt=null;const lv=$("w3live");if(lv)lv.classList.remove("boot");w3LvEnterBase();setTimeout(renderFab,0)};
 
 /* ---------- desk v2, part 5: outside checks (Wealth 360 Checks connector) and Analyse a document ---------- */
 const CHK="Wealth 360 Checks";
