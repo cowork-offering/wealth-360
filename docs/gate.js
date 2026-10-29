@@ -10,9 +10,9 @@
    re-lock (booth reset), or call rsGate.lock() from the console.
    ============================================================ */
 (function () {
-  var KEY = 'rs.gate.v1';
-  var SALT = 'roadshow-2026:';
-  var HASH = 'bb95e907d280e0eebbe6a7d995cf76a2c5006f3d4d6a2fad0b5e672ca43019ce';
+  var KEY = 'w360.gate.v1';
+  var SALT = 'wealth360-2026:';
+  var HASH = 'a03f395b42dc6eff5bbb704e901d22c62abacc79ae566d278b2bda121400ef58';
   var TTL = 30 * 24 * 3600 * 1000;
   var root = document.documentElement;
   var RM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
