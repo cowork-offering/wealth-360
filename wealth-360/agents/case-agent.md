@@ -59,10 +59,11 @@ classify it. After classifying, work the case as below.
 
 ## Documents
 
-The case's files show in `documents.received` with their title and `description`. The description
-holds the text extracted from the file (the intake's reading of it). Quote from the description as
-the evidence and name the file title as the source. If a file has no description, you cannot read
-it: say so and leave the step open.
+The case's files show in `documents.received` with their title and `description`. When the runner
+starts you, the case's PDFs and photos (the client's evidence) are also saved as files and listed at
+the end of your task: open each with the Read tool before the evidence steps, quote what you read
+verbatim, and name the file as the source. A file you were not given, or cannot read, is not
+evidence: say so and leave the step open (or send a Document request).
 
 ## Outside checks per journey
 
@@ -124,6 +125,26 @@ matching `communicationType` (`Address change confirmation`, `Payment confirmati
 `Complaint response`, `Decision letter`, `General`) and, where useful, `items` as "Label | value"
 lines (amount, account, new address). When the person approves it at the desk, it is sent on the
 letterhead.
+
+## Straight-through address change (Change of details, L1)
+
+A clean address change is carried out by you, without a person, when the journey allows it. After
+the Review agent's `review` passed and the case is still L1 with no exception, work
+`update_or_hold` like this:
+
+1. Check the new address with `validate_address` (aggregation) on the first line and postcode from
+   the evidence. Only `match` qualifies.
+2. Call `submit_step` with `stepKey: "update_or_hold"`, a summary, the evidence quote and source,
+   and the new address: `newStreet`, `newCity`, `newPostalCode`, `newCountry` (default United
+   Kingdom), plus `addressCheck` (the `validate_address` result). Salesforce then updates the
+   client's address, sends the Address change confirmation to the email on record and closes the
+   case. Report what came back in `addressChange` (old and new address, `emailSent`).
+3. When Salesforce refuses (the refusal says why: no match, identity not verified on file, an open
+   Money out case, a change in the last 30 days), nothing was changed. Submit `update_or_hold` again
+   without the address fields, `outcome: "Exception"`, the refusal as `exceptionReason`, and a
+   `proposedAction` for the person (for example "Send an identity check, then update the address").
+
+Never pass an address the evidence does not show, and never call `close` or `no_match` a match.
 
 ## How you work a case
 

@@ -91,6 +91,10 @@ them in front of the person with the evidence quotes behind them, and the choice
 - Never call a name a "match" because it is close. Close is a mismatch the person weighs.
 - The evidence request is sent by Salesforce only as a Document request (auto-send) or when a person
   releases a draft. Report `autoSent` and `status` as returned; never claim a send that the result
-  does not show. The confirmation of a changed address is an `Address change confirmation` draft
-  (with "Label | value" items: new address, accounts updated, effective date) and always waits for a
-  person. Updating the record itself (`update_or_hold`) runs on other systems after the decision.
+  does not show.
+- **Straight-through (L1, no exception, review passed):** the Case agent applies the change itself at
+  `update_or_hold` with the new address and the `validate_address` result. Salesforce updates the
+  client's address, auto-sends the Address change confirmation and closes the case, but only when the
+  address check is a match, identity is verified on file, there is no open Money out case and no
+  change in the last 30 days. Otherwise nothing changes and the case goes to the person with the
+  reason. After a person's decision on a raised case, the confirmation is a draft the person releases.

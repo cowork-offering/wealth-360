@@ -3,6 +3,22 @@
 All notable changes to the Wealth 360 plugin. The version is in
 `wealth-360/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
 
+## 0.10.0 (2026-10-29)
+
+Straight-through address change: a clean change of address runs from email to closed case with no
+person.
+
+- At `update_or_hold` on a Change of details case, the Case agent passes the new address and the
+  `validate_address` result with `submit_step`. Salesforce updates the client's mailing address,
+  sends the Address change confirmation to the email on record and closes the case, with the old
+  address kept on the timeline.
+- It applies only when every fence holds: L1 with no exception, evidence read and compared, the
+  independent review passed, the address check a match, identity verified on file, no open Money out
+  case for the client and no address change in the last 30 days. Otherwise nothing changes and the
+  case goes to a person with the reason.
+- The agents now read the case's PDFs and photos: the runner saves them for each agent run and gives
+  the agent a read-only file tool limited to that folder.
+
 ## 0.9.2 (2026-10-29)
 
 - Start identity check now also emails the client a Wealth Servicing email with a Verify your
