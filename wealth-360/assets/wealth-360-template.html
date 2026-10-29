@@ -1847,6 +1847,9 @@ body.w3live .w3d-f{padding-right:max(104px,calc(env(safe-area-inset-right,0px) +
 @media(max-width:520px){.w3run{grid-template-columns:minmax(0,1fr)}}
 .w3sfb svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .w3sfb{display:grid;place-items:center}
+.w3cbx{display:grid;grid-template-columns:18px minmax(0,1fr);gap:10px;align-items:start;border:1px solid var(--w3-p2);background:var(--w3-p1);border-radius:12px;padding:10px 12px;cursor:pointer}
+.w3cbx input{margin:2px 0 0;accent-color:var(--w3-pd);width:16px;height:16px}
+.w3cbx b{display:block;font-size:13.5px;font-weight:600;color:var(--w3-ink)}.w3cbx small{display:block;font-size:12px;color:var(--w3-ink3);line-height:1.4;margin-top:2px}
 </style>
 
 <div class="ambient" aria-hidden="true"><span class="a"></span><span class="b"></span></div>
@@ -3924,14 +3927,15 @@ function w3ChkFields(kind){const c=w3ac.ctx||{},g=Object.assign(w3Guess(c.caseId
     <div class="w3f2"><label class="w3f">Sort code<input id="w3cSort" value="${E(g.sort||"")}" placeholder="00-00-00" inputmode="numeric"></label><label class="w3f">Account number<input id="w3cAcct" value="${E(g.acct||"")}" placeholder="8 digits" inputmode="numeric"></label></div>`;
   if(kind==="chk_addr")return `<label class="w3f">First line<input id="w3cL1" value="${E(g.line1||"")}" placeholder="e.g. 2 Barons Court Road"></label>
     <label class="w3f">Postcode<input id="w3cPc" value="${E(g.postcode||"")}" placeholder="e.g. ID1 1QD"></label>`;
-  if(kind==="chk_id")return `<label class="w3f">Name on record<input id="w3cName" value="${E(c.name||"")}"></label>`;
+  if(kind==="chk_id")return `<label class="w3f">Name on record<input id="w3cName" value="${E(c.name||"")}"></label>
+    <label class="w3cbx"><input type="checkbox" id="w3cMail" checked><span><b>Email the link to the client</b><small>A Wealth Servicing email with a Verify your identity button, to the address on record. The case then waits on the client.</small></span></label>`;
   return ""}
 function w3ChkInput(kind){const v=id=>{const el=$(id);return el?String(el.value||"").trim():""},caseId=(w3ac.ctx||{}).caseId||v("w3acCase");
   if(kind==="chk_screen"){if(v("w3cName").length<2)throw "Give the name to screen.";const o={name:v("w3cName"),caseId};if(v("w3cDob"))o.dob=v("w3cDob");if(v("w3cCty"))o.country=v("w3cCty");return o}
   if(kind==="chk_payee"){if(!v("w3cName")||!/^\d{2}-?\d{2}-?\d{2}$/.test(v("w3cSort"))||!/^\d{8}$/.test(v("w3cAcct")))throw "Give the account holder, a sort code (6 digits) and an account number (8 digits).";
     return {account_holder_name:v("w3cName"),sort_code:v("w3cSort"),account_number:v("w3cAcct"),caseId}}
   if(kind==="chk_addr"){if(!v("w3cL1")||!v("w3cPc"))throw "Give the first line and the postcode.";return {line1:v("w3cL1"),postcode:v("w3cPc"),caseId}}
-  if(kind==="chk_id")return {full_name:v("w3cName"),caseId};
+  if(kind==="chk_id"){const m=$("w3cMail");w3ac.mailId=!m||m.checked;return {full_name:v("w3cName"),caseId}}
 }
 function w3ChkUnwrap(res){let p=res&&typeof res==="object"&&("payload" in res)?res.payload:res;
   if((p==null||typeof p!=="object")&&res&&Array.isArray(res.content)){const t=res.content.find(b=>b&&b.type==="text");if(t)p=t.text}
@@ -3966,6 +3970,12 @@ async function w3ChkRun(kind,input,box){const k=W3CHK[kind.slice(4)];
   try{const rr=lvUnwrap(await MCP.callTool(SRV,"record_check",{inputs:[{caseId:input.caseId,checkType:type,outcome:String(outcome||""),headline:say.head+(say.line?". "+say.line:""),
       evidenceQuote:String(ev.quote||"").slice(0,3900),source:ev.source||"",ledgerId:r.ledger_id||"",sessionId:say.session||null,url:say.url||null,subject:subject.slice(0,200)}]},{cache:false}));saved=true;kyc=!!(rr&&rr.kycRecordId)}catch(e){}
   box.querySelector(".w3csv").textContent=saved?(kyc?"Saved on the case and the client's KYC profile.":"Saved on the case timeline."):"Not saved on the case.";
+  if(kind==="chk_id"&&say.url&&w3ac.mailId){const ml=document.createElement("small");ml.className="w3csv";ml.textContent="Emailing the link to the client…";box.querySelector(".w3cres").appendChild(ml);
+    try{const er=lvUnwrap(await MCP.callTool(SRV,"request_documents",{inputs:[{caseId:input.caseId,subject:"Please confirm your identity",
+        message:"To keep your request moving we need to confirm it is you. Use the button below: it takes about two minutes with your passport or driving licence and a short selfie.",
+        items:"Identity check: Use the Verify your identity button below",verificationUrl:say.url}]},{cache:false}));
+      ml.textContent=er&&er.sent?`Emailed to ${er.to}. The case now waits on the client.`:er&&er.existing?"Already emailed today.":"The email was not sent"+(er&&er.error?`: ${er.error}`:".")}
+    catch(e){ml.textContent="The email was not sent: "+w3AcErr(e);ml.style.color="var(--w3-risk)"}}
   if(saved&&lvCase(input.caseId))lvDetail(input.caseId,true);
   return {r,say,saved}}
 function w3ChkErr(e){const k=e&&e.code;

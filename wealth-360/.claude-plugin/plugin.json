@@ -1,7 +1,7 @@
 {
   "name": "wealth-360",
   "displayName": "Wealth 360",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Wealth 360: a wealth-servicing desk for relationship managers on Salesforce Financial Services Cloud. Case and Review agents work client requests through five journeys with cited evidence and outside checks; the person decides through a staged, single-use confirm. Includes the live desk page, chat skills and the agents. Needs the claude.ai connector \"Wealth 360\" (and optionally \"Wealth 360 Checks\"); see CONNECTORS.md.",
   "author": {
     "name": "Fabian Goetzens"

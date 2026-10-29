@@ -3,6 +3,14 @@
 All notable changes to the Wealth 360 plugin. The version is in
 `wealth-360/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
 
+## 0.9.2 (2026-10-29)
+
+- Start identity check now also emails the client a Wealth Servicing email with a Verify your
+  identity button (on by default, can be unticked). The case then waits on the client, and when Didit
+  returns the decision it is written to the KYC profile and the case goes back to the agents.
+- `request_documents` takes an optional `verificationUrl` (a Didit link only, fenced like the
+  agent's), shown as the Verify your identity button.
+
 ## 0.9.1 (2026-10-29)
 
 Marketplace warnings fixed.
