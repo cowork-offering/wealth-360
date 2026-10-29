@@ -1,6 +1,6 @@
 ---
 name: daily-summary
-description: The Wealth 360 daily summary. Reads W360Summary (since today 00:00 by default, or a time the person names) and says the day in a few plain lines - cases progressed and closed, agent tasks completed by each agent, exceptions raised, decisions people made and the minutes they spent, items still waiting, errors and rework, and model tokens. Use for "how did today go", "daily summary", "what did the agents do today", "what is still waiting", "end of day" or "summary since <time>".
+description: The Wealth 360 daily summary. Reads W360Summary (since today 00:00 by default, or a time the person names) and says the day in a few plain lines - cases progressed and closed, agent tasks completed by each agent, exceptions raised, decisions people made and the minutes they spent, items still waiting, errors and rework, and model tokens. Use for "how did today go", "daily summary", "what did the agents do today", "what is still waiting", "end of day" or "summary since 2pm".
 ---
 
 # Daily summary

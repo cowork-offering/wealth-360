@@ -3,6 +3,15 @@
 All notable changes to the Wealth 360 plugin. The version is in
 `wealth-360/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
 
+## 0.9.1 (2026-10-29)
+
+Marketplace warnings fixed.
+
+- `plugin.json` no longer carries the unrecognised `connectors` key; the connector setup moved to
+  `wealth-360/CONNECTORS.md`. The plugin description is under 500 characters.
+- daily-summary: no angle brackets in the description. outside-checks: description under 1024
+  characters, and in chat it now records each result on the case and KYC profile with `record_check`.
+
 ## 0.9.0 (2026-10-29)
 
 Checks now sync back to Salesforce properly.

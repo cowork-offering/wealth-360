@@ -1,6 +1,6 @@
 ---
 name: outside-checks
-description: Run an outside check from the person's own seat through the "Wealth 360 Checks" connector (a second claude.ai custom connector, signed in with the same Salesforce login as "Wealth 360") and report the result cited and labelled as a sandbox check. Four checks. Sanctions screening against the UK Sanctions List (screen_party), payee account-holder verification through Plaid sandbox (verify_payee, an open-banking check, not Pay.UK Confirmation of Payee), UK address validation through Ideal Postcodes (validate_address) and an identity verification session through Didit sandbox (verify_identity). Plus the person's own check history (ledger). Use for "run a sanctions check on the payee", "screen the remitter", "verify the payee account", "check the payee's bank details", "validate this address", "is this postcode right", "start an ID check", "send the client an identity check", "what checks have I run". Reads the inputs from the case through the "Wealth 360" connector when a case is in play. A check is evidence, never a decision: it does not move a case, and a screening hit always goes to a person.
+description: Run an outside check from the person's seat through the "Wealth 360 Checks" connector (same Salesforce login as "Wealth 360") and report it cited and labelled sandbox. Sanctions screening (screen_party, UK Sanctions List), payee account check (verify_payee, Plaid sandbox, not Pay.UK Confirmation of Payee), UK address validation (validate_address, Ideal Postcodes), identity session (verify_identity, Didit sandbox), and the person's check history (ledger). With a case in play, records the result on the case and the client KYC profile with record_check. Use for "run a sanctions check on the payee", "verify the payee account", "validate this address", "start an ID check", "did the client finish the ID check", "what checks have I run". A check is evidence, never a decision: a screening hit always goes to a person.
 ---
 
 # Outside checks (Wealth 360 Checks)
@@ -84,9 +84,12 @@ Rules:
 
 ## What this does not do
 
-- It does not write to Salesforce. In the person's seat `submit_step` and `record_review` belong to
-  the agents. When the person wants the result on the case, say that the Case agent records it as
-  step evidence when it works the case, or that the person can note it in the decision note when
-  they decide.
+- With a case in play, record the result: call `record_check` on the "Wealth 360" connector with the
+  case id, `checkType` (`screening`, `identity_started` when a session is created, `identity` for a
+  decision, `address`, `payee`), the provider outcome, the evidence quote, source, `ledger_id`, and for
+  identity the `session_id` and `verification_url`. Screening and identity land on the client's KYC
+  profile, every check on the case timeline, and a final identity decision on a case waiting on the
+  client sends it back to the agents. Without a case, the result stays in the chat and the ledger.
+  Open identity sessions also come back by themselves: the agent runner polls Didit every 3 minutes.
 - It does not decide. A clear screening or a payee match is evidence for the person, who still
   decides through the staged path.
