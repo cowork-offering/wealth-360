@@ -88,6 +88,29 @@
   .rc .go{margin-top:18px;display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:var(--fw-semibold);letter-spacing:.14em;text-transform:uppercase;color:#fff}
   .rc .go svg{width:16px;height:16px;fill:none;stroke:var(--accent);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
   @media(max-width:900px){.res{grid-template-columns:1fr}}
+  .film{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:block;margin:0 var(--rail) var(--gap);aspect-ratio:21/9;max-height:62vh;width:calc(100% - 2*var(--rail));overflow:hidden;border:1px solid var(--dark-line);background:#000}
+  .film img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--silk),filter .6s ease;filter:brightness(.62)}
+  .film:hover img,.film:focus-visible img{transform:scale(1.03);filter:brightness(.75)}
+  .film:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .film-sc{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,0) 100%)}
+  .film-tx{position:absolute;left:clamp(22px,3vw,48px);bottom:clamp(22px,3.4vw,48px);right:30%;display:flex;flex-direction:column;gap:12px}
+  .film .rt{font-size:10.5px;font-weight:var(--fw-semibold);letter-spacing:.16em;text-transform:uppercase;color:var(--lav)}
+  .film-h{font-weight:var(--fw-bold);font-size:clamp(24px,3vw,44px);letter-spacing:-0.03em;line-height:1.04;color:#fff;max-width:18ch;text-wrap:balance}
+  .film-p{font-size:clamp(13px,1.05vw,15px);line-height:1.5;color:rgba(255,255,255,.72);max-width:52ch}
+  .film-play{position:absolute;right:clamp(22px,3vw,48px);bottom:clamp(22px,3.4vw,48px);width:clamp(58px,6vw,84px);height:clamp(58px,6vw,84px);border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;transition:transform .4s var(--silk),box-shadow .4s ease}
+  .film:hover .film-play{transform:scale(1.07);box-shadow:0 0 0 10px rgba(161,0,255,.18)}
+  .film-play svg{width:38%;height:38%;fill:#fff;transform:translateX(6%)}
+  @media(max-width:700px){.film{aspect-ratio:4/5;max-height:none}.film-tx{right:22px;bottom:110px}.film-sc{background:linear-gradient(0deg,rgba(0,0,0,.9) 0%,rgba(0,0,0,.4) 60%,rgba(0,0,0,.1) 100%)}}
+  .fm{position:fixed;inset:0;z-index:1000;background:rgba(4,4,6,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));opacity:0;transition:opacity .45s ease}
+  .fm[hidden]{display:none}
+  .fm.on{opacity:1}
+  .fm-bar{width:min(1280px,100%);display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;font-size:11px;font-weight:var(--fw-semibold);letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+  .fm-x{appearance:none;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;width:42px;height:42px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s}
+  .fm-x:hover,.fm-x:focus-visible{border-color:var(--accent);background:rgba(161,0,255,.15);outline:none}
+  .fm-x svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+  .fm video{width:min(1280px,100%);max-height:calc(100svh - 120px);aspect-ratio:16/9;background:#000;transform:scale(.97);transition:transform .6s var(--silk)}
+  .fm.on video{transform:none}
+
 </style>
 </head>
 <body>
@@ -399,12 +422,22 @@
         <h2>Everything you need to run the demo.</h2>
       </div>
       <span class="of">Chapter 07 / 07</span>
-      <p class="intro-p">The User Guide walks a relationship manager or presenter through the desk and every use case, step by step. <b>The plugin and its changelog live in this repository.</b></p>
+      <p class="intro-p">The film shows the whole demo in seventeen minutes. The User Guide walks a presenter through it step by step, and the Handbook holds the full design. <b>The plugin and its changelog live in this repository.</b></p>
     </div>
+    <button class="film rv" type="button" id="filmOpen" aria-label="Play the walkthrough film, 17 minutes">
+      <img src="media/film-poster.jpg" alt="" loading="lazy" />
+      <span class="film-sc"></span>
+      <span class="film-tx"><span class="rt">The walkthrough · 17 min</span><span class="film-h">Watch every use case run, live in the sandbox.</span><span class="film-p">Nine journeys from the client's email to the closed case, with the complaint and the bereavement run end to end.</span></span>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+    </button>
     <div class="res">
-      <a class="rc rv" href="guide/user-guide.pdf" target="_blank" rel="noopener"><span class="rt">User Guide · PDF</span><h3>The User Guide</h3><p>The desk, decisions, all nine use cases, the Salesforce side, email, a demo script and troubleshooting.</p><span class="go">Open the PDF <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      <a class="rc rv" href="guide/index.html"><span class="rt">User Guide · web</span><h3>Read it in the browser</h3><p>The same guide as a web page, with every figure.</p><span class="go">Open the guide <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="rc rv" href="files/wealth-360-user-guide.pdf" download><span class="rt">User Guide · PDF · 41 pages</span><h3>The User Guide</h3><p>The desk, decisions, all nine use cases, the Salesforce side, email, a demo script and troubleshooting.</p><span class="go">Download <svg viewBox="0 0 24 24"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg></span></a>
+      <a class="rc rv" href="files/wealth-360-handbook.pdf" download><span class="rt">Handbook · PDF · 73 pages</span><h3>The Handbook</h3><p>The full design: journeys, agents, fences, data model, connectors, operations and the demo review.</p><span class="go">Download <svg viewBox="0 0 24 24"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg></span></a>
       <a class="rc rv" href="https://github.com/cowork-offering/wealth-360" target="_blank" rel="noopener"><span class="rt">Plugin · version 0.12.0</span><h3>Install the plugin</h3><p>The desk page, the chat skills and the two agents, for Claude Cowork and Claude Code. Needs the two connectors.</p><span class="go">View on GitHub <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+    <div class="fm" id="fm" role="dialog" aria-modal="true" aria-label="Wealth 360 walkthrough film" hidden>
+      <div class="fm-bar"><span>Wealth 360 · The walkthrough</span><button type="button" class="fm-x" id="fmClose" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+      <video id="fmv" controls playsinline preload="none" poster="media/film-poster.jpg"></video>
     </div>
   </section>
 
@@ -472,6 +505,40 @@
     stage.addEventListener('click', function(){ go(cur+1); });
     stage.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(cur+1); } });
   })();
+})();
+</script>
+<script>
+/* Walkthrough film: opens in a full-screen player. HLS so the 17 minute film streams in small segments
+   (native in Safari, hls.js elsewhere, loaded only when the film is opened). */
+(function () {
+  var open = document.getElementById('filmOpen'), fm = document.getElementById('fm'), v = document.getElementById('fmv'),
+      x = document.getElementById('fmClose'), SRC = 'film/walkthrough.m3u8', hls = null, ready = false;
+  function attach() {
+    if (ready) { return Promise.resolve(); }
+    ready = true;
+    if (v.canPlayType('application/vnd.apple.mpegurl')) { v.src = SRC; return Promise.resolve(); }
+    return new Promise(function (res) {
+      var sc = document.createElement('script');
+      sc.src = 'https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.13/hls.min.js';
+      sc.onload = function () { if (window.Hls && Hls.isSupported()) { hls = new Hls(); hls.loadSource(SRC); hls.attachMedia(v); } else { v.src = SRC; } res(); };
+      sc.onerror = function () { v.src = SRC; res(); };
+      document.head.appendChild(sc);
+    });
+  }
+  function show() {
+    fm.hidden = false; document.documentElement.style.overflow = 'hidden';
+    requestAnimationFrame(function () { fm.classList.add('on'); });
+    attach().then(function () { var p = v.play(); if (p && p.catch) { p.catch(function () {}); } });
+    x.focus();
+  }
+  function hide() {
+    v.pause(); fm.classList.remove('on'); document.documentElement.style.overflow = '';
+    setTimeout(function () { fm.hidden = true; open.focus(); }, 450);
+  }
+  open.addEventListener('click', show);
+  x.addEventListener('click', hide);
+  fm.addEventListener('click', function (e) { if (e.target === fm) { hide(); } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !fm.hidden) { hide(); } });
 })();
 </script>
 </body>
