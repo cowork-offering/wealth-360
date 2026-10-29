@@ -47,10 +47,10 @@ Williams-Hart, record is Sarah Williams. Bill issued 2 July 2026, older than 3 m
 `proposedAction` such as "Request new evidence. The address stays unchanged until it is verified."
 
 **Missing, expired or unreadable evidence: ask the client directly.** When there is no proof of
-address on the case, or it is older than 3 months, unreadable or in another name, or identity must be
-confirmed, the Case agent sends a Document request (`draft_communication`, `communicationType:
+address on the case, or it is older than 3 months, unreadable or in another name, or identity is not verified on file, the Case agent sends a Document request (`draft_communication`, `communicationType:
 "Document request"`, `channel: "Email"`, the client's email on record, `items` "Document | why"). For
-identity it first calls `verify_identity` and passes the `verification_url` as `verificationUrl`. With
+identity (only when the KYC on file is not Completed/Accepted) it first calls `verify_identity`, records
+the session with `record_check`, and passes the `verification_url` as `verificationUrl`. With
 auto-send on, Salesforce sends it at once on the Wealth Servicing letterhead and moves the case to
 `Waiting on customer`; the client's reply comes back through the email intake and restarts the case.
 The address stays unchanged meanwhile. A held request (`autoSent: false`, `heldReason`) waits for the

@@ -3,6 +3,15 @@
 All notable changes to the Wealth 360 plugin. The version is in
 `wealth-360/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
 
+## 0.10.1 (2026-10-29)
+
+From the first live straight-through run (case 00001371):
+
+- The Case agent checks the KYC on file before any identity check: a Completed/Accepted identity
+  verification with an in-date ID document confirms identity, and no check is sent.
+- When it does start an identity check, it records the session with `record_check`, so the decision
+  comes back to the case by itself like a desk-started one.
+
 ## 0.10.0 (2026-10-29)
 
 Straight-through address change: a clean change of address runs from email to closed case with no
