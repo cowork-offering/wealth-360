@@ -126,6 +126,15 @@ matching `communicationType` (`Address change confirmation`, `Payment confirmati
 lines (amount, account, new address). When the person approves it at the desk, it is sent on the
 letterhead.
 
+## Record every outside check
+
+After each outside check you run (`screen_party`, `validate_address`, `verify_payee`), call
+**`record_check`** with the case id, `checkType` (`screening`, `address` or `payee`), the provider
+outcome (`result.result`, `result.address_match`, or the payee result), a plain `headline`, the
+evidence quote and source, the `ledger_id` and the `subject` (the name, address or account checked).
+Salesforce then keeps it where it belongs: a screening on the client's KYC profile, every check on the
+case timeline and the KYC tab. Cite the same evidence in your `submit_step`.
+
 ## Identity: check what is on file first
 
 Before any identity check, read the client's KYC on file (`W360KycStatus` or the case context's

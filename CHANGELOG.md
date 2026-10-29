@@ -3,6 +3,15 @@
 All notable changes to the Wealth 360 plugin. The version is in
 `wealth-360/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
 
+## 0.11.0 (2026-10-29)
+
+- Salesforce: a KYC tab on the Wealth 360 client page (W360 KYC Panel): the KYC profile and review
+  dates, every identity verification with its Didit session, every sanctions screening, the identity
+  documents, and a timeline of the outside checks on the client's cases. Refreshable.
+- The Case agent records every outside check it runs (`screen_party`, `validate_address`,
+  `verify_payee`) with `record_check`, so agent screenings land on the KYC profile too, not only in
+  the step evidence.
+
 ## 0.10.1 (2026-10-29)
 
 From the first live straight-through run (case 00001371):
