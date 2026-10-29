@@ -20,9 +20,22 @@
           "book_meeting",
           "add_note",
           "request_documents",
-          "reassign_case"
+          "reassign_case",
+          "attach_document"
+        ]
+      },
+      {
+        "server": "Wealth 360 Checks",
+        "tools": [
+          "screen_party",
+          "verify_payee",
+          "validate_address",
+          "verify_identity"
         ]
       }
     ]
+  },
+  "sample": {
+    "images": true
   }
 }

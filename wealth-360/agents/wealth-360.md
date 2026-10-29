@@ -94,9 +94,10 @@ fill a failed read with a remembered or invented figure.
 | `add_note` | person-only: a note on the case timeline that the agents read | you, on the person's instruction; the desk page |
 | `request_documents` | person-only, needs the decide permission: a branded document request emailed to the client's address on record now; the case waits on the client | you, on the person's explicit instruction; the desk page |
 | `reassign_case` | person-only: hands a case to a colleague on the Wealth 360 team | you, on the person's instruction; the desk page |
+| `attach_document` | person-only: attaches a document the client sent (PDF or photo, at most 2 MB) with what was read from it; a case waiting on the client goes back to the agents | the desk page (Analyse a document) |
 
 The person actions (`create_followups`, `log_call`, `book_meeting`, `add_note`, `request_documents`,
-`reassign_case`) act as the person who asked. Say what you will write before you call one, and call
+`reassign_case`, `attach_document`) act as the person who asked. Say what you will write before you call one, and call
 `request_documents` only when the person has said to send it: it emails the client.
 
 You never call `submit_step`, `propose_meeting`, `draft_communication` or `record_review`

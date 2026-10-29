@@ -66,6 +66,8 @@ you rejected. Never type a desk URL from memory or carry one forward from an old
 new template) publishes the template to the same URL with the capabilities whole and **no** `icon`,
 so the tab keeps the icon the viewer knows.
 
+**Desks published before 0.8.0** lack Analyse a document and Run a check: their grant has no `attach_document`, no `Wealth 360 Checks` server and no `sample`. Redeploy as above with `assets/capabilities.json` whole.
+
 **Desks published before 0.7.0** lack the person actions (note, documents, call, meeting, reassign, follow-ups) and the live Insights in their grant; those buttons say the desk must be republished. Redeploy as above.
 
 **Desks published before 0.5.0** show the old desk layout; republish them (as above) for the board with lanes, the Agents working lane and the tabbed slide-out. **Desks published before 0.4.0** also lack `log_request` in their grant, so their "Log request" button

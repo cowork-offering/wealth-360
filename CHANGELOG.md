@@ -3,6 +3,35 @@
 All notable changes to the Wealth 360 plugin. The version is in
 `wealth-360/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
 
+## 0.8.0 (2026-10-29)
+
+Every action on the desk is now live.
+
+### Analyse a document
+- On a case (Documents tab, or the FAB): drop a PDF or a photo. Claude reads it on the page, using
+  the viewer's own Claude usage after a one-time OK, and shows the type, name, address, dates and key
+  facts, compared with the case: a different name, an expired document or an old bill is flagged.
+- Attach to case saves it in Salesforce (new tool `attach_document`, people only, 26 tools). The
+  file title starts with the document type, so the journey's required-documents list counts it, and
+  the description carries what was read, which the agents see. A case waiting on the client goes
+  back to the agents at once. The same file is never attached twice.
+- After a proof of address, Check this address; after a passport or licence, Start identity check.
+
+### Outside checks on the desk
+- The desk now uses the `Wealth 360 Checks` connector as the person. The Checks tab of a case has
+  Run a check yourself: sanctions screening, payee account check, address check, identity check,
+  ordered by journey and prefilled from the request.
+- Each result shows with its evidence and source, and is saved on the case timeline as a note.
+
+### Layout
+- On an open case, Open in Salesforce moved to the drawer header, next to close. The FAB keeps six
+  bubbles and its label sits clear of the arc.
+
+### Upgrade
+Update the plugin, reconnect Wealth 360 (new tool), make sure the Wealth 360 Checks connector is
+connected, and republish the desk: its grant now names both connectors and lets the page send
+images to Claude.
+
 ## 0.7.1 (2026-10-29)
 
 One design only. The old replay desk is gone from the page.

@@ -1812,6 +1812,41 @@ body.w3live .w3d-f{padding-right:max(104px,calc(env(safe-area-inset-right,0px) +
 @media (prefers-reduced-motion:reduce){.w3chev svg{animation:none;opacity:1;transform:none}.w3load-bar{animation:none}}
 .w3bootov{position:absolute!important;top:0!important;left:0!important;right:0!important;bottom:auto!important;height:100dvh;z-index:40;border-radius:0!important}
 @media(max-width:640px){body.w3boot{overflow:hidden;height:100dvh}}
+/* run a check, analyse a document */
+.w3run{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.w3run button,.w3scanb{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) 16px;align-items:center;gap:10px;border:1px solid var(--w3-line);border-radius:14px;padding:11px 14px;background:#fff;transition:border-color .15s,background .15s}
+.w3run button>b{grid-column:1;font-size:13.5px;font-weight:600;color:var(--w3-ink)}.w3run button>small{grid-column:1;font-size:12px;color:var(--w3-ink3);margin-top:-6px}
+.w3run button>svg{grid-column:2;grid-row:1/3}
+.w3run button:hover,.w3scanb:hover{border-color:var(--w3-p2);background:var(--w3-p1)}
+.w3run svg,.w3scanb svg{width:14px;height:14px;fill:none;stroke:var(--w3-ink4);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.w3runf{margin:10px 0 0;font-size:12px;color:var(--w3-ink4)}
+.w3scanb{width:100%;margin-bottom:20px;border-style:dashed;border-color:var(--w3-p2);background:var(--w3-p1)}
+.w3scanb b{display:block;font-size:14px;font-weight:600;color:var(--w3-pd)}.w3scanb small{display:block;font-size:12.5px;color:var(--w3-ink3);margin-top:2px}
+.w3cres{border:1px solid var(--w3-line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.w3cres.ok{border-color:#cfe9da;background:#f4fbf7}.w3cres.warn{border-color:#f1dcc0;background:#fdf8f1}
+.w3cres-h{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start}
+.w3cres-h b{font-size:14.5px;font-weight:600}.w3cres-h p{margin:2px 0 0;font-size:13px;color:var(--w3-ink2)}
+.w3cq{margin:0;font-size:12.5px;line-height:1.5;color:var(--w3-ink3);border-left:2px solid var(--w3-line);padding-left:10px}
+.w3cres small{font-size:11.5px;color:var(--w3-ink4)}.w3csv{color:var(--w3-ok)!important}
+.w3curl{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}.w3curl input{font:inherit;font-size:12.5px;border:1px solid var(--w3-line);border-radius:10px;padding:8px 10px;min-width:0;background:#fff}
+.w3dz{display:flex;flex-direction:column;align-items:center;gap:6px;border:1.5px dashed var(--w3-p2);border-radius:16px;padding:22px 16px;background:var(--w3-p1);cursor:pointer;text-align:center;transition:background .15s,border-color .15s}
+.w3dz.over{border-color:var(--w3-p);background:#efe3ff}.w3dz.has{padding:12px 16px}
+.w3dz input{position:absolute;opacity:0;pointer-events:none;width:1px}
+.w3dz-i svg{width:26px;height:26px;fill:none;stroke:var(--w3-pd);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.w3dz b{font-size:14px;color:var(--w3-ink)}.w3dz small{font-size:12px;color:var(--w3-ink3)}
+.w3dz.has .w3dz-i,.w3dz.has small{display:none}
+.w3dread{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;border:1px solid var(--w3-line);border-radius:14px;padding:14px 16px}
+.w3dread b{display:block;font-size:13.5px}.w3dread small{display:block;font-size:12px;color:var(--w3-ink3);margin-top:2px}
+.w3chev.sm{height:22px;gap:3px}.w3chev.sm svg{width:20px;height:22px;filter:none}
+.w3dres{display:flex;flex-direction:column;gap:12px}
+.w3dsum b{font-size:14.5px}.w3dsum p{margin:4px 0 0;font-size:13px;line-height:1.5;color:var(--w3-ink2)}
+.w3dfacts span.ok{color:var(--w3-ok)}.w3dfacts span.bad{color:var(--w3-risk)}
+.w3dflags{border-radius:12px;background:#fdf8f1;border:1px solid #f1dcc0;padding:10px 12px}.w3dflags p{margin:0;font-size:12.5px;color:var(--w3-risk);line-height:1.5}
+.w3dgood{margin:0;font-size:12.5px;color:var(--w3-ok)}
+.w3dchk{display:flex;gap:8px;flex-wrap:wrap}
+@media(max-width:520px){.w3run{grid-template-columns:minmax(0,1fr)}}
+.w3sfb svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.w3sfb{display:grid;place-items:center}
 </style>
 
 <div class="ambient" aria-hidden="true"><span class="a"></span><span class="b"></span></div>
@@ -3464,9 +3499,9 @@ function w3Body(c,D,s,u,lane){const K=D.case||{},r=c.row,f=w3Flag(c);
     h+=`<div class="w3sec"><h4>Key facts</h4><dl class="w3kv">${kv.slice(0,4).map(x=>`<div><dt>${x[0]}</dt><dd>${E(x[1])}</dd></div>`).join("")}</dl></div>`;
     return h}
   if(w3tab==="checks"){const ch=w3Checks(D,c),ex=lvSents(w3Clean(K.W360_Exception_Reason__c));
-    if(!ch.length&&!ex.length)return `<p class="w3-empty">No checks yet. The agents record each check here as they run it.</p>`;
+    if(!ch.length&&!ex.length)return `<p class="w3-empty">No checks yet. The agents record each check here as they run it.</p>`+w3RunHTML(c);
     const exH=ex.length&&!ch.some(x=>!x.ok)?`<div class="w3chk"><span class="w3ic f ${f?"w3-"+f[0]:""}">!</span><div><div class="t"><b>Exception</b><span>Case agent</span></div><p>${E(ex.slice(0,2).join(" "))}</p></div></div>`:"";
-    return `<div class="w3sec">${exH}${ch.map(x=>`<div class="w3chk"><span class="w3ic ${x.ok?"":"f "+(f?"w3-"+f[0]:"")}">${x.ok?"✓":"!"}</span><div><div class="t"><b>${E(x.name)}</b><span>${E(x.src)}</span></div><p>${E(x.txt)}</p>${x.q?`<details><summary>Show evidence</summary><p>${E(x.q)}</p></details>`:""}</div></div>`).join("")}</div>`}
+    return `<div class="w3sec">${exH}${ch.map(x=>`<div class="w3chk"><span class="w3ic ${x.ok?"":"f "+(f?"w3-"+f[0]:"")}">${x.ok?"✓":"!"}</span><div><div class="t"><b>${E(x.name)}</b><span>${E(x.src)}</span></div><p>${E(x.txt)}</p>${x.q?`<details><summary>Show evidence</summary><p>${E(x.q)}</p></details>`:""}</div></div>`).join("")}</div>`+w3RunHTML(c)}
   if(w3tab==="client"){const cu=D.customer||{},k=cu.kyc||{},one=(l,f)=>(l&&l[0]&&l[0][f])||"";
     const pp=k.partyProfiles,sc=k.screening,iv=k.identityVerification,idd=k.identityDocuments;
     const dmy=x=>x?lvF(x,{day:"numeric",month:"short",year:"numeric"}):"";
@@ -3482,8 +3517,9 @@ function w3Body(c,D,s,u,lane){const K=D.case||{},r=c.row,f=w3Flag(c);
     if(oc.length)h+=`<div class="w3sec"><h4>Other open cases</h4><div class="w3rows">${oc.map(x=>`<div><div>${E(w3Clean(x.Subject,70))}</div><span>${E(x.CaseNumber)}</span></div>`).join("")}</div></div>`;
     return h}
   if(w3tab==="docs"){const d=D.documents||{},req=d.required||[],rec=d.received||[];
-    if(!req.length&&!rec.length)return `<p class="w3-empty">No documents on this case.</p>`;
-    return `${req.length?`<div class="w3sec"><h4>Required · ${d.receivedCount||0} of ${d.requiredCount||req.length}</h4><div class="w3rows">${req.map(x=>`<div><div>${E(x.document)}</div><span>${x.received?"Received":"Missing"}</span></div>`).join("")}</div></div>`:""}
+    const an=`<button type="button" class="w3scanb" data-w3scan="1"><span><b>Analyse a document</b><small>Drop a PDF or photo the client sent. Claude reads it and you attach it.</small></span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5"/></svg></button>`;
+    if(!req.length&&!rec.length)return an+`<p class="w3-empty">No documents on this case yet.</p>`;
+    return an+`${req.length?`<div class="w3sec"><h4>Required · ${d.receivedCount||0} of ${d.requiredCount||req.length}</h4><div class="w3rows">${req.map(x=>`<div><div>${E(x.document)}</div><span>${x.received?"Received":"Missing"}</span></div>`).join("")}</div></div>`:""}
       ${rec.length?`<div class="w3sec"><h4>Received</h4><div class="w3rows">${rec.map(x=>`<div><div>${E(w3Clean(String(x.title||"Document").replace(/^W360\s+/,""),80))}</div><span>${x.receivedAt?E(lvShort(x.receivedAt)):""}</span></div>`).join("")}</div></div>`:""}`}
   const acts=(D.activity||[]).slice().sort((a,b)=>lvD(b.Occurred_At__c)-lvD(a.Occurred_At__c));
   let h="";
@@ -3515,7 +3551,7 @@ function w3Drawer(){const c=lvCase(openId);if(!c)return;const s=state[c.id]||{},
   if(!D)body=Dx.err?`<p class="w3-empty">${E(Dx.err.code==="needs_reauth"?LVMSG.needs_reauth:Dx.err.code==="tool_error"?lvFirst(lvMsg(Dx.err)):"Salesforce did not answer. Open the case again in a moment.")}</p>`:`<div class="skel"><i></i><i></i><i></i><i></i></div>`;
   else body=w3Body(c,D,s,u,lane);
   $("w3d").innerHTML=`<div class="w3d-h"><div class="r"><div style="min-width:0"><div class="k">${c.type} · ${c.no}</div><h2 id="w3dt">${c.cust}</h2><div class="sub">${E(w3Head(c))}</div></div>
-     <div style="display:flex;gap:16px;align-items:flex-start">${amt?`<div><div class="amt">${E(amt)}</div><div class="meta">${W3L[lane]} · ${c.lv}</div></div>`:`<div class="meta" style="margin-top:8px">${W3L[lane]} · ${c.lv}</div>`}<button class="w3x" id="w3x" aria-label="Close">✕</button></div></div>
+     <div style="display:flex;gap:16px;align-items:flex-start">${amt?`<div><div class="amt">${E(amt)}</div><div class="meta">${W3L[lane]} · ${c.lv}</div></div>`:`<div class="meta" style="margin-top:8px">${W3L[lane]} · ${c.lv}</div>`}<button class="w3x w3sfb" id="w3sfb" aria-label="Open in Salesforce" title="Open in Salesforce"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 3h4v4M13 3 7.5 8.5"/><path d="M11.5 9.5V13H3V4.5h3.5"/></svg></button><button class="w3x" id="w3x" aria-label="Close">✕</button></div></div>
      <div class="w3why w3la-${lane}"><div><small>${W3WHY[lane]}</small><p>${E(w3Why(c,lane))}${f?`<br><span style="display:inline-block;margin-top:6px">${w3Mark(f)}</span>`:""}</p></div></div></div>
    <nav class="w3tabs" role="tablist">${TABS.map(([k,l,n])=>`<button role="tab" data-w3t="${k}" aria-selected="${k===w3tab}">${l}${n!==undefined&&n!==""?`<span>${n}</span>`:""}</button>`).join("")}</nav>
    <div class="w3b" id="w3b">${body}</div>
@@ -3587,20 +3623,20 @@ $("w3ncX").onclick=w3NcClose;$("w3nc").addEventListener("mousedown",e=>{if(e.tar
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("w3nc").hidden)w3NcClose()});
 
 /* live FAB: only real actions; the rest is greyed out with "Soon" */
-const W3SOON={scan:"Analyse a document"};
+const W3SOON={};
 const w3FabSetBase=fabSet,w3FabDoBase=fabDo,w3RenderFabBase=renderFab;
 function w3CtxClient(){const c=openId&&lvCase(openId);if(c&&c.row.accountId)return {accountId:c.row.accountId,name:c.custRaw};
   if(curView()==="clients"&&w3cl.sel)return {accountId:w3cl.sel.accountId,name:w3cl.sel.name,email:w3cl.sel.email,openCases:w3cl.sel.openCases};return null}
 fabSet=function(){if(!LIVE)return w3FabSetBase();const v=curView(),c=openId&&lvCase(openId),cc=w3CtxClient();
   const nc=cc?["case",`New case for ${cc.name}`]:["case","New case"];
-  if(c)return {ctx:`${c.type} · ${c.no}`,items:[["note","Add a note"],["docs","Request documents"],["call","Log a call"],["meet","Book a meeting"],["assign","Reassign"],["sf","Open case in Salesforce"]]};
-  return {desk:{ctx:"Your desk",items:[nc,["call","Log a call"],["meet","Book a meeting"],["follow","Create a follow-up"],["scan",W3SOON.scan,1],["sf","Open cases in Salesforce"]]},
+  if(c)return {ctx:`${c.type} · ${c.no}`,items:[["scan","Analyse a document"],["note","Add a note"],["docs","Request documents"],["call","Log a call"],["meet","Book a meeting"],["assign","Reassign"]]};
+  return {desk:{ctx:"Your desk",items:[nc,["call","Log a call"],["meet","Book a meeting"],["follow","Create a follow-up"],["sf","Open cases in Salesforce"]]},
     clients:{ctx:cc?cc.name:"Clients",items:[nc,["meet","Book a meeting"],["call","Log a call"],["follow","Create a follow-up"],["docs","Request documents"],["sf",cc?"Open client in Salesforce":"Open accounts in Salesforce"]]},
     onboarding:w3FabSetBase(),
     insights:{ctx:"Insights",items:[["follow","Create follow-ups"],["meet","Book a meeting"],["call","Log a call"],nc,["sf","Open reports in Salesforce"]]},
     rules:{ctx:"Rules",items:[nc,["sf","Open rules in Salesforce Setup"]]},
     audit:{ctx:"Audit trail",items:[["filter","People only"],nc,["sf","Open history in Salesforce"]]}}[v]};
-renderFab=function(){w3RenderFabBase();if(!LIVE)return;const f=fabSet();
+renderFab=function(){w3RenderFabBase();if(!LIVE)return;const f=fabSet();{const n=f.items.length,r=n<2?126:Math.max(126,Math.ceil(58/(2*Math.sin(Math.PI/4/(n-1)))));const lb=$("arclbl");if(lb)lb.style.bottom=(r+58)+"px"}
   document.querySelectorAll("#arcs .arcbtn").forEach((b,i)=>{const it=f.items[i];if(!it)return;b.classList.toggle("w3soon",!!it[2]);
     const em=b.querySelector("em");if(em)em.textContent=it[2]?`${it[1]} · Soon`:it[1];b.setAttribute("aria-label",em?em.textContent:it[1])})};
 fabDo=function(k){if(!LIVE)return w3FabDoBase(k);const f=fabSet(),it=f.items.find(x=>x[0]===k);
@@ -3863,6 +3899,191 @@ lvExit=function(code){w3LvExitBase(code);LIVE=null;
   w3Boot(code==="server_not_connected"||code==="server_not_found"?"absent":code==="not_granted"||code==="consent_required"?"denied":"error",m)};
 const w3LvEnterBase=lvEnter;
 lvEnter=function(){document.body.classList.remove("w3boot");document.querySelectorAll("body>.w3bootov").forEach(x=>x.remove());w3bootSt=null;const lv=$("w3live");if(lv)lv.classList.remove("boot");w3LvEnterBase()};
+
+/* ---------- desk v2, part 5: outside checks (Wealth 360 Checks connector) and Analyse a document ---------- */
+const CHK="Wealth 360 Checks";
+const W3CHK={
+  screen:{t:"Sanctions screening",tool:"screen_party",s:"Screens a name against the UK Sanctions List. The result is saved on the case.",go:"Run screening"},
+  payee:{t:"Payee account check",tool:"verify_payee",s:"Checks that the account belongs to the payee (open banking, sandbox). The result is saved on the case.",go:"Check account"},
+  addr:{t:"Address check",tool:"validate_address",s:"Looks the address up at its postcode (Ideal Postcodes). The result is saved on the case.",go:"Check address"},
+  id:{t:"Identity check",tool:"verify_identity",s:"Starts a document and liveness check for the client (Didit, sandbox) and gives you the link to send them.",go:"Start identity check"}
+};
+Object.keys(W3CHK).forEach(k=>{W3ACT["chk_"+k]={t:W3CHK[k].t,s:W3CHK[k].s,go:W3CHK[k].go,needsCase:1}});
+W3ACT.scan={t:"Analyse a document",s:"Claude reads the document on this page, compares it with the case, and you attach it. A case waiting on the client goes back to the agents.",go:"Attach to case",needsCase:1};
+function w3ReqText(caseId){const D=caseId&&LDET[caseId]&&LDET[caseId].d;return D&&D.case?String(D.case.W360_Request_Text__c||""):""}
+function w3Guess(caseId){const t=w3ReqText(caseId),g={};
+  const pc=/\b([A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2})\b/i.exec(t);if(pc)g.postcode=pc[1].toUpperCase();
+  const st=/\b(\d+[A-Za-z]?\s+[A-Z][A-Za-z'’-]+(?:\s+[A-Z][A-Za-z'’-]+)*\s+(?:Road|Street|Lane|Avenue|Close|Drive|Way|Place|Gardens|Court|Square|Terrace|Crescent|Grove|Mews|Row|Hill|Park))\b/.exec(t);if(st)g.line1=st[1];
+  const sc=/\b(\d{2}-\d{2}-\d{2})\b/.exec(t);if(sc)g.sort=sc[1];
+  const an=/\b(\d{8})\b/.exec(t);if(an)g.acct=an[1];
+  return g}
+function w3ChkFields(kind){const c=w3ac.ctx||{},g=Object.assign(w3Guess(c.caseId),w3ac.pre||{});
+  if(kind==="chk_screen")return `<label class="w3f">Name to screen<input id="w3cName" value="${E(g.name||c.name||"")}"></label>
+    <div class="w3f2"><label class="w3f">Date of birth (optional)<input id="w3cDob" placeholder="YYYY-MM-DD"></label><label class="w3f">Country (optional)<input id="w3cCty" placeholder="e.g. United Kingdom"></label></div>`;
+  if(kind==="chk_payee")return `<label class="w3f">Account holder<input id="w3cName" value="${E(g.holder||c.name||"")}"></label>
+    <div class="w3f2"><label class="w3f">Sort code<input id="w3cSort" value="${E(g.sort||"")}" placeholder="00-00-00" inputmode="numeric"></label><label class="w3f">Account number<input id="w3cAcct" value="${E(g.acct||"")}" placeholder="8 digits" inputmode="numeric"></label></div>`;
+  if(kind==="chk_addr")return `<label class="w3f">First line<input id="w3cL1" value="${E(g.line1||"")}" placeholder="e.g. 2 Barons Court Road"></label>
+    <label class="w3f">Postcode<input id="w3cPc" value="${E(g.postcode||"")}" placeholder="e.g. ID1 1QD"></label>`;
+  if(kind==="chk_id")return `<label class="w3f">Name on record<input id="w3cName" value="${E(c.name||"")}"></label>`;
+  return ""}
+function w3ChkInput(kind){const v=id=>{const el=$(id);return el?String(el.value||"").trim():""},caseId=(w3ac.ctx||{}).caseId||v("w3acCase");
+  if(kind==="chk_screen"){if(v("w3cName").length<2)throw "Give the name to screen.";const o={name:v("w3cName"),caseId};if(v("w3cDob"))o.dob=v("w3cDob");if(v("w3cCty"))o.country=v("w3cCty");return o}
+  if(kind==="chk_payee"){if(!v("w3cName")||!/^\d{2}-?\d{2}-?\d{2}$/.test(v("w3cSort"))||!/^\d{8}$/.test(v("w3cAcct")))throw "Give the account holder, a sort code (6 digits) and an account number (8 digits).";
+    return {account_holder_name:v("w3cName"),sort_code:v("w3cSort"),account_number:v("w3cAcct"),caseId}}
+  if(kind==="chk_addr"){if(!v("w3cL1")||!v("w3cPc"))throw "Give the first line and the postcode.";return {line1:v("w3cL1"),postcode:v("w3cPc"),caseId}}
+  if(kind==="chk_id")return {full_name:v("w3cName"),caseId};
+}
+function w3ChkUnwrap(res){let p=res&&typeof res==="object"&&("payload" in res)?res.payload:res;
+  if((p==null||typeof p!=="object")&&res&&Array.isArray(res.content)){const t=res.content.find(b=>b&&b.type==="text");if(t)p=t.text}
+  if(typeof p==="string"){try{p=JSON.parse(p)}catch(e){throw {code:"tool_error",message:"The check's answer could not be read."}}}
+  if(p&&p.ok===false)throw {code:"tool_error",message:(p.error&&(p.error.message||p.error))||"The check failed."};
+  return p||{}}
+/* outcome in plain words, and whether it is good news */
+function w3ChkSay(kind,r){const x=r.result||{};
+  if(kind==="chk_screen"){const m={clear:["Clear","No match on the UK Sanctions List."],possible_match:["Possible match","A person must review the match before anything proceeds."],match:["Match","Stop. A person must review this before anything proceeds."]}[x.result]||[String(x.result||"Done"),""];return {ok:x.result==="clear",head:m[0],line:m[1]}}
+  if(kind==="chk_payee"){if(x.status==="not_configured")return {ok:false,head:"Not available",line:"The payee check is not configured on the Checks server."};
+    const m={match:"Name and account match",partial_match:"Partial match",no_match:"No match",match_not_possible:"Match not possible"}[x.result||x.outcome]||String(x.result||x.outcome||"Done");return {ok:(x.result||x.outcome)==="match",head:m,line:""}}
+  if(kind==="chk_addr"){const m={match:"Address found",close:"Close match",no_match:"Not found at that postcode",postcode_not_found:"Postcode not found"}[x.address_match||x.result]||String(x.address_match||"Done");
+    const a=x.matched_address;return {ok:x.address_match==="match",head:m,line:a?[a.line_1,a.post_town,a.postcode].filter(Boolean).join(", "):""}}
+  if(kind==="chk_id"){if(x.url)return {ok:true,head:"Identity check started",line:"Send the client this link. The result can be fetched here once they finish.",url:x.url,session:x.session_id||x.sessionId};
+    return {ok:/approved|accepted/i.test(x.status||x.decision||""),head:String(x.status||x.decision||"Done"),line:""}}
+  return {ok:true,head:"Done",line:""}}
+function w3ChkResultHTML(kind,r,say,saved){const ev=(r.result&&r.result.evidence)||{};
+  return `<div class="w3cres ${say.ok?"ok":"warn"}"><div class="w3cres-h"><span class="w3ic ${say.ok?"":"f"}">${say.ok?"✓":"!"}</span><div><b>${E(say.head)}</b>${say.line?`<p>${E(say.line)}</p>`:""}</div></div>
+    ${say.url?`<div class="w3curl"><input readonly value="${E(say.url)}" id="w3cUrl" aria-label="Identity check link"><button type="button" class="w3btn g" id="w3cCopy">Copy link</button></div>`:""}
+    ${ev.quote?`<p class="w3cq">${E(ev.quote)}</p>`:""}
+    <small>${E([ev.source,r.ledger_id?`Ledger ${String(r.ledger_id).slice(0,8)}`:"","Sandbox"].filter(Boolean).join(" · "))}</small>
+    <small class="w3csv">${saved===true?"Saved on the case timeline.":saved===false?"Not saved on the case.":"Saving on the case…"}</small></div>`}
+async function w3ChkRun(kind,input,box){const k=W3CHK[kind.slice(4)];
+  const res=await MCP.callTool(CHK,k.tool,input,{cache:false});
+  const r=w3ChkUnwrap(res),say=w3ChkSay(kind,r);box.innerHTML=w3ChkResultHTML(kind,r,say,null);
+  const cp=$("w3cCopy");if(cp)cp.onclick=async()=>{try{await navigator.clipboard.writeText(say.url);toast("Link copied")}catch(e){const i=$("w3cUrl");i.select()}};
+  const ev=(r.result&&r.result.evidence)||{};
+  const note=`Outside check (Wealth 360 Checks): ${k.t}: ${say.head}.${say.line?" "+say.line:""}${ev.quote?` Evidence: "${ev.quote}"`:""}${ev.source?` Source: ${ev.source}.`:""}${say.url?` Link sent to client: ${say.url}`:""}${r.ledger_id?` Ledger ${r.ledger_id}.`:""} Sandbox.`;
+  let saved=false;try{lvUnwrap(await MCP.callTool(SRV,"add_note",{inputs:[{caseId:input.caseId,note:note.slice(0,3900)}]},{cache:false}));saved=true}catch(e){}
+  box.querySelector(".w3csv").textContent=saved?"Saved on the case timeline.":"Not saved on the case.";
+  if(saved&&lvCase(input.caseId))lvDetail(input.caseId,true);
+  return {r,say,saved}}
+function w3ChkErr(e){const k=e&&e.code;
+  if(k==="server_not_connected"||k==="server_not_found")return "The Wealth 360 Checks connector is not connected. Add it in claude.ai Settings › Connectors.";
+  if(k==="not_in_manifest"||k==="blocked_by_policy")return "This desk was published before checks were added. Ask Claude to republish your Wealth 360 desk.";
+  if(k==="needs_reauth")return "Reconnect Wealth 360 Checks in claude.ai Settings › Connectors.";
+  if(k==="not_granted")return "The desk was not allowed to use Wealth 360 Checks.";
+  return (e&&e.message)||"The check did not run."}
+/* the Checks tab gets a "Run a check" section */
+function w3RunHTML(c){const j=c.row.journey;
+  const rows=[["screen","Sanctions screening","Screen the client or a payee"],["addr","Address check","Look an address up at its postcode"],
+    ["payee","Payee account check","Confirm who owns an account"],["id","Identity check","Send the client a document and liveness check"]];
+  const order=j==="Money_Out"?["payee","screen","id","addr"]:j==="Change_Of_Details"?["addr","id","screen","payee"]:["screen","id","addr","payee"];
+  return `<div class="w3sec"><h4>Run a check yourself</h4><div class="w3run">${order.map(k=>{const x=rows.find(r=>r[0]===k);return `<button type="button" data-w3run="${k}"><b>${x[1]}</b><small>${x[2]}</small><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5"/></svg></button>`}).join("")}</div><p class="w3runf">Through your Wealth 360 Checks connector. Results are saved on the case.</p></div>`}
+
+/* Analyse a document */
+const w3doc={file:null,blobs:null,b64:null,read:null,busy:false,ctl:null,chk:null};
+let w3SampleP=null;const w3Sample=()=>w3SampleP||(w3SampleP=Promise.resolve(window.claude&&window.claude.use?window.claude.use("sample"):null).catch(()=>null));
+function w3ScanFields(){return `<label class="w3dz" id="w3dz"><input type="file" id="w3dzf" accept=".pdf,image/png,image/jpeg,image/webp"><span class="w3dz-i"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></span><b>Drop the document here</b><small>or choose a file · PDF or photo, up to 2 MB</small></label><div id="w3dzo"></div>`}
+function w3LoadScript(src){return new Promise((ok,no)=>{const s=document.createElement("script");s.src=src;s.onload=ok;s.onerror=()=>no(new Error("load"));document.head.appendChild(s)})}
+async function w3Pdf(){if(window.pdfjsLib)return window.pdfjsLib;const B="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
+  await w3LoadScript(B+"pdf.worker.min.js");await w3LoadScript(B+"pdf.min.js");window.pdfjsLib.GlobalWorkerOptions.workerSrc=B+"pdf.worker.min.js";return window.pdfjsLib}
+const w3ToJpeg=(canvas,q)=>new Promise(r=>canvas.toBlob(r,"image/jpeg",q||.85));
+async function w3ImgBlob(file){const url=URL.createObjectURL(file);try{const img=await new Promise((ok,no)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=no;i.src=url});
+  const s=Math.min(1,1600/Math.max(img.naturalWidth,img.naturalHeight)),cv=document.createElement("canvas");cv.width=Math.round(img.naturalWidth*s);cv.height=Math.round(img.naturalHeight*s);
+  cv.getContext("2d").drawImage(img,0,0,cv.width,cv.height);return await w3ToJpeg(cv,.85)}finally{URL.revokeObjectURL(url)}}
+async function w3PdfBlobs(file){const lib=await w3Pdf();const doc=await lib.getDocument({data:new Uint8Array(await file.arrayBuffer())}).promise,out=[];
+  for(let i=1;i<=Math.min(2,doc.numPages);i++){const pg=await doc.getPage(i),vp0=pg.getViewport({scale:1}),sc=Math.min(2,1600/Math.max(vp0.width,vp0.height)),vp=pg.getViewport({scale:sc});
+    const cv=document.createElement("canvas");cv.width=Math.round(vp.width);cv.height=Math.round(vp.height);await pg.render({canvasContext:cv.getContext("2d"),viewport:vp}).promise;out.push(await w3ToJpeg(cv,.85))}
+  return out}
+const w3B64=blob=>new Promise((ok,no)=>{const fr=new FileReader();fr.onload=()=>ok(String(fr.result).split(",")[1]||"");fr.onerror=no;fr.readAsDataURL(blob)});
+const w3Norm=s=>String(s||"").toLowerCase().replace(/[^a-z0-9 ]/g," ").replace(/\b(mr|mrs|ms|miss|dr)\b/g,"").replace(/\s+/g," ").trim();
+async function w3DocPick(file){if(!file)return;const out=$("w3dzo");w3doc.file=file;w3doc.read=null;w3doc.b64=null;w3doc.chk=null;
+  const isPdf=/pdf$/i.test(file.type)||/\.pdf$/i.test(file.name),isImg=/^image\/(png|jpe?g|webp)$/i.test(file.type);
+  if(!isPdf&&!isImg){out.innerHTML=`<p class="w3msg err">Choose a PDF or a photo (PNG, JPG or WebP).</p>`;return}
+  if(isPdf&&file.size>2e6){out.innerHTML=`<p class="w3msg err">This PDF is larger than 2 MB. Send a smaller scan or a photo of the page.</p>`;return}
+  $("w3dz").classList.add("has");
+  out.innerHTML=`<div class="w3dread"><div class="w3chev sm">${w3ChevSvg()}${w3ChevSvg()}${w3ChevSvg()}</div><div><b>Reading ${E(file.name)}</b><small id="w3dst">Preparing the pages…</small></div><button type="button" class="w3lnk" id="w3dstop">Stop</button></div>`;
+  $("w3acGo").disabled=true;
+  try{w3doc.blobs=isPdf?await w3PdfBlobs(file):[await w3ImgBlob(file)];
+    const up=isPdf?file:w3doc.blobs[0];if(up.size>2e6)throw {code:"too_big"};
+    w3doc.b64=await w3B64(up);w3doc.name=isPdf?file.name:file.name.replace(/\.[^.]+$/,"")+".jpg"}
+  catch(e){out.innerHTML=`<p class="w3msg err">${e&&e.code==="too_big"?"The file is still larger than 2 MB after compressing.":"The file could not be opened. Try a photo of the page."}</p>`;return}
+  const sample=await w3Sample();const st=$("w3dst");
+  if(!sample){w3DocManual("Reading needs Claude on this page, which is not available here. Choose the type and attach it.");return}
+  const c=w3ac.ctx||{},D=c.caseId&&LDET[c.caseId]&&LDET[c.caseId].d,req=((D&&D.documents&&D.documents.required)||[]).map(x=>x.document);
+  const prompt=`You read a document a bank client sent for a servicing case. Facts only, from the image(s); never guess.
+Case: ${c.type||"case"} ${c.caseNo||""}. Client on record: ${c.name||"unknown"}. Request: ${w3ReqText(c.caseId).slice(0,600)||"not given"}.
+Documents this case needs: ${req.join("; ")||"not listed"}.
+Return JSON only:
+{"documentType": one of ${JSON.stringify(W3DOCS.map(d=>d[0]).concat(["Other"]))} (use the closest; Other if none),
+ "title": short name of the document (e.g. "Council tax bill 2026/27"),
+ "nameOnDocument": string or null,
+ "address": {"line1": string, "postcode": string} or null,
+ "issued": "YYYY-MM-DD" or null, "expires": "YYYY-MM-DD" or null,
+ "facts": up to 6 {"label": string, "value": string} a checker needs (issuer, reference, amounts, account numbers last 4 only),
+ "concerns": list of short strings (name differs from record, older than 3 months, expired, unreadable, looks altered) or [],
+ "summary": one or two sentences for the case file}`;
+  w3doc.ctl=new AbortController();$("w3dstop").onclick=()=>w3doc.ctl&&w3doc.ctl.abort();
+  st.textContent="Claude is reading it…";
+  try{w3doc.read=await sample.json(prompt,{images:w3doc.blobs,signal:w3doc.ctl.signal,modelTier:"default"});w3DocShow()}
+  catch(e){const m={not_granted:"Claude was not allowed to read documents on this page.",images_unavailable:"This page cannot send images to Claude yet. Republish the desk.",aborted:"Stopped."}[e&&e.code];
+    w3DocManual((m||"The document could not be read.")+" You can still choose the type and attach it.")}}
+function w3ChevSvg(){return '<svg viewBox="116.99973 0 19.79227 20.94533" aria-hidden="true"><path d="m 116.99973,0 v 5.97866 l 11.556,4.516 -11.556,4.296 v 6.15467 l 19.792,-8.016 V 7.97066 Z"/></svg>'}
+function w3DocTypeSel(v){return `<label class="w3f">Document type<select id="w3dType">${W3DOCS.map(d=>d[0]).concat(["Other"]).map(t=>`<option ${t===v?"selected":""}>${E(t)}</option>`).join("")}</select></label>`}
+function w3DocManual(msg){$("w3dzo").innerHTML=`<p class="w3msg">${E(msg)}</p>${w3DocTypeSel("Proof of address")}`;$("w3acGo").disabled=false}
+function w3DocShow(){const d=w3doc.read||{},c=w3ac.ctx||{},nm=d.nameOnDocument;
+  const same=nm&&c.name?w3Norm(nm).split(" ").filter(Boolean).every(p=>w3Norm(c.name).includes(p))||w3Norm(c.name).split(" ").filter(Boolean).every(p=>w3Norm(nm).includes(p)):null;
+  const exp=d.expires&&new Date(d.expires)<new Date(),old=d.issued&&(Date.now()-new Date(d.issued))/864e5>92&&/address|statement|bill/i.test(d.documentType||"");
+  const flags=(d.concerns||[]).slice(0,4);if(same===false&&!flags.some(f=>/name/i.test(f)))flags.unshift(`Name on the document (${nm}) differs from the record (${c.name}).`);
+  if(exp&&!flags.some(f=>/expir/i.test(f)))flags.unshift("The document has expired.");if(old&&!flags.some(f=>/month|old/i.test(f)))flags.unshift("Issued more than 3 months ago.");
+  const rows=[["Name",nm||"Not shown",same===true?"ok":same===false?"bad":""],d.address?["Address",[d.address.line1,d.address.postcode].filter(Boolean).join(", "),""]:null,
+    d.issued?["Issued",lvF(d.issued,{day:"numeric",month:"short",year:"numeric"}),old?"bad":""]:null,d.expires?["Expires",lvF(d.expires,{day:"numeric",month:"short",year:"numeric"}),exp?"bad":"ok"]:null]
+    .concat((d.facts||[]).slice(0,6).map(f=>[f.label,f.value,""])).filter(Boolean);
+  const canAddr=d.address&&d.address.line1&&d.address.postcode,canId=/photo id|passport|licen/i.test(d.documentType||"");
+  $("w3dzo").innerHTML=`<div class="w3dres">${w3DocTypeSel(d.documentType||"Other")}
+    <div class="w3dsum"><b>${E(d.title||d.documentType||"Document")}</b>${d.summary?`<p>${E(d.summary)}</p>`:""}</div>
+    <div class="w3rows w3dfacts">${rows.map(r=>`<div><div>${E(r[0])}</div><span class="${r[2]}">${E(r[1])}</span></div>`).join("")}</div>
+    ${flags.length?`<div class="w3dflags">${flags.map(f=>`<p>${E(f)}</p>`).join("")}</div>`:`<p class="w3dgood">Matches the case. Nothing to flag.</p>`}
+    ${canAddr||canId?`<div class="w3dchk">${canAddr?`<button type="button" class="w3btn g" id="w3dAddr">Check this address</button>`:""}${canId?`<button type="button" class="w3btn g" id="w3dId">Start identity check</button>`:""}</div><div id="w3dchko"></div>`:""}</div>`;
+  $("w3acGo").disabled=false;
+  const go=async(kind,input)=>{const box=$("w3dchko");box.innerHTML=`<p class="w3msg">Running the check…</p>`;
+    try{w3doc.chk=await w3ChkRun(kind,input,box)}catch(e){box.innerHTML=`<p class="w3msg err">${E(w3ChkErr(e))}</p>`}};
+  const a=$("w3dAddr");if(a)a.onclick=()=>go("chk_addr",{line1:d.address.line1,postcode:d.address.postcode,caseId:c.caseId});
+  const i=$("w3dId");if(i)i.onclick=()=>go("chk_id",{full_name:c.name,caseId:c.caseId});
+  requestAnimationFrame(()=>{const b=$("w3acB");if(b&&b.__w3fr)b.__w3fr()})}
+async function w3DocAttach(){const c=w3ac.ctx||{},caseId=c.caseId||($("w3acCase")||{}).value;if(!w3doc.b64){w3AcMsg("err","Choose the document first.");return}
+  const d=w3doc.read||{},type=($("w3dType")||{}).value||d.documentType||"Document";
+  const sum=[d.summary,d.nameOnDocument?`Name: ${d.nameOnDocument}.`:"",d.address?`Address: ${[d.address.line1,d.address.postcode].filter(Boolean).join(", ")}.`:"",
+    d.issued?`Issued ${d.issued}.`:"",d.expires?`Expires ${d.expires}.`:"",(d.facts||[]).map(f=>`${f.label}: ${f.value}.`).join(" "),
+    (d.concerns||[]).length?`Concerns: ${d.concerns.join("; ")}.`:"",w3doc.read?"Read on the desk by Claude.":"Not read automatically; type chosen by the person."].filter(Boolean).join(" ");
+  w3ac.busy=true;$("w3acGo").disabled=true;w3AcMsg("","Attaching in Salesforce…");
+  try{const r=lvUnwrap(await MCP.callTool(SRV,"attach_document",{inputs:[{caseId,fileName:w3doc.name,contentBase64:w3doc.b64,documentType:type,summary:sum.slice(0,3900),restartAgents:true}]},{cache:false}));
+    w3ac.busy=false;w3AcClose();toast(E(r.existing?"Already on the case":r.restarted?`Attached · ${c.caseNo||""} · back to the agents`:`Attached · ${c.caseNo||""}`));
+    try{await MCP.invalidate(SRV)}catch(e){}if(lvCase(caseId))lvDetail(caseId,true);lvLoad()}
+  catch(e){w3ac.busy=false;$("w3acGo").disabled=false;w3AcMsg("err",w3AcErr(e))}}
+/* hook into the action dialog */
+const w3AcFieldsBase=w3AcFields;
+w3AcFields=function(){const k=w3ac.kind;if(k==="scan")return w3ScanFields();if(/^chk_/.test(k))return w3ChkFields(k)+`<div id="w3cbox"></div>`;return w3AcFieldsBase()};
+const w3AcDrawBase=w3AcDraw;
+w3AcDraw=function(){w3AcDrawBase();
+  if(w3ac.kind==="scan"){w3doc.file=null;w3doc.read=null;w3doc.b64=null;$("w3acGo").disabled=true;const f=$("w3dzf"),z=$("w3dz");
+    f.onchange=()=>w3DocPick(f.files[0]);
+    ["dragenter","dragover"].forEach(ev=>z.addEventListener(ev,e=>{e.preventDefault();z.classList.add("over")}));
+    ["dragleave","drop"].forEach(ev=>z.addEventListener(ev,e=>{e.preventDefault();z.classList.remove("over")}));
+    z.addEventListener("drop",e=>{const fl=e.dataTransfer&&e.dataTransfer.files;if(fl&&fl[0])w3DocPick(fl[0])})}};
+const w3AcGoBase=w3AcGo;
+w3AcGo=async function(){const k=w3ac.kind;
+  if(k==="scan")return w3DocAttach();
+  if(/^chk_/.test(k)){if(w3ac.busy)return;if($("w3acGo").dataset.done){w3AcClose();return}
+    let input;try{if(!(w3ac.ctx||{}).caseId&&!$("w3acCase"))throw "Pick the case.";input=w3ChkInput(k)}catch(m){w3AcMsg("err",String(m));return}
+    w3ac.busy=true;$("w3acGo").disabled=true;w3AcMsg("","Running the check…");
+    try{await w3ChkRun(k,input,$("w3cbox"));w3AcMsg("","");$("w3acB").querySelectorAll(".w3f,.w3f2").forEach(x=>x.hidden=true);$("w3acGo").textContent="Done";$("w3acGo").dataset.done="1"}
+    catch(e){w3AcMsg("err",w3ChkErr(e))}
+    w3ac.busy=false;$("w3acGo").disabled=false;return}
+  return w3AcGoBase()};
+const w3AcOpenBase=w3AcOpen;
+w3AcOpen=function(kind,ctx,pre){const g=$("w3acGo");if(g)delete g.dataset.done;if(w3doc.ctl){try{w3doc.ctl.abort()}catch(e){}}return w3AcOpenBase(kind,ctx,pre)};
+document.addEventListener("click",e=>{const b=e.target.closest("[data-w3run]");if(!b||!LIVE||!openId)return;e.stopPropagation();w3AcOpen("chk_"+b.dataset.w3run,w3CaseCtx(openId),{})},true);
+document.addEventListener("click",e=>{const b=e.target.closest("[data-w3scan]");if(!b||!LIVE||!openId)return;e.stopPropagation();w3AcOpen("scan",w3CaseCtx(openId),{})},true);
+
+document.addEventListener("click",e=>{if(e.target.closest("#w3sfb")&&openId){e.stopPropagation();w3Sf(`/lightning/r/Case/${openId}/view`)}},true);
 function lvBoot(){
   ["flbl"].forEach(id=>{const el=$(id);if(el)el.dataset.t=el.textContent});
   [document.querySelector("#v-desk .hero .kicker"),$("headline"),document.querySelector("#v-audit .kicker")].forEach(el=>{if(el)el.dataset.t=el.textContent});
