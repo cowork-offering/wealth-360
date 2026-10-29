@@ -3,6 +3,22 @@
 All notable changes to the Wealth 360 plugin. The version is in
 `wealth-360/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
 
+## 0.7.1 (2026-10-29)
+
+One design only. The old replay desk is gone from the page.
+
+- While the desk connects to Salesforce it shows the new board as a skeleton with an animated
+  chevron, centred on the board (and on the screen on a phone). Nothing from the old layout appears,
+  not even for a moment.
+- If the desk cannot reach Salesforce it says why on the same board (connector missing, not allowed,
+  no answer) with Try again. There is no demo data.
+- The FAB bubbles keep a clear gap between them whatever their number, and the FAB stays reachable
+  over an open case; the case footer leaves room for it.
+- New case asks for the type of request (Not sure, Change of details, Money out, Money in,
+  Bereavement, Complaint). Not sure leaves it to the agents as before.
+
+Republish the desk to get it.
+
 ## 0.7.0 (2026-10-29)
 
 Every button on the live desk now does what it says in Salesforce, except Analyse a document, which

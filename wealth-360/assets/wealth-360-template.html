@@ -1764,6 +1764,54 @@ body.w3live #v-insights .ins.w3on{box-shadow:0 0 0 2px var(--w3-p2)}
 .w3ins-sk span{width:30%;height:10px}.w3ins-sk b{width:70%;height:18px}.w3ins-sk i{width:100%;height:12px}
 .w3skt{width:90px;height:30px;border-radius:8px;background:linear-gradient(90deg,var(--w3-line2) 25%,#fff 50%,var(--w3-line2) 75%);background-size:200% 100%;animation:w3sh 1.4s linear infinite}
 body.w3live #v-insights{padding-bottom:84px}
+/* one design: loading skeleton before Salesforce answers */
+#lvsrc{display:none!important}
+body.w3live footer .ctl{display:none!important}
+body.w3boot .fabwrap{display:none}
+body.w3boot .nav button:not([data-view="desk"]),body.w3boot .mnav button:not([data-view="desk"]){opacity:.4;pointer-events:none}
+body.w3boot #w3lens{pointer-events:none;opacity:.6}
+.w3-board{position:relative}
+.w3sk-list{overflow:hidden}
+.w3sk{background:#fff;border-radius:14px;padding:12px 13px;display:flex;flex-direction:column;gap:8px;box-shadow:0 1px 2px rgba(16,18,40,.05)}
+.w3sk b,.w3sk i,.w3sk em,.w3skn{display:block;border-radius:6px;background:linear-gradient(90deg,#eeeef3 25%,#f8f8fb 50%,#eeeef3 75%);background-size:200% 100%;animation:w3sh 1.6s linear infinite}
+.w3sk b{height:12px}.w3sk i{height:9px;width:100%}
+.w3sk span{display:flex;justify-content:space-between;margin-top:4px}.w3sk em{height:8px;width:28%}
+.w3sk:nth-child(2) *{animation-delay:.15s}.w3sk:nth-child(3) *{animation-delay:.3s}
+.w3skn{display:inline-block;width:38px;height:22px;vertical-align:middle}
+.w3-live.boot i{background:var(--w3-p);animation:w3pulse 1.2s ease-in-out infinite}
+@keyframes w3pulse{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
+.w3note{position:absolute;inset:0 0 16px;display:flex;align-items:center;justify-content:center;padding:16px;background:linear-gradient(180deg,rgba(247,247,250,.35),rgba(247,247,250,.8));-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);border-radius:18px;animation:w3fade .35s ease}
+.w3note-in{max-width:420px;background:#fff;border-radius:20px;padding:24px;box-shadow:0 24px 70px -24px rgba(16,18,40,.35);display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.w3note-in h3{margin:0;font-size:18px;font-weight:600;letter-spacing:-.01em}
+.w3note-in p{margin:0 0 4px;font-size:13.5px;line-height:1.5;color:var(--w3-ink3)}
+.w3note-i{width:10px;height:10px;border-radius:50%;background:var(--w3-p);animation:w3pulse 1.2s ease-in-out infinite}.w3note-i.off{background:#c4c4cc;animation:none}
+@keyframes w3fade{from{opacity:0}to{opacity:1}}
+.w3jt{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.w3jt label{display:flex;cursor:pointer;font-weight:400;letter-spacing:0}
+.w3jt input{position:absolute;opacity:0;pointer-events:none}
+.w3jt span{flex:1;border:1px solid var(--w3-line);border-radius:12px;padding:9px 11px;transition:border-color .15s,background .15s}
+.w3jt b{display:block;font-size:13px;font-weight:600;color:var(--w3-ink)}.w3jt small{display:block;font-size:11.5px;color:var(--w3-ink3);margin-top:1px}
+.w3jt input:checked+span{border-color:var(--w3-p);background:var(--w3-p1);box-shadow:inset 0 0 0 1px var(--w3-p)}
+.w3jt input:focus-visible+span{outline:2px solid var(--w3-p2);outline-offset:1px}
+@media(max-width:520px){.w3jt{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.w3nc-in{max-height:calc(100dvh - 32px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));overflow-y:auto}
+/* the FAB stays reachable over the open case; the drawer footer leaves room for it */
+body.w3live .fabwrap{z-index:65}
+body.w3live .w3d-f{padding-right:max(104px,calc(env(safe-area-inset-right,0px) + 96px))}
+.w3sel[hidden],.w3pl[hidden]{display:none!important}
+/* cinematic chevron loader, centred on the board */
+.w3load{position:absolute;inset:0 0 16px;display:flex;align-items:center;justify-content:center;background:radial-gradient(60% 55% at 50% 50%,rgba(247,247,250,.92),rgba(247,247,250,.55) 70%,rgba(247,247,250,0));border-radius:18px;animation:w3fade .4s ease}
+.w3load-in{display:flex;flex-direction:column;align-items:center;gap:18px}
+.w3chev{display:flex;align-items:center;gap:6px;height:44px}
+.w3chev svg{width:42px;height:44px;fill:var(--w3-p);opacity:0;transform:translateX(-14px) scale(.92);filter:drop-shadow(0 6px 14px rgba(161,0,255,.28));animation:w3chev 1.8s cubic-bezier(.22,.8,.2,1) infinite}
+.w3chev svg:nth-child(2){animation-delay:.18s;fill:#8a00db}.w3chev svg:nth-child(3){animation-delay:.36s;fill:var(--w3-pd)}
+@keyframes w3chev{0%{opacity:0;transform:translateX(-14px) scale(.92)}28%{opacity:1;transform:translateX(0) scale(1)}62%{opacity:1;transform:translateX(0) scale(1)}100%{opacity:0;transform:translateX(14px) scale(.92)}}
+.w3load-in span{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--w3-ink3)}
+.w3load-bar{display:block;width:160px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--w3-p),transparent);background-size:50% 100%;background-repeat:no-repeat;animation:w3bar 1.8s ease-in-out infinite;opacity:.8}
+@keyframes w3bar{0%{background-position:-60% 0}100%{background-position:160% 0}}
+@media (prefers-reduced-motion:reduce){.w3chev svg{animation:none;opacity:1;transform:none}.w3load-bar{animation:none}}
+.w3bootov{position:absolute!important;top:0!important;left:0!important;right:0!important;bottom:auto!important;height:100dvh;z-index:40;border-radius:0!important}
+@media(max-width:640px){body.w3boot{overflow:hidden;height:100dvh}}
 </style>
 
 <div class="ambient" aria-hidden="true"><span class="a"></span><span class="b"></span></div>
@@ -1790,6 +1838,7 @@ body.w3live #v-insights{padding-bottom:84px}
 </div>
       <div class="w3-board" id="w3board"></div>
     </div>
+    <script>document.body.classList.add("w3live","w3boot","w3v")</script>
     <div class="hero">
       
       <div>
@@ -1886,6 +1935,14 @@ body.w3live #v-insights{padding-bottom:84px}
   <div class="w3nc-h"><h2 id="w3ncT">New case</h2><button type="button" class="w3x" id="w3ncX" aria-label="Close">✕</button></div>
   <p class="w3nc-sub">A request you took by phone, in a branch or by letter. The case is created in Salesforce and the agents start on it at once.</p>
   <div class="w3f">Client<div class="w3sel" id="w3ncSel" hidden></div><div id="w3ncQw" class="w3qw"><input id="w3ncQ" autocomplete="off" placeholder="Search by name or email" aria-label="Client"><div class="w3pl" id="w3ncL" hidden></div></div></div>
+  <div class="w3f">Type of request<div class="w3jt" role="radiogroup" aria-label="Type of request">
+    <label><input type="radio" name="w3ncJ" value="" checked><span><b>Not sure</b><small>The agents classify it</small></span></label>
+    <label><input type="radio" name="w3ncJ" value="Change_Of_Details"><span><b>Change of details</b><small>Address, name, contact</small></span></label>
+    <label><input type="radio" name="w3ncJ" value="Money_Out"><span><b>Money out</b><small>Withdrawal or payment</small></span></label>
+    <label><input type="radio" name="w3ncJ" value="Money_In"><span><b>Money in</b><small>A credit to allocate</small></span></label>
+    <label><input type="radio" name="w3ncJ" value="Bereavement"><span><b>Bereavement</b><small>Notification of death</small></span></label>
+    <label><input type="radio" name="w3ncJ" value="Complaint"><span><b>Complaint</b><small>Something went wrong</small></span></label>
+  </div></div>
   <label class="w3f">Channel<select id="w3ncCh"><option>Phone</option><option value="Branch">Branch (in person)</option><option>Letter</option><option>Email</option><option>Internal</option></select></label>
   <label class="w3f">Request<textarea id="w3ncR" rows="5" placeholder="What the client asked for: who, what, amounts, accounts, addresses, dates."></textarea></label>
   <div class="w3msg" id="w3ncMsg" hidden></div>
@@ -2492,7 +2549,7 @@ function fabSet(){
    rules:{ctx:"Rules",items:[["scan","Analyse a document"],["case","New case"],["sf","Open in Salesforce Setup"]]},
    audit:{ctx:"Audit trail",items:[["filter","People only"],["scan","Analyse a document"],["sf","Open history in Salesforce"]]}}[v];
 }
-const ARC_R=126, arcAt=(i,n)=>{const a=(n<2?90:90-90*i/(n-1))*Math.PI/180;return [Math.round(-ARC_R*Math.cos(a)),Math.round(-ARC_R*Math.sin(a))]};
+const ARC_R=126, ARC_GAP=58, arcAt=(i,n)=>{const r=n<2?ARC_R:Math.max(ARC_R,Math.ceil(ARC_GAP/(2*Math.sin(Math.PI/4/(n-1))))),a=(n<2?90:90-90*i/(n-1))*Math.PI/180;return [Math.round(-r*Math.cos(a)),Math.round(-r*Math.sin(a))]};
 function renderFab(){const f=fabSet();$("arclbl").textContent=f.ctx;
   put($("arcs"),f.items.map((x,i)=>`<button class="arcbtn" data-fab="${x[0]}" style="--i:${i};--tx:${arcAt(i,f.items.length)[0]}px;--ty:${arcAt(i,f.items.length)[1]}px" aria-label="${x[1]}"><svg viewBox="0 0 16 16">${IC[x[0]]}</svg><em>${x[1]}</em></button>`).join(""))}
 function fabDo(k){const h=fabTarget(), c0=openId&&cById(openId);
@@ -3519,7 +3576,7 @@ async function w3NcGo(){if(w3ncBusy)return;const req=$("w3ncR").value.trim();
   if(!w3ncClient){w3NcMsg("err","Pick the client from the list.");$("w3ncQ").focus();return}
   if(req.length<10){w3NcMsg("err","Write the request in a sentence or two.");$("w3ncR").focus();return}
   w3ncBusy=true;$("w3ncGo").disabled=true;w3NcMsg("","Creating the case in Salesforce…");
-  try{const r=lvUnwrap(await MCP.callTool(SRV,"log_request",{inputs:[{client:w3ncClient.accountId,requestText:req,channel:$("w3ncCh").value,idempotencyKey:w3ncKey}]},{cache:false}));
+  try{const r=lvUnwrap(await MCP.callTool(SRV,"log_request",{inputs:[{client:w3ncClient.accountId,requestText:req,channel:$("w3ncCh").value,journey:(document.querySelector('input[name="w3ncJ"]:checked')||{}).value||null,idempotencyKey:w3ncKey}]},{cache:false}));
     w3ncBusy=false;w3NcClose();toast(r&&r.existing?`Already logged · ${E(r.caseNumber||"")}`:`Case ${E(r&&r.caseNumber||"")} created · the agents are on it`);
     try{await MCP.invalidate(SRV)}catch(e){}lvLoad()}
   catch(e){w3ncBusy=false;$("w3ncGo").disabled=false;
@@ -3750,6 +3807,62 @@ $("igrid").addEventListener("click",e=>{if(!LIVE)return;const ms=(w3ins.data||{}
   const w=e.target.closest("[data-w3icl]");if(w){e.stopPropagation();const m=ms[+w.dataset.w3icl];if(!m)return;setView("clients");w3ClPick({accountId:m.accountId,name:m.client,email:m.email})}},true);
 const w3RenderInsightsBase=renderInsights;
 renderInsights=function(){if(!LIVE)return w3RenderInsightsBase();if(!w3ins.data&&!w3ins.loading)w3InsLoad(false);else{w3InsRender();if(w3ins.data)w3InsLoad(false)}};
+
+
+
+
+/* ---------- desk v2, part 4: one design only. Before Salesforce answers, the board loads as a skeleton ---------- */
+let w3bootSt=null;
+function w3SkCard(i){return `<div class="w3sk"><b style="width:${[62,48,70,55][i%4]}%"></b><i></i><i style="width:${[80,64,72,58][i%4]}%"></i><span><em></em><em></em></span></div>`}
+function w3SkLane(cls,title,sub,n){return `<section class="w3-lane ${cls}"><header><h3>${title}</h3><p>${sub}</p></header><div class="w3-list w3sk-list">${Array.from({length:n},(_,i)=>w3SkCard(i)).join("")}</div></section>`}
+const W3BOOT={
+  connecting:{pill:"Connecting to Salesforce…"},
+  waiting:{pill:"Connecting to Salesforce…"},
+  denied:{pill:"Not allowed yet",t:"Wealth 360 needs your OK",p:"",retry:1},
+  absent:{pill:"Not connected",t:"Wealth 360 is not connected",p:"Add the Wealth 360 connector in claude.ai Settings › Connectors and sign in to Salesforce, then try again.",retry:1},
+  error:{pill:"Not connected",t:"Salesforce did not answer",p:"",retry:1}
+};
+function w3Boot(st,msg){if(LIVE)return;w3bootSt=st;const b=W3BOOT[st]||W3BOOT.connecting;playing=false;
+  document.body.classList.add("w3live","w3boot");document.body.classList.toggle("w3v",true);
+  if($("v-desk").hidden)setView("desk");
+  const h=new Date().getHours();
+  $("w3k").textContent=new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
+  $("w3h").textContent=`Good ${h<12?"morning":h<18?"afternoon":"evening"}, Emma.`;
+  $("w3p").textContent=st==="connecting"||st==="waiting"?"Loading your cases from Salesforce.":"Your cases load from Salesforce once Wealth 360 is connected.";
+  ["w3s1","w3s2","w3s3"].forEach(id=>{$(id).innerHTML='<i class="w3skn"></i>'});
+  document.querySelectorAll("#w3lens button").forEach(b2=>{b2.textContent=b2.dataset.l==="me"?"Needs me":"All cases"});
+  const lanes=`<div class="w3-groups w3-me"><span class="you">With you</span><span class="oth">Moving on its own</span></div><div class="w3-lanes w3-me">`+
+    w3SkLane("w3la-auth","Authorise","Prepared and checked. Your release.",2)+w3SkLane("w3la-dec","Decide","Exceptions the agents raised.",3)+
+    w3SkLane("w3la-rev","Review","Drafts waiting for your approval.",1)+w3SkLane("w3la-agent","Agents working","New requests and decided cases, worked now.",2)+
+    w3SkLane("w3la-wait","Waiting on client","The client has the next step.",1)+`</div>`;
+  const CH='<svg viewBox="116.99973 0 19.79227 20.94533" aria-hidden="true"><path d="m 116.99973,0 v 5.97866 l 11.556,4.516 -11.556,4.296 v 6.15467 l 19.792,-8.016 V 7.97066 Z"/></svg>';
+  const loader=b.t?"":`<div class="w3load" role="status" aria-live="polite"><div class="w3load-in"><div class="w3chev">${CH}${CH}${CH}</div><span>Loading your desk</span><i class="w3load-bar"></i></div></div>`;
+  const note=b.t?`<div class="w3note" role="status"><div class="w3note-in"><span class="w3note-i${b.retry?" off":""}"></span><h3>${E(b.t)}</h3><p>${E(msg||b.p)}</p>${b.retry?`<button class="w3btn" id="w3retry">Try again</button>`:""}</div></div>`:"";
+  put($("w3board"),lanes+loader+note);
+  const lv=$("w3live");lv.classList.toggle("stale",!!b.retry);lv.classList.toggle("boot",!b.retry);$("w3lt").textContent=b.pill;$("w3lt").title="";
+  document.querySelectorAll("body>.w3bootov").forEach(x=>x.remove());
+  if(innerWidth<=640){const ov=$("w3board").querySelector(".w3load,.w3note");if(ov){$("w3board").__h=null;ov.classList.add("w3bootov");document.body.appendChild(ov)}}
+  const r=$("w3retry");if(r)r.onclick=w3Retry;requestAnimationFrame(w3Fit)}
+function w3Retry(){w3Boot("connecting");if(MCP){lvLoad();setTimeout(()=>{if(!LIVE&&w3bootSt==="connecting")w3Boot("waiting")},4000)}else lvBoot()}
+lvBoot=function(){
+  ["flbl"].forEach(id=>{const el=$(id);if(el)el.dataset.t=el.textContent});
+  w3Boot("connecting");
+  const w=window.claude;if(!w||typeof w.use!=="function"){w3Boot("absent");return}
+  let pr;try{pr=w.use("mcp")}catch(e){w3Boot("absent");return}
+  setTimeout(()=>{if(!LIVE&&w3bootSt==="connecting")w3Boot("waiting")},4000);
+  Promise.resolve(pr).then(m=>{if(!m){w3Boot("absent");return}MCP=m;lvLoad()},()=>w3Boot("absent"));
+};
+const w3LvSrcBase=lvSrc;
+lvSrc=function(st,msg){w3LvSrcBase(st,msg);if(LIVE)return;
+  if(st==="replay")w3Boot("error",msg||"Salesforce did not answer. Check the Wealth 360 connector, then try again.");
+  else if(st==="allow")w3Boot("waiting")};
+const w3LvExitBase=lvExit;
+lvExit=function(code){w3LvExitBase(code);LIVE=null;
+  const m={not_granted:"Wealth 360 was not allowed to use your Salesforce connection. Open the page menu › Permissions to allow it, then try again.",
+    consent_required:"Allow Wealth 360 to use your Salesforce connection, then try again."}[code]||(LVMSG[code]?LVMSG[code]+".":"The Wealth 360 connection was refused ("+code+").");
+  w3Boot(code==="server_not_connected"||code==="server_not_found"?"absent":code==="not_granted"||code==="consent_required"?"denied":"error",m)};
+const w3LvEnterBase=lvEnter;
+lvEnter=function(){document.body.classList.remove("w3boot");document.querySelectorAll("body>.w3bootov").forEach(x=>x.remove());w3bootSt=null;const lv=$("w3live");if(lv)lv.classList.remove("boot");w3LvEnterBase()};
 function lvBoot(){
   ["flbl"].forEach(id=>{const el=$(id);if(el)el.dataset.t=el.textContent});
   [document.querySelector("#v-desk .hero .kicker"),$("headline"),document.querySelector("#v-audit .kicker")].forEach(el=>{if(el)el.dataset.t=el.textContent});
