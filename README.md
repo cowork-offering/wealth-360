@@ -7,6 +7,9 @@ Two agents do the servicing work. Salesforce holds the rules. A named person mak
 This repository is a plugin marketplace with one plugin, `wealth-360`, for Claude Cowork and
 Claude Code.
 
+**Showcase and User Guide:** [cowork-offering.github.io/wealth-360](https://cowork-offering.github.io/wealth-360/)
+(the [User Guide as a PDF](https://cowork-offering.github.io/wealth-360/guide/user-guide.pdf)).
+
 ---
 
 ## What it is

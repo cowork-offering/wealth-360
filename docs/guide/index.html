@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wealth 360 User Guide</title>
+<link rel="stylesheet" href="assets/guide.css">
+</head>
+<body class="screen"><p class="small" style="margin:0 0 6mm"><a href="user-guide.pdf" style="color:#7500C0;font-weight:600;display:inline-flex;align-items:baseline;gap:1.6mm"><svg viewBox="0 0 19.792 20.95" style="height:.7em;width:auto"><path fill="#A100FF" d="M0 0v5.97866l11.556 4.516L0 14.79v6.15467l19.792-8.016V7.97066Z"/></svg>Download the PDF (A4, 41 pages)</a></p>
+
+<!-- ============================================================ CONTENTS -->
+<section class="front">
+  <div class="eyebrow">Wealth 360 User Guide</div>
+  <h1 style="margin-bottom:7mm">Contents</h1>
+  <ol class="toc"><li class="toc-h1"><a href="#t0"><span class="tn">1</span>Welcome</a><span class="dots"></span><span class="pg">2</span></li>
+<li class="toc-h2"><a href="#t1"><span class="tn">1.1</span>What Wealth 360 does</a><span class="dots"></span><span class="pg">2</span></li>
+<li class="toc-h2"><a href="#t2"><span class="tn">1.2</span>Who does what</a><span class="dots"></span><span class="pg">2</span></li>
+<li class="toc-h2"><a href="#t3"><span class="tn">1.3</span>Journeys and levels</a><span class="dots"></span><span class="pg">3</span></li>
+<li class="toc-h2"><a href="#t4"><span class="tn">1.4</span>What is live and what is not</a><span class="dots"></span><span class="pg">3</span></li>
+<li class="toc-h1"><a href="#t5"><span class="tn">2</span>Before you start</a><span class="dots"></span><span class="pg">4</span></li>
+<li class="toc-h2"><a href="#t6"><span class="tn">2.1</span>What you need</a><span class="dots"></span><span class="pg">4</span></li>
+<li class="toc-h2"><a href="#t7"><span class="tn">2.2</span>Install or update the plugin</a><span class="dots"></span><span class="pg">4</span></li>
+<li class="toc-h2"><a href="#t8"><span class="tn">2.3</span>Connect the two connectors</a><span class="dots"></span><span class="pg">5</span></li>
+<li class="toc-h2"><a href="#t9"><span class="tn">2.4</span>First sign-in</a><span class="dots"></span><span class="pg">5</span></li>
+<li class="toc-h1"><a href="#t10"><span class="tn">3</span>Your desk</a><span class="dots"></span><span class="pg">7</span></li>
+<li class="toc-h2"><a href="#t11"><span class="tn">3.1</span>The board</a><span class="dots"></span><span class="pg">7</span></li>
+<li class="toc-h2"><a href="#t12"><span class="tn">3.2</span>The case drawer</a><span class="dots"></span><span class="pg">9</span></li>
+<li class="toc-h2"><a href="#t13"><span class="tn">3.3</span>Clients, Insights, Rules and Audit trail</a><span class="dots"></span><span class="pg">11</span></li>
+<li class="toc-h2"><a href="#t14"><span class="tn">3.4</span>The action menu</a><span class="dots"></span><span class="pg">13</span></li>
+<li class="toc-h1"><a href="#t15"><span class="tn">4</span>Making a decision</a><span class="dots"></span><span class="pg">14</span></li>
+<li class="toc-h2"><a href="#t16"><span class="tn">4.1</span>Stage, read, confirm</a><span class="dots"></span><span class="pg">14</span></li>
+<li class="toc-h2"><a href="#t17"><span class="tn">4.2</span>The decision buttons</a><span class="dots"></span><span class="pg">15</span></li>
+<li class="toc-h2"><a href="#t18"><span class="tn">4.3</span>Sending a case back</a><span class="dots"></span><span class="pg">15</span></li>
+<li class="toc-h2"><a href="#t19"><span class="tn">4.4</span>What happens after you decide</a><span class="dots"></span><span class="pg">16</span></li>
+<li class="toc-h1"><a href="#t20"><span class="tn">5</span>Use cases, step by step</a><span class="dots"></span><span class="pg">17</span></li>
+<li class="toc-h2"><a href="#t21"><span class="tn">5.1</span>Money out</a><span class="dots"></span><span class="pg">17</span></li>
+<li class="toc-h2"><a href="#t22"><span class="tn">5.2</span>Sanctions match on an incoming payment</a><span class="dots"></span><span class="pg">18</span></li>
+<li class="toc-h2"><a href="#t23"><span class="tn">5.3</span>Change of address, straight through</a><span class="dots"></span><span class="pg">19</span></li>
+<li class="toc-h2"><a href="#t24"><span class="tn">5.4</span>Request logged by phone</a><span class="dots"></span><span class="pg">21</span></li>
+<li class="toc-h2"><a href="#t25"><span class="tn">5.5</span>Identity check</a><span class="dots"></span><span class="pg">22</span></li>
+<li class="toc-h2"><a href="#t26"><span class="tn">5.6</span>Reading a document with Claude</a><span class="dots"></span><span class="pg">23</span></li>
+<li class="toc-h2"><a href="#t27"><span class="tn">5.7</span>Complaint, from email to answer</a><span class="dots"></span><span class="pg">24</span></li>
+<li class="toc-h2"><a href="#t28"><span class="tn">5.8</span>Everyday actions</a><span class="dots"></span><span class="pg">26</span></li>
+<li class="toc-h2"><a href="#t29"><span class="tn">5.9</span>Bereavement, from email to letter and meeting</a><span class="dots"></span><span class="pg">27</span></li>
+<li class="toc-h1"><a href="#t30"><span class="tn">6</span>The Salesforce side</a><span class="dots"></span><span class="pg">29</span></li>
+<li class="toc-h2"><a href="#t31"><span class="tn">6.1</span>The case cockpit</a><span class="dots"></span><span class="pg">29</span></li>
+<li class="toc-h2"><a href="#t32"><span class="tn">6.2</span>The client page and KYC tab</a><span class="dots"></span><span class="pg">31</span></li>
+<li class="toc-h2"><a href="#t33"><span class="tn">6.3</span>The Admin app</a><span class="dots"></span><span class="pg">31</span></li>
+<li class="toc-h1"><a href="#t34"><span class="tn">7</span>Email</a><span class="dots"></span><span class="pg">34</span></li>
+<li class="toc-h2"><a href="#t35"><span class="tn">7.1</span>How a client's email reaches a case</a><span class="dots"></span><span class="pg">34</span></li>
+<li class="toc-h2"><a href="#t36"><span class="tn">7.2</span>What goes out, and when</a><span class="dots"></span><span class="pg">34</span></li>
+<li class="toc-h2"><a href="#t37"><span class="tn">7.3</span>Testing by email</a><span class="dots"></span><span class="pg">35</span></li>
+<li class="toc-h1"><a href="#t38"><span class="tn">8</span>Running a demo</a><span class="dots"></span><span class="pg">36</span></li>
+<li class="toc-h2"><a href="#t39"><span class="tn">8.1</span>Before the demo</a><span class="dots"></span><span class="pg">36</span></li>
+<li class="toc-h2"><a href="#t40"><span class="tn">8.2</span>A 12 minute script</a><span class="dots"></span><span class="pg">36</span></li>
+<li class="toc-h2"><a href="#t41"><span class="tn">8.3</span>Resetting and seeding</a><span class="dots"></span><span class="pg">37</span></li>
+<li class="toc-h2"><a href="#t42"><span class="tn">8.4</span>What to say about safety</a><span class="dots"></span><span class="pg">37</span></li>
+<li class="toc-h2"><a href="#t43"><span class="tn">8.5</span>Known limits</a><span class="dots"></span><span class="pg">37</span></li>
+<li class="toc-h1"><a href="#t44"><span class="tn">9</span>Troubleshooting and FAQ</a><span class="dots"></span><span class="pg">38</span></li>
+<li class="toc-h2"><a href="#t45"><span class="tn">9.1</span>Troubleshooting</a><span class="dots"></span><span class="pg">38</span></li>
+<li class="toc-h2"><a href="#t46"><span class="tn">9.2</span>Frequently asked questions</a><span class="dots"></span><span class="pg">38</span></li>
+<li class="toc-h1"><a href="#t47"><span class="tn">10</span>Important notice</a><span class="dots"></span><span class="pg">40</span></li></ol>
+
+
+</section>
+
+<!-- ============================================================ 1 WELCOME -->
+<section class="chapter">
+  <div class="ch-head"><div class="ch-num">01<svg class="gtm" viewBox="0 0 19.792 20.95" aria-hidden="true"><path d="M0 0v5.97866l11.556 4.516L0 14.79v6.15467l19.792-8.016V7.97066Z"/></svg></div><h1 id="t0">Welcome</h1></div>
+  <p class="lede">Wealth 360 is a servicing desk for a wealth bank. Agents do the routine work, Salesforce keeps the rules and the record, and a named person makes every decision that matters.</p>
+  <div class="callout grey">
+    <b>Who this guide is for</b>
+    Relationship managers who work cases on the Wealth 360 desk, and presenters who demonstrate it. It explains what to click and what happens next, in plain terms. The technical design, the evidence behind every claim and the path to production are in the Wealth 360 Solution Handbook. Every screenshot comes from the sandbox or the walkthrough recordings of 29 October 2026, on fictional data; email addresses and the names of build team members are masked.
+  </div>
+
+  <h2 id="t1"><span class="sn">1.1</span>What Wealth 360 does</h2>
+  <p>A servicing team spends most of its day on a few requests that keep coming back: a client moves house, a client wants money out, a payment arrives that nobody can match, a family loses someone, a client complains. Each request needs the same checks across the client record, the KYC file, the payee and the sanctions list, and each must leave a trail a reviewer can follow. Most of the effort goes into gathering and checking. Very little of it is the decision itself.</p>
+  <p>Wealth 360 takes the gathering and checking off your desk. When a request arrives, two agents work it step by step and cite their evidence. When something needs judgement, it comes to you with the evidence and a proposed action. You read it, decide, and confirm by name.</p>
+
+  <h2 id="t2"><span class="sn">1.2</span>Who does what</h2>
+  <div class="grid4 keep">
+    <div class="card acc"><h4>Case agent</h4><p>The maker. Reads the request and its documents, finds the client, runs the checks, drafts letters and proposes the next step. Cites a quote and its source for every step.</p></div>
+    <div class="card"><h4>Review agent</h4><p>The checker. Reviews the case in a fresh context against the rules, without seeing the Case agent's reasoning. Sends work back when it is not right.</p></div>
+    <div class="card"><h4>You</h4><p>The relationship manager. Decides every outcome that needs a person: release money, clear a check, send a letter, book a meeting, or send the case back.</p></div>
+    <div class="card"><h4>Salesforce</h4><p>Holds the journeys, rules, records and audit trail. Decides who may do what. Refuses any decision by an agent, whatever the agent is told.</p></div>
+  </div>
+  <div class="callout"><b>The one rule to remember</b>An agent can never stage, approve or release a decision. Salesforce refuses it. Every decision in Wealth 360 is recorded against the named person who confirmed it.</div>
+
+  <h2 id="t3"><span class="sn">1.3</span>Journeys and levels</h2>
+  <p>Wealth 360 covers five servicing journeys. Each journey has a default level that says how much the agents may do on their own. An agent may raise a level, never lower it.</p>
+  <table class="tbl keep">
+    <thead><tr><th style="width:20%">Journey</th><th style="width:8%">Level</th><th style="width:36%">What the agents do</th><th>Where you come in</th></tr></thead>
+    <tbody>
+      <tr><td><b>Change of details</b><br><span class="small">Change of address</span></td><td>L1</td><td>Read the request and the proof of address, compare it with the record, check the address. On a clean case, update the address and confirm it to the client.</td><td>Only when something does not match, for example a name mismatch, evidence over 3 months old or a recent bank change.</td></tr>
+      <tr><td><b>Money out</b><br><span class="small">Withdrawal or encashment</span></td><td>L2</td><td>Check the source account, the payee and KYC, screen the payee, draft the confirmation, prepare the release.</td><td>Always. Only a person can release money.</td></tr>
+      <tr><td><b>Money in</b><br><span class="small">Allocate incoming funds</span></td><td>L2</td><td>Find and score candidate accounts (90% needed), screen the remitter, keep the funds in suspense.</td><td>Below 90%, over £25,000, or any screening hit.</td></tr>
+      <tr><td><b>Bereavement</b></td><td>L3</td><td>Read the notification and certificate, find the accounts, record the death and hold the accounts, check documents, draft the letter, propose a meeting.</td><td>Always. You approve the letter and pick the meeting time.</td></tr>
+      <tr><td><b>Complaint</b></td><td>L2</td><td>Classify, find the history and the cause, draft the response.</td><td>Always. Drafts go out only after your approval.</td></tr>
+    </tbody>
+  </table>
+  <table class="tbl keep">
+    <thead><tr><th style="width:10%">Level</th><th style="width:45%">What happens</th><th>Who signs</th></tr></thead>
+    <tbody>
+      <tr><td><b>L1</b></td><td>Agents complete and close, sampled after close</td><td>Nobody, when every check holds</td></tr>
+      <tr><td><b>L2</b></td><td>Agents prepare, a person approves before anything leaves the bank</td><td>The owning team or you</td></tr>
+      <tr><td><b>L3</b></td><td>The relationship manager decides; agents prepare and carry out</td><td>You</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="t4"><span class="sn">1.4</span>What is live and what is not</h2>
+  <div class="grid2 keep">
+    <div><h4>Live in the sandbox <span class="tag live">Live</span></h4>
+      <ul class="gt">
+        <li>The desk in Claude, reading and writing Salesforce as you</li>
+        <li>Both agents, working cases on their own within seconds of a change</li>
+        <li>Outside checks: UK Sanctions List, payee account check, identity check, address lookup</li>
+        <li>Email into a case, and branded email out on the bank's letterhead</li>
+        <li>The Salesforce apps: case cockpit, client page with KYC tab, Admin app</li>
+      </ul></div>
+    <div><h4>Demo only <span class="tag plan">Not real</span></h4>
+      <ul class="gt">
+        <li>All clients, accounts, documents and amounts are fictional</li>
+        <li>Every demo client's email points to one test inbox</li>
+        <li>Releasing a payment records the authorisation in Salesforce; no money moves</li>
+        <li>Payee and identity checks run against provider sandboxes; the payee check is not Pay.UK Confirmation of Payee</li>
+        <li>Meetings are recorded in Salesforce; no calendar invitation is sent</li>
+        <li>Client emails so far reached Salesforce through the deployed handler as simulated emails; the first real inbound email is still to be proven</li>
+      </ul></div>
+  </div>
+</section>
+
+<!-- ============================================================ 2 BEFORE YOU START -->
+<section class="chapter">
+  <div class="ch-head"><div class="ch-num">02<svg class="gtm" viewBox="0 0 19.792 20.95" aria-hidden="true"><path d="M0 0v5.97866l11.556 4.516L0 14.79v6.15467l19.792-8.016V7.97066Z"/></svg></div><h1 id="t5">Before you start</h1></div>
+  <p class="lede">You need four things: Claude, a Salesforce user in the sandbox, the Wealth 360 plugin and two connectors. Set-up takes about ten minutes.</p>
+
+  <h2 id="t6"><span class="sn">2.1</span>What you need</h2>
+  <table class="tbl keep">
+    <thead><tr><th style="width:26%">Item</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td><b>Claude</b></td><td>Claude Cowork or Claude Code, signed in to a claude.ai account that can add custom connectors.</td></tr>
+      <tr><td><b>A Salesforce user</b></td><td>A user in the BankingGPT sandbox org with the <span class="ui">W360_Relationship_Manager</span> permission set. It gives you the Wealth 360 app and the right to decide. To use the Admin app you also need <span class="ui">W360_Agent_Admin</span>. Ask the build team for both.</td></tr>
+      <tr><td><b>The plugin</b></td><td>Wealth 360, from the marketplace <code>cowork-offering/wealth-360</code>. It opens the desk and adds the Wealth 360 skills to Claude.</td></tr>
+      <tr><td><b>Two connectors</b></td><td><b>Wealth 360</b> for Salesforce, and <b>Wealth 360 Checks</b> for the outside checks. Both sign you in to Salesforce as yourself.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="t7"><span class="sn">2.2</span>Install or update the plugin</h2>
+  <div class="grid2 keep">
+    <div><h4>Claude Cowork</h4>
+      <ol class="steps">
+        <li>Open the plugins panel and add a marketplace from GitHub: <code>cowork-offering/wealth-360</code>.</li>
+        <li>Install <span class="ui">Wealth 360</span> from that marketplace.</li>
+        <li>Add the two connectors (section 2.3), then start a new conversation.</li>
+      </ol></div>
+    <div><h4>Claude Code</h4>
+<pre style="margin-top:0">/plugin marketplace add cowork-offering/wealth-360
+/plugin install wealth-360@wealth-360</pre>
+    </div>
+  </div>
+  <p><b>Updating.</b> When the build team publishes a new version, update the plugin from the same panel. Cowork does not always refresh a marketplace it has already added. If the new version does not appear, remove the marketplace, add it again and reinstall the plugin. The current version is 0.12.0, published to <code>cowork-offering/wealth-360</code> on 29 October 2026. It includes the Completed counter and column described in section 3.1.</p>
+
+  <h2 id="t8"><span class="sn">2.3</span>Connect the two connectors</h2>
+  <p>Each person adds both connectors to their own claude.ai account: <span class="ui">Settings › Connectors › Add custom connector</span>. The names must be exactly as below. The desk and the agents find the connectors by name, and a connector with any other name is invisible to them.</p>
+  <table class="tbl keep">
+    <thead><tr><th style="width:20%">Setting</th><th style="width:40%">Wealth 360</th><th>Wealth 360 Checks</th></tr></thead>
+    <tbody>
+      <tr><td><b>Name</b></td><td><code>Wealth 360</code> (with the space)</td><td><code>Wealth 360 Checks</code></td></tr>
+      <tr><td><b>URL</b></td><td>The sandbox's hosted MCP server: <code>https://api.salesforce.com/platform/mcp/v1/d/accenture-d8--bankinggpt/sandbox/custom/Wealth360</code></td><td><code>https://wealth-360-checks.vercel.app/api/mcp</code></td></tr>
+      <tr><td><b>OAuth Client ID</b></td><td colspan="2">Under Advanced settings. The same value for both: the consumer key of the sandbox's External Client App for Claude. Ask the build team for it.</td></tr>
+      <tr><td><b>Client secret</b></td><td colspan="2">Leave empty. The sign-in uses PKCE.</td></tr>
+    </tbody>
+  </table>
+  <p>Select <span class="ui">Connect</span> on each and sign in to Salesforce as yourself. Salesforce then sees you, not a shared account: your sharing and permissions apply to every read and write, and every decision is recorded against your name. The Checks connector accepts only a Salesforce sign-in for the sandbox org and records you on every check it runs.</p>
+  <div class="callout grey"><b>Without the Checks connector</b>The rest of the desk works. The Checks tab tells you the connector is missing, and you cannot run an outside check yourself. The agents still run their own checks.</div>
+
+  <h2 id="t9"><span class="sn">2.4</span>First sign-in</h2>
+  <ol class="steps">
+    <li>Start a new conversation in Claude and type <b>Open my Wealth 360 desk</b>.</li>
+    <li>The first time, the plugin publishes the desk as a page in your own claude.ai account and gives you the link. After that it opens the same desk. A page that reads live data works only inside the claude.ai organisation it was published in, so each person has their own copy.</li>
+    <li>While it connects, the desk shows the board as an outline. When it is live, the status line at the bottom left reads <span class="ui">Live · Salesforce</span> with the time of the last refresh. If it cannot reach Salesforce, it says why.</li>
+    <li>The first time you use <span class="ui">Analyse a document</span>, Claude asks once for your OK to read documents on the page. It uses your own Claude usage.</li>
+  </ol>
+  <figure class="wide">
+    <img src="assets/img/claude-desk.jpg" alt="Claude with the Wealth 360 desk open">
+    <figcaption><b>Figure 2.1</b>Claude Cowork with the desk open. On the left, the conversation: Emma Collins asked for her desk and Claude read her queue and summary from Salesforce through her own connector. On the right, the desk itself, live from the sandbox.</figcaption>
+  </figure>
+</section>
+
+<!-- ============================================================ 3 YOUR DESK -->
+<section class="chapter">
+  <div class="ch-head"><div class="ch-num">03<svg class="gtm" viewBox="0 0 19.792 20.95" aria-hidden="true"><path d="M0 0v5.97866l11.556 4.516L0 14.79v6.15467l19.792-8.016V7.97066Z"/></svg></div><h1 id="t10">Your desk</h1></div>
+  <p class="lede">The desk is a board. On the left is everything that is with you. On the right is everything moving on its own. Every card says, in one sentence, why it is there.</p>
+
+  <h2 id="t11"><span class="sn">3.1</span>The board</h2>
+  <figure>
+    <img src="assets/img/desk-board-v2.jpg" alt="The Wealth 360 desk board">
+    <figcaption><b>Figure 3.1</b>The desk on the afternoon of 29 October. The greeting says how many cases need you and where to start. The header starts with Completed, "5 · 1 by agents alone". Lanes under With you: Authorise, Decide and Review. Lanes under Moving on its own: Agents working, Waiting on client and Completed.</figcaption>
+  </figure>
+  <table class="tbl keep">
+    <thead><tr><th style="width:20%">Lane</th><th style="width:40%">What sits there</th><th>What you do</th></tr></thead>
+    <tbody>
+      <tr><td><b>Authorise</b></td><td>Payments the agents prepared and checked. "Prepared and checked. Your release."</td><td>Authorise the release, or hold it and send it back.</td></tr>
+      <tr><td><b>Decide</b></td><td>Exceptions the agents raised: a sanctions match, a payee that cannot be verified, a request outside the rules.</td><td>Accept the agent's proposal, or send the case back with a note.</td></tr>
+      <tr><td><b>Review</b></td><td>Drafts waiting for your approval, such as a complaint response or a bereavement letter.</td><td>Approve and send, or send back.</td></tr>
+      <tr><td><b>Agents working</b></td><td>New requests and decided cases being worked now. Each card shows which agent holds it and its progress.</td><td>Nothing. The case lands in your lanes when it needs you.</td></tr>
+      <tr><td><b>Waiting on client</b></td><td>Cases where the client has the next step, for example sending a document or finishing an identity check.</td><td>Nothing. A reply, an attached document or an identity result sends the case back to the agents.</td></tr>
+      <tr><td><b>Completed</b></td><td>"Closed today, evidence on file." Each card carries a tag: <b>By agents alone</b> (violet) when the agents closed the case on their own, or <b>After your decision</b> (green) when it closed after a person decided.</td><td>Nothing. Open a card to see the evidence and every step.</td></tr>
+    </tbody>
+  </table>
+  <h3>Cards</h3>
+  <p>A card shows the client, the amount where there is one, a one-line summary, the reason it is with you (after the arrow), a coloured flag for an exception (for example <b>Sanctions match</b>, <b>Payee not verified</b> or <b>Recent bank change</b>), the journey and case number, and when it is due. Select a card to open the case.</p>
+  <h3>The header and counters</h3>
+  <ul class="gt">
+    <li><b>Completed</b>, the first figure, in violet: cases closed, followed by how many of them the agents closed on their own, for example "5 · 1 by agents alone". It counts cases closed by the agents on their own and cases closed after a person's decision. A case closed because another case replaced it (superseded) is not counted.</li>
+    <li><b>Agent steps today</b>: how many steps the agents recorded today.</li>
+    <li><b>Your decisions</b>: decisions you have made today, out of those that needed you.</li>
+    <li><b>Agents working</b>: cases the agents are working at this moment.</li>
+  </ul>
+  <p><b>Needs me</b> and <b>All cases</b> under the greeting switch between your cases and the whole queue.</p>
+
+  <h2 id="t12"><span class="sn">3.2</span>The case drawer</h2>
+  <p>Opening a case slides in a drawer on the right. The top shows the journey and case number, the client, a one-line summary, the lane and level (for example <span class="ui">Authorise · L2</span>), a button to open the case in Salesforce, and a box that says why the case is with you. Below are five tabs. The decision buttons sit at the foot of the drawer, with the reminder "Shown as a plan before anything changes".</p>
+  <div class="fig-half keep">
+    <figure><img src="assets/img/drawer-overview.jpg" alt="Case drawer, Overview"><figcaption><b>Figure 3.2</b>Overview: what the Case agent proposes, the letter or email that will go to the client, already written, and the key facts.</figcaption></figure>
+    <figure><img src="assets/img/drawer-checks.jpg" alt="Case drawer, Checks"><figcaption><b>Figure 3.3</b>Checks: every check the agents ran, with its source and Show evidence, then Run a check yourself.</figcaption></figure>
+  </div>
+  <div class="fig-half keep">
+    <figure><img src="assets/img/drawer-client.jpg" alt="Case drawer, Client"><figcaption><b>Figure 3.4</b>Client: KYC profile, screening, identity verification and ID document, the accounts with balances, and other open cases.</figcaption></figure>
+    <figure><img src="assets/img/drawer-activity.jpg" alt="Case drawer, Activity"><figcaption><b>Figure 3.5</b>Activity: the request, a progress bar with the next step and who takes it, and each agent step with its time.</figcaption></figure>
+  </div>
+  <table class="tbl keep">
+    <thead><tr><th style="width:18%">Tab</th><th>What it shows</th></tr></thead>
+    <tbody>
+      <tr><td><b>Overview</b></td><td>The proposal, the draft letter or email and who it goes to, choices such as candidate accounts or meeting slots, and the key facts: received, due, team.</td></tr>
+      <tr><td><b>Checks</b></td><td>The agents' checks, each with its source (for example UK Sanctions List or Plaid open banking, sandbox) and the evidence behind it. Identity checks waiting on the client, with <span class="ui">Get result</span>. Four checks you can run yourself (section 5.2).</td></tr>
+      <tr><td><b>Client</b></td><td>The client's record from Salesforce: KYC and screening, accounts, other open cases.</td></tr>
+      <tr><td><b>Documents</b></td><td>Documents required and received, and <span class="ui">Analyse a document</span> (section 5.6).</td></tr>
+      <tr><td><b>Activity</b></td><td>The request in the client's words, progress, and every step with the exact quote the agent relied on. Select <span class="ui">Show all steps</span> for the full list.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="t13"><span class="sn">3.3</span>Clients, Insights, Rules and Audit trail</h2>
+  <p>The tabs across the top of the desk open four more views.</p>
+  <figure class="wide">
+    <img src="assets/img/desk-clients.jpg" alt="Clients">
+    <figcaption><b>Figure 3.6</b>Clients: search by name or email, or pick a client on your desk. Each client shows KYC and screening, accounts, top holdings, open cases, household and payees, with <span class="ui">New case</span> and <span class="ui">Open in Salesforce</span>.</figcaption>
+  </figure>
+  <figure class="wide">
+    <img src="assets/img/desk-insights.jpg" alt="Insights">
+    <figcaption><b>Figure 3.7</b>Insights reads across your whole book for moments worth acting on: idle cash, a KYC review coming due, an open complaint, a family going through a bereavement. Each card has its own action. Tick several and select <span class="ui">Create follow-ups</span>.</figcaption>
+  </figure>
+  <figure class="wide">
+    <img src="assets/img/desk-rules.jpg" alt="Rules">
+    <figcaption><b>Figure 3.8</b>Rules, read only from Salesforce: each journey with its level, the conditions that raise it to L3 and who signs; the two agents and what they do; and the three levels.</figcaption>
+  </figure>
+  <figure class="wide">
+    <img src="assets/img/desk-audit.jpg" alt="Audit trail">
+    <figcaption><b>Figure 3.9</b>Audit trail: who did what, person or agent, in order, with the quote each step cited. Filter by case on the left, or by People or Agents, or search.</figcaption>
+  </figure>
+
+  <h2 id="t14"><span class="sn">3.4</span>The action menu</h2>
+  <p>The round button at the bottom right opens the action menu. Hover over an icon to see its name.</p>
+  <figure class="narrow">
+    <img src="assets/img/desk.jpg" alt="The action menu open on the desk">
+    <figcaption><b>Figure 3.10</b>The action menu open on the desk (an earlier capture on 29 October, with fewer cases). The icons fan out from the button.</figcaption>
+  </figure>
+  <table class="tbl keep">
+    <thead><tr><th style="width:24%">Action</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><b>New case</b></td><td>Logs a request you took by phone, in a branch or by letter. The agents start on it at once (section 5.4).</td></tr>
+      <tr><td><b>Analyse a document</b></td><td>Claude reads a PDF or photo on the page; you check it and attach it to a case (section 5.6).</td></tr>
+      <tr><td><b>Log a call</b></td><td>Saves a completed call in Salesforce, on the case timeline when it is about a case.</td></tr>
+      <tr><td><b>Book a meeting</b></td><td>Puts a meeting in your Salesforce calendar, linked to the client. No invitation is emailed.</td></tr>
+      <tr><td><b>Create a follow-up</b></td><td>A task for you in Salesforce.</td></tr>
+      <tr><td><b>Open cases in Salesforce</b></td><td>Opens the Salesforce case list.</td></tr>
+      <tr><td><b>On a case only</b></td><td><b>Add a note</b>; <b>Request documents</b>, which emails the client a document request at once, optionally with an identity check link; <b>Reassign</b> to a colleague.</td></tr>
+    </tbody>
+  </table>
+  <p>Everything you do from the menu is written to Salesforce as you. Agents can never use these actions.</p>
+</section>
+
+<!-- ============================================================ 4 MAKING A DECISION -->
+<section class="chapter">
+  <div class="ch-head"><div class="ch-num">04<svg class="gtm" viewBox="0 0 19.792 20.95" aria-hidden="true"><path d="M0 0v5.97866l11.556 4.516L0 14.79v6.15467l19.792-8.016V7.97066Z"/></svg></div><h1 id="t15">Making a decision</h1></div>
+  <p class="lede">Every decision runs in three steps: stage, read the plan, confirm. Nothing changes in Salesforce until you confirm.</p>
+
+  <h2 id="t16"><span class="sn">4.1</span>Stage, read, confirm</h2>
+  <ol class="steps">
+    <li><b>Read why the case is with you.</b> The box at the top of the drawer gives the reason in one sentence. Check the proposal on Overview and the evidence on Checks and Activity.</li>
+    <li><b>Choose.</b> Select the main button at the foot of the drawer. Its wording depends on the case (table below).</li>
+    <li><b>Read the plan.</b> Salesforce stages the decision and shows a <span class="ui">Plan to confirm</span>: every step it will take, for example record the decision on the case, release an instruction, confirm a meeting, log the decision in the audit trail. A warning line says where any email will go. A short code under the plan identifies this exact plan.</li>
+    <li><b>Confirm or cancel.</b> The confirm bar repeats the decision in words. Select <span class="ui">Confirm</span> to carry it out, or <span class="ui">Cancel</span> to change nothing.</li>
+    <li><b>See the result.</b> The plan turns into a <span class="ui">Result</span> with each step done, and the drawer says "You decided. The agents are carrying it out." A short notice at the bottom of the desk says the decision was saved to Salesforce.</li>
+  </ol>
+  <div class="fig-half keep">
+    <figure><img src="assets/img/uc1-plan.jpg" alt="Plan to confirm"><figcaption><b>Figure 4.1</b>The plan for James Okafor's £3,000 withdrawal: four steps, the plan code, and the confirm bar with Confirm and Cancel.</figcaption></figure>
+    <figure><img src="assets/img/uc1-result.jpg" alt="Result after confirm"><figcaption><b>Figure 4.2</b>After Confirm: the result, the case now with the agents, and the saved decision in your words.</figcaption></figure>
+  </div>
+  <p>Behind Confirm is a single-use token tied to the plan and to you. A changed plan, a second use of the same token or another person is refused. The decision is recorded against your name, never against an agent.</p>
+
+  <h2 id="t17"><span class="sn">4.2</span>The decision buttons</h2>
+  <table class="tbl keep">
+    <thead><tr><th style="width:24%">Button</th><th style="width:20%">Where you see it</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><b>Authorise</b> (or <b>Authorise £15,000</b>)</td><td>Authorise lane, money out</td><td>Approves the agent's proposal and releases the prepared payment instruction and the confirmation to the client.</td></tr>
+      <tr><td><b>Hold and send back</b></td><td>Authorise lane</td><td>Holds the release and returns the case to the agents with your note.</td></tr>
+      <tr><td><b>Accept proposal</b></td><td>Decide lane</td><td>Approves what the Case agent proposed, for example keep funds in suspense and refer the remitter to sanctions compliance.</td></tr>
+      <tr><td><b>Approve and send</b></td><td>Review lane, drafts</td><td>Approves the drafted response; the email goes to the client on the bank's letterhead.</td></tr>
+      <tr><td><b>Send and book</b></td><td>Review lane, bereavement</td><td>Approves the letter (tick <span class="ui">Send as drafted</span>) and books the meeting slot you picked.</td></tr>
+      <tr><td><b>Send back to agents</b> or <b>Investigate</b></td><td>Decide and Review lanes</td><td>Opens a note. Anything prepared is held and the agents work the case again with your note (section 4.3).</td></tr>
+    </tbody>
+  </table>
+  <p>You can also decide from chat, for example "Approve the bereavement letter and book Tuesday at 10". Claude stages the same plan, shows it to you word for word and waits for your confirmation.</p>
+
+  <h2 id="t18"><span class="sn">4.3</span>Sending a case back</h2>
+  <p>When the agents got something wrong or missed something, send the case back rather than fixing it yourself. Write what they should do differently. The note is staged like any other decision, as Investigate, so it shows in the plan and in the audit trail.</p>
+  <div class="fig-half keep">
+    <figure><img src="assets/img/sendback-note.jpg" alt="Send back with a note"><figcaption><b>Figure 4.3</b>Send back to the agents with a note. Here the agent could not find the deceased's own client record; the note says where it is.</figcaption></figure>
+    <figure><img src="assets/img/sendback-plan.jpg" alt="Send back plan"><figcaption><b>Figure 4.4</b>The plan: record the decision and log it. The confirm bar repeats the note. This was an earlier bereavement attempt on 29 October (case 00001377), later closed.</figcaption></figure>
+  </div>
+
+  <h2 id="t19"><span class="sn">4.4</span>What happens after you decide</h2>
+  <ul class="gt">
+    <li>The case moves to <b>Agents working</b>. Your decision wakes the agents within seconds.</li>
+    <li>The Case agent carries out the steps that follow: it records the release, sends the letter you approved, confirms the meeting, records anything still outstanding.</li>
+    <li>The last step of the journey closes the case in Salesforce. The case then shows in <b>Completed</b> with the tag <b>After your decision</b>, and counts towards the Completed figure in the header.</li>
+    <li>A rejected decision never reaches fulfilment.</li>
+    <li>If an email fails to send, the decision stands and the failure is logged on the case for a person to follow up.</li>
+  </ul>
+</section>
+
+<!-- ============================================================ 5 USE CASES -->
+<section class="chapter">
+  <div class="ch-head"><div class="ch-num">05<svg class="gtm" viewBox="0 0 19.792 20.95" aria-hidden="true"><path d="M0 0v5.97866l11.556 4.516L0 14.79v6.15467l19.792-8.016V7.97066Z"/></svg></div><h1 id="t20">Use cases, step by step</h1></div>
+  <p class="lede">Nine use cases, each worked live in the sandbox on 28 and 29 October 2026 and shown in the walkthrough film. Clients and documents are fictional.</p>
+  <table class="tbl keep">
+    <thead><tr><th style="width:6%">#</th><th style="width:30%">Use case</th><th style="width:26%">Client, case</th><th>Who decides</th></tr></thead>
+    <tbody>
+      <tr><td>5.1</td><td>Money out</td><td>James Okafor, 00001366</td><td>You authorise the release</td></tr>
+      <tr><td>5.2</td><td>Sanctions match on an incoming payment</td><td>Victor Bondarev (remitter), 00001365</td><td>You accept the proposal</td></tr>
+      <tr><td>5.3</td><td>Change of address, straight through</td><td>Priya Raman, 00001373</td><td>Nobody; Salesforce checks every fence</td></tr>
+      <tr><td>5.4</td><td>Request logged by phone</td><td>Eleanor Whitfield, 00001374</td><td>You, after the agent hands it over</td></tr>
+      <tr><td>5.5</td><td>Identity check</td><td>Henry Lockwood, Eleanor Whitfield</td><td>The client completes it; the result comes back</td></tr>
+      <tr><td>5.6</td><td>Reading a document with Claude</td><td>Henry Lockwood, 00001371</td><td>You check and attach</td></tr>
+      <tr><td>5.7</td><td>Complaint, from email to answer</td><td>Eleanor Whitfield, 00001375</td><td>You approve the response</td></tr>
+      <tr><td>5.8</td><td>Everyday actions</td><td>Eleanor Whitfield, 00001362</td><td>You</td></tr>
+      <tr><td>5.9</td><td>Bereavement, from email to letter and meeting</td><td>David Ellison for Margaret Ellison, 00001380</td><td>You approve the letter and book the meeting</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 5.1 -->
+  <h2 id="t21"><span class="sn">5.1</span>Money out</h2>
+  <div class="uc-meta"><span><b>Client</b>James Okafor</span><span><b>Case</b>00001366</span><span><b>Journey</b>Money out, L2</span><span><b>Lane</b>Authorise</span></div>
+  <p>James Okafor emailed asking to move £3,000 from his general investment account to his Nationwide current account, to pay for a new boiler. The intake left the journey blank; the Case agent classified it as money out, ran the checks and prepared the release. The payee matched, the account is his, and no bank details changed in the last 90 days. Only the release is left, and only a person can do that.</p>
+  <ol class="steps">
+    <li>On the desk, select James Okafor's card in <b>Authorise</b>: "£3,000 for the boiler to Nationwide ··2583".</li>
+    <li>Read Overview: the Case agent proposes to call James on the number on file to confirm the instruction, then authorise the payment. The letter to James is already drafted.</li>
+    <li>Open <b>Checks</b>: source account, payee (Plaid open banking, sandbox), KYC and screening (UK Sanctions List) and the independent review, all passed.</li>
+    <li>Select <span class="ui">Authorise</span>. Read the plan: record the decision on the case, set the payment instruction and the letter to Released, log the decision in the audit trail.</li>
+    <li>Select <span class="ui">Confirm</span>. The case moves to Agents working while the agents carry out the release.</li>
+  </ol>
+  <p>The screens for this case are figures 3.2 and 3.3 (Overview and Checks) and figures 4.1 and 4.2 (the plan and the result).</p>
+
+  <p><b>In Salesforce</b> the case moves to fulfilment, with the decision recorded against the person who confirmed it. Releasing records the authorisation; payment execution belongs to the bank's payments platform.</p>
+  <div class="say"><b>Point out</b>Nothing changed when Emma clicked Authorise. Salesforce showed her the plan first, and only her Confirm carried it out, against her name.</div>
+
+  <!-- 5.2 -->
+  <h2 id="t22"><span class="sn">5.2</span>Sanctions match on an incoming payment</h2>
+  <div class="uc-meta"><span><b>Remitter</b>Victor Bondarev</span><span><b>Best match</b>Henry Lockwood</span><span><b>Case</b>00001365</span><span><b>Journey</b>Money in, raised to L3</span><span><b>Lane</b>Decide</span></div>
+  <p>£22,000 arrived by Faster Payment from Victor Bondarev with the reference "LOCKWOOD H 31447720". A money in case with no client yet is named after the remitter, so the card reads <b>Victor Bondarev</b>. The Case agent matched it 93% to Henry Lockwood's general investment account. But screening the remitter returned a possible match to an entry on the UK Sanctions List (RUS0902, score 0.892). The agents cannot clear that. A screening hit only ever goes to a person.</p>
+  <ol class="steps">
+    <li>Select the Victor Bondarev card in <b>Decide</b>, with the red flag <b>Sanctions match</b>.</li>
+    <li>Read Overview: the Case agent proposes to send the remitting bank an enquiry for the remitter's details, confirm the sanctions compliance referral is open, and keep the £22,000 in suspense until it is cleared. The two candidate accounts are listed under "Allocate to · 90% needed", and the letter to the remitting bank is drafted.</li>
+    <li>Open <b>Checks</b>. "Match and screening" shows the possible match with its source; "Candidate accounts" shows how the reference was read; "Independent review" shows the Review agent's check.</li>
+    <li>To screen the remitter yourself, select <span class="ui">Sanctions screening</span> under Run a check yourself. The dialog opens with the remitter's name already filled in. Add a date of birth or country if you have them, then <span class="ui">Run screening</span>. The result comes back with the list entry, the score and the list date, through your Wealth 360 Checks connector, and is saved on the case.</li>
+    <li>Select <span class="ui">Done</span>, then <span class="ui">Accept proposal</span>, read the plan and <span class="ui">Confirm</span>.</li>
+  </ol>
+  <div class="fig-half keep">
+    <figure><img src="assets/img/uc2-overview.jpg" alt="Victor Bondarev, Overview"><figcaption><b>Figure 5.1</b>"A screening hit can only be cleared by a person." The proposal, the candidate accounts and the letter to the remitting bank.</figcaption></figure>
+    <figure><img src="assets/img/uc2-checks.jpg" alt="Victor Bondarev, Checks"><figcaption><b>Figure 5.2</b>Checks: the possible match on the UK Sanctions List, the candidate accounts, the independent review, and Run a check yourself.</figcaption></figure>
+  </div>
+  <figure class="narrow">
+    <img src="assets/img/uc2-screen-input.jpg" alt="Sanctions screening dialog" style="width:62%">
+    <figcaption><b>Figure 5.3</b>The screening dialog, opened from the Checks tab, with the remitter's name already filled in. "The result is saved on the case."</figcaption>
+  </figure>
+  <!-- 5.3 -->
+  <h2 id="t23"><span class="sn">5.3</span>Change of address, straight through</h2>
+  <div class="uc-meta"><span><b>Client</b>Priya Raman</span><span><b>Case</b>00001373</span><span><b>Journey</b>Change of details, L1</span><span><b>Lane</b>Completed, By agents alone</span></div>
+  <p>Priya Raman emailed to say she had moved to 2 Barons Court Road, London, and attached a water bill. No person touched this case.</p>
+  <ol class="steps">
+    <li>The email became a case and the card appeared in <b>Agents working</b> within seconds.</li>
+    <li>The Case agent read the email, found Priya in Salesforce and read the bill. It compared the name and the new address with the record and checked the address with the postcode service.</li>
+    <li>The Review agent checked the case independently.</li>
+    <li>Because the case was a clean level 1 change, Salesforce let the agent carry it out: it updated Priya's address, sent her an address change confirmation and closed the case. A case closed this way shows in <b>Completed</b> with the tag <b>By agents alone</b> and counts in the header's "by agents alone" figure. In the sandbox this took about two and a half minutes from the agent's first step to the closed case.</li>
+  </ol>
+  <div class="fig-half keep">
+    <figure><img src="assets/img/uc3-working.jpg" alt="Priya Raman, agents working"><figcaption><b>Figure 5.4</b>While the agents work: 5 of 9 steps done, next the independent check by the Review agent.</figcaption></figure>
+    <figure><img src="assets/img/uc3-closed.jpg" alt="Priya Raman, closed"><figcaption><b>Figure 5.5</b>Closed. Address updated in Salesforce, the confirmation auto-sent, the address check on file.</figcaption></figure>
+  </div>
+  <h3>When the agents may finish on their own</h3>
+  <p>Salesforce checks every one of these. If any fails, nothing changes and the case comes to you with the reason.</p>
+  <ul class="gt">
+    <li>A change of address at L1, with no exception, the evidence read and compared, and the independent review passed.</li>
+    <li>The address check found the new address; it has a valid UK postcode and differs from the record.</li>
+    <li>The client's identity is verified on file.</li>
+    <li>No open money out case for the client, and no other address change in the last 30 days.</li>
+  </ul>
+  <p><b>In Salesforce</b> Priya's mailing address is the new one, the old address is kept on the case timeline, and a copy of the confirmation email sits on the case. Other attempts show the fences at work: on case 00001372 another open change of details case existed, so the agent handed it to a person.</p>
+  <div class="say"><b>Point out</b>Every fence was checked in Salesforce code, not in a prompt. Anything unusual still goes to a person.</div>
+
+  <!-- 5.4 -->
+  <h2 id="t24"><span class="sn">5.4</span>Request logged by phone</h2>
+  <div class="uc-meta"><span><b>Client</b>Eleanor Whitfield</span><span><b>Case</b>00001374</span><span><b>Journey</b>Change of details, raised to L3</span><span><b>Lane</b>Decide</span></div>
+  <p>Requests do not only arrive by email. Eleanor Whitfield calls to say she married in September and has changed her surname to Hart.</p>
+  <ol class="steps">
+    <li>Open the action menu and select <span class="ui">New case</span>.</li>
+    <li>Pick the client, then the type of request (here <b>Change of details</b>; choose <b>Not sure</b> to let the agents classify it), the channel (<b>Phone</b>) and write down what was asked.</li>
+    <li>Select <span class="ui">Create case</span>. The case is created in Salesforce, owned by you, and appears in <b>Agents working</b> within seconds.</li>
+    <li>The Case agent reads the request and finds Eleanor in Salesforce. Then it stops: this journey covers a change of address, and a change of name is not in its rules. It hands the case to you with the reason in one sentence and a proposal.</li>
+    <li>Accept the proposal, or send it back with a note.</li>
+  </ol>
+  <div class="fig-half keep">
+    <figure><img src="assets/img/uc4-newcase.jpg" alt="New case dialog"><figcaption><b>Figure 5.6</b>New case: client, type of request, channel and the request in your words.</figcaption></figure>
+    <figure><img src="assets/img/uc4-handed.jpg" alt="Handed to a person"><figcaption><b>Figure 5.7</b>"The request is a change of name (Whitfield to Hart), not a change of address." The record stays unchanged.</figcaption></figure>
+  </div>
+  <p>You can also log a request from chat: "Log a request for James Okafor: he called, he has moved to 2 Barons Court Road". If the name matches no client or several, nothing is created and you pick from a list. Logging the same request twice on the same day returns the first case.</p>
+  <div class="say"><b>Point out</b>An agent never stretches a rule it was not given. It hands over, and says why.</div>
+
+  <!-- 5.5 -->
+  <h2 id="t25"><span class="sn">5.5</span>Identity check</h2>
+  <div class="uc-meta"><span><b>Clients</b>Henry Lockwood (case 00001371), Eleanor Whitfield (case 00001370)</span><span><b>Provider</b>Didit, sandbox</span></div>
+  <p>Henry Lockwood has also moved, but his identity is not yet verified on file, so his address cannot change straight through. One click on the desk starts an identity check.</p>
+  <ol class="steps">
+    <li>Open the case, then <b>Checks</b>. Under Run a check yourself select <span class="ui">Identity check</span>: "Send the client a document and liveness check".</li>
+    <li>The link goes to the client by email, and an identity verification opens on the client's KYC profile in Salesforce, In Progress. The case waits on the client and shows under "Identity checks waiting on the client" with the time it was sent.</li>
+    <li>The client opens the link on their phone, photographs their ID and takes a short face check. The page carries the bank's Wealth Servicing branding.</li>
+    <li>The result comes back by itself within a few minutes of the client finishing: Accepted, Rejected or On Hold, written to the same record in Salesforce. Or select <span class="ui">Get result</span>.</li>
+    <li>When a case was waiting on that check, the decision sends it straight back to the agents.</li>
+  </ol>
+  <div class="fig-half keep">
+    <figure><img src="assets/img/uc5-checks.jpg" alt="Identity check waiting on the client"><figcaption><b>Figure 5.8</b>Henry Lockwood's case: the evidence checks passed, the identity check sent at 04:23 and waiting on the client.</figcaption></figure>
+    <figure><img src="assets/img/didit-mobile.jpg" alt="Identity check page" style="width:78%;margin:0 auto"><figcaption><b>Figure 5.9</b>The identity page the client opens from the email, in the bank's Wealth Servicing branding: ID verification, then face verification. On a computer it offers a QR code to continue on a phone. Sandbox session.</figcaption></figure>
+  </div>
+  <figure class="wide">
+    <img src="assets/img/sf-kyc.jpg" alt="KYC tab for Eleanor Whitfield">
+    <figcaption><b>Figure 5.10</b>The KYC tab on Eleanor Whitfield's client page in Salesforce. Her identity check on case 00001370 was requested at 03:40 and decided Accepted at 03:44, collected automatically. Names of build team members masked.</figcaption>
+  </figure>
+
+  <!-- 5.6 -->
+  <h2 id="t26"><span class="sn">5.6</span>Reading a document with Claude</h2>
+  <div class="uc-meta"><span><b>Client</b>Henry Lockwood</span><span><b>Case</b>00001371</span><span><b>Document</b>Council tax bill (fictional)</span></div>
+  <p>Sometimes the evidence arrives on paper or as a photo. Claude can read it on the page.</p>
+  <ol class="steps">
+    <li>Open the case, then <b>Documents</b>. It lists what is required (here "Proof of address in your own name, last 3 months", missing) and what was received.</li>
+    <li>Select <span class="ui">Analyse a document</span> and drop the PDF or photo on the dialog. You can also start it from the action menu.</li>
+    <li>Choose the document type. Claude reads the document, compares it with the case and shows a summary and the fields it found: name, address, date issued, issuer and so on.</li>
+    <li>Check what Claude found against the case. Then select <span class="ui">Attach to case</span>.</li>
+    <li>The document is filed on the case in Salesforce with Claude's summary, where the agents read it on their next step. A case waiting on the client goes back to the agents.</li>
+  </ol>
+  <div class="fig-half keep">
+    <figure><img src="assets/img/uc6-documents.jpg" alt="Documents tab"><figcaption><b>Figure 5.11</b>Documents: Analyse a document, what is required and what was received.</figcaption></figure>
+    <figure><img src="assets/img/uc6-analyse.jpg" alt="Analyse a document"><figcaption><b>Figure 5.12</b>Claude's reading of the bill. It noticed the footer marks it as a demonstration document and said it should not be accepted without review.</figcaption></figure>
+  </div>
+  <p class="small">Claude reads the document in your own Claude account, after a one-time OK. The reading is evidence for you, not a decision.</p>
+
+  <!-- 5.7 -->
+  <h2 id="t27"><span class="sn">5.7</span>Complaint, from email to answer</h2>
+  <div class="uc-meta"><span><b>Client</b>Eleanor Whitfield</span><span><b>Case</b>00001375</span><span><b>Journey</b>Complaint, L2</span><span><b>Lane</b>Review</span></div>
+  <p>Eleanor Whitfield emails to say she has heard nothing about her £15,000 withdrawal, and asks for it to be treated as a formal complaint.</p>
+  <ol class="steps">
+    <li>The email becomes a case and the agents start within seconds.</li>
+    <li>The Case agent reads it, classifies it as a service complaint, starts the 8-week final response clock and finds the cause in Salesforce: the withdrawal (case 00001362) is waiting for a person to authorise it, and nobody told her.</li>
+    <li>The Review agent checks the work and sends it back once: there was no response on the case yet to check. The Case agent drafts the reply and the case comes to you in <b>Review</b>.</li>
+    <li>Read the response on Overview: apology, what happened, how it will be put right, and her right to refer the complaint to the Financial Ombudsman Service.</li>
+    <li>Select <span class="ui">Approve and send</span>, read the plan (including where the email goes) and <span class="ui">Confirm</span>. The reply goes to Eleanor by email on the bank's letterhead.</li>
+  </ol>
+  <div class="fig-half keep">
+    <figure><img src="assets/img/uc7-activity.jpg" alt="Complaint, agents working"><figcaption><b>Figure 5.13</b>Activity while the agents work. The top row is the Review agent sending the case back because there was no response yet.</figcaption></figure>
+    <figure><img src="assets/img/uc7-draft.jpg" alt="Complaint response draft"><figcaption><b>Figure 5.14</b>The drafted response, waiting for your approval. "Drafts go out only after your approval." Email address masked.</figcaption></figure>
+  </div>
+  <figure class="narrow" style="width:50%;margin-left:auto;margin-right:auto">
+    <img src="assets/img/uc7-plan.jpg" alt="Complaint plan" style="width:100%">
+    <figcaption><b>Figure 5.15</b>The plan: record the decision, release the response, log it, and the line saying where the email goes. Email address masked.</figcaption>
+  </figure>
+  <div class="say"><b>Point out</b>Drafts never go out on their own. The Review agent caught a gap before the case reached Emma.</div>
+
+  <!-- 5.8 -->
+  <h2 id="t28"><span class="sn">5.8</span>Everyday actions</h2>
+  <div class="uc-meta"><span><b>Client</b>Eleanor Whitfield</span><span><b>Case</b>00001362</span></div>
+  <p>Around every case, the everyday actions are one click away in the action menu. Each one is a standard Salesforce task or event, on the client and on the case.</p>
+  <ol class="steps">
+    <li><b>Log a call.</b> Choose the direction (for example "I called the client"), the minutes and what was said. Select <span class="ui">Log call</span>. It is saved as a completed call in Salesforce and on the case timeline.</li>
+    <li><b>Book a meeting.</b> Write a subject, pick the date, the time (London), the length and where (for example video call), and an optional agenda. Select <span class="ui">Book meeting</span>. It goes into your Salesforce calendar, linked to the client. No invitation is emailed to the client.</li>
+    <li><b>Add a note, create a follow-up, reassign.</b> The same way, from the menu.</li>
+    <li><b>Request documents.</b> Emails the client a Document request at once, on the letterhead, optionally with an identity check link. In this proof it sends only to the allowed test domains and not the same request twice a day.</li>
+  </ol>
+  <div class="fig-half keep">
+    <figure><img src="assets/img/uc8-call.jpg" alt="Log a call"><figcaption><b>Figure 5.16</b>Log a call, about case 00001362.</figcaption></figure>
+    <figure><img src="assets/img/uc8-meeting.jpg" alt="Book a meeting"><figcaption><b>Figure 5.17</b>Book a meeting with Eleanor Whitfield.</figcaption></figure>
+  </div>
+
+  <!-- 5.9 -->
+  <h2 id="t29"><span class="sn">5.9</span>Bereavement, from email to letter and meeting</h2>
+  <div class="uc-meta"><span><b>From</b>David Ellison, executor</span><span><b>For</b>Margaret Ellison</span><span><b>Case</b>00001380</span><span><b>Journey</b>Bereavement, L3</span><span><b>Lane</b>Review</span></div>
+  <p>David Ellison emails to say that his mother, Margaret, has died. He attaches the death certificate and the grant of probate. Within seconds, the case is with the agents.</p>
+  <ol class="steps">
+    <li>The Case agent reads both documents and finds Margaret's three accounts.</li>
+    <li>It records her death. Salesforce checks the certificate and the family link before it puts her accounts on hold.</li>
+    <li>David's identity is already on file, so no further documents are needed. The agent drafts a letter to David and proposes three meeting slots. The Review agent passes the case.</li>
+    <li>The case comes to you in <b>Review</b>. Read the letter. Tick <span class="ui">Send as drafted</span> and pick a meeting slot.</li>
+    <li>Select <span class="ui">Send and book</span>. Read the plan: record the decision, release the letter, confirm the meeting, log the decision, and where the email goes. Select <span class="ui">Confirm</span>.</li>
+    <li>The letter goes to David by email, and the meeting is in the diary, confirmed for Tuesday 3 November at 10:00.</li>
+  </ol>
+  <p>On Hold is the account status in Salesforce; stopping standing orders belongs to the bank's payments platform. The meeting slots are proposed by the agent, not read from a calendar.</p>
+  <div class="say"><b>Point out</b>Nothing goes to the family until a person says so. The agents did the reading and checking; Emma chose the words and the time.</div>
+  <div class="fig-half keep">
+    <figure><img src="assets/img/uc9-activity.jpg" alt="Bereavement, agents working"><figcaption><b>Figure 5.18</b>The agents at work: the three accounts found, the death recorded and the accounts put On Hold, all required documents in place.</figcaption></figure>
+    <figure><img src="assets/img/uc9-review.jpg" alt="Bereavement letter and slots"><figcaption><b>Figure 5.19</b>The letter, Send as drafted, and the meeting slots; Tuesday 3 November at 10:00 picked. Email address masked.</figcaption></figure>
+  </div>
+  <div class="fig-half keep">
+    <figure><img src="assets/img/uc9-plan.jpg" alt="Bereavement plan"><figcaption><b>Figure 5.20</b>The plan, four steps, and where the email goes. Email address masked.</figcaption></figure>
+    <figure><img src="assets/img/uc9-result.jpg" alt="Bereavement result"><figcaption><b>Figure 5.21</b>Saved: "You approved the letter and booked the meeting for Tuesday 3 November at 10:00."</figcaption></figure>
+  </div>
+
+</section>
+
+<!-- ============================================================ 6 SALESFORCE SIDE -->
+<section class="chapter">
+  <div class="ch-head"><div class="ch-num">06<svg class="gtm" viewBox="0 0 19.792 20.95" aria-hidden="true"><path d="M0 0v5.97866l11.556 4.516L0 14.79v6.15467l19.792-8.016V7.97066Z"/></svg></div><h1 id="t30">The Salesforce side</h1></div>
+  <p class="lede">Everything on the desk lives in Salesforce. The same cases, clients and rules are in two Lightning apps: Wealth 360 for relationship managers and Wealth 360 Admin for the people who run the agents.</p>
+
+  <h2 id="t31"><span class="sn">6.1</span>The case cockpit</h2>
+  <p>Every case is a standard Case record in Financial Services Cloud with the Wealth 360 cockpit on the page. Open it from the desk with the arrow button in the drawer, or from <span class="ui">Cases</span> in the Wealth 360 app.</p>
+  <ul class="gt">
+    <li>The header with the journey, level, owning team and service level, and "Agents last ran HH:MM, next HH:MM".</li>
+    <li>A seven-stage track: Intake, Plan, Execute, Verify, Draft, Check, Fulfil.</li>
+    <li>Tabs for the decision, the evidence, documents and activity, one row per agent step, each attributed to the identity that wrote it.</li>
+    <li>How a closed case ended, in the field <code>W360_Resolution__c</code>: <b>Resolved by agents</b>, <b>Closed after decision</b> or <b>Superseded</b>. The desk's Completed counter and column read this field.</li>
+    <li>The customer request, why it needs you, the checks with their sources, a note field, and the proposal with its buttons. Deciding here works the same way: a confirm dialog before anything changes.</li>
+  </ul>
+  <figure>
+    <img src="assets/img/sf-case-1360.jpg" alt="Case cockpit" style="width:88%;margin:0 auto">
+    <figcaption><b>Figure 6.1</b>Case 00001360 in the cockpit: level 3, Needs you, the exception in the agent's words, four cited checks and the proposal with Hold payment and Approve. On the right, the relationship panel for the client.</figcaption>
+  </figure>
+
+  <h2 id="t32"><span class="sn">6.2</span>The client page and KYC tab</h2>
+  <p>The client page carries the <b>Wealth Servicing</b> tab: cases that need you, unmatched payments that may belong to the household, items waiting on others, and KYC for each household member. The <b>KYC</b> tab shows the verdict and next review date, every identity verification with its session, every sanctions screening, the identity documents, and the outside checks recorded on the client's cases (figure 5.10).</p>
+  <figure class="wide">
+    <img src="assets/img/sf-relationship.jpg" alt="Client page">
+    <figcaption><b>Figure 6.2</b>Timothy Norton's client page: the Wealth Servicing tab with his cases, an unmatched payment held for the household, the release waiting on Payments Operations, and KYC per household member. Email masked.</figcaption>
+  </figure>
+
+  <h2 id="t33"><span class="sn">6.3</span>The Admin app</h2>
+  <p>The Wealth 360 Admin app is visible only to people with the <span class="ui">W360_Agent_Admin</span> permission set. It has four tabs.</p>
+  <table class="tbl keep">
+    <thead><tr><th style="width:20%">Tab</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><b>Agent control</b></td><td>Agents on or off (<span class="ui">Pause agents</span>), <span class="ui">Run now</span>, the sweep interval (2 minutes), working hours (Europe/London), one switch per journey, limits (most cases per run, most model spend per day, $20 in the proof), and the switch that lets agents send document requests by email on their own. The status shows last run, next run and spend today. The agents read this once a minute; changes apply from the next minute.</td></tr>
+      <tr><td><b>W360 Agent Runs</b></td><td>The run log: one row per run with its trigger (Event or Sweep), cases, steps, hand-offs, errors, cost and duration, and one row per case worked with the agent's own report.</td></tr>
+      <tr><td><b>Rulebook</b></td><td>Every journey and its steps, read live from Salesforce: level, team, service level, rules, raise-to-L3 conditions, required documents, and each step with its actor and tools. Rules change through a metadata deploy, not here.</td></tr>
+      <tr><td><b>Audit</b></td><td>Every agent step and person decision on the cases you can see, newest first, filterable by actor, journey, outcome and date.</td></tr>
+    </tbody>
+  </table>
+  <figure class="wide">
+    <img src="assets/img/sf-admin-control.jpg" alt="Agent control">
+    <figcaption><b>Figure 6.3</b>Agent control: Run now, Pause agents, status with spend today, the switch and schedule, recent runs and the journeys the agents work. Name of the last editor masked.</figcaption>
+  </figure>
+  <figure class="wide">
+    <img src="assets/img/sf-runs-list.jpg" alt="Agent runs">
+    <figcaption><b>Figure 6.4</b>The run log. RUN-000013 was triggered by an event: four cases, 20 steps, three hand-offs, no errors.</figcaption>
+  </figure>
+  <figure class="wide">
+    <img src="assets/img/sf-admin-rulebook.jpg" alt="Rulebook">
+    <figcaption><b>Figure 6.5</b>The rulebook for bereavement: always level 3, grant of probate and executor identity mandatory, and the ordered steps.</figcaption>
+  </figure>
+  <figure class="wide">
+    <img src="assets/img/sf-admin-audit.jpg" alt="Audit">
+    <figcaption><b>Figure 6.6</b>Audit: every step with its actor, journey, stage and outcome. The top row is the sanctions near-hit on case 00001365, raised to level 3.</figcaption>
+  </figure>
+  <div class="callout grey"><b>To stop the agents</b>Wealth 360 Admin › Agent control › <span class="ui">Pause agents</span>. It applies from the next minute. To stop one journey, switch it off in the same view. Cases of a switched-off journey are left alone.</div>
+</section>
+
+<!-- ============================================================ 7 EMAIL -->
+<section class="chapter">
+  <div class="ch-head"><div class="ch-num">07<svg class="gtm" viewBox="0 0 19.792 20.95" aria-hidden="true"><path d="M0 0v5.97866l11.556 4.516L0 14.79v6.15467l19.792-8.016V7.97066Z"/></svg></div><h1 id="t34">Email</h1></div>
+  <p class="lede">Email is the channel clients actually use, so it is a full loop: a client's email becomes a case, the bank's emails carry the case reference, and the client's reply finds its case.</p>
+
+  <h2 id="t35"><span class="sn">7.1</span>How a client's email reaches a case</h2>
+  <p>The bank's intake address is a Salesforce email service. Each email is filed by the first rule that fits.</p>
+  <table class="tbl keep">
+    <thead><tr><th style="width:5%">#</th><th style="width:24%">Rule</th><th>What happens</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><b>A reply to a bank email</b></td><td>The subject carries the case reference in square brackets, for example <code>[W360-00001380]</code>, or the footer carries the thread reference <code>W360REF-...</code>. The email and its attachments are filed on that case.</td></tr>
+      <tr><td>2</td><td><b>A known client</b></td><td>The sender's address matches one client's email: a new case for that client. When several clients share the address, the client named in the subject or body is chosen.</td></tr>
+      <tr><td>3</td><td><b>Unknown or unclear sender</b></td><td>A case for a person, level 3, never worked by the agents.</td></tr>
+      <tr><td>4</td><td><b>Sender check</b></td><td>An email that does not pass the sender authentication checks is raised to level 3 with the reason.</td></tr>
+      <tr><td>5</td><td><b>Journey</b></td><td>Keyword rules set the journey when exactly one fits (for example "passed away" for bereavement). Otherwise the Case agent classifies it as its first step.</td></tr>
+    </tbody>
+  </table>
+  <p><b>Replies.</b> A reply restarts the agents only when the case is <b>Waiting on client</b>. If the case is with a person, it keeps its place and the reply waits on the case for that person. A reply from a different address is filed but raises the case to level 3. Matching a sender identifies a client; it does not prove who sent the email, so a request from email that needs a decision always ends with a person.</p>
+
+  <h2 id="t36"><span class="sn">7.2</span>What goes out, and when</h2>
+  <p>Every bank email goes out on the Wealth Servicing letterhead, from the Wealth Servicing address, with the case reference in the subject and footer. A copy is kept as a file on the case. Types: document request, address change confirmation, bereavement letter, payment confirmation, complaint response, decision letter and general.</p>
+  <table class="tbl keep">
+    <thead><tr><th style="width:28%">Sent by</th><th>When</th></tr></thead>
+    <tbody>
+      <tr><td><b>Your release</b></td><td>When you confirm a decision that releases a letter or email. It goes to the client's email on record. The plan says where before you confirm.</td></tr>
+      <tr><td><b>Your Request documents</b></td><td>At once, to the client's email on record, optionally with an identity check link.</td></tr>
+      <tr><td><b>The agents, on their own</b></td><td>Only two kinds, and only when Salesforce's fences hold: a <b>document request</b> (switched on in Agent control, to the client's email on record, on an allowed domain, fewer than three a day per case, and the only link it may carry is an identity check), and an <b>address change confirmation</b> at the end of a straight-through change. Everything else waits for a person's release.</td></tr>
+    </tbody>
+  </table>
+  <div class="fig-half keep">
+    <figure><img src="assets/img/email-document-request.png" alt="Document request email"><figcaption><b>Figure 7.1</b>Document request: what is needed and why, how to reply, and an optional identity check link.</figcaption></figure>
+    <figure><img src="assets/img/email-address-change-confirmation.png" alt="Address change confirmation email"><figcaption><b>Figure 7.2</b>Address change confirmation, sent by the agents at the end of a straight-through change.</figcaption></figure>
+  </div>
+  <div class="fig-half keep">
+    <figure><img src="assets/img/email-bereavement.png" alt="Bereavement letter email"><figcaption><b>Figure 7.3</b>Bereavement: condolence, numbered next steps, a softer sign-off and no banner. Always a person's release.</figcaption></figure>
+    <figure><img src="assets/img/email-payment-confirmation.png" alt="Payment confirmation email"><figcaption><b>Figure 7.4</b>Payment confirmation. Waits for a person's release. All four previews use fictional content.</figcaption></figure>
+  </div>
+
+  <h2 id="t37"><span class="sn">7.3</span>Testing by email</h2>
+  <p>In the proof, every demo client's email address points to one test inbox. Ask the build team for access to it and for the intake address. The cases in this guide reached Salesforce as simulated emails through the deployed handler; a real email over the internet, and delivery into Accenture mailboxes, are still to be proven. Test it before a demo, never for the first time during one.</p>
+  <ol class="steps">
+    <li><b>Start a new case.</b> From the test inbox, write to the intake address. Name the client in the subject or body (for example "Priya Raman: I have moved"), because the inbox belongs to every demo client. Attach the document if the request needs one.</li>
+    <li><b>Watch the desk.</b> The case appears in Agents working when the agents start.</li>
+    <li><b>Reply to a case.</b> Reply to the bank's email, which arrives in the same inbox, so the subject keeps the reference, for example <code>[W360-00001380]</code>. If the case is waiting on the client, the agents restart.</li>
+      </ol>
+
+</section>
+
+<!-- ============================================================ 8 RUNNING A DEMO -->
+<section class="chapter">
+  <div class="ch-head"><div class="ch-num">08<svg class="gtm" viewBox="0 0 19.792 20.95" aria-hidden="true"><path d="M0 0v5.97866l11.556 4.516L0 14.79v6.15467l19.792-8.016V7.97066Z"/></svg></div><h1 id="t38">Running a demo</h1></div>
+  <p class="lede">A good demo shows one idea: agents do the work, people decide, Salesforce enforces it. This chapter gives a 10 to 15 minute script, a checklist and what to say about safety.</p>
+
+  <h2 id="t39"><span class="sn">8.1</span>Before the demo</h2>
+  <ul class="gt">
+    <li>Both connectors connected, named exactly <code>Wealth 360</code> and <code>Wealth 360 Checks</code>. Sign in again if a token has expired.</li>
+    <li>The plugin at version 0.12.0 or later. Open the desk once and confirm the status line reads <span class="ui">Live · Salesforce</span>.</li>
+    <li>In Wealth 360 Admin › Agent control: agents On, the journeys you will show switched on, working hours off or covering your slot, spend today well under the daily cap.</li>
+    <li>The cases you plan to show are in the lane you expect. Decided cases do not go back by themselves (section 8.3).</li>
+    <li>A Salesforce tab open on the Wealth 360 app, signed in, for the Salesforce side.</li>
+    <li>For a live email: access to the test inbox, and one test send done earlier the same day.</li>
+    <li>Fictional data only on screen. Do not type or upload real client details anywhere, including the Checks dialogs.</li>
+  </ul>
+
+  <h2 id="t40"><span class="sn">8.2</span>A 12 minute script</h2>
+  <table class="tbl script keep">
+    <thead><tr><th style="width:9%">Time</th><th style="width:38%">Show</th><th>Say</th></tr></thead>
+    <tbody>
+      <tr><td>0:00</td><td>Claude; type "Open my Wealth 360 desk".</td><td>"A servicing desk where agents do the routine work, Salesforce keeps the rules and the record, and a named person makes every decision. This is live, from the sandbox."</td></tr>
+      <tr><td>1:00</td><td>The board: With you, Moving on its own; the Completed counter and column.</td><td>"Everything on the left needs me. Everything on the right is moving on its own. Completed shows what closed today, and how much the agents closed on their own."</td></tr>
+      <tr><td>2:00</td><td>Money out, James Okafor: Overview, Checks, Authorise, plan, Confirm (5.1).</td><td>"The agents did the checks. Only a person can release money. Nothing changes until I confirm the plan, and it is recorded against my name."</td></tr>
+      <tr><td>4:00</td><td>Sanctions match, Victor Bondarev: Checks, open the screening dialog, Accept proposal (5.2).</td><td>"A 93% match does not override a screening hit. Only a person can clear it."</td></tr>
+      <tr><td>6:00</td><td>Priya Raman, closed: Activity (5.3).</td><td>"This one needed nobody. A clean change of address, every fence checked in Salesforce code."</td></tr>
+      <tr><td>7:30</td><td>New case by phone, Eleanor's surname change (5.4). Leave it running.</td><td>"Requests do not only come by email. Watch it appear under Agents working."</td></tr>
+      <tr><td>8:30</td><td>Bereavement, David Ellison: letter, slot, Send and book (5.9). Or the complaint (5.7).</td><td>"Nothing goes to the family until a person says so."</td></tr>
+      <tr><td>10:00</td><td>Back to Eleanor's case: handed over with the reason.</td><td>"An agent never stretches a rule it was not given."</td></tr>
+      <tr><td>10:30</td><td>Salesforce: the case cockpit, the KYC tab, Agent control (chapter 6). Close on the Audit trail tab.</td><td>"It all lives in Salesforce: the record, the rules, the switches, the spend cap and the audit trail. Every decision was made by a named person."</td></tr>
+    </tbody>
+  </table>
+  <p>For a shorter slot, show 5.1, 5.3 and 5.9. For questions about controls, open Agent control and the Rulebook.</p>
+
+  <h2 id="t41"><span class="sn">8.3</span>Resetting and seeding</h2>
+  <ul class="gt">
+    <li><b>Decisions stick.</b> A case you authorise, accept or approve moves on and closes. It does not return to your lanes. To show the same moment twice, ask the build team to seed fresh cases, or log a new request live.</li>
+    <li><b>Seeding is a build team task.</b> The demo clients, accounts, payees and cases are created by scripts in Salesforce, and a clean-up script removes them. Do not run them yourself. Ask a day ahead.</li>
+    <li><b>Fresh live cases</b> are the most convincing: a new case by phone (5.4) or an email from the test inbox (7.3). Allow two to five minutes for the agents to finish.</li>
+    <li><b>Timing.</b> The agents start within seconds of a change. A full run on a case takes from about one minute (a hand-over) to about five minutes (a complaint with one rework). Do something else on screen while they work.</li>
+  </ul>
+
+  <h2 id="t42"><span class="sn">8.4</span>What to say about safety</h2>
+  <div class="say"><b>The core line</b>An agent can never stage, approve or release a decision. Salesforce refuses it, whatever the agent is told.</div>
+  <ul class="gt">
+    <li><b>Separation of duties.</b> A Case agent makes, a Review agent checks in a fresh context, and a named person decides.</li>
+    <li><b>Enforced in Salesforce, not promised by a prompt.</b> Agents may raise a level, never lower it. Steps out of order or without evidence are refused.</li>
+    <li><b>Two identities.</b> You sign in as yourself. The agents sign in as a dedicated agent identity. Every step is recorded against whoever took it.</li>
+    <li><b>Stage, show, confirm.</b> Every decision is shown as a plan first, and runs behind a single-use confirmation tied to you.</li>
+    <li><b>Email is fenced.</b> Agents send only document requests and address confirmations, to the client's own address on an allowed domain. Everything else waits for a person.</li>
+    <li><b>Off switch.</b> Pause agents in the Admin app stops them from the next minute.</li>
+  </ul>
+
+  <h2 id="t43"><span class="sn">8.5</span>Known limits</h2>
+  <table class="tbl keep">
+    <thead><tr><th style="width:32%">Limit</th><th>What to do or say</th></tr></thead>
+    <tbody>
+      <tr><td>It is a proof of concept on fictional data</td><td>Say so up front. Nothing shown is a product or offered for sale.</td></tr>
+      <tr><td>No money moves</td><td>Release records the authorisation in Salesforce. Payments belong to the bank's payments platform.</td></tr>
+      <tr><td>Payee check is not Pay.UK Confirmation of Payee</td><td>It is an open-banking account-holder check in a provider sandbox.</td></tr>
+      <tr><td>Sanctions screening is the UK list only</td><td>No PEP or adverse media screening. A licensed provider is a production item.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================================ 9 TROUBLESHOOTING -->
+<section class="chapter">
+  <div class="ch-head"><div class="ch-num">09<svg class="gtm" viewBox="0 0 19.792 20.95" aria-hidden="true"><path d="M0 0v5.97866l11.556 4.516L0 14.79v6.15467l19.792-8.016V7.97066Z"/></svg></div><h1 id="t44">Troubleshooting and FAQ</h1></div>
+  <p class="lede">Most problems come from a connector: its name, its sign-in, or the Salesforce user behind it.</p>
+  <h2 id="t45"><span class="sn">9.1</span>Troubleshooting</h2>
+  <div class="qa"><div class="q">The desk does not load data, or says it cannot reach Salesforce.</div><p>Check the connector is named exactly <code>Wealth 360</code>, with the space, and is connected. Reconnect it and sign in to Salesforce again. Then ask Claude to open the desk in a new conversation.</p></div>
+  <div class="qa"><div class="q">The Checks tab says the connector is missing.</div><p>Add or reconnect <code>Wealth 360 Checks</code> (section 2.3). The rest of the desk works without it.</p></div>
+  <div class="qa"><div class="q">I cannot see the Wealth 360 app or the Admin app in Salesforce.</div><p>Your user needs the <span class="ui">W360_Relationship_Manager</span> permission set, and for the Admin app <span class="ui">W360_Agent_Admin</span>. Ask the build team.</p></div>
+  <div class="qa"><div class="q">Confirm was refused.</div><p>The plan changed, or it was already used, or another person staged it. Close the drawer, open the case again and stage the decision afresh. Your user must also hold the right to decide.</p></div>
+  <div class="qa"><div class="q">A new case does not appear under Agents working.</div><p>Check Agent control: agents On, the journey switched on, working hours, and spend today under the cap. If the agents are paused, the run log shows Skipped runs. A sweep every two minutes catches anything missed.</p></div>
+  <div class="qa"><div class="q">A case has sat in Agents working for a long time.</div><p>Open Activity to see the last step. If nothing has moved for ten minutes, ask the build team to check the run log. Do not decide around it.</p></div>
+  <div class="qa"><div class="q">The identity check result has not come back.</div><p>The client may not have finished. The result comes back within a few minutes of the client finishing; select <span class="ui">Get result</span> on the Checks tab to ask at once.</p></div>
+  <div class="qa"><div class="q">A plugin update does not appear in Cowork.</div><p>Remove the marketplace, add <code>cowork-offering/wealth-360</code> again and reinstall the plugin.</p></div>
+  <div class="qa"><div class="q">Analyse a document does nothing.</div><p>Claude asks once for your OK to read documents on the page. Accept it. Use a PDF or a photo.</p></div>
+
+  <h2 id="t46"><span class="sn">9.2</span>Frequently asked questions</h2>
+  <div class="qa"><div class="q">Can an agent move money or send a letter on its own?</div><p>No. An agent prepares; a person releases. The only emails an agent may send on its own are a document request and an address change confirmation, fenced by Salesforce.</p></div>
+  <div class="qa"><div class="q">Can I change what the agents do?</div><p>The rules are custom metadata in Salesforce, shown in the Rulebook. The business changes them through a metadata deploy; the agents follow the change on their next run. Agent control switches a journey on or off from the next minute.</p></div>
+  <div class="qa"><div class="q">Does the Review agent see what the Case agent was thinking?</div><p>No. It checks the case in a fresh context, against the rules and the original request.</p></div>
+  <div class="qa"><div class="q">Who is recorded when I decide?</div><p>You, by name, on the case, the staged plan and the audit trail. Agent steps are recorded against the agent identity.</p></div>
+  <div class="qa"><div class="q">What does Claude see?</div><p>On the desk, Claude reads Salesforce through your connector, as you, and a document only when you choose to analyse it. The agents read the case through their own identity.</p></div>
+  <div class="qa"><div class="q">What happens to the client's documents?</div><p>Emails and attachments are stored as files on the case in Salesforce. In the proof they are fictional.</p></div>
+  <div class="qa"><div class="q">Can I use real client data?</div><p>No. Fictional personas only, in Salesforce and at every outside provider.</p></div>
+</section>
+
+<!-- ============================================================ 10 NOTICE -->
+<section class="chapter">
+  <div class="ch-head"><div class="ch-num">10<svg class="gtm" viewBox="0 0 19.792 20.95" aria-hidden="true"><path d="M0 0v5.97866l11.556 4.516L0 14.79v6.15467l19.792-8.016V7.97066Z"/></svg></div><h1 id="t47">Important notice</h1></div>
+  <p class="lede">Wealth 360 is a proof of concept, built to explore an idea.</p>
+  <ul class="gt">
+    <li>It is not a product. Nothing in this guide is offered for sale or ready for production.</li>
+    <li>Everything ran in a Salesforce sandbox with fictional clients, accounts, documents and amounts. No real customer data was used.</li>
+    <li>Outside checks ran against provider sandboxes or test data. They are not the services a bank would use in production.</li>
+    <li>Figures, timings and costs come from test runs and are illustrative only.</li>
+    <li>Anything said about future capability is an intention, not a commitment.</li>
+    <li>Screens may change as the proof develops.</li>
+  </ul>
+  <div class="callout grey" style="margin-top:8mm"><b>Wealth 360 User Guide</b>Version 1.0, 29 October 2026. For the technical design, the evidence and the path to production, see the Wealth 360 Solution Handbook.</div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Wealth 360. A wealth servicing desk where agents do the routine work, Salesforce keeps the rules and the record, and a named person makes every decision that matters." />
+<link rel="icon" href="ds/favicon.svg" type="image/svg+xml" />
+<meta name="theme-color" content="#0A0A0B" />
+<link rel="stylesheet" href="ds/tokens.css?v=r3" />
+<link rel="stylesheet" href="site.css?v=1" />
+<meta name="robots" content="noindex,nofollow" />
+<script src="gate.js?v=1"></script>
+<title>Wealth 360 · agents do the work, people decide</title>
+<style>
+  /* hero film: a slow Higgsfield loop under the title */
+  .film video.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:brightness(.66) contrast(1.04)}
+  .film .bg{filter:brightness(.62) contrast(1.05)}
+
+  /* cinematic interstitial: full-bleed loop with one statement */
+  .cine{position:relative;min-height:88svh;display:flex;align-items:flex-end;overflow:hidden;background:#000}
+  .cine video,.cine img.bgs{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.55)}
+  .cine .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.35) 50%,rgba(0,0,0,.92) 100%)}
+  .cine-in{position:relative;z-index:2;padding:0 var(--rail) clamp(56px,10vh,110px);max-width:1180px}
+  .cine .k{font-size:11px;font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:.16em;color:var(--lav);
+    display:inline-flex;align-items:center;gap:11px;margin:0 0 18px}
+  .cine .k .dot{width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  .cine .stmt{margin:0;font-weight:var(--fw-bold);letter-spacing:-0.03em;line-height:1.02;color:#fff;
+    font-size:clamp(34px,6vw,86px);max-width:15ch;text-wrap:balance}
+  .cine .stmt em{font-style:normal;color:var(--lav)}
+  .cine .sub{margin:20px 0 0;max-width:56ch;font-size:clamp(14px,1.2vw,17px);line-height:1.55;color:rgba(255,255,255,.8)}
+
+  /* use case grid */
+  .ucg{padding:0 var(--rail) clamp(20px,5vh,44px);display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+  .ucc{background:#0E0E10;border-top:2px solid var(--accent);padding:clamp(20px,2vw,28px);display:flex;flex-direction:column;min-height:200px}
+  .reg-light .ucc{background:var(--ground-2);border:1px solid var(--line);border-top:2px solid var(--accent)}
+  .ucc .n{font-weight:var(--fw-light);font-size:30px;line-height:.9;letter-spacing:-0.03em;color:var(--idx);font-variant-numeric:tabular-nums}
+  .ucc .h{margin:auto 0 0;padding-top:18px;font-weight:var(--fw-bold);font-size:clamp(16px,1.4vw,19px);letter-spacing:-0.02em;line-height:1.15;color:var(--ink)}
+  .ucc .p{margin:8px 0 0;font-size:12.5px;line-height:1.5;color:var(--ink-2)}
+  .ucc .tag{margin-top:12px;display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:var(--fw-semibold);
+    letter-spacing:.12em;text-transform:uppercase;color:var(--ws)}
+  .ucc .tag::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+  .ucc .tag.live{color:var(--pass)}
+  @media(max-width:900px){.ucg{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.ucg{grid-template-columns:1fr}}
+
+  /* live run timelines */
+  .runs{padding:0 var(--rail) clamp(20px,5vh,44px);display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+  .run{background:#0E0E10;border:1px solid var(--dark-line);padding:clamp(20px,2.2vw,32px)}
+  .run .rk{font-size:10.5px;font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:.16em;color:var(--dark-ink-2);display:inline-flex;align-items:center;gap:9px}
+  .run .rk .pd{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 1.9s var(--ease) infinite}
+  .run h3{margin:12px 0 0;font-weight:var(--fw-bold);letter-spacing:-0.02em;font-size:clamp(20px,2vw,28px);color:#fff;line-height:1.1}
+  .run ol{list-style:none;margin:20px 0 0;padding:0;border-left:1px solid var(--dark-line)}
+  .run li{position:relative;padding:0 0 15px 22px;font-size:13px;line-height:1.5;color:rgba(241,241,239,.8)}
+  .run li::before{content:"";position:absolute;left:-5px;top:5px;width:9px;height:9px;border-radius:50%;background:#0E0E10;border:1.5px solid var(--lav)}
+  .run li.p::before{background:var(--accent);border-color:var(--accent)}
+  .run li b{color:#fff;font-weight:var(--fw-medium)}
+  .run li .who{display:block;font-size:9.5px;font-weight:var(--fw-semibold);letter-spacing:.14em;text-transform:uppercase;color:var(--dark-ink-2);margin-bottom:2px}
+  .run li.p .who{color:var(--lav)}
+  .run .facts{display:flex;gap:26px;flex-wrap:wrap;margin-top:6px;padding-top:16px;border-top:1px solid var(--dark-line)}
+  .run .facts span{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--dark-ink-2)}
+  .run .facts b{display:block;font-weight:var(--fw-light);font-size:26px;letter-spacing:-0.03em;color:#fff;text-transform:none;margin-top:3px;font-variant-numeric:tabular-nums}
+  @media(max-width:900px){.runs{grid-template-columns:1fr}}
+
+  /* side clip beside a list */
+  .pair{padding:0 var(--rail) clamp(20px,5vh,44px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.62fr);gap:clamp(24px,3vw,46px);align-items:center;max-width:1240px;margin:0 auto}
+  .pair video{width:100%;height:auto;display:block;border:1px solid var(--dark-line);background:#fff}
+  .pair .cap{margin:10px 0 0;font-size:11.5px;color:var(--dark-ink-2);line-height:1.5}
+  @media(max-width:860px){.pair{grid-template-columns:1fr}}
+
+  /* fences list */
+  .fences{padding:0 var(--rail) clamp(20px,5vh,44px);display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap);max-width:1240px;margin:0 auto}
+  .fence{display:flex;gap:16px;padding:clamp(18px,2vw,26px);border:1px solid var(--line);background:var(--panel)}
+  .fence .fi{flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:var(--fw-semibold);font-size:13px}
+  .fence h4{margin:0;font-weight:var(--fw-bold);letter-spacing:-0.02em;font-size:16px;color:var(--ink)}
+  .fence p{margin:6px 0 0;font-size:13px;line-height:1.5;color:var(--ink-2)}
+  @media(max-width:760px){.fences{grid-template-columns:1fr}}
+
+  /* resources */
+  .res{padding:0 var(--rail) clamp(20px,5vh,44px);display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+  .rc{position:relative;display:flex;flex-direction:column;min-height:260px;background:#0E0E10;border:1px solid var(--dark-line);padding:clamp(22px,2.4vw,34px);transition:border-color .3s ease,transform .4s var(--silk)}
+  .rc:hover,.rc:focus-visible{border-color:var(--accent);transform:translateY(-3px)}
+  .rc .rt{font-size:10.5px;font-weight:var(--fw-semibold);letter-spacing:.16em;text-transform:uppercase;color:var(--lav)}
+  .rc h3{margin:auto 0 0;font-weight:var(--fw-bold);font-size:clamp(22px,2.2vw,30px);letter-spacing:-0.025em;line-height:1.05;color:#fff}
+  .rc p{margin:10px 0 0;font-size:13px;line-height:1.5;color:var(--dark-ink-2)}
+  .rc .go{margin-top:18px;display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:var(--fw-semibold);letter-spacing:.14em;text-transform:uppercase;color:#fff}
+  .rc .go svg{width:16px;height:16px;fill:none;stroke:var(--accent);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  @media(max-width:900px){.res{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header id="hd">
+  <div class="hd-in">
+    <a class="brand" href="#film" aria-label="Accenture Wealth Management, top of page">
+      <img class="logo" src="ds/logos/accenture-logo-white.svg" alt="Accenture" />
+      <span class="div" aria-hidden="true"></span>
+      <span class="wm">Wealth Management</span>
+    </a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+      <span class="lbl">Menu</span>
+      <span class="lines" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="menu" id="menu" aria-label="Sections" aria-hidden="true">
+  <button class="menu-close" id="menuClose" aria-label="Close menu">&times;</button>
+  <a href="#idea"><span class="mn">01</span>The idea</a>
+  <a href="#desk"><span class="mn">02</span>The desk</a>
+  <a href="#cases"><span class="mn">03</span>Nine use cases</a>
+  <a href="#live"><span class="mn">04</span>Live, end to end</a>
+  <a href="#fences"><span class="mn">05</span>The fences</a>
+  <a href="#hood"><span class="mn">06</span>Under the hood</a>
+  <a href="#start"><span class="mn">07</span>Get started</a>
+</nav>
+
+<main>
+  <!-- ===================== HERO ===================== -->
+  <section class="film" id="film" aria-label="Wealth 360">
+    <img class="bg" src="media/still-0.webp" srcset="media/still-0-m.webp 760w, media/still-0.webp 1920w" sizes="100vw"
+         alt="A private bank office above the City of London at blue hour, rain on the window." decoding="async" />
+    <video class="bg" id="heroVid" autoplay muted loop playsinline preload="metadata" poster="media/still-0.webp" aria-hidden="true">
+      <source src="media/hero.mp4" type="video/mp4" />
+    </video>
+    <div class="scrim"></div>
+    <div class="film-in">
+      <p class="eyebrow"><span class="dot"></span>Wealth servicing · a working proof of concept</p>
+      <h1 class="titles" aria-label="Wealth 360.">
+        <span class="line l1" aria-hidden="true"><span class="li" style="--d:.35s">Wealth</span></span>
+        <span class="line l2" aria-hidden="true"><span class="li" style="--d:.5s">360.</span></span>
+      </h1>
+      <div class="meta">
+        <div class="meta-in">
+          <div class="rule"></div>
+          <p class="kick">Agents do the work. Salesforce keeps the rules. A named person decides.</p>
+          <p class="body">A servicing desk for wealth relationship managers, opened inside Claude. Two agents work every client request step by step and cite their evidence. <b>Nothing that moves money, clears a check or sends a letter happens without a person.</b></p>
+          <a class="cue" href="#idea" aria-label="Scroll to the idea">
+            See how it works
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== INTRO STRIP ===================== -->
+  <section class="room reg-light">
+    <div class="sec-rail rv">
+      <span class="k">Live in a Salesforce sandbox · <b>fictional clients, real systems</b></span>
+      <span class="n">29 October 2026</span>
+    </div>
+    <div class="intro">
+      <div class="claim rv"><span class="sn">Nine use cases</span><span class="sl">Run live, from email to letter</span><span class="sd">Money out, money in, sanctions, address, identity, documents, complaints, bereavement, everyday actions.</span></div>
+      <div class="claim rv"><span class="sn">Maker and checker</span><span class="sl">Every step cited, then checked</span><span class="sd">A Case agent does the work. A Review agent checks it in a fresh context, blind to the first agent's reasoning.</span></div>
+      <div class="claim rv"><span class="sn">The red line</span><span class="sl">An agent can never decide</span><span class="sd">Salesforce refuses any decision, release or approval that does not come from a named person.</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 01 THE IDEA ===================== -->
+  <section class="room reg-dark">
+    <div class="chap rv" id="idea">
+      <span class="idx">01</span>
+      <div class="lead">
+        <span class="k"><span class="dot"></span>The idea</span>
+        <h2>Most of servicing is gathering and checking. Very little is the decision.</h2>
+      </div>
+      <span class="of">Chapter 01 / 07</span>
+      <p class="intro-p">A client moves house. A client wants money out. A payment arrives nobody can match. A family loses someone. A client complains. Each needs the same checks across the client record, the KYC file, the payee and the sanctions list, and each must leave a trail a reviewer can follow. <b>Wealth 360 gives the gathering to agents and keeps the judgement with people.</b></p>
+    </div>
+    <div class="oc">
+      <div class="ocard rv"><span class="on">01</span><p class="oh">The Case agent</p><p class="op">Works each request through its journey, one step at a time, and cites the exact quote and source behind every step.</p></div>
+      <div class="ocard rv"><span class="on">02</span><p class="oh">The Review agent</p><p class="op">Checks the case against the journey's rules in a fresh context. It never sees the maker's reasoning, and it sends weak work back.</p></div>
+      <div class="ocard rv"><span class="on">03</span><p class="oh">The person</p><p class="op">Gets exceptions with the evidence and a proposed action. The decision is staged, shown back step by step, and confirmed by name.</p></div>
+      <div class="ocard rv"><span class="on">04</span><p class="oh">Salesforce</p><p class="op">Holds the journeys, rules and levels as metadata, keeps the record and the audit trail, and enforces who may do what.</p></div>
+    </div>
+  </section>
+
+  <!-- ===================== CINE: signature ===================== -->
+  <section class="cine" aria-label="A person decides">
+    <img class="bgs" src="media/still-2.webp" alt="" aria-hidden="true" />
+    <video autoplay muted loop playsinline preload="none" poster="media/still-2.webp" aria-hidden="true"><source src="media/sign.mp4" type="video/mp4" /></video>
+    <div class="scrim"></div>
+    <div class="cine-in">
+      <p class="k rv"><span class="dot"></span>The decision stays human</p>
+      <p class="stmt rv">The agents prepare. <em>A named person signs.</em></p>
+      <p class="sub rv">Authorise, approve, release: each one is staged first, shown back as a plan, and only then confirmed behind a single-use token, recorded against the person who confirmed it.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 02 THE DESK ===================== -->
+  <section class="room reg-dark">
+    <div class="chap rv" id="desk">
+      <span class="idx">02</span>
+      <div class="lead">
+        <span class="k"><span class="dot"></span>The desk</span>
+        <h2>One board. What needs you, and what is moving on its own.</h2>
+      </div>
+      <span class="of">Chapter 02 / 07</span>
+      <p class="intro-p">The relationship manager asks Claude for the desk, and it opens as a live page, reading straight from Salesforce through her own connector. <b>Click through the views.</b></p>
+    </div>
+    <div class="tour rv">
+      <div class="tour-in">
+        <div class="show" id="show">
+          <div class="show-stage" id="showStage" role="button" tabindex="0" aria-label="Desk slideshow. Click or press Enter for the next view." style="aspect-ratio:1440/900">
+            <img src="shots/01-board.webp" class="on" alt="The Wealth 360 desk: header with a Completed counter, five cases with you across Authorise and Decide, agents working, waiting on client, and a Completed column." decoding="async" />
+            <img src="shots/02-sanctions.webp" alt="A money in case named after its remitter, Victor Bondarev: a possible sanctions match, the agent's proposal and the letter to the remitting bank." loading="lazy" decoding="async" />
+            <img src="shots/03-checks.webp" alt="The Checks tab: match and screening, candidate accounts and the independent review, with checks a person can run." loading="lazy" decoding="async" />
+            <img src="shots/04-authorise.webp" alt="A money out case ready to authorise: all checks passed, only a person can release money." loading="lazy" decoding="async" />
+            <span class="rscrim" aria-hidden="true"></span>
+            <span class="rtag" id="showTag"><span class="dot"></span>The board</span>
+          </div>
+          <div class="show-panel">
+            <div class="show-deck">
+              <div class="show-info on"><p class="stop-num"><span class="dot"></span>01 · The board</p><p class="stop-take">Where to start, in one sentence.</p>
+                <div class="stop-facts"><p class="stop-fact">With you: <b>Authorise, Decide, Review</b>. Moving on its own: agents working, waiting on the client, completed.</p><p class="stop-fact">A <b>Completed</b> counter shows what closed, and how much of it the agents resolved on their own.</p><p class="stop-fact">Every card says why it is there.</p></div></div>
+              <div class="show-info"><p class="stop-num"><span class="dot"></span>02 · An exception</p><p class="stop-take">A screening hit only ever goes to a person.</p>
+                <div class="stop-facts"><p class="stop-fact">£22,000 from <b>Victor Bondarev</b>, a possible match on the UK Sanctions List.</p><p class="stop-fact">The agent proposes: keep it in suspense, ask the remitting bank, refer to compliance.</p></div></div>
+              <div class="show-info"><p class="stop-num"><span class="dot"></span>03 · The checks</p><p class="stop-take">Every outside check, with its source.</p>
+                <div class="stop-facts"><p class="stop-fact">Match scoring in code, <b>93% against a 90% threshold</b>.</p><p class="stop-fact">The independent review, and checks the person can run again by hand.</p></div></div>
+              <div class="show-info"><p class="stop-num"><span class="dot"></span>04 · Authorise</p><p class="stop-take">Prepared and checked. The release is yours.</p>
+                <div class="stop-facts"><p class="stop-fact">Payee verified, account ownership confirmed, no recent bank change.</p><p class="stop-fact">Only a person can release money.</p></div></div>
+              
+            </div>
+            <div class="show-nav">
+              <button class="snbtn" id="showPrev" aria-label="Previous view"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+              <div class="snix-row" role="tablist"><button class="snix on">01</button><button class="snix">02</button><button class="snix">03</button><button class="snix">04</button></div>
+              <button class="snbtn" id="showNext" aria-label="Next view"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <p class="tour-close"><b>The running product, not a mock-up.</b> Every screen above was captured from the live desk against the sandbox, with fictional clients.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 03 NINE USE CASES ===================== -->
+  <section class="room reg-light">
+    <div class="chap rv" id="cases">
+      <span class="idx">03</span>
+      <div class="lead">
+        <span class="k"><span class="dot"></span>Nine use cases</span>
+        <h2>The requests that keep coming back, run live.</h2>
+      </div>
+      <span class="of">Chapter 03 / 07</span>
+      <p class="intro-p">Five journeys, forty nine steps, each with its actor, its stage and its evidence rule, held in Salesforce as custom metadata. <b>Change a rule there, and the agents follow it the next time they run.</b></p>
+    </div>
+    <div class="ucg">
+      <div class="ucc rv"><span class="n">01</span><p class="h">Money out, released by a person</p><p class="p">Payee, ownership and recent bank changes checked; the release is staged and confirmed by name.</p><span class="tag live">Live</span></div>
+      <div class="ucc rv"><span class="n">02</span><p class="h">A sanctions match on a credit</p><p class="p">The remitter screened against the UK Sanctions List; the funds held in suspense for a person.</p><span class="tag live">Live</span></div>
+      <div class="ucc rv"><span class="n">03</span><p class="h">A change of address, straight through</p><p class="p">From an email and a water bill to an updated record and a confirmation, with no person, only when every fence holds.</p><span class="tag live">Live</span></div>
+      <div class="ucc rv"><span class="n">04</span><p class="h">A request logged by phone</p><p class="p">Logged from the desk, picked up within seconds, handed back when it falls outside the journey's rules.</p><span class="tag live">Live</span></div>
+      <div class="ucc rv"><span class="n">05</span><p class="h">Identity, verified and written back</p><p class="p">A document and liveness check sent by link; the result lands on the client's KYC profile by itself.</p><span class="tag live">Live</span></div>
+      <div class="ucc rv"><span class="n">06</span><p class="h">Reading a document</p><p class="p">Drop a bill on the desk; Claude reads the name, address and date, and files it on the case.</p><span class="tag live">Live</span></div>
+      <div class="ucc rv"><span class="n">07</span><p class="h">A complaint, from email to answer</p><p class="p">Classified, cause found, response drafted, checked, approved and emailed on the bank's letterhead.</p><span class="tag live">Live end to end</span></div>
+      <div class="ucc rv"><span class="n">08</span><p class="h">Everyday actions</p><p class="p">Log a call, book a meeting, add a note: standard Salesforce tasks and events, on the client and the case.</p><span class="tag live">Live</span></div>
+      <div class="ucc rv"><span class="n">09</span><p class="h">A bereavement, handled with care</p><p class="p">Death recorded, accounts on hold, letter approved and sent, a one-to-one booked with the executor.</p><span class="tag live">Live end to end</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== 04 LIVE END TO END ===================== -->
+  <section class="room reg-dark">
+    <div class="chap rv" id="live">
+      <span class="idx">04</span>
+      <div class="lead">
+        <span class="k"><span class="dot"></span>Live, end to end</span>
+        <h2>Two cases, from the client's email to a sent letter.</h2>
+      </div>
+      <span class="of">Chapter 04 / 07</span>
+      <p class="intro-p">Worked on 29 October in the sandbox, as they happened. <b>The agents did the work in minutes; the person decided in seconds.</b></p>
+    </div>
+    <div class="runs">
+      <div class="run rv">
+        <span class="rk"><span class="pd"></span>Complaint · case 00001375</span>
+        <h3>"Please treat this as a formal complaint."</h3>
+        <ol>
+          <li><span class="who">Client</span>Eleanor Whitfield emails: she has heard nothing about her <b>£15,000 withdrawal</b>.</li>
+          <li><span class="who">Case agent</span>Classifies the complaint and finds the cause in Salesforce: <b>the payment is waiting for a person to authorise it</b>, and nobody told her.</li>
+          <li><span class="who">Review agent</span>Sends the case back once: the eight week deadline was wrong. The Case agent fixes it and drafts the response.</li>
+          <li class="p"><span class="who">Relationship manager</span>Reads the response, approves it, confirms the plan.</li>
+          <li><span class="who">Salesforce</span>Emails the response to the client on the bank's letterhead, and records it on the case.</li>
+        </ol>
+        <div class="facts"><span>Agent runs<b>5</b></span><span>Agent time<b>4 min 50 s</b></span><span>Reworked by the checker<b>Once</b></span></div>
+      </div>
+      <div class="run rv">
+        <span class="rk"><span class="pd"></span>Bereavement · case 00001380</span>
+        <h3>"My mother, Margaret Ellison."</h3>
+        <ol>
+          <li><span class="who">Executor</span>David Ellison emails the death certificate and the grant of probate.</li>
+          <li><span class="who">Case agent</span>Reads both, finds <b>Margaret's three accounts</b>, records her death; Salesforce checks the certificate and the family link, then puts the accounts <b>on hold</b>.</li>
+          <li><span class="who">Case agent</span>Finds David's identity already on file, drafts a condolence letter, proposes a one-to-one with three slots.</li>
+          <li><span class="who">Review agent</span>Passes the case first time.</li>
+          <li class="p"><span class="who">Relationship manager</span>Approves the letter as drafted, picks a slot, confirms.</li>
+          <li><span class="who">Salesforce</span>Emails the letter and books the meeting, with David as the contact.</li>
+        </ol>
+        <div class="facts"><span>Agent runs<b>3</b></span><span>Agent time<b>4 min</b></span><span>Accounts held<b>3</b></span></div>
+      </div>
+    </div>
+    <div class="pair rv">
+      <div>
+        <div class="lc" style="margin:0;max-width:none">
+          <div class="lc-head"><span class="lt"><span class="dot"></span>What the person sees while the agents work</span></div>
+          <p class="lc-cap" style="margin-top:12px">The live bereavement case, sped up ten times: the progress bar fills and each agent step lands on the Activity tab with its time, until the case comes back to the relationship manager for approval. <b>Nothing on screen is mocked.</b></p>
+          <div class="lc-through"><span class="lc-chip"><span class="cd"></span>Case agent</span><span class="lc-chip"><span class="cd"></span>Review agent</span><span class="lc-chip"><span class="cd"></span>Death recorded</span><span class="lc-chip"><span class="cd"></span>3 accounts on hold</span><span class="lc-chip"><span class="cd"></span>Letter and meeting proposed</span></div>
+        </div>
+      </div>
+      <div>
+        <video autoplay muted loop playsinline preload="metadata" poster="media/clip-bereavement-poster.webp" aria-label="The bereavement case drawer as the agents work, sped up ten times"><source src="media/clip-bereavement.mp4" type="video/mp4" /></video>
+        <p class="cap">Time-lapse, about four minutes at ten times speed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CINE: vault ===================== -->
+  <section class="cine" aria-label="The system of record">
+    <img class="bgs" src="media/still-3.webp" alt="" aria-hidden="true" />
+    <video autoplay muted loop playsinline preload="none" poster="media/still-3.webp" aria-hidden="true"><source src="media/vault.mp4" type="video/mp4" /></video>
+    <div class="scrim"></div>
+    <div class="cine-in">
+      <p class="k rv"><span class="dot"></span>Salesforce stays the system of record</p>
+      <p class="stmt rv">Every rule, every record, <em>every step on file.</em></p>
+      <p class="sub rv">Journeys and rules live as custom metadata. Cases, checks, decisions and the audit trail live on standard Financial Services Cloud records, under the bank's own sharing and permissions.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 05 THE FENCES ===================== -->
+  <section class="room reg-light">
+    <div class="chap rv" id="fences">
+      <span class="idx">05</span>
+      <div class="lead">
+        <span class="k"><span class="dot"></span>The fences</span>
+        <h2>Safety enforced in code, not in a prompt.</h2>
+      </div>
+      <span class="of">Chapter 05 / 07</span>
+      <p class="intro-p">The agents run as their own identity, with their own permissions. Whatever an agent is told, <b>Salesforce refuses what it is not allowed to do.</b></p>
+    </div>
+    <div class="fences">
+      <div class="fence rv"><span class="fi">1</span><div><h4>No agent can decide</h4><p>Stage, confirm, approve and release belong to people. The agent identity cannot call them, and Salesforce rejects them if it tries.</p></div></div>
+      <div class="fence rv"><span class="fi">2</span><div><h4>Staged, shown, confirmed</h4><p>A decision is staged first and shown back as a plan. It runs only on confirmation, behind a single-use token, recorded against the person.</p></div></div>
+      <div class="fence rv"><span class="fi">3</span><div><h4>Straight through only when clean</h4><p>A change of address completes without a person only at level one, with identity verified on file, an address match and no money moving.</p></div></div>
+      <div class="fence rv"><span class="fi">4</span><div><h4>A death is recorded only with proof</h4><p>Accounts go on hold only when a death certificate is on the case, the date is real, and the deceased is the client or a recorded relative.</p></div></div>
+      <div class="fence rv"><span class="fi">5</span><div><h4>Drafts wait for a person</h4><p>Agents send only document requests and address confirmations, to allowlisted addresses. Every other letter waits for a person's release.</p></div></div>
+      <div class="fence rv"><span class="fi">6</span><div><h4>Switches and limits</h4><p>An admin app controls which journeys the agents may work, their working hours and a daily spend cap, and records every run.</p></div></div>
+    </div>
+  </section>
+
+  <!-- ===================== 06 UNDER THE HOOD ===================== -->
+  <section class="uh rv" id="hood" aria-label="Under the hood">
+    <div class="uh-head">
+      <span class="idx">06</span>
+      <div class="lead">
+        <span class="k"><span class="dot"></span>Under the hood</span>
+        <h2>Claude in front, Salesforce underneath, two connectors in between.</h2>
+        <p>The desk talks to two MCP connectors. Wealth 360 is a Salesforce hosted MCP server that runs as the signed-in person. Wealth 360 Checks runs the outside checks and writes every result back to Salesforce. The agents run on their own, woken by a platform event within seconds of a case changing.</p>
+      </div>
+    </div>
+    <div class="uh-exhibit">
+      <svg viewBox="0 0 1000 430" role="img" aria-label="Architecture: the relationship manager in Claude, the Wealth 360 plugin and desk, two MCP connectors, Salesforce Financial Services Cloud, outside check services, and the agent runner.">
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="ax-arrow"/></marker>
+        <marker id="ahe" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="ax-arrow em"/></marker></defs>
+        <text x="20" y="22" class="ax-k">People</text>
+        <rect x="20" y="34" width="290" height="74" class="ax-box"/><text x="38" y="64" class="ax-t">Relationship manager in Claude</text><text x="38" y="86" class="ax-s">Cowork or Code, the Wealth 360 plugin</text>
+        <rect x="20" y="128" width="290" height="74" class="ax-box emph"/><text x="38" y="158" class="ax-emtxt">The desk</text><text x="38" y="180" class="ax-s">A live page: board, cases, decisions</text>
+        <line x1="165" y1="108" x2="165" y2="126" class="ax-line" marker-end="url(#ah)"/>
+        <text x="370" y="22" class="ax-k">Connectors (MCP)</text>
+        <rect x="370" y="34" width="270" height="74" class="ax-box"/><text x="388" y="64" class="ax-t">Wealth 360</text><text x="388" y="86" class="ax-s">Salesforce hosted, 27 tools, as the person</text>
+        <rect x="370" y="128" width="270" height="74" class="ax-box"/><text x="388" y="158" class="ax-t">Wealth 360 Checks</text><text x="388" y="180" class="ax-s">Outside checks, results written back</text>
+        <line x1="310" y1="150" x2="368" y2="80" class="ax-line" marker-end="url(#ah)"/><line x1="310" y1="165" x2="368" y2="165" class="ax-line" marker-end="url(#ah)"/>
+        <text x="700" y="22" class="ax-k">Systems</text>
+        <rect x="700" y="34" width="280" height="168" class="ax-box emph"/><text x="718" y="64" class="ax-emtxt">Salesforce Financial Services Cloud</text>
+        <text x="718" y="90" class="ax-s">Journeys and rules as metadata</text><text x="718" y="110" class="ax-s">Cases, KYC profile, accounts, events</text><text x="718" y="130" class="ax-s">Decision gate and audit trail</text><text x="718" y="150" class="ax-s">Email in and out, on the letterhead</text><text x="718" y="170" class="ax-s">Platform event: a case changed</text>
+        <line x1="640" y1="71" x2="698" y2="71" class="ax-line" marker-end="url(#ah)"/><line x1="640" y1="165" x2="698" y2="165" class="ax-line" marker-end="url(#ah)"/>
+        <text x="370" y="262" class="ax-k">Outside checks</text>
+        <rect x="370" y="274" width="128" height="56" class="ax-box sys"/><text x="384" y="300" class="ax-t">UK Sanctions</text><text x="384" y="318" class="ax-s">screening</text>
+        <rect x="512" y="274" width="128" height="56" class="ax-box sys"/><text x="526" y="300" class="ax-t">Payee check</text><text x="526" y="318" class="ax-s">open banking</text>
+        <rect x="370" y="344" width="128" height="56" class="ax-box sys"/><text x="384" y="370" class="ax-t">Identity</text><text x="384" y="388" class="ax-s">document, liveness</text>
+        <rect x="512" y="344" width="128" height="56" class="ax-box sys"/><text x="526" y="370" class="ax-t">Address</text><text x="526" y="388" class="ax-s">postcode lookup</text>
+        <line x1="505" y1="202" x2="505" y2="272" class="ax-line" marker-end="url(#ah)"/>
+        <text x="20" y="262" class="ax-k">Agents</text>
+        <rect x="20" y="274" width="290" height="126" class="ax-box"/><text x="38" y="304" class="ax-t">Agent runner, its own identity</text><text x="38" y="326" class="ax-s">Case agent: works the steps, cites evidence</text><text x="38" y="346" class="ax-s">Review agent: checks in a fresh context</text><text x="38" y="366" class="ax-s">Woken by the platform event in seconds</text><text x="38" y="386" class="ax-s">Never stages, approves or releases</text>
+        <path d="M310 300 C 600 300, 640 250, 760 204" class="ax-line" marker-end="url(#ahe)" style="stroke:var(--accent)"/>
+        <path d="M310 330 L 368 310" class="ax-line" marker-end="url(#ah)"/>
+      </svg>
+    </div>
+    <div class="uh-cap"><b>Read in place, written under fences.</b> The desk and the agents use the same two connectors. Every read and write runs under Salesforce sharing and permissions; every outside check result lands on the case and, for screening and identity, on the client's KYC profile.</div>
+  </section>
+
+  <!-- ===================== 07 GET STARTED ===================== -->
+  <section class="room reg-dark">
+    <div class="chap rv" id="start">
+      <span class="idx">07</span>
+      <div class="lead">
+        <span class="k"><span class="dot"></span>Get started</span>
+        <h2>Everything you need to run the demo.</h2>
+      </div>
+      <span class="of">Chapter 07 / 07</span>
+      <p class="intro-p">The User Guide walks a relationship manager or presenter through the desk and every use case, step by step. <b>The plugin and its changelog live in this repository.</b></p>
+    </div>
+    <div class="res">
+      <a class="rc rv" href="guide/user-guide.pdf" target="_blank" rel="noopener"><span class="rt">User Guide · PDF</span><h3>The User Guide</h3><p>The desk, decisions, all nine use cases, the Salesforce side, email, a demo script and troubleshooting.</p><span class="go">Open the PDF <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="rc rv" href="guide/index.html"><span class="rt">User Guide · web</span><h3>Read it in the browser</h3><p>The same guide as a web page, with every figure.</p><span class="go">Open the guide <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="rc rv" href="https://github.com/cowork-offering/wealth-360" target="_blank" rel="noopener"><span class="rt">Plugin · version 0.12.0</span><h3>Install the plugin</h3><p>The desk page, the chat skills and the two agents, for Claude Cowork and Claude Code. Needs the two connectors.</p><span class="go">View on GitHub <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </section>
+
+  <!-- ===================== CINE: care ===================== -->
+  <section class="chapter reg-dark handoff closeroom" id="close" aria-labelledby="cl-h">
+    <div class="ch-in">
+      <span class="k rv"><span class="rule"></span>Where this goes next</span>
+      <p class="stmt rv" id="cl-h">The same pattern fits every servicing request a bank handles: agents that gather and check, cite every step and send weak work back, with Salesforce holding the rules. <b>The people stay where they matter, on the decisions.</b></p>
+    </div>
+    <p class="closing-fine">Proof of concept. Built in a Salesforce sandbox with fictional clients, accounts and documents, and no real customer data. Not a product and not offered for sale. Figures, timings and costs come from test runs and are illustrative; anything said about future capability is an intention, not a commitment.</p>
+    <footer>
+      <div class="foot-in">
+        <span class="foot-copy">© 2026 Accenture. All rights reserved.</span>
+      </div>
+    </footer>
+  </section>
+</main>
+
+<script>
+(function(){
+  var body=document.body; body.classList.add('js');
+  var RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches);
+  var hd=document.getElementById('hd');
+  function onScroll(){ hd.classList.toggle('scrolled', window.scrollY>8); }
+  onScroll(); addEventListener('scroll', onScroll, {passive:true});
+
+  var burger=document.getElementById('burger'), menu=document.getElementById('menu'), mClose=document.getElementById('menuClose');
+  function openMenu(){ menu.classList.add('open'); menu.setAttribute('aria-hidden','false'); burger.setAttribute('aria-expanded','true'); body.classList.add('menu-open'); }
+  function closeMenu(){ menu.classList.remove('open'); menu.setAttribute('aria-hidden','true'); burger.setAttribute('aria-expanded','false'); body.classList.remove('menu-open'); }
+  burger.addEventListener('click', openMenu); mClose.addEventListener('click', closeMenu);
+  menu.addEventListener('click', function(e){ if(e.target===menu||e.target.closest('a')){ closeMenu(); } });
+  addEventListener('keydown', function(e){ if(e.key==='Escape'){ closeMenu(); } });
+
+  /* videos: play only in view, never under reduced motion */
+  var vids=[].slice.call(document.querySelectorAll('video'));
+  if(RM){ vids.forEach(function(v){ v.pause(); v.removeAttribute('autoplay'); }); }
+  else if('IntersectionObserver' in window){
+    var vo=new IntersectionObserver(function(es){ es.forEach(function(e){ var v=e.target;
+      if(e.isIntersecting){ if(v.preload==='none'){ v.preload='auto'; v.load(); } var p=v.play(); if(p&&p.catch){ p.catch(function(){}); } } else { v.pause(); } }); },{threshold:.15});
+    vids.forEach(function(v){ vo.observe(v); });
+  }
+  vids.forEach(function(v){ v.addEventListener('error', function(){ v.style.display='none'; }, true); });
+
+  /* reveal */
+  var rv=[].slice.call(document.querySelectorAll('.rv'));
+  if('IntersectionObserver' in window && !RM){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.12});
+    rv.forEach(function(el){ io.observe(el); });
+  } else { rv.forEach(function(el){ el.classList.add('in'); }); }
+
+  /* desk slideshow */
+  (function(){
+    var stage=document.getElementById('showStage'); if(!stage) return;
+    var imgs=[].slice.call(stage.querySelectorAll('img')), infos=[].slice.call(document.querySelectorAll('.show-info')),
+        ix=[].slice.call(document.querySelectorAll('.snix')), tag=document.getElementById('showTag'),
+        TAGS=['The board','An exception · sanctions','The checks','Authorise'], cur=0, N=imgs.length;
+    function go(n){ cur=(n+N)%N;
+      imgs.forEach(function(im,i){ im.classList.toggle('on', i===cur); });
+      infos.forEach(function(el,i){ el.classList.toggle('on', i===cur); });
+      ix.forEach(function(el,i){ el.classList.toggle('on', i===cur); });
+      tag.innerHTML='<span class="dot"></span>'+TAGS[cur]; }
+    document.getElementById('showNext').addEventListener('click', function(){ go(cur+1); });
+    document.getElementById('showPrev').addEventListener('click', function(){ go(cur-1); });
+    ix.forEach(function(el,i){ el.addEventListener('click', function(){ go(i); }); });
+    stage.addEventListener('click', function(){ go(cur+1); });
+    stage.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(cur+1); } });
+  })();
+})();
+</script>
+</body>
+</html>

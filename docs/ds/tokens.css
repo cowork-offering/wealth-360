@@ -1,0 +1,118 @@
+/* ============================================================
+   ACCENTURE DESIGN SYSTEM — summit import (from the founder's
+   claude.ai/design "Accenture Design System" project, 2026-07-10)
+   Fonts: self-hosted Graphik woff2 in ds/fonts/ (licensed, brand kit).
+   July 2025 guidelines: Graphik ONLY (no GT Sectra, no serif).
+   ============================================================ */
+
+/* ---------- Graphik (sans) — the one family ---------- */
+@font-face { font-family:"Graphik"; font-style:normal; font-weight:300; font-display:swap;
+  src:url("fonts/Graphik-Light.woff2") format("woff2"); }
+@font-face { font-family:"Graphik"; font-style:normal; font-weight:400; font-display:swap;
+  src:url("fonts/Graphik-Regular.woff2") format("woff2"); }
+@font-face { font-family:"Graphik"; font-style:normal; font-weight:500; font-display:swap;
+  src:url("fonts/Graphik-Medium.woff2") format("woff2"); }
+@font-face { font-family:"Graphik"; font-style:normal; font-weight:600; font-display:swap;
+  src:url("fonts/Graphik-Semibold.woff2") format("woff2"); }
+@font-face { font-family:"Graphik"; font-style:normal; font-weight:700; font-display:swap;
+  src:url("fonts/Graphik-Bold.woff2") format("woff2"); }
+
+:root {
+  /* ---- Families ---- */
+  --font-sans: "Graphik","Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --font-display: var(--font-sans);
+
+  /* ---- Weights (usage per Accenture typography tokens) ---- */
+  --fw-thin:200;      /* oversized divider/ghost numerals (render w/ Light 300 file) */
+  --fw-light:300;     /* divider titles, light leads, thin giant numerals */
+  --fw-regular:400;   /* body */
+  --fw-medium:500;    /* labels, emphasis body */
+  --fw-semibold:600;  /* subheads, eyebrows */
+  --fw-bold:700;      /* headlines */
+
+  /* ---- Line height / letter-spacing ---- */
+  --lh-tight:1.04; --lh-snug:1.16; --lh-normal:1.5;
+  --ls-tight:-0.025em; --ls-snug:-0.01em; --ls-eyebrow:0.1em;
+
+  /* ---- Core brand color ---- */
+  --acn-purple:#A100FF;            /* Electric Violet, the signature */
+  --acn-purple-100:#E6DCFF; --acn-purple-200:#C2A3FF; --acn-purple-300:#C77DFF;
+  --acn-purple-400:#B23BFF; --acn-violet-600:#7500C0; --acn-violet-700:#5E00A0;
+  --acn-indigo:#460073; --acn-indigo-deep:#2A0A54; --acn-violet-950:#1A0736;
+
+  /* ---- Accents (official July 2025) ---- */
+  --acn-magenta:#E83FB7; --acn-pink:#FF50A0; --acn-magenta-deep:#B5009F;
+  --acn-blue:#224BFF; --acn-teal:#05F2DB;
+
+  /* ---- Neutrals ---- */
+  --acn-grey-50:#F1F1EF; --acn-grey-200:#CFCFCF; --acn-grey-400:#818180;
+  --acn-grey-600:#5C5C5C; --acn-grey-800:#2B2B2B; --acn-grey-900:#1A1A1A;
+
+  /* ---- Semantic surfaces ---- */
+  --surface-dark:#000000; --surface-deep:#1A0736; --surface-card-dark:#14111C;
+  --surface-light:#FFFFFF; --surface-muted:#F1F1EF;
+
+  /* ---- Semantic text/lines ---- */
+  --text-muted-dark:rgba(255,255,255,0.72); --text-muted-light:#5C5C5C;
+  --border-on-dark:rgba(255,255,255,0.16); --border-on-light:#E6E6E6;
+  --eyebrow-on-dark:#C9A9FF;
+
+  /* ---- Summit mapping ---- */
+  --redline:#FF50A0;               /* the red Faden = official Accenture pink */
+
+  /* ============================================================
+     REGISTER SYSTEM (ROUND-3 DIRECTION §1.1) — the anti-slop spine.
+     Every section drives its world off ONE class (.reg-dark / .reg-light).
+     Content code references the ALIASES ONLY: --ground / --panel / --ink /
+     --ink-2 / --line / --grid / --accent / --thread. A card, eyebrow or
+     exhibit is written once and reads correctly in either register because
+     the section class supplies the world. Shared across the hub + 4 subpages.
+     ============================================================ */
+  /* DARK = cinematic film scenes. Ground is NEUTRAL near-black, never violet-tinted. */
+  --dark-ground:#0A0A0B;              /* the only dark ground. not #1A0736. */
+  --dark-ground-2:#0E0E10;           /* a barely-raised band for adjacency */
+  --dark-panel:#141416;              /* raised neutral panel/card on dark */
+  --dark-ink:#F1F1EF;                /* primary text on dark */
+  --dark-ink-2:rgba(241,241,239,.62);/* secondary text on dark */
+  --dark-line:rgba(255,255,255,.14); /* hairline border on dark */
+  --dark-grid:rgba(255,255,255,.06); /* faint exhibit gridline on dark */
+  --dark-idx:color-mix(in srgb,#ffffff 16%,transparent); /* ghost numerals = NEUTRAL grey */
+
+  /* LIGHT = Accenture-grade editorial. */
+  --light-ground:#FFFFFF;            /* editorial white */
+  --light-ground-2:#F4F3F1;          /* off-white band for section differentiation */
+  --light-panel:#FFFFFF;             /* card = white on off-white ground (or vice-versa) */
+  --light-ink:#141414;               /* primary ink. NOT pure #000 (Stripe rule). */
+  --light-ink-2:#5C5C5C;             /* secondary ink */
+  --light-line:#E4E3E0;              /* hairline border on light */
+  --light-grid:#EEEDEA;              /* faint exhibit gridline on light */
+  --light-idx:color-mix(in srgb,#141414 15%,transparent); /* ghost numerals = NEUTRAL grey */
+
+  /* THE ACCENT. Same hex in both registers. This invariance reads as "one brand". */
+  --accent:#A100FF;                  /* Electric Violet. emphasis only. */
+  --thread:#FF50A0;                  /* the Faden. thread ONLY. never a fill. */
+}
+
+/* Sections inherit their world from one class. Content uses the aliases below,
+   never the register-specific tokens directly. */
+.reg-dark  { --ground:var(--dark-ground);  --ground-2:var(--dark-ground-2);
+             --panel:var(--dark-panel);     --ink:var(--dark-ink);
+             --ink-2:var(--dark-ink-2);     --line:var(--dark-line);
+             --grid:var(--dark-grid);       --idx:var(--dark-idx);
+             background:var(--ground); color:var(--ink); }
+.reg-light { --ground:var(--light-ground); --ground-2:var(--light-ground-2);
+             --panel:var(--light-panel);    --ink:var(--light-ink);
+             --ink-2:var(--light-ink-2);    --line:var(--light-line);
+             --grid:var(--light-grid);      --idx:var(--light-idx);
+             background:var(--ground); color:var(--ink); }
+
+/* Theme-aware coherence: the light-theme toggle softens the cinematic (dark)
+   register to an off-white editorial band so the whole page stays coherently
+   light, while the light register stays true white. The dark theme keeps the
+   registers as authored (near-black cinematic vs white editorial band). This
+   keeps the toggle first-class and AA-correct in BOTH themes on every page. */
+html[data-theme="light"] .reg-dark{
+  --ground:var(--light-ground-2); --ground-2:#FFFFFF;
+  --panel:var(--light-panel); --ink:var(--light-ink); --ink-2:var(--light-ink-2);
+  --line:var(--light-line); --grid:var(--light-grid); --idx:var(--light-idx);
+}
