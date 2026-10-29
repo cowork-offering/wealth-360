@@ -360,7 +360,7 @@
   .uh-exhibit{width:100%;max-width:1040px;margin:clamp(26px,5vh,48px) auto 0;border:1px solid var(--light-line);background:#fff;
     padding:clamp(20px,2.4vw,34px)}
   .uh-exhibit svg{width:100%;height:auto;display:block}
-  .ax-line{stroke:#C9C8C4;stroke-width:1.3;fill:none}
+  .ax-line{stroke:#9A9996;stroke-width:1.2;fill:none}
   .ax-box{fill:#fff;stroke:#141414;stroke-width:1.3}
   .ax-box.sys{fill:#FAFAF9}
   .ax-box.emph{fill:#fff;stroke:var(--accent);stroke-width:1.6}
@@ -368,7 +368,10 @@
   .ax-s{fill:#5C5C5C;font-family:var(--font-sans);font-weight:400;font-size:11px}
   .ax-k{fill:#818180;font-family:var(--font-sans);font-weight:600;font-size:10px;letter-spacing:.11em;text-transform:uppercase}
   .ax-emtxt{fill:var(--accent);font-family:var(--font-sans);font-weight:600;font-size:13px;letter-spacing:-0.01em}
-  .ax-arrow{fill:#141414}
+  .ax-rule{stroke:#EDECE8;stroke-width:1}
+  .ax-line.em{stroke:var(--accent)}
+  .ax-s.em{fill:var(--accent)}
+  .ax-arrow{fill:#9A9996}
   .ax-arrow.em{fill:var(--accent)}
   .uh-cap{width:100%;max-width:1040px;margin:16px auto 0;font-size:12.5px;color:var(--light-ink-2);line-height:1.55}
   .uh-cap b{color:var(--light-ink);font-weight:var(--fw-medium)}

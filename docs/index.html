@@ -7,9 +7,9 @@
 <link rel="icon" href="ds/favicon.svg" type="image/svg+xml" />
 <meta name="theme-color" content="#0A0A0B" />
 <link rel="stylesheet" href="ds/tokens.css?v=r3" />
-<link rel="stylesheet" href="site.css?v=1" />
+<link rel="stylesheet" href="site.css?v=3" />
 <meta name="robots" content="noindex,nofollow" />
-<script src="gate.js?v=2"></script>
+<script src="gate.js?v=5"></script>
 <title>Wealth 360 · agents do the work, people decide</title>
 <style>
   /* hero film: a slow Higgsfield loop under the title */
@@ -36,10 +36,9 @@
   .ucc .n{font-weight:var(--fw-light);font-size:30px;line-height:.9;letter-spacing:-0.03em;color:var(--idx);font-variant-numeric:tabular-nums}
   .ucc .h{margin:auto 0 0;padding-top:18px;font-weight:var(--fw-bold);font-size:clamp(16px,1.4vw,19px);letter-spacing:-0.02em;line-height:1.15;color:var(--ink)}
   .ucc .p{margin:8px 0 0;font-size:12.5px;line-height:1.5;color:var(--ink-2)}
-  .ucc .tag{margin-top:12px;display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:var(--fw-semibold);
-    letter-spacing:.12em;text-transform:uppercase;color:var(--ws)}
-  .ucc .tag::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
-  .ucc .tag.live{color:var(--pass)}
+  .ucc .tag{margin-top:14px;display:flex;align-items:center;gap:12px;font-size:10px;font-weight:var(--fw-semibold);
+    letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+  .ucc .tag::before{content:"";width:22px;height:1px;background:currentColor}
   @media(max-width:900px){.ucg{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:560px){.ucg{grid-template-columns:1fr}}
 
@@ -68,13 +67,17 @@
   @media(max-width:860px){.pair{grid-template-columns:1fr}}
 
   /* fences list */
-  .fences{padding:0 var(--rail) clamp(20px,5vh,44px);display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap);max-width:1240px;margin:0 auto}
-  .fence{display:flex;gap:16px;padding:clamp(18px,2vw,26px);border:1px solid var(--line);background:var(--panel)}
-  .fence .fi{flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:var(--fw-semibold);font-size:13px}
+  .fences{padding:0 var(--rail) clamp(20px,5vh,44px);display:grid;grid-template-columns:repeat(2,1fr);column-gap:clamp(32px,5vw,80px);max-width:1240px;margin:0 auto;width:100%}
+  .fence{display:flex;gap:22px;padding:clamp(22px,2.2vw,30px) 0;border-top:1px solid var(--line)}
+  .fence .fi{flex:none;width:44px;font-weight:var(--fw-light);font-size:34px;line-height:.9;letter-spacing:-0.04em;color:var(--idx);font-variant-numeric:tabular-nums}
   .fence h4{margin:0;font-weight:var(--fw-bold);letter-spacing:-0.02em;font-size:16px;color:var(--ink)}
   .fence p{margin:6px 0 0;font-size:13px;line-height:1.5;color:var(--ink-2)}
   @media(max-width:760px){.fences{grid-template-columns:1fr}}
 
+.band{padding:clamp(56px,9vh,96px) 0 clamp(36px,6vh,64px)}
+  .hl{list-style:none;margin:18px 0 0;padding:0}
+  .hl li{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:12px 0;border-top:1px solid var(--dark-line);font-size:13px;line-height:1.45;color:rgba(241,241,239,.82)}
+  .hl li span{font-size:10px;font-weight:var(--fw-semibold);letter-spacing:.16em;text-transform:uppercase;color:var(--lav);padding-top:2px}
   /* resources */
   .res{padding:0 var(--rail) clamp(20px,5vh,44px);display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
   .rc{position:relative;display:flex;flex-direction:column;min-height:260px;background:#0E0E10;border:1px solid var(--dark-line);padding:clamp(22px,2.4vw,34px);transition:border-color .3s ease,transform .4s var(--silk)}
@@ -144,7 +147,7 @@
   </section>
 
   <!-- ===================== INTRO STRIP ===================== -->
-  <section class="room reg-light">
+  <section class="reg-light band">
     <div class="sec-rail rv">
       <span class="k">Live in a Salesforce sandbox · <b>fictional clients, real systems</b></span>
       <span class="n">29 October 2026</span>
@@ -245,15 +248,15 @@
       <p class="intro-p">Five journeys, forty nine steps, each with its actor, its stage and its evidence rule, held in Salesforce as custom metadata. <b>Change a rule there, and the agents follow it the next time they run.</b></p>
     </div>
     <div class="ucg">
-      <div class="ucc rv"><span class="n">01</span><p class="h">Money out, released by a person</p><p class="p">Payee, ownership and recent bank changes checked; the release is staged and confirmed by name.</p><span class="tag live">Live</span></div>
-      <div class="ucc rv"><span class="n">02</span><p class="h">A sanctions match on a credit</p><p class="p">The remitter screened against the UK Sanctions List; the funds held in suspense for a person.</p><span class="tag live">Live</span></div>
-      <div class="ucc rv"><span class="n">03</span><p class="h">A change of address, straight through</p><p class="p">From an email and a water bill to an updated record and a confirmation, with no person, only when every fence holds.</p><span class="tag live">Live</span></div>
-      <div class="ucc rv"><span class="n">04</span><p class="h">A request logged by phone</p><p class="p">Logged from the desk, picked up within seconds, handed back when it falls outside the journey's rules.</p><span class="tag live">Live</span></div>
-      <div class="ucc rv"><span class="n">05</span><p class="h">Identity, verified and written back</p><p class="p">A document and liveness check sent by link; the result lands on the client's KYC profile by itself.</p><span class="tag live">Live</span></div>
-      <div class="ucc rv"><span class="n">06</span><p class="h">Reading a document</p><p class="p">Drop a bill on the desk; Claude reads the name, address and date, and files it on the case.</p><span class="tag live">Live</span></div>
-      <div class="ucc rv"><span class="n">07</span><p class="h">A complaint, from email to answer</p><p class="p">Classified, cause found, response drafted, checked, approved and emailed on the bank's letterhead.</p><span class="tag live">Live end to end</span></div>
-      <div class="ucc rv"><span class="n">08</span><p class="h">Everyday actions</p><p class="p">Log a call, book a meeting, add a note: standard Salesforce tasks and events, on the client and the case.</p><span class="tag live">Live</span></div>
-      <div class="ucc rv"><span class="n">09</span><p class="h">A bereavement, handled with care</p><p class="p">Death recorded, accounts on hold, letter approved and sent, a one-to-one booked with the executor.</p><span class="tag live">Live end to end</span></div>
+      <div class="ucc rv"><span class="n">01</span><p class="h">Money out, released by a person</p><p class="p">Payee, ownership and recent bank changes checked; the release is staged and confirmed by name.</p></div>
+      <div class="ucc rv"><span class="n">02</span><p class="h">A sanctions match on a credit</p><p class="p">The remitter screened against the UK Sanctions List; the funds held in suspense for a person.</p></div>
+      <div class="ucc rv"><span class="n">03</span><p class="h">A change of address, straight through</p><p class="p">From an email and a water bill to an updated record and a confirmation, with no person, only when every fence holds.</p></div>
+      <div class="ucc rv"><span class="n">04</span><p class="h">A request logged by phone</p><p class="p">Logged from the desk, picked up within seconds, handed back when it falls outside the journey's rules.</p></div>
+      <div class="ucc rv"><span class="n">05</span><p class="h">Identity, verified and written back</p><p class="p">A document and liveness check sent by link; the result lands on the client's KYC profile by itself.</p></div>
+      <div class="ucc rv"><span class="n">06</span><p class="h">Reading a document</p><p class="p">Drop a bill on the desk; Claude reads the name, address and date, and files it on the case.</p></div>
+      <div class="ucc rv"><span class="n">07</span><p class="h">A complaint, from email to answer</p><p class="p">Classified, cause found, response drafted, checked, approved and emailed on the bank's letterhead.</p><span class="tag">Live, end to end</span></div>
+      <div class="ucc rv"><span class="n">08</span><p class="h">Everyday actions</p><p class="p">Log a call, book a meeting, add a note: standard Salesforce tasks and events, on the client and the case.</p></div>
+      <div class="ucc rv"><span class="n">09</span><p class="h">A bereavement, handled with care</p><p class="p">Death recorded, accounts on hold, letter approved and sent, a one-to-one booked with the executor.</p><span class="tag">Live, end to end</span></div>
     </div>
   </section>
 
@@ -300,7 +303,7 @@
         <div class="lc" style="margin:0;max-width:none">
           <div class="lc-head"><span class="lt"><span class="dot"></span>What the person sees while the agents work</span></div>
           <p class="lc-cap" style="margin-top:12px">The live bereavement case, sped up ten times: the progress bar fills and each agent step lands on the Activity tab with its time, until the case comes back to the relationship manager for approval. <b>Nothing on screen is mocked.</b></p>
-          <div class="lc-through"><span class="lc-chip"><span class="cd"></span>Case agent</span><span class="lc-chip"><span class="cd"></span>Review agent</span><span class="lc-chip"><span class="cd"></span>Death recorded</span><span class="lc-chip"><span class="cd"></span>3 accounts on hold</span><span class="lc-chip"><span class="cd"></span>Letter and meeting proposed</span></div>
+          <ul class="hl"><li><span>Case agent</span>Reads, finds the accounts, records the death</li><li><span>Salesforce</span>Checks the proof, holds three accounts</li><li><span>Review agent</span>Passes the case first time</li><li><span>Person</span>Approves the letter, books the meeting</li></ul>
         </div>
       </div>
       <div>
@@ -334,12 +337,12 @@
       <p class="intro-p">The agents run as their own identity, with their own permissions. Whatever an agent is told, <b>Salesforce refuses what it is not allowed to do.</b></p>
     </div>
     <div class="fences">
-      <div class="fence rv"><span class="fi">1</span><div><h4>No agent can decide</h4><p>Stage, confirm, approve and release belong to people. The agent identity cannot call them, and Salesforce rejects them if it tries.</p></div></div>
-      <div class="fence rv"><span class="fi">2</span><div><h4>Staged, shown, confirmed</h4><p>A decision is staged first and shown back as a plan. It runs only on confirmation, behind a single-use token, recorded against the person.</p></div></div>
-      <div class="fence rv"><span class="fi">3</span><div><h4>Straight through only when clean</h4><p>A change of address completes without a person only at level one, with identity verified on file, an address match and no money moving.</p></div></div>
-      <div class="fence rv"><span class="fi">4</span><div><h4>A death is recorded only with proof</h4><p>Accounts go on hold only when a death certificate is on the case, the date is real, and the deceased is the client or a recorded relative.</p></div></div>
-      <div class="fence rv"><span class="fi">5</span><div><h4>Drafts wait for a person</h4><p>Agents send only document requests and address confirmations, to allowlisted addresses. Every other letter waits for a person's release.</p></div></div>
-      <div class="fence rv"><span class="fi">6</span><div><h4>Switches and limits</h4><p>An admin app controls which journeys the agents may work, their working hours and a daily spend cap, and records every run.</p></div></div>
+      <div class="fence rv"><span class="fi">01</span><div><h4>No agent can decide</h4><p>Stage, confirm, approve and release belong to people. The agent identity cannot call them, and Salesforce rejects them if it tries.</p></div></div>
+      <div class="fence rv"><span class="fi">02</span><div><h4>Staged, shown, confirmed</h4><p>A decision is staged first and shown back as a plan. It runs only on confirmation, behind a single-use token, recorded against the person.</p></div></div>
+      <div class="fence rv"><span class="fi">03</span><div><h4>Straight through only when clean</h4><p>A change of address completes without a person only at level one, with identity verified on file, an address match and no money moving.</p></div></div>
+      <div class="fence rv"><span class="fi">04</span><div><h4>A death is recorded only with proof</h4><p>Accounts go on hold only when a death certificate is on the case, the date is real, and the deceased is the client or a recorded relative.</p></div></div>
+      <div class="fence rv"><span class="fi">05</span><div><h4>Drafts wait for a person</h4><p>Agents send only document requests and address confirmations, to allowlisted addresses. Every other letter waits for a person's release.</p></div></div>
+      <div class="fence rv"><span class="fi">06</span><div><h4>Switches and limits</h4><p>An admin app controls which journeys the agents may work, their working hours and a daily spend cap, and records every run.</p></div></div>
     </div>
   </section>
 
@@ -354,31 +357,34 @@
       </div>
     </div>
     <div class="uh-exhibit">
-      <svg viewBox="0 0 1000 430" role="img" aria-label="Architecture: the relationship manager in Claude, the Wealth 360 plugin and desk, two MCP connectors, Salesforce Financial Services Cloud, outside check services, and the agent runner.">
-        <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="ax-arrow"/></marker>
-        <marker id="ahe" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="ax-arrow em"/></marker></defs>
-        <text x="20" y="22" class="ax-k">People</text>
-        <rect x="20" y="34" width="290" height="74" class="ax-box"/><text x="38" y="64" class="ax-t">Relationship manager in Claude</text><text x="38" y="86" class="ax-s">Cowork or Code, the Wealth 360 plugin</text>
-        <rect x="20" y="128" width="290" height="74" class="ax-box emph"/><text x="38" y="158" class="ax-emtxt">The desk</text><text x="38" y="180" class="ax-s">A live page: board, cases, decisions</text>
-        <line x1="165" y1="108" x2="165" y2="126" class="ax-line" marker-end="url(#ah)"/>
-        <text x="370" y="22" class="ax-k">Connectors (MCP)</text>
-        <rect x="370" y="34" width="270" height="74" class="ax-box"/><text x="388" y="64" class="ax-t">Wealth 360</text><text x="388" y="86" class="ax-s">Salesforce hosted, 27 tools, as the person</text>
-        <rect x="370" y="128" width="270" height="74" class="ax-box"/><text x="388" y="158" class="ax-t">Wealth 360 Checks</text><text x="388" y="180" class="ax-s">Outside checks, results written back</text>
-        <line x1="310" y1="150" x2="368" y2="80" class="ax-line" marker-end="url(#ah)"/><line x1="310" y1="165" x2="368" y2="165" class="ax-line" marker-end="url(#ah)"/>
-        <text x="700" y="22" class="ax-k">Systems</text>
-        <rect x="700" y="34" width="280" height="168" class="ax-box emph"/><text x="718" y="64" class="ax-emtxt">Salesforce Financial Services Cloud</text>
-        <text x="718" y="90" class="ax-s">Journeys and rules as metadata</text><text x="718" y="110" class="ax-s">Cases, KYC profile, accounts, events</text><text x="718" y="130" class="ax-s">Decision gate and audit trail</text><text x="718" y="150" class="ax-s">Email in and out, on the letterhead</text><text x="718" y="170" class="ax-s">Platform event: a case changed</text>
-        <line x1="640" y1="71" x2="698" y2="71" class="ax-line" marker-end="url(#ah)"/><line x1="640" y1="165" x2="698" y2="165" class="ax-line" marker-end="url(#ah)"/>
-        <text x="370" y="262" class="ax-k">Outside checks</text>
-        <rect x="370" y="274" width="128" height="56" class="ax-box sys"/><text x="384" y="300" class="ax-t">UK Sanctions</text><text x="384" y="318" class="ax-s">screening</text>
-        <rect x="512" y="274" width="128" height="56" class="ax-box sys"/><text x="526" y="300" class="ax-t">Payee check</text><text x="526" y="318" class="ax-s">open banking</text>
-        <rect x="370" y="344" width="128" height="56" class="ax-box sys"/><text x="384" y="370" class="ax-t">Identity</text><text x="384" y="388" class="ax-s">document, liveness</text>
-        <rect x="512" y="344" width="128" height="56" class="ax-box sys"/><text x="526" y="370" class="ax-t">Address</text><text x="526" y="388" class="ax-s">postcode lookup</text>
-        <line x1="505" y1="202" x2="505" y2="272" class="ax-line" marker-end="url(#ah)"/>
-        <text x="20" y="262" class="ax-k">Agents</text>
-        <rect x="20" y="274" width="290" height="126" class="ax-box"/><text x="38" y="304" class="ax-t">Agent runner, its own identity</text><text x="38" y="326" class="ax-s">Case agent: works the steps, cites evidence</text><text x="38" y="346" class="ax-s">Review agent: checks in a fresh context</text><text x="38" y="366" class="ax-s">Woken by the platform event in seconds</text><text x="38" y="386" class="ax-s">Never stages, approves or releases</text>
-        <path d="M310 300 C 600 300, 640 250, 760 204" class="ax-line" marker-end="url(#ahe)" style="stroke:var(--accent)"/>
-        <path d="M310 330 L 368 310" class="ax-line" marker-end="url(#ah)"/>
+      <svg viewBox="0 0 1000 452" role="img" aria-label="Architecture in three tiers. In Claude: the relationship manager opens the desk. Agents and connectors: the agent runner and the desk use the Wealth 360 connector; the desk also uses Wealth 360 Checks, which calls UK sanctions, payee, identity and address services. System of record: both connectors read and write Salesforce Financial Services Cloud, which wakes the agent runner with a platform event.">
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L10 5L0 9z" class="ax-arrow"/></marker>
+        <marker id="ahe" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L10 5L0 9z" class="ax-arrow em"/></marker></defs>
+        <line x1="0" y1="138" x2="1000" y2="138" class="ax-rule"/><line x1="0" y1="282" x2="1000" y2="282" class="ax-rule"/>
+        <text x="0" y="30" class="ax-k">In Claude</text>
+        <text x="0" y="174" class="ax-k">Agents and</text><text x="0" y="189" class="ax-k">connectors</text>
+        <text x="0" y="318" class="ax-k">System of</text><text x="0" y="333" class="ax-k">record</text>
+        <rect x="130" y="22" width="210" height="76" class="ax-box"/><text x="148" y="54" class="ax-t">Relationship manager</text><text x="148" y="76" class="ax-s">Cowork or Code, Wealth 360 plugin</text>
+        <rect x="380" y="22" width="210" height="76" class="ax-box emph"/><text x="398" y="54" class="ax-emtxt">The desk</text><text x="398" y="76" class="ax-s">Live page: board, cases, decisions</text>
+        <line x1="340" y1="60" x2="378" y2="60" class="ax-line" marker-end="url(#ah)"/>
+        <rect x="130" y="166" width="210" height="76" class="ax-box"/><text x="148" y="198" class="ax-t">Agent runner</text><text x="148" y="220" class="ax-s">Case and Review agents</text>
+        <rect x="380" y="166" width="210" height="76" class="ax-box"/><text x="398" y="198" class="ax-t">Wealth 360</text><text x="398" y="220" class="ax-s">Salesforce hosted MCP, 27 tools</text>
+        <rect x="630" y="166" width="210" height="76" class="ax-box"/><text x="648" y="198" class="ax-t">Wealth 360 Checks</text><text x="648" y="220" class="ax-s">Outside checks, written back</text>
+        <line x1="485" y1="98" x2="485" y2="164" class="ax-line" marker-end="url(#ah)"/>
+        <path d="M590 60 H735 V164" class="ax-line" marker-end="url(#ah)"/>
+        <line x1="340" y1="204" x2="378" y2="204" class="ax-line" marker-end="url(#ah)"/>
+        <line x1="840" y1="204" x2="878" y2="204" class="ax-line" marker-end="url(#ah)"/>
+        <text x="880" y="174" class="ax-k">Services</text>
+        <text x="880" y="196" class="ax-s">UK Sanctions</text><text x="880" y="214" class="ax-s">Payee check</text><text x="880" y="232" class="ax-s">Identity</text><text x="880" y="250" class="ax-s">Address</text>
+        <line x1="485" y1="242" x2="485" y2="308" class="ax-line" marker-end="url(#ah)"/>
+        <line x1="735" y1="242" x2="735" y2="308" class="ax-line" marker-end="url(#ah)"/>
+        <line x1="235" y1="310" x2="235" y2="244" class="ax-line em" marker-end="url(#ahe)"/>
+        <text x="245" y="272" class="ax-s em">Platform event, in seconds</text>
+        <rect x="130" y="310" width="710" height="120" class="ax-box emph"/>
+        <text x="148" y="342" class="ax-emtxt">Salesforce Financial Services Cloud</text>
+        <text x="148" y="374" class="ax-s">Journeys and rules as metadata</text><text x="148" y="398" class="ax-s">Cases, KYC profile, accounts</text>
+        <text x="398" y="374" class="ax-s">Decision gate and audit trail</text><text x="398" y="398" class="ax-s">Email in and out, on the letterhead</text>
+        <text x="648" y="374" class="ax-s">Fences: agents never decide</text><text x="648" y="398" class="ax-s">Every read under sharing rules</text>
       </svg>
     </div>
     <div class="uh-cap"><b>Read in place, written under fences.</b> The desk and the agents use the same two connectors. Every read and write runs under Salesforce sharing and permissions; every outside check result lands on the case and, for screening and identity, on the client's KYC profile.</div>
