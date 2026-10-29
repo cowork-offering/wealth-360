@@ -1470,7 +1470,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
   --w3-p:#a100ff;--w3-pd:#7500c0;--w3-p1:#f5eeff;--w3-p2:#e7d8ff;--w3-blue:#3a64a8;--w3-alert:#b42318;--w3-risk:#a85a07;--w3-ok:#1d7a4c}
 #w3{display:none}
 body.w3live.w3v #v-desk>.hero,body.w3live.w3v #v-desk>.desk,body.w3live.w3v main.wrap>footer{display:none}
-body.w3live.w3v #w3{display:flex;flex-direction:column;height:calc(100dvh - 66px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));min-height:560px;padding-top:20px}
+body.w3live.w3v #w3{display:flex;flex-direction:column;height:calc(100dvh - 66px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));min-height:380px;padding-top:20px}
 body.w3live.w3v main.wrap{min-height:0}
 .w3-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding-bottom:14px}
 .w3-head .kicker{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--w3-ink4);font-weight:500}
@@ -1606,11 +1606,6 @@ body.w3live.w3v main.wrap{min-height:0}
 .w3btn[disabled]{opacity:.45;cursor:default}
 .w3d-f .sp{margin-left:auto;font-size:12px;color:var(--w3-ink4)}
 .w3d .lv-plan{margin:0}
-@media (max-width:1000px){
-  body.w3live.w3v #w3{height:auto;min-height:0}
-  .w3-lanes{overflow-x:auto}.w3-me,.w3-jr{grid-template-columns:repeat(5,minmax(260px,1fr))}.w3-groups{display:none}
-  .w3-lane{height:560px}.w3-stats{display:none}.w3kv{grid-template-columns:repeat(2,minmax(0,1fr))}.w3k{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
 
 .w3c .w3r1 b{flex:1 1 auto}
 .w3c .w3r3>span{white-space:nowrap}
@@ -1628,7 +1623,7 @@ body.w3live.w3v main.wrap{min-height:0}
 .w3letter::after{content:"";position:absolute;left:0;right:0;bottom:0;height:36px;background:linear-gradient(rgba(255,255,255,0),#fff)}
 .w3letter.full{max-height:none}.w3letter.full::after{display:none}
 .w3lt{margin-top:8px;border:0;background:transparent;color:var(--w3-pd);font-size:12.5px;padding:0;cursor:pointer}
-@media (min-width:1001px) and (min-height:620px){body.w3live.w3v{overflow:hidden}}
+
 .w3prop{padding:14px 16px}
 .w3sec+.w3sec{margin-top:20px}
 
@@ -1718,6 +1713,57 @@ body.w3live #w3cl{display:grid;grid-template-columns:300px minmax(0,1fr);gap:16p
 
 body.w3live.w3v .w3-board{padding-bottom:50px}
 .w3-live{max-width:300px;font-size:12px}
+
+/* responsive: one full-height screen from 640px up; lanes keep a readable width and scroll sideways */
+@media (min-width:641px){body.w3live.w3v{overflow:hidden}}
+.w3-lanes,.w3-groups{grid-auto-flow:column}
+@media (max-width:1180px){
+  .w3-me,.w3-jr{grid-template-columns:none;grid-auto-columns:minmax(240px,1fr)}
+  .w3-lanes{overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;padding-bottom:4px}
+  .w3-lane{scroll-snap-align:start}
+  .w3-groups{display:none}
+}
+@media (max-width:900px){.w3-stats{display:none}.w3-head h1{font-size:22px}.w3-head{padding-bottom:10px}}
+@media (max-width:640px){
+  body.w3live.w3v #w3{height:auto!important;min-height:0}
+  .w3-lanes{grid-auto-flow:row;grid-auto-columns:auto;overflow:visible}
+  .w3-lane{height:auto;max-height:70vh}
+  body.w3live #w3cl{grid-template-columns:1fr;height:auto}.w3cl-list{max-height:220px}.w3cl-g{grid-template-columns:1fr}.w3cl-act{display:none}
+  .w3kv,.w3k{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:1000px) and (min-width:641px){body.w3live #w3cl{grid-template-columns:240px minmax(0,1fr)}.w3cl-g{grid-template-columns:1fr}}
+
+/* person action dialog */
+.w3ac-in{max-height:calc(100dvh - 32px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))}
+.w3acb{display:flex;flex-direction:column;gap:14px;overflow:auto;min-height:0;margin:0 -4px;padding:2px 4px}
+.w3f2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.w3acb .w3f textarea{min-height:0}
+.w3ck{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.w3ck label{display:grid;grid-template-columns:18px minmax(0,1fr);gap:10px;align-items:start;border:1px solid var(--w3-line);border-radius:12px;padding:10px 12px;cursor:pointer;font-weight:400;letter-spacing:0;transition:border-color .15s,background .15s}
+.w3ck label:has(input:checked){border-color:var(--w3-p2);background:var(--w3-p1)}
+.w3ck input{margin:2px 0 0;accent-color:var(--w3-pd);width:16px;height:16px}
+.w3ck b{display:block;font-size:13.5px;font-weight:600;color:var(--w3-ink)}.w3ck small{display:block;font-size:12px;color:var(--w3-ink3);line-height:1.35;margin-top:2px}
+.w3fl{display:flex;flex-direction:column;border:1px solid var(--w3-line);border-radius:14px;overflow:hidden}
+.w3fli{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:12px;align-items:center;padding:10px 12px;border-top:1px solid var(--w3-line2)}
+.w3fli:first-child{border-top:0}
+.w3fli b{display:block;font-size:13.5px;font-weight:600;color:var(--w3-ink);line-height:1.3}.w3fli small{display:block;font-size:12px;color:var(--w3-ink3);margin-top:2px}
+.w3fli input{font:inherit;font-size:13px;border:1px solid var(--w3-line);border-radius:10px;padding:7px 9px;width:100%;box-sizing:border-box;background:#fff;color:var(--w3-ink)}
+.w3sk-in{height:42px;border-radius:12px;background:linear-gradient(90deg,var(--w3-line2) 25%,#fff 50%,var(--w3-line2) 75%);background-size:200% 100%;animation:w3sh 1.4s linear infinite}
+@media(max-width:520px){.w3f2,.w3ck{grid-template-columns:minmax(0,1fr)}.w3fli{grid-template-columns:minmax(0,1fr)}}
+/* live insights */
+.w3insbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:4px 0 14px;font-size:13px;color:var(--w3-ink3)}
+.w3insbar-a{display:flex;align-items:center;gap:16px}
+body.w3live #v-insights .ins{position:relative;padding-right:52px}
+.w3ick{position:absolute;top:14px;right:14px;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--w3-line);background:#fff;display:grid;place-items:center;cursor:pointer;padding:0;color:transparent;transition:all .15s}
+.w3ick svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.w3ick:hover{border-color:var(--w3-p)}
+.w3ick[aria-pressed="true"]{background:var(--w3-pd);border-color:var(--w3-pd);color:#fff}
+body.w3live #v-insights .ins.w3on{box-shadow:0 0 0 2px var(--w3-p2)}
+.w3ins-sk{min-height:170px;display:flex;flex-direction:column;gap:10px}
+.w3ins-sk>*{display:block;border-radius:8px;background:linear-gradient(90deg,var(--w3-line2) 25%,#fff 50%,var(--w3-line2) 75%);background-size:200% 100%;animation:w3sh 1.4s linear infinite}
+.w3ins-sk span{width:30%;height:10px}.w3ins-sk b{width:70%;height:18px}.w3ins-sk i{width:100%;height:12px}
+.w3skt{width:90px;height:30px;border-radius:8px;background:linear-gradient(90deg,var(--w3-line2) 25%,#fff 50%,var(--w3-line2) 75%);background-size:200% 100%;animation:w3sh 1.4s linear infinite}
+body.w3live #v-insights{padding-bottom:84px}
 </style>
 
 <div class="ambient" aria-hidden="true"><span class="a"></span><span class="b"></span></div>
@@ -1844,6 +1890,13 @@ body.w3live.w3v .w3-board{padding-bottom:50px}
   <label class="w3f">Request<textarea id="w3ncR" rows="5" placeholder="What the client asked for: who, what, amounts, accounts, addresses, dates."></textarea></label>
   <div class="w3msg" id="w3ncMsg" hidden></div>
   <div class="w3nc-f"><button type="submit" class="w3btn" id="w3ncGo">Create case</button><button type="button" class="w3btn g" onclick="this.closest('.w3nc').querySelector('#w3ncX').click()">Cancel</button></div>
+</form></div>
+<div class="w3nc" id="w3ac" hidden><form class="w3nc-in w3ac-in" id="w3acF" novalidate role="dialog" aria-modal="true" aria-labelledby="w3acT">
+  <div class="w3nc-h"><h2 id="w3acT"></h2><button type="button" class="w3x" id="w3acX" aria-label="Close">✕</button></div>
+  <p class="w3nc-sub" id="w3acS"></p>
+  <div class="w3acb" id="w3acB"></div>
+  <div class="w3msg" id="w3acMsg" hidden></div>
+  <div class="w3nc-f"><button type="submit" class="w3btn" id="w3acGo"></button><button type="button" class="w3btn g" id="w3acC">Cancel</button></div>
 </form></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dtitle">
   <div class="dh">
@@ -3284,12 +3337,13 @@ function w3Card(c,lane,lens){const r=c.row,amt=w3Amt(c),open=openId===c.id?" ope
   const d=w3Due(r.slaDue),f=w3Flag(c);
   return `<button class="w3c${open}" data-w3="${c.id}"><span class="w3r1"><b>${c.cust}</b><em>${E(amt)}</em></span>
    <span class="w3hl">${E(w3Head(c))}</span>${lens==="me"?`<span class="w3wy">${E(w3Why(c,lane))}</span>`:""}
-   <span class="w3r3">${lens==="all"?`<span class="w3-st w3la-${lane}">${W3L[lane]}</span>`:(w3Mark(f)||`<span>${c.type} · ${c.no}</span>`)}<span class="${d[1]?"w3soon":""}">${lane==="wait"&&r.lastAt?"Sent "+E(lvShort(r.lastAt)):d[0]}</span></span></button>`}
+   <span class="w3r3">${lens==="all"?`<span class="w3-st w3la-${lane}">${W3L[lane]}</span>`:(w3Mark(f)||`<span>${lane==="wait"?c.no:c.type+" · "+c.no}</span>`)}<span class="${d[1]?"w3soon":""}">${lane==="wait"&&r.lastAt?"Sent "+E(lvShort(r.lastAt)):d[0]}</span></span></button>`}
 function w3LaneH(cls,title,sub,list,lens,empty){return `<section class="w3-lane ${cls}"><header><h3>${title} <span>${list.length}</span></h3>${sub?`<p>${sub}</p>`:""}</header>
   <div class="w3-list">${list.length?list.map(x=>w3Card(x.c,x.l,lens)).join(""):`<p class="w3-empty">${empty}</p>`}</div></section>`}
-function w3Fit(){const el=$("w3");if(!el||!document.body.classList.contains("w3live")||innerWidth<=1000){if(el)el.style.height="";return}
+function w3Fit(){const el=$("w3");if(!el||!document.body.classList.contains("w3live")||innerWidth<=640){if(el)el.style.height="";return}
   const top=el.getBoundingClientRect().top+scrollY;el.style.height=Math.max(520,innerHeight-top-4)+"px"}
 addEventListener("resize",w3Fit);
+try{new ResizeObserver(()=>w3Fit()).observe(document.documentElement)}catch(e){}
 function w3Render(){const el=$("w3");if(!el||!LIVE)return;requestAnimationFrame(w3Fit);
   const L=LCASES.map(c=>({c,l:w3Lane(c)})).filter(x=>x.l!=="done").sort((a,b)=>w3Sort(a.c,b.c));
   const by=k=>L.filter(x=>x.l===k), mine=L.filter(x=>["auth","dec","rev"].includes(x.l));
@@ -3476,17 +3530,17 @@ $("w3ncX").onclick=w3NcClose;$("w3nc").addEventListener("mousedown",e=>{if(e.tar
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("w3nc").hidden)w3NcClose()});
 
 /* live FAB: only real actions; the rest is greyed out with "Soon" */
-const W3SOON={scan:"Analyse a document",docs:"Request documents",meet:"Book a meeting",call:"Log a call",note:"Add a note",assign:"Reassign",follow:"Create follow-ups"};
+const W3SOON={scan:"Analyse a document"};
 const w3FabSetBase=fabSet,w3FabDoBase=fabDo,w3RenderFabBase=renderFab;
 function w3CtxClient(){const c=openId&&lvCase(openId);if(c&&c.row.accountId)return {accountId:c.row.accountId,name:c.custRaw};
   if(curView()==="clients"&&w3cl.sel)return {accountId:w3cl.sel.accountId,name:w3cl.sel.name,email:w3cl.sel.email,openCases:w3cl.sel.openCases};return null}
 fabSet=function(){if(!LIVE)return w3FabSetBase();const v=curView(),c=openId&&lvCase(openId),cc=w3CtxClient();
   const nc=cc?["case",`New case for ${cc.name}`]:["case","New case"];
-  if(c)return {ctx:`${c.type} · ${c.no}`,items:[nc,["note",W3SOON.note,1],["docs",W3SOON.docs,1],["scan",W3SOON.scan,1],["sf","Open case in Salesforce"]]};
-  return {desk:{ctx:"Your desk",items:[nc,["scan",W3SOON.scan,1],["docs",W3SOON.docs,1],["meet",W3SOON.meet,1],["sf","Open cases in Salesforce"]]},
-    clients:{ctx:cc?cc.name:"Clients",items:[nc,["meet",W3SOON.meet,1],["call",W3SOON.call,1],["docs",W3SOON.docs,1],["sf",cc?"Open client in Salesforce":"Open accounts in Salesforce"]]},
+  if(c)return {ctx:`${c.type} · ${c.no}`,items:[["note","Add a note"],["docs","Request documents"],["call","Log a call"],["meet","Book a meeting"],["assign","Reassign"],["sf","Open case in Salesforce"]]};
+  return {desk:{ctx:"Your desk",items:[nc,["call","Log a call"],["meet","Book a meeting"],["follow","Create a follow-up"],["scan",W3SOON.scan,1],["sf","Open cases in Salesforce"]]},
+    clients:{ctx:cc?cc.name:"Clients",items:[nc,["meet","Book a meeting"],["call","Log a call"],["follow","Create a follow-up"],["docs","Request documents"],["sf",cc?"Open client in Salesforce":"Open accounts in Salesforce"]]},
     onboarding:w3FabSetBase(),
-    insights:{ctx:"Insights",items:[["follow",W3SOON.follow,1],["meet",W3SOON.meet,1],nc,["sf","Open reports in Salesforce"]]},
+    insights:{ctx:"Insights",items:[["follow","Create follow-ups"],["meet","Book a meeting"],["call","Log a call"],nc,["sf","Open reports in Salesforce"]]},
     rules:{ctx:"Rules",items:[nc,["sf","Open rules in Salesforce Setup"]]},
     audit:{ctx:"Audit trail",items:[["filter","People only"],nc,["sf","Open history in Salesforce"]]}}[v]};
 renderFab=function(){w3RenderFabBase();if(!LIVE)return;const f=fabSet();
@@ -3496,6 +3550,10 @@ fabDo=function(k){if(!LIVE)return w3FabDoBase(k);const f=fabSet(),it=f.items.fin
   if(it&&it[2]){toast(`${it[1]} is not released yet`);return}
   if(k==="case"){w3NcOpen(w3CtxClient());return}
   if(k==="filter"){return w3FabDoBase(k)}
+  if(W3ACT[k]){const v=curView();
+    if(k==="follow"&&v==="insights"&&!openId){if(w3ins.sel.size)return w3InsFollow();const ms=(w3ins.data||{}).moments||[];
+      if(ms.length){toast("Select moments with the tick, then Create follow-ups");return}}
+    const ctx=openId?w3CaseCtx(openId):w3CtxClient();return w3AcOpen(k,ctx,{})}
   if(k==="sf"){const c=openId&&lvCase(openId),cc=w3CtxClient(),v=curView();
     if(c)return w3Sf(`/lightning/r/Case/${c.id}/view`);
     if(v==="clients"&&cc)return w3Sf(`/lightning/r/Account/${cc.accountId}/view`);
@@ -3552,6 +3610,146 @@ w3Picker($("w3clQ"),$("w3clL"),c=>{$("w3clQ").value="";w3ClPick(c)});
 function w3Fade(el){if(!el||el.__w3f)return;el.__w3f=1;const f=()=>{const t=el.scrollTop>2,b=el.scrollTop+el.clientHeight<el.scrollHeight-2;
   el.classList.toggle("w3ft",t);el.classList.toggle("w3fb",b)};el.addEventListener("scroll",f,{passive:true});requestAnimationFrame(f);el.__w3fr=f}
 function w3FadeAll(){document.querySelectorAll(".w3-list,#w3b,#w3clb,#w3clList,#w3letter").forEach(el=>{w3Fade(el);if(el.__w3fr)el.__w3fr()})}
+
+/* ---------- desk v2, part 3 (live): person actions and live Insights ---------- */
+const W3DOCS=[["Proof of address","A utility bill or bank statement from the last 3 months"],["Photo ID","Passport or driving licence, in date"],
+  ["Bank statement","For the receiving account, showing your name and account number"],["Source of funds","Evidence of where the money comes from"],
+  ["Death certificate","The original or a certified copy"],["Grant of probate","Or letters of administration"],["Executor ID","Photo ID for each executor"]];
+const W3DOCPICK={Change_Of_Details:[0,1],Money_Out:[2,1],Money_In:[3],Bereavement:[4,5,6],Complaint:[]};
+const W3ACT={
+  note:{t:"Add a note",s:"A note on the case timeline. The agents read it the next time they work the case.",go:"Add note",needsCase:1},
+  docs:{t:"Request documents",s:"A branded email to the client's address on record, sent now from Wealth Servicing. The case then waits on the client, and their reply restarts the agents.",go:"Send request",needsCase:1},
+  meet:{t:"Book a meeting",s:"Goes into your Salesforce calendar, linked to the client. No invitation is emailed to the client.",go:"Book meeting"},
+  call:{t:"Log a call",s:"Saved as a completed call in Salesforce, and on the case timeline when it is about a case.",go:"Log call"},
+  assign:{t:"Reassign",s:"Hand the case to a colleague on the Wealth 360 team. It moves to their desk at once.",go:"Reassign",needsCase:1},
+  follow:{t:"Create a follow-up",s:"A task in your Salesforce tasks, linked to the client or case.",go:"Create follow-up"},
+  followb:{t:"Create follow-ups",s:"One task each in your Salesforce tasks, linked to the client or case. An open task with the same subject and date is not repeated.",go:"Create follow-ups"}
+};
+const w3ac={kind:null,ctx:null,busy:false,pre:{},team:null,items:null};
+const w3Iso=d=>{const z=new Date(d.getTime()-d.getTimezoneOffset()*60000);return z.toISOString().slice(0,10)};
+function w3NextWorkday(n){const d=new Date();let k=0;while(k<n){d.setDate(d.getDate()+1);if(d.getDay()%6)k++}return d}
+function w3ClientCases(acct){return LCASES.filter(c=>c.row.accountId===acct)}
+/* who and what the action is about: a fixed chip, or a client lookup and (when needed) a case choice */
+function w3AcTarget(){const k=W3ACT[w3ac.kind],c=w3ac.ctx||{};
+  if(w3ac.kind==="followb")return "";
+  if(c.caseId)return `<div class="w3f">${k.needsCase?"Case":"About"}<div class="w3sel"><i class="w3pav">${E(w3Ini(c.name))}</i><span><b>${E(c.name||"Client")}</b><small>Case ${E(c.caseNo||"")}${c.type?` · ${E(c.type)}`:""}</small></span><span></span></div></div>`;
+  if(!c.accountId)return `<div class="w3f">Client<div class="w3qw"><input id="w3acQ" autocomplete="off" placeholder="Search by name or email" aria-label="Client"><div class="w3pl" id="w3acL" hidden></div></div></div>`;
+  const cs=w3ClientCases(c.accountId);
+  const chip=`<div class="w3sel"><i class="w3pav">${E(w3Ini(c.name))}</i><span><b>${E(c.name)}</b><small>${E([c.email,cs.length?`${cs.length} open case${cs.length>1?"s":""}`:"No open case on your desk"].filter(Boolean).join(" · "))}</small></span><button type="button" class="w3lnk" id="w3acChg">Change</button></div>`;
+  if(k.needsCase)return `<div class="w3f">Client${chip}</div>`+(cs.length?`<label class="w3f">Case<select id="w3acCase">${cs.map(x=>`<option value="${E(x.id)}">${E(x.no)} · ${x.type}</option>`).join("")}</select></label>`:`<p class="w3msg">This needs an open case. Create one with New case first.</p>`);
+  return `<div class="w3f">Client${chip}</div>`+(cs.length?`<label class="w3f">Link to a case<select id="w3acCase"><option value="">No, the client only</option>${cs.map(x=>`<option value="${E(x.id)}">${E(x.no)} · ${x.type}</option>`).join("")}</select></label>`:"");
+}
+function w3AcFields(){const p=w3ac.pre||{},c=w3ac.ctx||{},kind=w3ac.kind;
+  if(kind==="note")return `<label class="w3f">Note<textarea id="w3acN" rows="5" placeholder="What you learned or agreed, in a sentence or two."></textarea></label>`;
+  if(kind==="docs"){const j=c.journey||((lvCase(c.caseId)||{row:{}}).row.journey),pick=W3DOCPICK[j]||[0,1];
+    return `<div class="w3f">Documents<div class="w3ck">${W3DOCS.map((d,i)=>`<label><input type="checkbox" value="${i}" ${pick.includes(i)?"checked":""}><span><b>${E(d[0])}</b><small>${E(d[1])}</small></span></label>`).join("")}</div></div>
+      <label class="w3f">Anything else (one per line)<textarea id="w3acX2" rows="2" placeholder="Label: detail"></textarea></label>
+      <label class="w3f">Opening line (optional)<textarea id="w3acM" rows="2" placeholder="To keep your request moving we need a few documents from you."></textarea></label>`}
+  if(kind==="meet"){const d=w3NextWorkday(1);
+    return `<label class="w3f">Subject<input id="w3acSu" value="${E(p.subject||(c.name?`Review with ${c.name}`:""))}" placeholder="What the meeting is for"></label>
+      <div class="w3f2"><label class="w3f">Date<input type="date" id="w3acD" value="${w3Iso(d)}" min="${w3Iso(new Date())}"></label><label class="w3f">Time (London)<input type="time" id="w3acTm" value="10:00" step="900"></label></div>
+      <div class="w3f2"><label class="w3f">Length<select id="w3acLn"><option value="30">30 minutes</option><option value="45">45 minutes</option><option value="60" selected>1 hour</option><option value="90">90 minutes</option></select></label>
+      <label class="w3f">Where<select id="w3acWh"><option>Video call</option><option>Phone</option><option>Branch</option><option>Client's home</option></select></label></div>
+      <label class="w3f">Agenda (optional)<textarea id="w3acAg" rows="2" placeholder="What you want to cover"></textarea></label>`}
+  if(kind==="call")return `<div class="w3f2"><label class="w3f">Direction<select id="w3acDi"><option value="Outbound">I called the client</option><option value="Inbound">The client called</option></select></label>
+      <label class="w3f">Minutes<input type="number" id="w3acMi" min="1" max="480" value="10" inputmode="numeric"></label></div>
+      <label class="w3f">What was said<textarea id="w3acSm" rows="4" placeholder="What you discussed and agreed.">${E(p.summary||"")}</textarea></label>`;
+  if(kind==="assign"){const t=w3ac.team;
+    return `<label class="w3f">Colleague${t===null?`<div class="w3sk-in"></div>`:t.err?`<p class="w3msg err">${E(t.err)}</p>`:`<select id="w3acU">${t.filter(x=>!x.me).map(x=>`<option value="${E(x.userId)}">${E(x.name)}${x.title?` · ${E(x.title)}`:""} · ${x.openCases} open</option>`).join("")||`<option value="">No one else on the team</option>`}</select>`}</label>
+      <label class="w3f">Handover note (optional)<textarea id="w3acN" rows="3" placeholder="What they need to know."></textarea></label>`}
+  if(kind==="follow")return `<label class="w3f">Subject<input id="w3acSu" value="${E(p.subject||"")}" placeholder="What to follow up"></label>
+      <div class="w3f2"><label class="w3f">Due<input type="date" id="w3acD" value="${E(p.due||w3Iso(w3NextWorkday(3)))}" min="${w3Iso(new Date())}"></label>
+      <label class="w3f">Priority<select id="w3acPr"><option>Normal</option><option ${p.high?"selected":""}>High</option></select></label></div>
+      <label class="w3f">Notes (optional)<textarea id="w3acN" rows="3">${E(p.notes||"")}</textarea></label>`;
+  if(kind==="followb")return `<div class="w3fl">${(w3ac.items||[]).map((m,i)=>`<div class="w3fli"><div><b>${E(m.followup)}</b><small>${E(m.client||"")}${m.caseNumber?` · Case ${E(m.caseNumber)}`:""}</small></div><input type="date" data-fd="${i}" value="${E(m.due||w3Iso(w3NextWorkday(3)))}" min="${w3Iso(new Date())}" aria-label="Due date"></div>`).join("")}</div>`;
+  return "";
+}
+function w3AcDraw(){const k=W3ACT[w3ac.kind];$("w3acT").textContent=k.t;$("w3acS").textContent=k.s;$("w3acGo").textContent=w3ac.kind==="followb"?`Create ${(w3ac.items||[]).length} follow-up${(w3ac.items||[]).length===1?"":"s"}`:k.go;
+  $("w3acB").innerHTML=w3AcTarget()+w3AcFields();
+  const q=$("w3acQ");if(q){w3Picker(q,$("w3acL"),c=>{w3ac.ctx={accountId:c.accountId,name:c.name,email:c.email};w3AcDraw();w3AcFocus()})}
+  const ch=$("w3acChg");if(ch)ch.onclick=()=>{w3ac.ctx=null;w3AcDraw();w3AcFocus()};
+  w3Fade($("w3acB"));if($("w3acB").__w3fr)requestAnimationFrame($("w3acB").__w3fr)}
+function w3AcFocus(){setTimeout(()=>{const el=$("w3acB").querySelector("#w3acQ,textarea:not([rows='2']),input:not([type=checkbox]):not([type=date]),select");if(el)el.focus()},60)}
+function w3AcMsg(kind,txt){const m=$("w3acMsg");m.className="w3msg "+kind;m.textContent=txt;m.hidden=!txt}
+async function w3AcOpen(kind,ctx,pre){if(!MCP)return;w3ac.kind=kind;w3ac.ctx=ctx||null;w3ac.pre=pre||{};w3ac.items=pre&&pre.items||null;w3ac.busy=false;
+  w3AcMsg("","");$("w3acGo").disabled=false;w3AcDraw();$("w3ac").hidden=false;requestAnimationFrame(()=>$("w3ac").classList.add("on"));w3AcFocus();
+  if(kind==="assign"&&w3ac.team===null){try{const r=lvUnwrap(await MCP.callTool(SRV,"W360Colleagues",{inputs:[{}]},{cache:{staleTime:300000,gcTime:900000}}));w3ac.team=r.colleagues||[]}
+    catch(e){w3ac.team={err:w3AcErr(e)}}if(w3ac.kind==="assign")w3AcDraw();if(w3ac.team&&w3ac.team.err)w3ac.team=null}}
+function w3AcClose(){if(w3ac.busy)return;$("w3ac").classList.remove("on");setTimeout(()=>{$("w3ac").hidden=true},200)}
+function w3AcErr(e){const k=e&&e.code;return k==="not_in_manifest"||k==="blocked_by_policy"?"This desk was published before this action existed. Ask Claude to republish your Wealth 360 desk.":lvWErr(e).replace("Salesforce refused the decision.","Salesforce refused the action.")}
+/* reads the form into the tool call; returns [tool, input, done-text] or throws a message */
+function w3AcCall(){const c=w3ac.ctx||{},kind=w3ac.kind,v=id=>{const el=$(id);return el?String(el.value||"").trim():""};
+  const caseId=c.caseId||v("w3acCase")||null,target=caseId||c.accountId;
+  if(kind!=="followb"&&!target)throw W3ACT[kind].needsCase?"Pick the client and case.":"Pick the client from the list.";
+  if(W3ACT[kind].needsCase&&!caseId)throw "This needs an open case on your desk.";
+  const no=caseId?((lvCase(caseId)||{}).no||c.caseNo||""):"",where=no?`case ${no}`:c.name;
+  if(kind==="note"){const n=v("w3acN");if(n.length<3)throw "Write the note first.";return ["add_note",{caseId,note:n},`Note added · ${no}`]}
+  if(kind==="docs"){const picked=[...$("w3acB").querySelectorAll(".w3ck input:checked")].map(x=>W3DOCS[+x.value]).map(d=>`${d[0]}: ${d[1]}`);
+    const extra=v("w3acX2").split("\n").map(s=>s.trim()).filter(Boolean),items=picked.concat(extra);if(!items.length)throw "Choose at least one document.";
+    return ["request_documents",{caseId,items:items.join("\n"),message:v("w3acM")||null},`Request sent · ${no}`]}
+  if(kind==="meet"){const su=v("w3acSu"),d=v("w3acD"),t=v("w3acTm");if(su.length<3)throw "Give the meeting a subject.";if(!d||!t)throw "Pick the date and time.";
+    if(new Date(`${d}T${t}`)<new Date())throw "Pick a time in the future.";
+    return ["book_meeting",{target,subject:su,start:`${d}T${t}`,minutes:+v("w3acLn")||60,location:v("w3acWh"),agenda:v("w3acAg")||null},`Meeting booked · ${where}`]}
+  if(kind==="call"){const s=v("w3acSm");if(s.length<5)throw "Say in a line what the call was about.";
+    return ["log_call",{target,summary:s,direction:v("w3acDi"),minutes:Math.max(1,Math.round(+v("w3acMi")||0))||null},`Call logged · ${where}`]}
+  if(kind==="assign"){const u=v("w3acU");if(!u)throw "Pick a colleague.";const who=(w3ac.team||[]).find(x=>x.userId===u);
+    return ["reassign_case",{caseId,userId:u,note:v("w3acN")||null},`Case ${no} handed to ${who?who.name:"your colleague"}`]}
+  if(kind==="follow"){const su=v("w3acSu");if(su.length<3)throw "Give the follow-up a subject.";
+    return ["create_followups",{target,followups:JSON.stringify([{subject:su,due:v("w3acD")||null,priority:v("w3acPr"),notes:v("w3acN")||null}])},`Follow-up set · ${where}`]}
+  if(kind==="followb"){const its=(w3ac.items||[]).map((m,i)=>{const el=$("w3acB").querySelector(`[data-fd="${i}"]`);
+      return {target:m.caseId||m.accountId,subject:m.followup,due:(el&&el.value)||m.due,priority:m.high?"High":"Normal",notes:m.detail}});
+    if(!its.length)throw "Select at least one moment.";return ["create_followups",{followups:JSON.stringify(its)},null]}
+}
+async function w3AcGo(){if(w3ac.busy)return;let call;try{call=w3AcCall()}catch(m){w3AcMsg("err",String(m));return}
+  w3ac.busy=true;$("w3acGo").disabled=true;w3AcMsg("","Saving in Salesforce…");
+  try{const r=lvUnwrap(await MCP.callTool(SRV,call[0],{inputs:[call[1]]},{cache:false}));w3ac.busy=false;
+    let msg=call[2];
+    if(call[0]==="create_followups"){const n=(r.created||[]).length;msg=n?`${n} follow-up${n>1?"s":""} in your Salesforce tasks`:"Already in your tasks";if(r.skipped)msg+=` · ${r.skipped} already open`;w3ins.sel.clear()}
+    if(call[0]==="request_documents"&&r.existing)msg="Already sent today";
+    if(call[0]==="book_meeting"&&r.clashes)msg+=` · overlaps ${r.clashes} other`;
+    w3AcClose();toast(E(msg||"Saved"));
+    const cid=call[1].caseId||(String(call[1].target||"").startsWith("500")?call[1].target:null);
+    try{await MCP.invalidate(SRV)}catch(e){}if(cid&&lvCase(cid))lvDetail(cid,true);lvLoad();
+    if(curView()==="insights")w3InsLoad(true);if(curView()==="clients"&&w3cl.sel)w3ClPick(w3cl.sel)}
+  catch(e){w3ac.busy=false;$("w3acGo").disabled=false;w3AcMsg("err",w3AcErr(e))}}
+$("w3acF").addEventListener("submit",e=>{e.preventDefault();w3AcGo()});
+$("w3acX").onclick=w3AcClose;$("w3acC").onclick=w3AcClose;$("w3ac").addEventListener("mousedown",e=>{if(e.target.id==="w3ac")w3AcClose()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("w3ac").hidden)w3AcClose()});
+function w3CaseCtx(id){const c=lvCase(id);if(!c)return null;return {caseId:c.id,caseNo:c.no,accountId:c.row.accountId,name:c.custRaw,type:c.type,journey:c.row.journey}}
+
+/* live Insights: moments to act, computed in Salesforce from the book */
+const w3ins={data:null,err:null,loading:false,sel:new Set(),seq:0};
+async function w3InsLoad(fresh){const seq=++w3ins.seq;w3ins.loading=!w3ins.data;w3ins.err=null;if(!w3ins.data)w3InsRender();
+  try{const r=lvUnwrap(await MCP.callTool(SRV,"W360Insights",{inputs:[{}]},{cache:fresh?{refresh:true,staleTime:60000,gcTime:600000}:{staleTime:60000,gcTime:600000}}));if(seq!==w3ins.seq)return;w3ins.data=r}
+  catch(e){if(seq!==w3ins.seq)return;w3ins.err=w3AcErr(e)}
+  w3ins.loading=false;w3InsRender()}
+const w3M=v=>v>=1e6?`£${(v/1e6).toFixed(2)}<small>m</small>`:`£${Math.round((v||0)/1e3)}<small>k</small>`;
+function w3InsRender(){if(!LIVE||curView()!=="insights")return;const d=w3ins.data;
+  let bar=$("w3insbar");if(!bar){bar=document.createElement("div");bar.id="w3insbar";bar.className="w3insbar";$("igrid").before(bar)}
+  if(w3ins.loading){put($("isum"),`<div class="stat"><div class="l">Assets under care</div><div class="n num w3skt"></div></div><div class="stat"><div class="l">Moments to act</div><div class="n num w3skt"></div></div><div class="stat"><div class="l">Cash to put to work</div><div class="n num w3skt"></div></div>`);
+    bar.innerHTML="";put($("igrid"),`<article class="ins w3ins-sk"><span></span><b></b><i></i><i></i></article>`.repeat(6));return}
+  if(w3ins.err&&!d){put($("isum"),"");bar.innerHTML="";put($("igrid"),`<p class="w3-empty">${E(w3ins.err)}</p>`);return}
+  const ms=d.moments||[];
+  put($("isum"),`<div class="stat"><div class="l">Assets under care</div><div class="n num">${w3M(d.assetsUnderCare)}</div></div><div class="stat"><div class="l">Moments to act</div><div class="n num">${ms.length}</div></div><div class="stat"><div class="l">Cash to put to work</div><div class="n num">${w3M(d.valueInPlay)}</div></div>`);
+  const n=[...w3ins.sel].filter(k=>ms.some(m=>m.key===k)).length;
+  bar.innerHTML=`<span>${n?`${n} selected`:`${d.clients} clients · as of ${E(lvF(d.asOf,{hour:"2-digit",minute:"2-digit"}))}`}</span><span class="w3insbar-a">${n?`<button class="w3lnk" id="w3insClr">Clear</button>`:`<button class="w3lnk" id="w3insAll">Select all</button>`}<button class="w3btn${n?"":" g"}" id="w3insGo" ${n?"":"disabled"}>Create follow-ups${n?` (${n})`:""}</button></span>`;
+  put($("igrid"),ms.length?ms.map((m,i)=>{const on=w3ins.sel.has(m.key),act=m.action==="docs"&&!m.caseId?"follow":m.action,lbl=act===m.action?m.actionLabel:"Create follow-up";
+    return `<article class="ins ${m.high?"hi":""}${on?" w3on":""}"><button class="w3ick" data-w3is="${E(m.key)}" aria-pressed="${on}" aria-label="Select for follow-up"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 8.5 6.8 11 12 5"/></svg></button>
+      <span class="kicker">${E(m.kind)}</span><h3>${E(m.title)}</h3><p>${E(m.detail)}</p>
+      <div class="ins-f"><button class="ins-who" data-w3icl="${i}"><span class="cav">${E(w3Ini(m.client))}</span>${E(m.client||"")}</button><button class="go-s" data-w3ia="${i}" data-act="${act}">${E(lbl)} ${GT}</button></div></article>`}).join("")
+    :`<p class="w3-empty">Nothing needs a nudge across the book today.</p>`);
+  const all=$("w3insAll");if(all)all.onclick=()=>{ms.forEach(m=>w3ins.sel.add(m.key));w3InsRender()};
+  const clr=$("w3insClr");if(clr)clr.onclick=()=>{w3ins.sel.clear();w3InsRender()};
+  const go=$("w3insGo");if(go)go.onclick=()=>w3InsFollow()}
+function w3InsFollow(){const ms=((w3ins.data||{}).moments||[]).filter(m=>w3ins.sel.has(m.key));if(!ms.length){toast("Select the moments to follow up");return}w3AcOpen("followb",null,{items:ms})}
+$("igrid").addEventListener("click",e=>{if(!LIVE)return;const ms=(w3ins.data||{}).moments||[];
+  const s=e.target.closest("[data-w3is]");if(s){e.stopPropagation();const k=s.dataset.w3is;w3ins.sel.has(k)?w3ins.sel.delete(k):w3ins.sel.add(k);w3InsRender();return}
+  const a=e.target.closest("[data-w3ia]");if(a){e.stopPropagation();const m=ms[+a.dataset.w3ia];if(!m)return;
+    const ctx=m.caseId&&lvCase(m.caseId)?w3CaseCtx(m.caseId):{accountId:m.accountId,name:m.client,email:m.email,caseId:m.caseId||undefined,caseNo:m.caseNumber||undefined};
+    w3AcOpen(a.dataset.act,ctx,{subject:m.followup,due:m.due,high:m.high,notes:m.detail});return}
+  const w=e.target.closest("[data-w3icl]");if(w){e.stopPropagation();const m=ms[+w.dataset.w3icl];if(!m)return;setView("clients");w3ClPick({accountId:m.accountId,name:m.client,email:m.email})}},true);
+const w3RenderInsightsBase=renderInsights;
+renderInsights=function(){if(!LIVE)return w3RenderInsightsBase();if(!w3ins.data&&!w3ins.loading)w3InsLoad(false);else{w3InsRender();if(w3ins.data)w3InsLoad(false)}};
 function lvBoot(){
   ["flbl"].forEach(id=>{const el=$(id);if(el)el.dataset.t=el.textContent});
   [document.querySelector("#v-desk .hero .kicker"),$("headline"),document.querySelector("#v-audit .kicker")].forEach(el=>{if(el)el.dataset.t=el.textContent});

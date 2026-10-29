@@ -3,6 +3,38 @@
 All notable changes to the Wealth 360 plugin. The version is in
 `wealth-360/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
 
+## 0.7.0 (2026-10-29)
+
+Every button on the live desk now does what it says in Salesforce, except Analyse a document, which
+stays greyed out as "Soon".
+
+### Person actions (Salesforce, 25 tools)
+- New write tools, people only (the agent identity is refused and the runner never grants them):
+  `add_note`, `request_documents`, `log_call`, `book_meeting`, `reassign_case`, `create_followups`.
+  Each writes as the signed-in person and, on a case, adds a line to the case timeline that the
+  agents read.
+- `request_documents` sends the branded Document request to the client's email on record at once,
+  released by the person (needs the decide permission). The case then waits on the client and their
+  reply restarts the agents. In this POC it sends only to the allowlisted domains; the same request is
+  not sent twice in a day.
+- `book_meeting` puts a confirmed meeting in your own Salesforce calendar, or confirms a meeting the
+  Case agent proposed. Times without an offset are London time. No invitation is emailed.
+- `create_followups` makes up to 20 tasks at once and never repeats an open one.
+- New read tools: `W360Colleagues` (who a case can be handed to) and `W360Insights`.
+
+### The desk
+- One calm dialog for every action, with the client lookup when there is no client in view and a
+  case choice when the action needs one. Request documents suggests the documents for the journey.
+- The FAB on a case: Add a note, Request documents, Log a call, Book a meeting, Reassign, Open in
+  Salesforce. On the desk, Clients and Insights the matching actions are live too.
+- Insights in live mode come from Salesforce: assets under care, moments to act and cash to put to
+  work, with a loading skeleton. Each moment has its own action; tick several and Create follow-ups
+  makes them in one go, with editable due dates.
+
+### Upgrade
+Update the plugin, reconnect the Wealth 360 connector (new tools), and republish your desk so its
+grant includes the new tools.
+
 ## 0.6.0 (2026-10-29)
 
 Wealth 360 is a proof of concept, not a demo: in live mode every action either works against

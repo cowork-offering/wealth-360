@@ -85,6 +85,19 @@ fill a failed read with a remembered or invented figure.
 | `stage_decision` | person-only: validates a decision, returns plan, hash, single-use token | you, on the person's instruction; the desk page |
 | `confirm_decision` | person-only: executes the staged plan as the named person, verifies by re-query | you, only after the person's explicit confirmation; the desk page |
 | `log_request` | person-only: logs a request the person took (phone, branch, letter, email) as a new case; the agents start on it | you, on the person's instruction (skill `log-request`); the desk page |
+| `W360ClientSearch` | read: person clients by name or email, with their open W360 cases | you, the desk page |
+| `W360Insights` | read: moments to act across the book (idle cash, KYC reviews and ID documents coming due, cases waiting on the client, complaints, bereavements), each with a suggested next step | you, the desk page |
+| `W360Colleagues` | read: the Wealth 360 team a case can be handed to, with open case counts | you, the desk page |
+| `create_followups` | person-only: follow-up tasks in the person's Salesforce tasks, on a case or a client, up to 20 at once, never repeated | you, on the person's instruction; the desk page |
+| `log_call` | person-only: a completed call task, and a line on the case timeline | you, on the person's instruction; the desk page |
+| `book_meeting` | person-only: a confirmed Event in the person's own calendar, or confirms a meeting the Case agent proposed; no invitation is emailed | you, on the person's instruction; the desk page |
+| `add_note` | person-only: a note on the case timeline that the agents read | you, on the person's instruction; the desk page |
+| `request_documents` | person-only, needs the decide permission: a branded document request emailed to the client's address on record now; the case waits on the client | you, on the person's explicit instruction; the desk page |
+| `reassign_case` | person-only: hands a case to a colleague on the Wealth 360 team | you, on the person's instruction; the desk page |
+
+The person actions (`create_followups`, `log_call`, `book_meeting`, `add_note`, `request_documents`,
+`reassign_case`) act as the person who asked. Say what you will write before you call one, and call
+`request_documents` only when the person has said to send it: it emails the client.
 
 You never call `submit_step`, `propose_meeting`, `draft_communication` or `record_review`
 yourself. Those are the agents' writes, and the agents run as subagents so that the maker and the

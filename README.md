@@ -178,7 +178,7 @@ The plugin reads them live; it does not carry its own copy.
 
 | Part | Status |
 |---|---|
-| Wealth 360 MCP server, 16 tools, in the BankingGPT sandbox | Live |
+| Wealth 360 MCP server, 25 tools, in the BankingGPT sandbox | Live |
 | Desk: queue, case detail, rulebook, summary, staged decisions | Live with the connector; replay without it |
 | Five seeded storyboard cases plus five demo-suite cases on synthetic data (GBP) | Live in the sandbox |
 | Deterministic checks: payee, incoming match, KYC status | Live, on Salesforce records |
@@ -189,6 +189,9 @@ The plugin reads them live; it does not carry its own copy.
 | Email intake | Live in the sandbox: an Apex Email Service turns a client's email into a W360 case or files a reply on its case (rules below). Proven with simulated emails; the first real inbound email is still to be tested |
 | Branded email out | Live when a person releases it through the desk. Agent auto-send of document requests is live and fenced (allowlisted domains only): proven on 28 October, case 00001369 |
 | Log a request (`log_request`, skill `log-request`, desk button) | Live: a person logs a phone, branch, letter or email request as a case and the agents start on it within seconds. People only |
+| Person actions from the desk (`add_note`, `request_documents`, `log_call`, `book_meeting`, `reassign_case`, `create_followups`) | Live: written to Salesforce as the signed-in person; agents can never call them. Request documents emails the client at once (allowlisted domains only in this POC) |
+| Insights (`W360Insights`) | Live: moments to act computed from the book in Salesforce, each with an action; tick several and Create follow-ups |
+| Analyse a document | Not released yet; shown as "Soon" on the desk |
 | The agents inside your own session | Read-only in effect. If you dispatch them from your seat, Salesforce refuses their writes ("agent tools run only as the agent identity"); they report the steps and checks they would record and you see the work |
 | Booking calendars, moving money, posting letters | Outside this connector. Confirming a decision releases the instruction or confirms the meeting in Salesforce; delivery is another system's job |
 

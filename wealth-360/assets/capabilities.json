@@ -12,7 +12,15 @@
           "confirm_decision",
           "log_request",
           "W360ClientSearch",
-          "W360ClientSnapshot"
+          "W360ClientSnapshot",
+          "W360Insights",
+          "W360Colleagues",
+          "create_followups",
+          "log_call",
+          "book_meeting",
+          "add_note",
+          "request_documents",
+          "reassign_case"
         ]
       }
     ]
