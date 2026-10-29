@@ -1482,6 +1482,11 @@ body.w3live.w3v main.wrap{min-height:0}
 .w3-stat small{font-size:11px;color:var(--w3-ink4)}
 .w3-stat strong{font-size:22px;font-weight:600;letter-spacing:-.01em;line-height:1.2;font-variant-numeric:tabular-nums}
 .w3-stat strong em{font-style:normal;font-size:13px;color:var(--w3-ink4);font-weight:400}
+.w3-stat-done strong{color:var(--w3-pd)}.w3-stat-done small{color:var(--w3-pd);font-weight:600}
+.w3-lane.w3la-done{background:#f3fbf6}
+.w3c-done{opacity:.96}
+.w3-res{display:inline-flex;align-items:center;gap:5px;font-weight:600;color:var(--w3-ok)}.w3-res::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.w3-res.ag{color:var(--w3-pd)}
 .w3-vr{width:1px;background:var(--w3-line)}
 .w3-bar{display:flex;align-items:center;gap:16px;padding-bottom:12px}
 .w3-lens{display:inline-flex;background:#e8e8ed;border-radius:999px;padding:3px}
@@ -1495,10 +1500,10 @@ body.w3live.w3v main.wrap{min-height:0}
 .w3-log{border:0;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;background:var(--w3-ink);color:#fff;cursor:pointer;white-space:nowrap}
 .w3-board{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;padding-bottom:16px}
 .w3-groups,.w3-lanes{display:grid;gap:12px}
-.w3-me{grid-template-columns:repeat(3,minmax(0,1fr)) repeat(2,minmax(0,.82fr))}
+.w3-me{grid-template-columns:repeat(3,minmax(0,1fr)) repeat(3,minmax(0,.74fr))}
 .w3-jr{grid-template-columns:repeat(5,minmax(0,1fr))}
 .w3-groups{margin-bottom:8px;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--w3-ink4);font-weight:500}
-.w3-groups .you{grid-column:1/4;color:var(--w3-pd)}.w3-groups .oth{grid-column:4/6}
+.w3-groups .you{grid-column:1/4;color:var(--w3-pd)}.w3-groups .oth{grid-column:4/7}
 .w3-legend{grid-column:1/6;display:flex;gap:16px;text-transform:none;letter-spacing:0;font-size:12px}
 .w3-lanes{flex:1 1 auto;min-height:0}
 .w3-lane{min-height:0;display:flex;flex-direction:column;background:#ebebef;border-radius:18px}
@@ -1868,7 +1873,7 @@ body.w3live .w3d-f{padding-right:max(104px,calc(env(safe-area-inset-right,0px) +
     <div id="w3">
       <div class="w3-head">
         <div><div class="kicker" id="w3k"></div><h1 id="w3h">Good morning, Emma.</h1><p id="w3p"></p></div>
-        <div class="w3-stats"><div class="w3-stat"><small>Agent steps today</small><strong id="w3s1">–</strong></div><div class="w3-vr"></div>
+        <div class="w3-stats"><div class="w3-stat w3-stat-done" title="Cases closed: by the agents on their own, or after a person's decision. Superseded cases are not counted."><small>Completed</small><strong id="w3s0">–</strong></div><div class="w3-vr"></div><div class="w3-stat"><small>Agent steps today</small><strong id="w3s1">–</strong></div><div class="w3-vr"></div>
           <div class="w3-stat"><small>Your decisions</small><strong id="w3s2">–</strong></div><div class="w3-vr"></div>
           <div class="w3-stat"><small>Agents working</small><strong id="w3s3">0</strong></div></div>
       </div>
@@ -3053,7 +3058,10 @@ function lvSrc(st,msg){lvSrcSt=st;const el=$("lvsrc");if(!el)return;
 const LVMSG={server_not_connected:"Connect Wealth 360 in claude.ai Settings › Connectors",server_not_found:"Connect Wealth 360 in claude.ai Settings › Connectors",selection_required:"Choose a Wealth 360 connector in claude.ai",needs_reauth:"Reconnect Wealth 360 in claude.ai Settings › Connectors"};
 
 /* view model */
-function lvCust(r){if(r.journey==="Bereavement"){const m=/:\s*(Estate of .+)$/.exec(r.subject||"");if(m)return m[1]}return r.customer||"Unmatched payment"}
+const lvTitle=s=>String(s||"").toLowerCase().replace(/(^|[\s'-])([a-z])/g,(m,a,b)=>a+b.toUpperCase());
+function lvCust(r){if(r.journey==="Bereavement"){const m=/:\s*(Estate of .+)$/.exec(r.subject||"");if(m)return m[1]}
+  if(r.journey==="Money_In"&&!r.customer){if(r.remitter)return lvTitle(r.remitter);const m=/\bfrom ([A-Z][A-Za-z&' ]+?),/.exec(r.subject||"");return m?`Payment from ${m[1]}`:"Incoming payment"}
+  return r.customer||"Incoming payment"}
 function lvStage(st){const k=String(st||"").trim().toLowerCase();return k in SIX?SIX[k]:0}
 function lvBuild(){
   const rows=(LIVE.q.rows||[]).filter(r=>r&&r.caseId);
@@ -3429,6 +3437,10 @@ function w3Card(c,lane,lens){const r=c.row,amt=w3Amt(c),open=openId===c.id?" ope
      <span class="w3now"><i class="w3-av ${rv?"rv":ps?"ps":""}">${rv?"RA":ps?E(ini(who)):"CA"}</i><span class="w3nt"><b>${E(who)}</b> · ${E(mine?"decided; the agents are carrying it out":w3Clean(r.lastAction||"Starting",90))}</span></span>
      <span class="w3-bars">${[0,1,2,3,4,5,6].map(i=>`<i class="${i<(st.stage||0)?"d":i===(st.stage||0)?"n":""}"></i>`).join("")}</span>
      <span class="w3r3"><span>${c.type} · ${c.no}</span><span>${r.lastAt?E(lvShort(r.lastAt)):""}</span></span></button>`}
+  if(lane==="done"){const ag=r.resolution==="Resolved by agents";
+    return `<button class="w3c w3c-done${open}" data-w3="${c.id}"><span class="w3r1"><b>${c.cust}</b><em>${E(amt)}</em></span>
+     <span class="w3hl">${E(w3Head(c))}</span>
+     <span class="w3r3"><span class="w3-res ${ag?"ag":""}" title="${r.closedAt?"Closed "+E(lvShort(r.closedAt)):""}">${ag?"By agents alone":"After your decision"}</span></span></button>`}
   const d=w3Due(r.slaDue),f=w3Flag(c);
   return `<button class="w3c${open}" data-w3="${c.id}"><span class="w3r1"><b>${c.cust}</b><em>${E(amt)}</em></span>
    <span class="w3hl">${E(w3Head(c))}</span>${lens==="me"?`<span class="w3wy">${E(w3Why(c,lane))}</span>`:""}
@@ -3440,12 +3452,14 @@ function w3Fit(){const el=$("w3");if(!el||!document.body.classList.contains("w3l
 addEventListener("resize",w3Fit);
 try{new ResizeObserver(()=>w3Fit()).observe(document.documentElement)}catch(e){}
 function w3Render(){const el=$("w3");if(!el||!LIVE)return;requestAnimationFrame(w3Fit);
-  const L=LCASES.map(c=>({c,l:w3Lane(c)})).filter(x=>x.l!=="done").sort((a,b)=>w3Sort(a.c,b.c));
+  const L0=LCASES.map(c=>({c,l:w3Lane(c)})),L=L0.filter(x=>x.l!=="done").sort((a,b)=>w3Sort(a.c,b.c));
+  const D=L0.filter(x=>x.l==="done"&&x.c.row.resolution!=="Superseded"&&x.c.row.deskState!=="Rejected").sort((a,b)=>lvD(b.c.row.closedAt||b.c.row.lastAt||0)-lvD(a.c.row.closedAt||a.c.row.lastAt||0));
   const by=k=>L.filter(x=>x.l===k), mine=L.filter(x=>["auth","dec","rev"].includes(x.l));
   const S=LSUM,dec=S?(S.humanDecisions||0):0,den=Math.max(lvDen(),dec),h=+lvHM(lvNow()).slice(0,2);
   $("w3k").textContent=`${lvF(lvNow(),{weekday:"long",day:"numeric",month:"long"})}`;
   $("w3h").textContent=`Good ${h<12?"morning":h<18?"afternoon":"evening"}, Emma.`;
   $("w3p").innerHTML=mine.length?`<b>${mine.length} case${mine.length===1?"":"s"} need${mine.length===1?"s":""} you</b>: ${by("auth").length} to authorise, ${by("dec").length} to decide, ${by("rev").length} to review.${mine.some(x=>W3RANK(x.c)===0)?" Start with the sanctions match.":""}`:"Nothing needs you right now.";
+  {const q=LIVE.q||{},n=+q.completed||0,a=+q.resolvedByAgents||0;$("w3s0").innerHTML=q.completed==null?"–":`${n} <em>· ${a} by agents alone</em>`}
   $("w3s1").textContent=S?S.agentTasksCompleted||0:"–";$("w3s2").innerHTML=`${dec} <em>of ${den}</em>`;$("w3s3").textContent=by("agent").length;
   document.querySelectorAll("#w3lens button").forEach(b=>{b.setAttribute("aria-pressed",b.dataset.l===w3lens?"true":"false");b.textContent=b.dataset.l==="me"?`Needs me · ${mine.length}`:`All cases · ${L.length}`});
   const lv=$("w3live"),t=LIVE.storedAt?lvHM(new Date(LIVE.storedAt).toISOString()):"";
@@ -3458,7 +3472,8 @@ function w3Render(){const el=$("w3");if(!el||!LIVE)return;requestAnimationFrame(
     w3LaneH("w3la-dec","Decide","Exceptions the agents raised.",by("dec"),"me","No exceptions.")+
     w3LaneH("w3la-rev","Review","Drafts waiting for your approval.",by("rev"),"me","No drafts.")+
     w3LaneH("w3la-agent","Agents working","New requests and decided cases, worked now.",by("agent"),"me","All caught up. A new email, call or logged request appears here the moment it arrives.")+
-    w3LaneH("w3la-wait","Waiting on client","The client has the next step.",by("wait"),"me","Nobody to wait for.")+`</div>`}
+    w3LaneH("w3la-wait","Waiting on client","The client has the next step.",by("wait"),"me","Nobody to wait for.")+
+    w3LaneH("w3la-done","Completed","Closed today, evidence on file.",D,"me","Nothing closed yet today.")+`</div>`}
   else{h2=`<div class="w3-groups w3-jr"><div class="w3-legend"><span class="w3-st w3la-auth">Authorise</span><span class="w3-st w3la-dec">Decide</span><span class="w3-st w3la-rev">Review</span><span class="w3-st w3la-agent">Agents working</span><span class="w3-st w3la-wait">Waiting on client</span></div></div><div class="w3-lanes w3-jr">`+
     W3J.map(j=>{const LL=L.filter(x=>x.c.row.journey===j),you=LL.filter(x=>["auth","dec","rev"].includes(x.l)).length;
       const tot=LL.reduce((a,x)=>{const m=/£([\d,]+)/.exec(x.c.row.subject||"");return a+(m?+m[1].replace(/,/g,""):0)},0);
@@ -3513,7 +3528,7 @@ function w3Body(c,D,s,u,lane){const K=D.case||{},r=c.row,f=w3Flag(c);
       <div><small>Screening</small><b class="${one(sc,"ScreeningDecision")==="Clear"?"ok":""}">${E(one(sc,"ScreeningDecision")||"None")}</b><em>UK Sanctions List</em></div>
       <div><small>Identity verification</small><b class="${one(iv,"Result")==="Accepted"?"ok":""}">${E(one(iv,"Result")||"None")}</b><em></em></div>
       <div><small>ID document</small><b>${E(one(idd,"IdDocumentType")||"None")}</b><em>${one(idd,"ExpirationDate")?"Valid to "+E(dmy(one(idd,"ExpirationDate"))):""}</em></div></div></div>`
-      :`<div class="w3sec"><p class="w3-empty">No client linked yet${r.journey==="Money_In"?": the payment is not matched to an account":""}.</p></div>`;
+      :`<div class="w3sec"><p class="w3-empty">No client linked yet${r.journey==="Money_In"?": the payment stays in suspense until a person allocates it":""}.</p></div>`;
     const fa=(cu.financialAccounts||[]).slice(0,3);
     if(fa.length)h+=`<div class="w3sec"><h4>Accounts</h4><div class="w3rows">${fa.map(a=>{const no=String(a.FinServ__FinancialAccountNumber__c||"").replace(/\D/g,"").slice(-4);return `<div><div>${E(a.Name)}${no?` <span>··${no}</span>`:""}</div><span>${lvGbp(a.FinServ__Balance__c)}</span></div>`}).join("")}</div></div>`;
     const oc=(D.caseHistory||[]).filter(x=>x.Status!=="Closed").slice(0,2);
@@ -3873,7 +3888,7 @@ function w3Boot(st,msg){if(LIVE)return;w3bootSt=st;const b=W3BOOT[st]||W3BOOT.co
   const lanes=`<div class="w3-groups w3-me"><span class="you">With you</span><span class="oth">Moving on its own</span></div><div class="w3-lanes w3-me">`+
     w3SkLane("w3la-auth","Authorise","Prepared and checked. Your release.",2)+w3SkLane("w3la-dec","Decide","Exceptions the agents raised.",3)+
     w3SkLane("w3la-rev","Review","Drafts waiting for your approval.",1)+w3SkLane("w3la-agent","Agents working","New requests and decided cases, worked now.",2)+
-    w3SkLane("w3la-wait","Waiting on client","The client has the next step.",1)+`</div>`;
+    w3SkLane("w3la-wait","Waiting on client","The client has the next step.",1)+w3SkLane("w3la-done","Completed","Closed today, evidence on file.",1)+`</div>`;
   const CH='<svg viewBox="116.99973 0 19.79227 20.94533" aria-hidden="true"><path d="m 116.99973,0 v 5.97866 l 11.556,4.516 -11.556,4.296 v 6.15467 l 19.792,-8.016 V 7.97066 Z"/></svg>';
   const loader=b.t?"":`<div class="w3load" role="status" aria-live="polite"><div class="w3load-in"><div class="w3chev">${CH}${CH}${CH}</div><span>Loading your desk</span><i class="w3load-bar"></i></div></div>`;
   const note=b.t?`<div class="w3note" role="status"><div class="w3note-in"><span class="w3note-i${b.retry?" off":""}"></span><h3>${E(b.t)}</h3><p>${E(msg||b.p)}</p>${b.retry?`<button class="w3btn" id="w3retry">Try again</button>`:""}</div></div>`:"";

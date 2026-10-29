@@ -15,6 +15,7 @@ All on the `Wealth 360` connector. Match on the suffix; the host may prefix the 
 |---|---|
 | `W360CaseContext` | the case for an agent: request, journey rules, step progress, evidence, documents, money, meetings, customer, history, correspondence. Call with `{"inputs":[{"caseId":"<id>","agent":"Case agent"}]}` |
 | `W360Rulebook` | the journey's level, team, SLA, required documents, rules and raise-to-L3 conditions. `{"inputs":[{"journey":"<DeveloperName>"}]}` |
+| `W360ClientSearch` | find a person client by name or email when the case does not link them, for example a deceased client named in a bereavement notification. `{"inputs":[{"query":"<name>"}]}`; then open the match with `W360ClientSnapshot` |
 | `W360ClientSnapshot` | the customer: accounts, holdings, life events, KYC records, household, relationships, nominated accounts |
 | `W360KycStatus` | KYC verdict for the customer, Clear or Needs person, with the gaps |
 | `W360PayeeCheck` | deterministic withdrawal checks: source account, ownership, balance, currency, payee name, number format, payee age, KYC |
@@ -164,6 +165,23 @@ the Review agent's `review` passed and the case is still L1 with no exception, w
    `proposedAction` for the person (for example "Send an identity check, then update the address").
 
 Never pass an address the evidence does not show, and never call `close` or `no_match` a match.
+
+## Recording a death (Bereavement, mark_deceased)
+
+You record the death yourself at `mark_deceased`; it protects the estate and decides nothing.
+
+1. Find the deceased client (`W360ClientSearch` on the name in the notification, then
+   `W360ClientSnapshot`) and read the date of death from the death certificate on the case.
+2. Call `submit_step` with `stepKey: "mark_deceased"`, a summary, the certificate quote and source,
+   and `evidenceJson` holding `{"deceasedAccountId": "<the deceased's account id>", "dateOfDeath":
+   "YYYY-MM-DD"}`. Salesforce then records a Death life event on the deceased client and puts the
+   deceased's open accounts On Hold. Report what came back in `deathRecord` (accounts held).
+3. When Salesforce refuses (no death certificate on the case, a date in the future, a client who is
+   neither the case's client nor a relation of its contact), nothing was changed. Submit
+   `mark_deceased` with `outcome: "Exception"`, the refusal as `exceptionReason`, and a
+   `proposedAction` for the person.
+
+Never write a letter that says the death is recorded unless `deathRecord` came back recorded.
 
 ## How you work a case
 

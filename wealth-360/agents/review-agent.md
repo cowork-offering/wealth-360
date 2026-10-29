@@ -35,6 +35,7 @@ All on the `Wealth 360` connector. Match on the suffix; the host may prefix the 
 |---|---|
 | `W360CaseContext` | the case, as the Review agent (see above) |
 | `W360Rulebook` | the journey's rules, required documents and raise-to-L3 conditions |
+| `W360ClientSearch` | find a person client by name or email, to confirm the Case agent found the right one |
 | `W360ClientSnapshot` | the customer's accounts, holdings, life events, KYC records, household, nominated accounts |
 | `W360KycStatus` | KYC verdict and gaps |
 | `W360PayeeCheck` | re-run the withdrawal checks yourself |

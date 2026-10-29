@@ -3,6 +3,25 @@
 All notable changes to the Wealth 360 plugin. The version is in
 `wealth-360/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
 
+## 0.12.0 (2026-10-29)
+
+From the demo review and the live complaint and bereavement runs (cases 00001375 and 00001380):
+
+- Desk: a **Completed** counter leads the header: cases closed, and how many the agents resolved on
+  their own with no person's decision (Salesforce field `W360_Resolution__c`; superseded cases are
+  not counted). A **Completed** column shows today's closed cases, each marked "By agents alone" or
+  "After your decision".
+- Desk: an incoming payment with no client yet is named after its remitter (for example "Victor
+  Bondarev"), not "Unmatched payment", so the sanctions screening on that case opens with the
+  remitter's name.
+- Agents: both agents can search clients (`W360ClientSearch`), so a deceased client named only in a
+  bereavement notification is found.
+- Case agent: records a death at `mark_deceased` with `evidenceJson` (deceased client and date of
+  death); Salesforce records the Death life event and puts the deceased's accounts On Hold, fenced
+  in Apex.
+- Salesforce: a person's decision wakes the agents at once, and the journey's last step after an
+  approved decision closes the case.
+
 ## 0.11.0 (2026-10-29)
 
 - Salesforce: a KYC tab on the Wealth 360 client page (W360 KYC Panel): the KYC profile and review
