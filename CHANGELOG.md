@@ -3,6 +3,25 @@
 All notable changes to the Wealth 360 plugin. The version is in
 `wealth-360/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
 
+## 0.9.0 (2026-10-29)
+
+Checks now sync back to Salesforce properly.
+
+- New tool `record_check` (27 tools). A sanctions screening becomes a PartyScreeningSummary on the
+  client's KYC profile (Clear, On Hold for a possible match, Rejected for a match); an identity check
+  becomes a PartyIdentityVerification, In Progress with the Didit session and link when it starts,
+  Accepted, Rejected or On Hold when the decision is in. Address and payee checks, which have no KYC
+  record, and every other check land on the case timeline. The Client tab and the agents see the
+  current KYC, newest first.
+- Identity decisions come back by themselves: the agent runner asks Didit for every open session
+  every 3 minutes (no model involved) and records the decision as the agent identity. A case waiting
+  on the client goes back to the agents.
+- The Checks tab lists identity checks still waiting on the client, with Get result to fetch the
+  decision at once.
+- Fix: the identity check link now shows (the Checks server returns it as `verification_url`).
+
+Republish the desk to get it.
+
 ## 0.8.1 (2026-10-29)
 
 - The FAB showed the menu it was first drawn with until you changed view or opened a case, so the

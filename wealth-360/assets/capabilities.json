@@ -21,7 +21,8 @@
           "add_note",
           "request_documents",
           "reassign_case",
-          "attach_document"
+          "attach_document",
+          "record_check"
         ]
       },
       {

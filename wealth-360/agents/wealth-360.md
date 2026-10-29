@@ -95,6 +95,7 @@ fill a failed read with a remembered or invented figure.
 | `request_documents` | person-only, needs the decide permission: a branded document request emailed to the client's address on record now; the case waits on the client | you, on the person's explicit instruction; the desk page |
 | `reassign_case` | person-only: hands a case to a colleague on the Wealth 360 team | you, on the person's instruction; the desk page |
 | `attach_document` | person-only: attaches a document the client sent (PDF or photo, at most 2 MB) with what was read from it; a case waiting on the client goes back to the agents | the desk page (Analyse a document) |
+| `record_check` | records an outside check where Salesforce keeps it: sanctions screening on the KYC profile (PartyScreeningSummary), an identity check as a PartyIdentityVerification (started, then the decision), every check on the case timeline; a final identity decision on a case waiting on the client sends it back to the agents | the desk page (Run a check, Get result); the runner's identity poller as the agent identity. Never the Case or Review agent |
 
 The person actions (`create_followups`, `log_call`, `book_meeting`, `add_note`, `request_documents`,
 `reassign_case`, `attach_document`) act as the person who asked. Say what you will write before you call one, and call

@@ -3945,7 +3945,7 @@ function w3ChkSay(kind,r){const x=r.result||{};
     const m={match:"Name and account match",partial_match:"Partial match",no_match:"No match",match_not_possible:"Match not possible"}[x.result||x.outcome]||String(x.result||x.outcome||"Done");return {ok:(x.result||x.outcome)==="match",head:m,line:""}}
   if(kind==="chk_addr"){const m={match:"Address found",close:"Close match",no_match:"Not found at that postcode",postcode_not_found:"Postcode not found"}[x.address_match||x.result]||String(x.address_match||"Done");
     const a=x.matched_address;return {ok:x.address_match==="match",head:m,line:a?[a.line_1,a.post_town,a.postcode].filter(Boolean).join(", "):""}}
-  if(kind==="chk_id"){if(x.url)return {ok:true,head:"Identity check started",line:"Send the client this link. The result can be fetched here once they finish.",url:x.url,session:x.session_id||x.sessionId};
+  if(kind==="chk_id"){const u=x.verification_url||x.url;if(u)return {ok:true,head:"Identity check started",line:"Send the client this link. The result comes back to Salesforce on its own once they finish, or use Get result on the Checks tab.",url:u,session:x.session_id||x.sessionId};
     return {ok:/approved|accepted/i.test(x.status||x.decision||""),head:String(x.status||x.decision||"Done"),line:""}}
   return {ok:true,head:"Done",line:""}}
 function w3ChkResultHTML(kind,r,say,saved){const ev=(r.result&&r.result.evidence)||{};
@@ -3958,10 +3958,14 @@ async function w3ChkRun(kind,input,box){const k=W3CHK[kind.slice(4)];
   const res=await MCP.callTool(CHK,k.tool,input,{cache:false});
   const r=w3ChkUnwrap(res),say=w3ChkSay(kind,r);box.innerHTML=w3ChkResultHTML(kind,r,say,null);
   const cp=$("w3cCopy");if(cp)cp.onclick=async()=>{try{await navigator.clipboard.writeText(say.url);toast("Link copied")}catch(e){const i=$("w3cUrl");i.select()}};
-  const ev=(r.result&&r.result.evidence)||{};
-  const note=`Outside check (Wealth 360 Checks): ${k.t}: ${say.head}.${say.line?" "+say.line:""}${ev.quote?` Evidence: "${ev.quote}"`:""}${ev.source?` Source: ${ev.source}.`:""}${say.url?` Link sent to client: ${say.url}`:""}${r.ledger_id?` Ledger ${r.ledger_id}.`:""} Sandbox.`;
-  let saved=false;try{lvUnwrap(await MCP.callTool(SRV,"add_note",{inputs:[{caseId:input.caseId,note:note.slice(0,3900)}]},{cache:false}));saved=true}catch(e){}
-  box.querySelector(".w3csv").textContent=saved?"Saved on the case timeline.":"Not saved on the case.";
+  const ev=(r.result&&r.result.evidence)||{},x=r.result||{};
+  const type={chk_screen:"screening",chk_addr:"address",chk_payee:"payee",chk_id:"identity_started"}[kind];
+  const subject=kind==="chk_addr"?[input.line1,input.postcode].join(", "):kind==="chk_payee"?`${input.account_holder_name} ${input.sort_code} ··${String(input.account_number).slice(-4)}`:(input.name||input.full_name||"");
+  const outcome=kind==="chk_screen"?x.result:kind==="chk_addr"?(x.address_match||x.result):kind==="chk_payee"?(x.result||x.outcome):(x.result||"pending");
+  let saved=false,kyc=false;
+  try{const rr=lvUnwrap(await MCP.callTool(SRV,"record_check",{inputs:[{caseId:input.caseId,checkType:type,outcome:String(outcome||""),headline:say.head+(say.line?". "+say.line:""),
+      evidenceQuote:String(ev.quote||"").slice(0,3900),source:ev.source||"",ledgerId:r.ledger_id||"",sessionId:say.session||null,url:say.url||null,subject:subject.slice(0,200)}]},{cache:false}));saved=true;kyc=!!(rr&&rr.kycRecordId)}catch(e){}
+  box.querySelector(".w3csv").textContent=saved?(kyc?"Saved on the case and the client's KYC profile.":"Saved on the case timeline."):"Not saved on the case.";
   if(saved&&lvCase(input.caseId))lvDetail(input.caseId,true);
   return {r,say,saved}}
 function w3ChkErr(e){const k=e&&e.code;
@@ -3971,11 +3975,24 @@ function w3ChkErr(e){const k=e&&e.code;
   if(k==="not_granted")return "The desk was not allowed to use Wealth 360 Checks.";
   return (e&&e.message)||"The check did not run."}
 /* the Checks tab gets a "Run a check" section */
+function w3IdPending(c){const D=LDET[c.id]&&LDET[c.id].d,iv=(D&&D.customer&&D.customer.kyc&&D.customer.kyc.identityVerification)||[];
+  return iv.filter(v=>v.ThirdPartyVerfdentifier&&v.Status!=="Completed")}
+function w3IdHTML(c){const p=w3IdPending(c);if(!p.length)return "";
+  return `<div class="w3sec"><h4>Identity checks waiting on the client</h4><div class="w3rows w3idp">${p.map(v=>`<div><div>${E(v.Result==="On Hold"?"In review at Didit":"Sent")} ${v.VerificationRequestDate?`<span>· ${E(lvShort(v.VerificationRequestDate))}</span>`:""}</div><button type="button" class="w3lnk" data-w3idr="${E(v.ThirdPartyVerfdentifier)}">Get result</button></div>`).join("")}</div><p class="w3runf">The result also comes back on its own within a few minutes of the client finishing.</p></div>`}
+async function w3IdFetch(btn){const sid=btn.dataset.w3idr,c=lvCase(openId);if(!c||btn.disabled)return;btn.disabled=true;btn.textContent="Checking…";
+  try{const r=w3ChkUnwrap(await MCP.callTool(CHK,"verify_identity",{session_id:sid,caseId:c.id},{cache:false})),x=r.result||{};
+    const rr=lvUnwrap(await MCP.callTool(SRV,"record_check",{inputs:[{caseId:c.id,checkType:"identity",outcome:String(x.result||""),evidenceQuote:String((x.evidence||{}).quote||"").slice(0,3900),
+      source:(x.evidence||{}).source||"Didit",ledgerId:r.ledger_id||"",sessionId:sid}]},{cache:false}));
+    toast(E(rr.pending&&!rr.existing&&!rr.kycRecordId?"The client has not finished yet":({verified:"Identity verified",failed:"Identity not verified",needs_review:"In review at Didit"}[x.result]||"The client has not finished yet")));
+    try{await MCP.invalidate(SRV)}catch(e){}lvDetail(c.id,true)}
+  catch(e){toast(E(w3ChkErr(e)))}
+  btn.disabled=false;btn.textContent="Get result"}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-w3idr]");if(!b||!LIVE)return;e.stopPropagation();w3IdFetch(b)},true);
 function w3RunHTML(c){const j=c.row.journey;
   const rows=[["screen","Sanctions screening","Screen the client or a payee"],["addr","Address check","Look an address up at its postcode"],
     ["payee","Payee account check","Confirm who owns an account"],["id","Identity check","Send the client a document and liveness check"]];
   const order=j==="Money_Out"?["payee","screen","id","addr"]:j==="Change_Of_Details"?["addr","id","screen","payee"]:["screen","id","addr","payee"];
-  return `<div class="w3sec"><h4>Run a check yourself</h4><div class="w3run">${order.map(k=>{const x=rows.find(r=>r[0]===k);return `<button type="button" data-w3run="${k}"><b>${x[1]}</b><small>${x[2]}</small><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5"/></svg></button>`}).join("")}</div><p class="w3runf">Through your Wealth 360 Checks connector. Results are saved on the case.</p></div>`}
+  return w3IdHTML(c)+`<div class="w3sec"><h4>Run a check yourself</h4><div class="w3run">${order.map(k=>{const x=rows.find(r=>r[0]===k);return `<button type="button" data-w3run="${k}"><b>${x[1]}</b><small>${x[2]}</small><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5"/></svg></button>`}).join("")}</div><p class="w3runf">Through your Wealth 360 Checks connector. Results are saved on the case and, for screening and identity, on the client's KYC profile.</p></div>`}
 
 /* Analyse a document */
 const w3doc={file:null,blobs:null,b64:null,read:null,busy:false,ctl:null,chk:null};

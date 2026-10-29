@@ -178,7 +178,7 @@ The plugin reads them live; it does not carry its own copy.
 
 | Part | Status |
 |---|---|
-| Wealth 360 MCP server, 26 tools, in the BankingGPT sandbox | Live |
+| Wealth 360 MCP server, 27 tools, in the BankingGPT sandbox | Live |
 | Desk: queue, case detail, rulebook, summary, staged decisions | Live with the connector; replay without it |
 | Five seeded storyboard cases plus five demo-suite cases on synthetic data (GBP) | Live in the sandbox |
 | Deterministic checks: payee, incoming match, KYC status | Live, on Salesforce records |
@@ -192,7 +192,7 @@ The plugin reads them live; it does not carry its own copy.
 | Person actions from the desk (`add_note`, `request_documents`, `log_call`, `book_meeting`, `reassign_case`, `create_followups`) | Live: written to Salesforce as the signed-in person; agents can never call them. Request documents emails the client at once (allowlisted domains only in this POC) |
 | Insights (`W360Insights`) | Live: moments to act computed from the book in Salesforce, each with an action; tick several and Create follow-ups |
 | Analyse a document (desk, `attach_document`) | Live: drop a PDF or photo on a case; Claude reads it on the page (your own Claude usage, asked once), compares it with the case, and you attach it. A case waiting on the client goes back to the agents |
-| Outside checks from the desk | Live: Run a check yourself on a case (Checks tab) and the address or identity check after reading a document, through your `Wealth 360 Checks` connector. Each result is saved on the case timeline |
+| Outside checks from the desk | Live: Run a check yourself on a case (Checks tab) and the address or identity check after reading a document, through your `Wealth 360 Checks` connector. Each result is saved on the case timeline and, for sanctions screening and identity, on the client's KYC profile (PartyScreeningSummary, PartyIdentityVerification). An identity decision comes back by itself: the runner asks Didit every 3 minutes and writes it to Salesforce |
 | The agents inside your own session | Read-only in effect. If you dispatch them from your seat, Salesforce refuses their writes ("agent tools run only as the agent identity"); they report the steps and checks they would record and you see the work |
 | Booking calendars, moving money, posting letters | Outside this connector. Confirming a decision releases the instruction or confirms the meeting in Salesforce; delivery is another system's job |
 
