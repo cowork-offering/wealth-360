@@ -39,10 +39,11 @@
   .ul:hover::after,.ul:focus-visible::after{transform:scaleX(1);transform-origin:left}
 
   /* ================= HEADER ================= */
+  [id]{scroll-margin-top:84px}
   header{position:fixed;inset:0 0 auto;height:68px;z-index:80;display:flex;align-items:center;
     transition:background .4s ease,backdrop-filter .4s ease}
   header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:transparent;transition:background .4s ease}
-  header.scrolled{background:rgba(0,0,0,.6);backdrop-filter:saturate(1.1) blur(16px);-webkit-backdrop-filter:saturate(1.1) blur(16px)}
+  header.scrolled{background:#0A0A0C}
   header.scrolled::after{background:rgba(255,255,255,.12)}
   .hd-in{width:100%;padding:0 var(--rail);display:flex;align-items:center;gap:16px}
   .brand{display:flex;align-items:baseline;gap:14px}

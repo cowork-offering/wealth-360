@@ -7,7 +7,7 @@
 <link rel="icon" href="ds/favicon.svg" type="image/svg+xml" />
 <meta name="theme-color" content="#0A0A0B" />
 <link rel="stylesheet" href="ds/tokens.css?v=r3" />
-<link rel="stylesheet" href="site.css?v=3" />
+<link rel="stylesheet" href="site.css?v=4" />
 <meta name="robots" content="noindex,nofollow" />
 <script src="gate.js?v=5"></script>
 <title>Wealth 360 · agents do the work, people decide</title>
@@ -78,29 +78,31 @@
   .hl{list-style:none;margin:18px 0 0;padding:0}
   .hl li{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:12px 0;border-top:1px solid var(--dark-line);font-size:13px;line-height:1.45;color:rgba(241,241,239,.82)}
   .hl li span{font-size:10px;font-weight:var(--fw-semibold);letter-spacing:.16em;text-transform:uppercase;color:var(--lav);padding-top:2px}
-  /* resources */
-  .res{padding:0 var(--rail) clamp(20px,5vh,44px);display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
-  .rc{position:relative;display:flex;flex-direction:column;min-height:260px;background:#0E0E10;border:1px solid var(--dark-line);padding:clamp(22px,2.4vw,34px);transition:border-color .3s ease,transform .4s var(--silk)}
-  .rc:hover,.rc:focus-visible{border-color:var(--accent);transform:translateY(-3px)}
-  .rc .rt{font-size:10.5px;font-weight:var(--fw-semibold);letter-spacing:.16em;text-transform:uppercase;color:var(--lav)}
-  .rc h3{margin:auto 0 0;font-weight:var(--fw-bold);font-size:clamp(22px,2.2vw,30px);letter-spacing:-0.025em;line-height:1.05;color:#fff}
-  .rc p{margin:10px 0 0;font-size:13px;line-height:1.5;color:var(--dark-ink-2)}
-  .rc .go{margin-top:18px;display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:var(--fw-semibold);letter-spacing:.14em;text-transform:uppercase;color:#fff}
-  .rc .go svg{width:16px;height:16px;fill:none;stroke:var(--accent);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-  @media(max-width:900px){.res{grid-template-columns:1fr}}
-  .film{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:block;margin:0 var(--rail) var(--gap);aspect-ratio:21/9;max-height:62vh;width:calc(100% - 2*var(--rail));overflow:hidden;border:1px solid var(--dark-line);background:#000}
-  .film img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--silk),filter .6s ease;filter:brightness(.62)}
-  .film:hover img,.film:focus-visible img{transform:scale(1.03);filter:brightness(.75)}
-  .film:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-  .film-sc{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,0) 100%)}
-  .film-tx{position:absolute;left:clamp(22px,3vw,48px);bottom:clamp(22px,3.4vw,48px);right:30%;display:flex;flex-direction:column;gap:12px}
-  .film .rt{font-size:10.5px;font-weight:var(--fw-semibold);letter-spacing:.16em;text-transform:uppercase;color:var(--lav)}
-  .film-h{font-weight:var(--fw-bold);font-size:clamp(24px,3vw,44px);letter-spacing:-0.03em;line-height:1.04;color:#fff;max-width:18ch;text-wrap:balance}
-  .film-p{font-size:clamp(13px,1.05vw,15px);line-height:1.5;color:rgba(255,255,255,.72);max-width:52ch}
-  .film-play{position:absolute;right:clamp(22px,3vw,48px);bottom:clamp(22px,3.4vw,48px);width:clamp(58px,6vw,84px);height:clamp(58px,6vw,84px);border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;transition:transform .4s var(--silk),box-shadow .4s ease}
-  .film:hover .film-play{transform:scale(1.07);box-shadow:0 0 0 10px rgba(161,0,255,.18)}
-  .film-play svg{width:38%;height:38%;fill:#fff;transform:translateX(6%)}
-  @media(max-width:700px){.film{aspect-ratio:4/5;max-height:none}.film-tx{right:22px;bottom:110px}.film-sc{background:linear-gradient(0deg,rgba(0,0,0,.9) 0%,rgba(0,0,0,.4) 60%,rgba(0,0,0,.1) 100%)}}
+  /* get started: film tile + downloads */
+  .st{padding:0 var(--rail);display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,3.4vw,56px);align-items:center}
+  .rl{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--dark-line)}
+  .rl a{display:grid;grid-template-columns:1fr auto;column-gap:20px;padding:clamp(16px,2.6vh,26px) 0;border-top:1px solid var(--dark-line);color:inherit;text-decoration:none}
+  .rl .rt{grid-column:1;font-size:10.5px;font-weight:var(--fw-semibold);letter-spacing:.16em;text-transform:uppercase;color:var(--lav)}
+  .rl .rh{grid-column:1;margin-top:8px;font-weight:var(--fw-bold);font-size:clamp(20px,1.8vw,26px);letter-spacing:-0.02em;line-height:1.1;color:#fff}
+  .rl .rp{grid-column:1;margin-top:6px;font-size:13px;line-height:1.5;color:var(--dark-ink-2);max-width:44ch}
+  .rl .ri{grid-column:2;grid-row:1/4;align-self:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;transition:border-color .3s ease,background .3s ease,transform .4s var(--silk)}
+  .rl .ri svg{width:17px;height:17px;fill:none;stroke:#fff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .rl a:hover .ri,.rl a:focus-visible .ri{border-color:var(--accent);background:var(--accent);transform:translateX(3px)}
+  .rl a:focus-visible{outline:none}.rl a:focus-visible .rh{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:5px}
+  @media(max-width:900px){.st{grid-template-columns:1fr}}
+  .wt{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:block;aspect-ratio:16/10;width:100%;overflow:hidden;border:1px solid var(--dark-line);background:#000}
+  .wt img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--silk),filter .6s ease;filter:brightness(.62)}
+  .wt:hover img,.wt:focus-visible img{transform:scale(1.03);filter:brightness(.75)}
+  .wt:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .wt-sc{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,0) 100%)}
+  .wt-tx{position:absolute;left:clamp(22px,2.6vw,40px);bottom:clamp(22px,2.8vw,40px);right:34%;display:flex;flex-direction:column;gap:12px}
+  .wt .rt{font-size:10.5px;font-weight:var(--fw-semibold);letter-spacing:.16em;text-transform:uppercase;color:var(--lav)}
+  .wt-h{font-weight:var(--fw-bold);font-size:clamp(24px,3vw,44px);letter-spacing:-0.03em;line-height:1.04;color:#fff;max-width:18ch;text-wrap:balance}
+  .wt-p{font-size:clamp(13px,1.05vw,15px);line-height:1.5;color:rgba(255,255,255,.72);max-width:52ch}
+  .wt-play{position:absolute;right:clamp(22px,2.6vw,40px);bottom:clamp(22px,2.8vw,40px);width:clamp(56px,4.8vw,72px);height:clamp(56px,4.8vw,72px);border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;transition:transform .4s var(--silk),box-shadow .4s ease}
+  .wt:hover .wt-play{transform:scale(1.07);box-shadow:0 0 0 10px rgba(161,0,255,.18)}
+  .wt-play svg{width:38%;height:38%;fill:#fff;transform:translateX(6%)}
+  @media(max-width:700px){.wt{aspect-ratio:4/5}.wt-tx{right:22px;bottom:110px}.wt-sc{background:linear-gradient(0deg,rgba(0,0,0,.9) 0%,rgba(0,0,0,.4) 60%,rgba(0,0,0,.1) 100%)}}
   .fm{position:fixed;inset:0;z-index:1000;background:rgba(4,4,6,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));opacity:0;transition:opacity .45s ease}
   .fm[hidden]{display:none}
   .fm.on{opacity:1}
@@ -111,6 +113,52 @@
   .fm video{width:min(1280px,100%);max-height:calc(100svh - 120px);aspect-ratio:16/9;background:#000;transform:scale(.97);transition:transform .6s var(--silk)}
   .fm.on video{transform:none}
 
+  /* ===== one screen per section (desktop, laptop) =====
+     Each section fills the viewport below the header and snaps into place, so a section is never
+     seen half cut. Phones and very short windows keep normal flowing scroll. */
+  .lapse .pair{width:100%;max-width:none;margin:0;box-sizing:border-box}
+  @media(min-width:900px) and (min-height:620px){
+    html{scroll-snap-type:y mandatory;scroll-padding-top:0}
+    main>section{height:100svh;min-height:0;box-sizing:border-box;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden}
+    main>section.room{padding-top:calc(68px + clamp(14px,3vh,36px));padding-bottom:clamp(18px,3.6vh,44px);justify-content:center}
+    .room>:first-child,.room>:last-child{margin-top:0;margin-bottom:0}
+    .chap{padding-bottom:clamp(16px,3.2vh,40px)}
+    .chap .idx{font-size:clamp(56px,12vh,128px)}
+    .chap h2{font-size:clamp(28px,min(3.4vw,5.4vh),54px)}
+    .chap .intro-p{margin-top:clamp(8px,1.6vh,16px);font-size:clamp(13px,1.85vh,16.5px)}
+    .ocard{min-height:clamp(150px,24vh,220px)}
+    .ucg{gap:clamp(8px,1.2vh,14px) var(--gap)}
+    .ucc{min-height:0;padding:clamp(14px,2vh,22px) clamp(16px,1.6vw,24px)}
+    .ucc .n{font-size:clamp(20px,3vh,28px)}
+    .ucc .h{padding-top:clamp(8px,1.4vh,14px)}
+    .ucc .p{font-size:12px}
+    .ucc .tag{margin-top:8px}
+    .run{padding:clamp(16px,2.6vh,28px) clamp(18px,2vw,30px)}
+    .run h3{font-size:clamp(18px,2.6vh,26px)}
+    .run ol{margin-top:clamp(10px,1.8vh,18px)}
+    .run li{padding-bottom:clamp(6px,1.25vh,14px);font-size:clamp(12px,1.6vh,13px)}
+    .run .facts b{font-size:clamp(18px,2.8vh,26px)}
+    .tour-in{max-width:min(1240px,calc((100svh - 380px) * 2.75))}
+    .fence{padding:clamp(12px,2.4vh,28px) 0}
+    .wt{max-height:calc(100svh - 68px - 340px);justify-self:start}
+    main>section.uh{padding-top:calc(68px + clamp(14px,3vh,36px));padding-bottom:clamp(18px,3.4vh,40px);justify-content:center}
+    .uh-exhibit{margin-top:clamp(14px,2.6vh,36px);padding:clamp(14px,2vh,28px)}
+    .uh-exhibit svg{max-height:min(560px,calc(100svh - 400px));width:auto;max-width:100%;margin:0 auto}
+    .uh-cap{margin-top:clamp(10px,1.8vh,18px)}
+    .lapse .pair{max-height:calc(100svh - 140px)}
+    .tour-in{margin:0}
+    .uh-head,.uh-exhibit{max-width:none;margin-left:0;margin-right:0}
+    .uh-head h2{font-size:clamp(28px,min(3.4vw,5.4vh),54px);max-width:30ch}
+    .uh-head .idx{font-size:clamp(56px,12vh,128px)}
+    .uh-head p{max-width:72ch}
+    .uh-exhibit{box-sizing:border-box}
+    @media(max-height:940px){
+      .tight .chap .intro-p{display:none}
+      .chap .idx{font-size:clamp(48px,10.5vh,96px)}
+      .uh-head p{font-size:13.5px;margin-top:10px}
+    }
+    .lapse .pair video{max-height:calc(100svh - 190px);width:auto;max-width:100%;margin-left:auto}
+  }
 </style>
 </head>
 <body>
@@ -166,19 +214,6 @@
           </a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ===================== INTRO STRIP ===================== -->
-  <section class="reg-light band">
-    <div class="sec-rail rv">
-      <span class="k">Live in a Salesforce sandbox · <b>fictional clients, real systems</b></span>
-      <span class="n">29 October 2026</span>
-    </div>
-    <div class="intro">
-      <div class="claim rv"><span class="sn">Nine use cases</span><span class="sl">Run live, from email to letter</span><span class="sd">Money out, money in, sanctions, address, identity, documents, complaints, bereavement, everyday actions.</span></div>
-      <div class="claim rv"><span class="sn">Maker and checker</span><span class="sl">Every step cited, then checked</span><span class="sd">A Case agent does the work. A Review agent checks it in a fresh context, blind to the first agent's reasoning.</span></div>
-      <div class="claim rv"><span class="sn">The red line</span><span class="sl">An agent can never decide</span><span class="sd">Salesforce refuses any decision, release or approval that does not come from a named person.</span></div>
     </div>
   </section>
 
@@ -254,13 +289,12 @@
             </div>
           </div>
         </div>
-        <p class="tour-close"><b>The running product, not a mock-up.</b> Every screen above was captured from the live desk against the sandbox, with fictional clients.</p>
       </div>
     </div>
   </section>
 
   <!-- ===================== 03 NINE USE CASES ===================== -->
-  <section class="room reg-light">
+  <section class="room reg-light tight">
     <div class="chap rv" id="cases">
       <span class="idx">03</span>
       <div class="lead">
@@ -284,7 +318,7 @@
   </section>
 
   <!-- ===================== 04 LIVE END TO END ===================== -->
-  <section class="room reg-dark">
+  <section class="room reg-dark tight">
     <div class="chap rv" id="live">
       <span class="idx">04</span>
       <div class="lead">
@@ -321,6 +355,10 @@
         <div class="facts"><span>Agent runs<b>3</b></span><span>Agent time<b>4 min</b></span><span>Accounts held<b>3</b></span></div>
       </div>
     </div>
+  </section>
+
+  <!-- ===================== 04b THE TIME-LAPSE ===================== -->
+  <section class="room reg-dark lapse" aria-label="The bereavement case as the agents work">
     <div class="pair rv">
       <div>
         <div class="lc" style="margin:0;max-width:none">
@@ -410,11 +448,10 @@
         <text x="648" y="374" class="ax-s">Fences: agents never decide</text><text x="648" y="398" class="ax-s">Every read under sharing rules</text>
       </svg>
     </div>
-    <div class="uh-cap"><b>Read in place, written under fences.</b> The desk and the agents use the same two connectors. Every read and write runs under Salesforce sharing and permissions; every outside check result lands on the case and, for screening and identity, on the client's KYC profile.</div>
   </section>
 
   <!-- ===================== 07 GET STARTED ===================== -->
-  <section class="room reg-dark">
+  <section class="room reg-dark tight">
     <div class="chap rv" id="start">
       <span class="idx">07</span>
       <div class="lead">
@@ -422,18 +459,20 @@
         <h2>Everything you need to run the demo.</h2>
       </div>
       <span class="of">Chapter 07 / 07</span>
-      <p class="intro-p">The film shows the whole demo in seventeen minutes. The User Guide walks a presenter through it step by step, and the Handbook holds the full design. <b>The plugin and its changelog live in this repository.</b></p>
+      <p class="intro-p">The film shows the whole demo. The User Guide walks a presenter through it step by step; the Handbook holds the full design.</p>
     </div>
-    <button class="film rv" type="button" id="filmOpen" aria-label="Play the walkthrough film, 17 minutes">
-      <img src="media/film-poster.jpg" alt="" loading="lazy" />
-      <span class="film-sc"></span>
-      <span class="film-tx"><span class="rt">The walkthrough · 17 min</span><span class="film-h">Watch every use case run, live in the sandbox.</span><span class="film-p">Nine journeys from the client's email to the closed case, with the complaint and the bereavement run end to end.</span></span>
-      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
-    </button>
-    <div class="res">
-      <a class="rc rv" href="files/wealth-360-user-guide.pdf" download><span class="rt">User Guide · PDF · 41 pages</span><h3>The User Guide</h3><p>The desk, decisions, all nine use cases, the Salesforce side, email, a demo script and troubleshooting.</p><span class="go">Download <svg viewBox="0 0 24 24"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg></span></a>
-      <a class="rc rv" href="files/wealth-360-handbook.pdf" download><span class="rt">Handbook · PDF · 73 pages</span><h3>The Handbook</h3><p>The full design: journeys, agents, fences, data model, connectors, operations and the demo review.</p><span class="go">Download <svg viewBox="0 0 24 24"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg></span></a>
-      <a class="rc rv" href="https://github.com/cowork-offering/wealth-360" target="_blank" rel="noopener"><span class="rt">Plugin · version 0.12.0</span><h3>Install the plugin</h3><p>The desk page, the chat skills and the two agents, for Claude Cowork and Claude Code. Needs the two connectors.</p><span class="go">View on GitHub <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <div class="st">
+      <button class="wt rv" type="button" id="filmOpen" aria-label="Play the walkthrough film, 17 minutes">
+        <img src="media/film-poster.jpg" alt="" loading="lazy" />
+        <span class="wt-sc"></span>
+        <span class="wt-tx"><span class="rt">The walkthrough · 17 min</span><span class="wt-h">Every use case, run live in the sandbox.</span></span>
+        <span class="wt-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+      </button>
+      <ul class="rl">
+        <li class="rv"><a href="files/wealth-360-user-guide.pdf" download><span class="rt">PDF · 41 pages</span><span class="rh">User Guide</span><span class="rp">The desk, all nine use cases, a demo script and troubleshooting.</span><span class="ri"><svg viewBox="0 0 24 24"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg></span></a></li>
+        <li class="rv"><a href="files/wealth-360-handbook.pdf" download><span class="rt">PDF · 73 pages</span><span class="rh">Handbook</span><span class="rp">The full design: journeys, agents, fences, data model and operations.</span><span class="ri"><svg viewBox="0 0 24 24"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg></span></a></li>
+        <li class="rv"><a href="https://github.com/cowork-offering/wealth-360" target="_blank" rel="noopener"><span class="rt">Plugin · 0.12.0</span><span class="rh">Install the plugin</span><span class="rp">The desk, the chat skills and both agents, for Cowork and Claude Code.</span><span class="ri"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+      </ul>
     </div>
     <div class="fm" id="fm" role="dialog" aria-modal="true" aria-label="Wealth 360 walkthrough film" hidden>
       <div class="fm-bar"><span>Wealth 360 · The walkthrough</span><button type="button" class="fm-x" id="fmClose" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
