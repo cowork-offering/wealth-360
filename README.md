@@ -1,6 +1,6 @@
 # Wealth 360
 
-A wealth-servicing desk for relationship managers, run from Claude over the bank's own Salesforce.
+A wealth-servicing desk for relationship managers, run from Claude over the firm's own Salesforce.
 
 Two agents do the servicing work. Salesforce holds the rules. A named person makes every decision.
 
@@ -65,8 +65,8 @@ Wealth 360 needs exactly one connector. Each person adds it to their own claude.
 |---|---|
 | Where | claude.ai › Settings › Connectors › Add custom connector |
 | Name | `Wealth 360` (exactly this, with the space) |
-| URL | the bank's Wealth 360 MCP server. BankingGPT sandbox: `https://api.salesforce.com/platform/mcp/v1/d/accenture-d8--bankinggpt/sandbox/custom/Wealth360` |
-| Advanced settings › OAuth Client ID | the consumer key of the bank's External Client App. BankingGPT sandbox (app `Claude_Ai_Integration_via_MCP`): `3MVG95bilXG9ExQFPfVafsYh_y5a5uSppydv6GCC.unT36dURnDmX35CZam_x3uOs5vSwQuLTDYNSTV_2iL_Y` |
+| URL | the firm's Wealth 360 MCP server. BankingGPT sandbox: `https://api.salesforce.com/platform/mcp/v1/d/accenture-d8--bankinggpt/sandbox/custom/Wealth360` |
+| Advanced settings › OAuth Client ID | the consumer key of the firm's External Client App. BankingGPT sandbox (app `Claude_Ai_Integration_via_MCP`): `3MVG95bilXG9ExQFPfVafsYh_y5a5uSppydv6GCC.unT36dURnDmX35CZam_x3uOs5vSwQuLTDYNSTV_2iL_Y` |
 | Client credential field | leave empty. The app uses PKCE |
 
 Then select **Connect** and sign in to Salesforce as yourself. Salesforce sees you, not a shared
@@ -94,7 +94,7 @@ External Client App as `Wealth 360`, so there is nothing new to register.
 | Client credential field | leave empty. The app uses PKCE |
 
 Then select **Connect** and sign in to Salesforce as yourself. The server accepts only a Salesforce
-token for the bank's org, checks it with Salesforce on every new token, and records you on every row
+token for the firm's org, checks it with Salesforce on every new token, and records you on every row
 of its check ledger. There is no anonymous access.
 
 | Ask | Tool | Provider |
@@ -148,7 +148,7 @@ Other things to ask:
 | **Change of details** | The Case agent reads the request and the proof of address and compares them with the record. | When the name or date does not match, or bank details changed recently, the case is raised to you with a proposed next step. |
 | **Money out** | The agents check the source account, the payee and KYC, and the Case agent prepares the release. | The release waits for a person to authorise it. Agents cannot release money. |
 | **Money in** | The Case agent scores candidate accounts for an unallocated credit. The money stays in suspense. | Below the match threshold or above the review limit, you decide: allocate to a named account, or open an investigation. |
-| **Bereavement** | The Case agent marks the accounts, stops regular payments, checks documents, drafts a letter to the executor and proposes a one-to-one with the beneficiary. | Always level 3. You approve the letter and book the meeting. It is often the family's first conversation with the bank. |
+| **Bereavement** | The Case agent marks the accounts, stops regular payments, checks documents, drafts a letter to the executor and proposes a one-to-one with the beneficiary. | Always level 3. You approve the letter and book the meeting. It is often the family's first conversation with the firm. |
 | **Complaint** | The Case agent finds the cause and drafts the response: apology, cause, fix, referral rights. | You review the draft and approve it for sending. |
 
 Each journey's steps, rules, levels, teams and service levels live in Salesforce custom metadata.
@@ -217,7 +217,7 @@ The agent runner reads one control record in Salesforce every minute. Admins hol
 - **Audit.** Every agent step and person decision across cases, filterable by actor, journey,
   outcome and date.
 
-- **Client email.** The switch for agent auto-send of document requests (off until the bank
+- **Client email.** The switch for agent auto-send of document requests (off until the firm
   turns it on).
 
 Relationship managers see one read-only line on each case page: "Agents last ran 14:02, next 14:04"
@@ -232,7 +232,7 @@ from the Salesforce checks and say which outside checks they could not run.
 
 ## Email in and out
 
-**In.** The bank's intake address is a Salesforce Email Service. Each email is routed in this order:
+**In.** The firm's intake address is a Salesforce Email Service. Each email is routed in this order:
 
 1. **A reply.** The subject carries the case reference `[W360-<case number>]`, or the footer carries
    the thread token `W360REF-...`. The email and its attachments are filed on that case. A case in
@@ -249,16 +249,16 @@ from the Salesforce checks and say which outside checks they could not run.
 
 No EmailMessage records are created; the email is stored as a file on the case.
 
-**Out.** Every bank email goes out on the Wealth Servicing letterhead (document request, address
+**Out.** Every email from the firm goes out on the Wealth Servicing letterhead (document request, address
 change confirmation, bereavement, payment confirmation, complaint response, decision letter,
 general), with the case reference in the subject and the thread token in the footer, so the reply
 finds its case. Reply-To is the intake address (or a configured short address that forwards to it).
 
 - **A person's release.** Confirming a decision on the desk sends the released email.
-- **Agent auto-send, document requests only.** When the bank switches it on in the admin app, the
+- **Agent auto-send, document requests only.** When the firm switches it on in the admin app, the
   Case agent's request for missing documents goes out without a person, fenced in Salesforce: a
   Document request only, by email only, to exactly one address that is the client's email on record
-  and on the bank's allowlisted domains, at most three per case per day, and the only link it may
+  and on the firm's allowlisted domains, at most three per case per day, and the only link it may
   carry is an identity verification session. Anything else waits for a person. After a document
   request the case waits on the customer; the reply restarts it.
 

@@ -3,6 +3,14 @@
 All notable changes to the Wealth 360 plugin. The version is in
 `wealth-360/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
 
+## 0.12.1 (2026-11-03)
+
+Language: the firm, not the bank.
+
+- The firm running Wealth 360 is now called "the firm" (or "a wealth manager") everywhere it was
+  called "the bank": desk page, agents, skills, README, runbook and connectors. Client and remitter
+  terms stay as they are: bank statement, bank details, bank account, remitting bank.
+
 ## 0.12.0 (2026-10-29)
 
 From the demo review and the live complaint and bereavement runs (cases 00001375 and 00001380):

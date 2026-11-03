@@ -1,7 +1,7 @@
 # Wealth 360 runbook: the Salesforce side
 
 This plugin is the Claude side. The Salesforce side is a separate SFDX project (everything
-prefixed `W360`) deployed to the bank's org. Its `README.md` and `DEPLOY-PLAN.md` are the
+prefixed `W360`) deployed to the firm's org. Its `README.md` and `DEPLOY-PLAN.md` are the
 authority for components, deploy order, rollback and the org-automation risk table. This page is
 the short version an administrator needs to stand it up and keep it demo-ready.
 
@@ -55,7 +55,7 @@ The agents write as a dedicated agent identity; people read and decide in their 
 | The person's connector (`Wealth 360` in claude.ai) | the relationship manager, OAuth with PKCE | read, open the desk, stage and confirm decisions |
 | The agent runner | the agent identity (the user holding `W360_Agent`), OAuth 2.0 JWT bearer | the Case agent's and the Review agent's reads and writes; never the decision tools |
 
-**The agent runner** is a small headless process on a server the bank controls:
+**The agent runner** is a small headless process on a server the firm controls:
 
 1. It signs in with the JWT bearer flow: a short-lived assertion signed with the runner's private
    key, subject = the agent identity's username, against a dedicated External Client App that holds
@@ -126,7 +126,7 @@ working.
   Demo data is synthetic.
 - The seed, the tools, the email intake and the outbound sender create no EmailMessage records, so
   complaint-risk email flows are not woken. Sent emails are kept as an HTML file on the case.
-- Outbound mail is sent by Salesforce on behalf of the bank's domain. Add a DKIM key for that
+- Outbound mail is sent by Salesforce on behalf of the firm's domain. Add a DKIM key for that
   domain in Salesforce and include Salesforce in its SPF record, or receiving gateways may
   quarantine it.
 - A proposed meeting on a case account can wake a meeting-preparation flow in FSC orgs; the cleanup

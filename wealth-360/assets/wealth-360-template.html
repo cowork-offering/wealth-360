@@ -3549,7 +3549,7 @@ function w3Body(c,D,s,u,lane){const K=D.case||{},r=c.row,f=w3Flag(c);
 function w3Foot(c,D,s,u,lane){const busy=u.phase==="staging"||u.phase==="confirming",sp='<i class="spin"></i>';
   if(u.phase==="done")return `<div class="msg"><b>Saved.</b> ${E(u.done||"")}</div>`;
   if(u.phase==="staged"||u.phase==="confirming")return `<div class="msg"><b>Confirm:</b> ${E(u.plan.summary||u.label||"")}</div><div class="acts"><button class="w3btn" id="lv-c" ${busy?"disabled":""}>${u.phase==="confirming"?sp:""}Confirm</button><button class="w3btn g" id="lv-x" ${busy?"disabled":""}>Cancel</button></div>`;
-  if(!["auth","dec","rev"].includes(lane))return lane==="wait"?`<div class="msg">Nothing for you. The case restarts by itself when the client replies.</div>`:`<div class="msg">The agents are working on it. It lands in your lanes when it needs you.</div>`;
+  if(!["auth","dec","rev"].includes(lane))return lane==="wait"?`<div class="msg">Nothing for you. The case restarts by itself when the client replies.</div>`:lane==="done"?`<div class="msg">Closed${c.row.resolution==="Resolved by agents"?" by the agents on their own":c.row.resolution==="Closed after decision"?" after your decision":""}. Everything is on file in Salesforce.</div>`:`<div class="msg">The agents are working on it. It lands in your lanes when it needs you.</div>`;
   if(D.canDecide===false)return `<div class="msg">You can't decide this case. It needs a person with the Relationship Manager set.</div>`;
   const err=u.phase==="error"?`<div class="msg err"><b>Not saved.</b> ${E(u.err)}</div>`:"";
   const meet=(D.meetings||[]).find(m=>m.W360_Meeting_Status__c==="Proposed"),sl=lvSlots(meet),hasL=(D.instructions||[]).some(i=>i.Type__c==="Communication"&&i.Status__c==="Awaiting review");
@@ -4050,7 +4050,7 @@ async function w3DocPick(file){if(!file)return;const out=$("w3dzo");w3doc.file=f
   const sample=await w3Sample();const st=$("w3dst");
   if(!sample){w3DocManual("Reading needs Claude on this page, which is not available here. Choose the type and attach it.");return}
   const c=w3ac.ctx||{},D=c.caseId&&LDET[c.caseId]&&LDET[c.caseId].d,req=((D&&D.documents&&D.documents.required)||[]).map(x=>x.document);
-  const prompt=`You read a document a bank client sent for a servicing case. Facts only, from the image(s); never guess.
+  const prompt=`You read a document a client sent for a servicing case. Facts only, from the image(s); never guess.
 Case: ${c.type||"case"} ${c.caseNo||""}. Client on record: ${c.name||"unknown"}. Request: ${w3ReqText(c.caseId).slice(0,600)||"not given"}.
 Documents this case needs: ${req.join("; ")||"not listed"}.
 Return JSON only:

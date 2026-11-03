@@ -114,7 +114,7 @@ What happens: with auto-send switched on in Agent control, Salesforce sends it i
 Wealth Servicing (result `autoSent: true`, `status: "Sent"`) and moves the case to
 `Waiting on customer`. It refuses to auto-send (and keeps the draft Awaiting review for a person,
 with `heldReason`) when the recipient is not the client's email on record, when its domain is not
-on the bank's auto-send allowlist, when 3 emails were
+on the firm's auto-send allowlist, when 3 emails were
 already auto-sent on the case today, or when auto-send is switched off. Do not retry a held draft
 with another address. After a sent request, stop work on the case and report: the client's reply
 comes back through the email intake on the case reference, the case goes back to `Working` with a

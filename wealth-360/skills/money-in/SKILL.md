@@ -5,7 +5,7 @@ description: Guided workflow for the Wealth 360 Money in journey (Money_In, "All
 
 # Money in
 
-A credit has arrived that the bank cannot place. It sits in suspense until it is matched. A strong
+A credit has arrived that the firm cannot place. It sits in suspense until it is matched. A strong
 match on a small amount can be allocated by the rules; anything else needs a person.
 
 **Journey:** `Money_In` · default level **L2** · team **Cash Operations** · SLA **same day**.

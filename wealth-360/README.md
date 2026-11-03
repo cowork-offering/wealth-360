@@ -14,7 +14,7 @@ how the plugin itself is put together. The Salesforce side is in `RUNBOOK.md`.
 
 | Connector | What it is | Tools |
 |---|---|---|
-| `Wealth 360` | Custom connector to the bank's Wealth 360 MCP server. OAuth Client ID = the bank's External Client App consumer key; client credential field empty; PKCE; each person signs in as themselves | 16 |
+| `Wealth 360` | Custom connector to the firm's Wealth 360 MCP server. OAuth Client ID = the firm's External Client App consumer key; client credential field empty; PKCE; each person signs in as themselves | 16 |
 
 `.mcp.json` is intentionally empty. The connector is user-level so each person signs in as
 themselves and no endpoint or auth flow ships inside the plugin.

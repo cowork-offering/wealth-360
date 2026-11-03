@@ -1,13 +1,13 @@
 ---
 name: bereavement
-description: Guided workflow for the Wealth 360 Bereavement journey ("Bereavement notification"). A family member tells the bank a customer has died. Reads the case and the journey rules, has the Case agent work the steps with cited evidence (read the notification and the death certificate, identify accounts and holdings, mark accounts deceased and stop regular payments, check documents, draft the document request letter in the bereavement tone, propose a one-to-one with the beneficiary), hands the case to the Review agent for an independent check, raises it to the relationship manager, and carries the person's decision (approve the letter and book the meeting at a chosen slot) through stage_decision, the plan shown verbatim, the named person's confirmation, confirm_decision and a re-read. Always level 3. Use for "bereavement", "has died", "passed away", "estate of", "probate", "meet the beneficiary" or the bereavement case on the desk.
+description: Guided workflow for the Wealth 360 Bereavement journey ("Bereavement notification"). A family member tells the firm a customer has died. Reads the case and the journey rules, has the Case agent work the steps with cited evidence (read the notification and the death certificate, identify accounts and holdings, mark accounts deceased and stop regular payments, check documents, draft the document request letter in the bereavement tone, propose a one-to-one with the beneficiary), hands the case to the Review agent for an independent check, raises it to the relationship manager, and carries the person's decision (approve the letter and book the meeting at a chosen slot) through stage_decision, the plan shown verbatim, the named person's confirmation, confirm_decision and a re-read. Always level 3. Use for "bereavement", "has died", "passed away", "estate of", "probate", "meet the beneficiary" or the bereavement case on the desk.
 ---
 
 # Bereavement
 
-Someone has died, and a family member has told the bank. This journey has two jobs: handle the
+Someone has died, and a family member has told the firm. This journey has two jobs: handle the
 estate correctly, and treat the family well. The one-to-one with the beneficiary is where the next
-generation meets the bank for the first time; it is proposed by the agent and booked only by a
+generation meets the firm for the first time; it is proposed by the agent and booked only by a
 person.
 
 **Journey:** `Bereavement` · level **L3 always** · team **Bereavement Services** · SLA **acknowledge in 2 working days**.
@@ -25,7 +25,7 @@ Calling convention for every tool: send `{"inputs":[{...}]}`, parse
 ## 1. Read the case
 
 `W360CaseDetail` with the `caseId`. Two lines, gently worded: who has died and when, who told the
-bank and their relationship (executor, beneficiary), the accounts and their values, documents
+firm and their relationship (executor, beneficiary), the accounts and their values, documents
 received against required (`documents.requiredCount`, `receivedCount`, `missing`), and where the
 case stands. Mention any drafted letter (`instructions[]`, Communication, Awaiting review) and any
 proposed meeting (`meetings[]`, Proposed, with `W360_Proposed_Slots__c`).
@@ -37,7 +37,7 @@ Dispatch the Case agent (`subagent_type: "wealth-360:case-agent"`) with the case
 
 | Step key | What it establishes | Tool |
 |---|---|---|
-| `read_notification` | who has died, who is telling the bank, their role | `W360CaseContext`; verbatim quote of the notification (required) |
+| `read_notification` | who has died, who is telling the firm, their role | `W360CaseContext`; verbatim quote of the notification (required) |
 | `read_certificate` | name, date of death, registration district | the certificate on the case |
 | `set_journey` | journey and level (always L3) | `W360Rulebook` |
 | `identify_accounts` | every account and holding, with values | `W360ClientSnapshot` |

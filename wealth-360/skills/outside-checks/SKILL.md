@@ -67,7 +67,7 @@ Rules:
   or `live` against a sandbox key). Screening runs on the public UK Sanctions List, inside the
   sandbox service: say the list date.
 - **Do not recompute.** The outcome is computed by the server or the provider. Never round, rescore,
-  override or soften it. A `partial_match` is not a match; say what the bank holds
+  override or soften it. A `partial_match` is not a match; say what the payee's bank holds
   (`matched_name`).
 - **Screening hits go to a person.** A `possible_match` or `match` is never cleared in chat. Quote
   the list entry (id, name, matched alias, regime, listed date, score) and say a person must review
@@ -76,7 +76,7 @@ Rules:
   Confirmation of Payee, even though the result carries a familiar `copResult` label.
 - **Identity.** `pending` means a session was created for the customer to complete; it is not a
   pass. Give the `verification_url` only to the person, and only to send to the client through the
-  bank's document request (the Case agent's `draft_communication`), never in chat to anyone else.
+  firm's document request (the Case agent's `draft_communication`), never in chat to anyone else.
   To read the outcome later, call `verify_identity` again with `session_id`.
 - **Failures.** `ok: false` is not a pass. Quote `error.code` and `error.message`. `NOT_CONFIGURED`
   means the provider key is missing on the server: no check was run. A 401 from the connector means
